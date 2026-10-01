@@ -506,6 +506,10 @@ body.is-song header.top,body.is-song nav.tabs{display:none}
 @keyframes swBody{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
 .lyric-line.active .ico-sway .sw-arm,.lyric-line.active .ico-sway .sw-body{animation-duration:1.2s}
 @media (prefers-reduced-motion: reduce){.ico-sway .sw-arm,.ico-sway .sw-body{animation:none}}
+/* 재생 목록 안내 (셋리스트·앨범에서 들어왔을 때) */
+.queue-note{max-width:720px;margin:-6px auto 10px;padding:0 16px;font-size:12px;color:var(--accent)}
+.song-fixed-top .queue-note{margin-left:auto;margin-right:auto;width:100%}
+.song-page.venue .queue-note{display:none}
 /* 곡 화면 범례 */
 .cheer-legend{max-width:720px;margin:-4px auto 10px;padding:0 16px;display:flex;flex-wrap:wrap;gap:6px 12px;font-size:12px;color:var(--muted)}
 .cheer-legend span{display:inline-flex;align-items:center;gap:4px}
@@ -6203,31 +6207,31 @@ pic : side
 `, lyrics:[] },
     { id:"SoineChanceWaTotsuzenNi", jp:"添い寝チャンスは突然に", ko:"같이 잘 기회는 갑자기", rom:"Soine Chance wa Totsuzen ni", date:"2023.01.17", album:"ユーモア", vtype:"audio",
       youtubeId:"Y_vt1oZXgWA", lyricsShift:0, lyricsTimes:[18.41, 27.84, 36.48, 41.34, 47.77, 56.93, 61.54], lyricsTime:0, lyricsText:`
-もうすぐこの部屋で　金曜日が終わるでしょ
+[clap]もうすぐこの部屋で　金曜日が終わるでしょ
 모- 스구 코노 헤야데 킨요-비가 오와루데쇼
 이제 곧 이 방에서 금요일이 끝날 거에요
 
-さっき言いましたが　私明日お休みです
+[clap]さっき言いましたが　私明日お休みです
 삿키 이-마시타가 와타시 아시타 오야스미데스
 방금 말했지만 저는 내일 쉬어요
 
-今来週の話？ねえバカなの？
+[clap]今来週の話？ねえバカなの？
 이마 라이슈-노 하나시? 네- 바카나노?
 지금 다음 주 얘기를 왜 해요? 어휴 바보에요?
 
-良いんです　もう眠くなりました
+[clap]良いんです　もう眠くなりました
 이인데스 모- 네무쿠 나리마시타
 됐어요 이제 졸려요
 
-あなたは腰をおろして　つまんないテレビを見てる
+[clap]あなたは腰をおろして　つまんないテレビを見てる
 아나타와 코시오 오로시테 츠만나이 테레비오 미테루
 당신은 자리에 앉아 재미없는 티비를 보고 있네
 
-私はおとなしく後ろで寝たフリをして
+[clap]私はおとなしく後ろで寝たフリをして
 와타시와 오토나시쿠 우시로데 네타 후리오 시테
 나는 얌전히 뒤에서 자는 척을 하며
 
-あなたのキスを待っている
+[clap]あなたのキスを待っている
 아나타노 키스오 맛테 이루
 당신의 키스를 기다리고 있어
 `, lyrics:[] },
@@ -6747,39 +6751,39 @@ pic : side
 키미오 오모에바 요캇타
 널 사랑할 걸 그랬어
 
-僕の胸の中にいる
+[wave]僕の胸の中にいる
 보쿠노 무네노 나카니 이루
 내 가슴 속에 있는
 
-怪獣のサイズを
+[wave]怪獣のサイズを
 카이쥬-노 사이즈오
 괴수의 사이즈를
 
-いつだって伝え損ねてしまうけど
+[wave]いつだって伝え損ねてしまうけど
 이츠닷테 츠타에 소코네테 시마우케도
 항상 네게 전할 타이밍을 놓쳐 버리지만
 
-君が見たのは ほんの一部だ
+[wave]君が見たのは ほんの一部だ
 키미가 미타노와 혼노 이치부다
 네가 본 건 극히 일부일 뿐이야
 
-何も壊す事が出来ずに
+[wave]何も壊す事が出来ずに
 나니모 코와스 코토가 데키즈니
 아무것도 부수지 못한 채
 
-立ち尽くした怪獣が
+[wave]立ち尽くした怪獣が
 타치츠쿠시타 카이쥬-가
 멍하니 서있는 괴수가
 
-僕の真ん中に今日も陣取って
+[wave]僕の真ん中に今日も陣取って
 보쿠노 만나카니 쿄-모 진돗테
 오늘도 내 한가운데에 자리를 잡곤
 
-叫んでるんだ
+[wave]叫んでるんだ
 사켄데룬다
 외치고 있어
 
-嫌だ！嫌だ！君をよこせ！って
+[wave]嫌だ！嫌だ！君をよこせ！って
 이야다 이야다 키미오 요코셋테
 "싫어! 싫어! 널 내놔!"라고
 
@@ -6811,48 +6815,48 @@ pic : side
 젠부 미세나쿠챠 다메닷타나
 전부 보여줬어야 했던 건데
 
-僕の胸の中にある
+[wave]僕の胸の中にある
 보쿠노 무네노 나카니 아루
 내 가슴 속에 있는
 
-君宛の手紙は
+[wave]君宛の手紙は
 키미아테노 테가미와
 네게 쓴 편지는
 
-最後まで渡しそびれ続けたけど
+[wave]最後まで渡しそびれ続けたけど
 사이고마데 와타시소비레 츠즈케타케도
 끝까지 계속 건네지 못하고 있지만
 
-本当は傑作揃いなんだよ
+[wave]本当は傑作揃いなんだよ
 혼토-와 켓사쿠조로이 난다요
 사실은 하나 같이 다 걸작들이야
 
-僕の腕の中に誘う
+[wave]僕の腕の中に誘う
 보쿠노 우데노 나카니 이자나우
 내 품속으로 유혹하는
 
-ただ唯一の合図は
+[wave]ただ唯一の合図は
 타다 유이-츠노 아이즈와
 단 하나의 유일한 신호는
 
-ゴジラもカネゴンだって僕だって
+[wave]ゴジラもカネゴンだって僕だって
 고지라모 카네곤닷테 보쿠닷테
 고지라도, 카네곤도, 나도
 
-違いは無いんだ
+[wave]違いは無いんだ
 치가이와 나인다
 다를 건 없어
 
-嫌だ！嫌だ！君をよこせ！って
+[wave]嫌だ！嫌だ！君をよこせ！って
 이야다 이야다 키미오 요코셋테
 "싫어! 싫어! 널 내놔!"라고
 
-言えばよかった
+[wave]言えばよかった
 이에바 요캇타
 말할 걸 그랬어
 `, lyrics:[] },
     { id:"FuyuToHaru", jp:"冬と春", ko:"겨울과 봄", rom:"Fuyu to Haru", date:"2024.01.24", album:"디지털 싱글", vtype:"mv",
-      youtubeId:"hu6y1ol9yUg", lyricsShift:0, lyricsTimes:[10.55, 16.85, 23.23, 29.36, 36.12, 38.58, 42.25, 44.96, 49.44, 52.55, 55.85, 60.73, 65.40, 68.65, 86.59, 92.63, 98.89, 105.11, 111.99, 114.36, 117.95, 121.29, 125.38, 129.96, 133.22, 138.01, 142.64, 145.65, 163.87, 166.71, 169.79, 173.47, 174.63, 175.80, 177.59, 182.85, 191.78, 196.36, 199.49, 204.41, 209.00, 212.25, 216.88, 221.56, 224.72, 231.15, 237.36], lyricsTime:0, lyricsText:`
+      youtubeId:"hu6y1ol9yUg", lyricsShift:0, lyricsTimes:[10.55, 16.85, 23.23, 29.36, 36.12, 38.58, 42.25, 44.96, 47.9, 52.55, 55.85, 60.73, 65.40, 68.65, 86.59, 92.63, 98.89, 105.11, 111.99, 114.36, 117.95, 121.29, 125.38, 129.96, 133.22, 138.01, 142.64, 145.65, 163.87, 166.71, 169.79, 173.47, 174.63, 175.80, 177.59, 182.85, 191.78, 196.36, 199.49, 204.41, 209.00, 212.25, 216.88, 221.56, 224.72, 231.15, 237.36], lyricsTime:0, lyricsText:`
 私を探していたのに
 와타시오 사가시테 이타노니
 날 찾고 있었는데
@@ -8877,6 +8881,62 @@ const MV_LABEL = { new:"발매일 ↓", old:"발매일 ↑", name:"가나다순"
 try { const v = JSON.parse(localStorage.getItem("bn-mv") || "null"); if (v){ mv.order = v.order || mv.order; mv.auto = v.auto ?? mv.auto; } } catch(e){}
 function mvSave(){ try { localStorage.setItem("bn-mv", JSON.stringify({ order:mv.order, auto:mv.auto })); } catch(e){} }
 
+/* ── 재생 목록 (바운디 사이트처럼) ───────────────────────────────
+   셋리스트에서 곡을 누르면 그 셋리스트 순서, 앨범·싱글에서 누르면 그 목록 순서로
+   이전/다음 곡과 '영상이 끝나면 다음 곡'이 이어진다. 곡 목록에서 들어오면 곡 목록 순서. */
+mv.queue = null;                            // { ids:[곡id...], pos:지금 몇 번째, label:"셋리스트" }
+function mvSetQueue(anchor, label){
+  const box = anchor.closest(".set-list, .disco-tracks, .cover-grid, #csetList") || anchor.parentElement;
+  const links = [...box.querySelectorAll('a[href^="#/mv/"]')];
+  const ids = links.map(a => decodeURIComponent(a.getAttribute("href").slice(5)));
+  const pos = links.indexOf(anchor);
+  mv.queue = ids.length > 1 && pos >= 0 ? { ids, pos, label } : null;
+}
+/* 지금 곡 기준으로 delta 만큼 떨어진 곡. skipNoVideo 면 영상 없는 곡은 건너뛴다 */
+function mvNeighbor(delta, skipNoVideo){
+  const q = mv.queue;
+  if (q){
+    if (q.ids[q.pos] !== mv.song.id){ const i = q.ids.indexOf(mv.song.id); if (i >= 0) q.pos = i; else mv.queue = null; }
+  }
+  if (mv.queue){
+    const n = q.ids.length;
+    for (let k = 1; k <= n; k++){
+      const pos = (q.pos + delta * k + n * k) % n;
+      const s = SONGS.find(x => x.id === q.ids[pos]);
+      if (s && (!skipNoVideo || s.youtubeId)) return { song:s, pos };
+    }
+    return null;
+  }
+  const list = mvSorted(), i = list.findIndex(s => s.id === mv.song.id), n = list.length;
+  for (let k = 1; k <= n; k++){
+    const s = list[(i + delta * k + n * k) % n];
+    if (!skipNoVideo || s.youtubeId) return { song:s, pos:-1 };
+  }
+  return null;
+}
+
+/* ── 소리 기억하기 ── 플레이어에서 맞춘 볼륨·음소거를 기억해 다음 곡·다음 방문에도 그대로 */
+const mvVol = { v:100, m:false };
+try { const v = JSON.parse(localStorage.getItem("bn-vol") || "null"); if (v){ mvVol.v = Number(v.v) || 100; mvVol.m = !!v.m; } } catch(e){}
+function mvVolApply(){
+  if (!mv.player || !mv.ready) return;
+  try { mv.player.setVolume(mvVol.v); mvVol.m ? mv.player.mute() : mv.player.unMute(); } catch(e){}
+}
+function mvVolWatch(){
+  clearInterval(mv.volTimer);
+  mv.volTimer = setInterval(() => {
+    if (!mv.player || !mv.ready) return;
+    try {
+      const v = mv.player.getVolume(), m = !!mv.player.isMuted();
+      const nv = (typeof v === "number" && v > 0) ? v : mvVol.v;   // 0 은 음소거로 취급
+      if (nv !== mvVol.v || m !== mvVol.m){
+        mvVol.v = nv; mvVol.m = m;
+        try { localStorage.setItem("bn-vol", JSON.stringify(mvVol)); } catch(e){}
+      }
+    } catch(e){}
+  }, 800);
+}
+
 const mvSquash = s => String(s).toLowerCase().replace(/[\s'’·・、。,.!?！？-]/g, "");
 function mvSorted(){
   const list = SONGS.slice();
@@ -9114,6 +9174,7 @@ function viewMvSong(song){
         <div class="lyrics-note"><span class="dot">●</span> ${lines.length && !song.unsynced
           ? "가사를 탭하면 해당 위치로 영상이 이동해요. 영상 재생 상태에 따라 가사 하이라이트가 동기화됩니다."
           : lines.length ? `이 곡은 가사 시간이 아직 없어서 영상과 따라가지 않아요. ${hasVideo ? `<a href="#/sync/${encodeURIComponent(song.id)}">싱크 맞추기 ›</a>` : ""}` : "가사는 준비 중이에요."}</div>
+        ${mv.queue && mv.queue.ids.includes(song.id) ? `<div class="queue-note">▶ <b>${esc(mv.queue.label)}</b> 순서로 이어서 재생 · ${(mv.queue.ids[mv.queue.pos] === song.id ? mv.queue.pos : mv.queue.ids.indexOf(song.id)) + 1} / ${mv.queue.ids.length}</div>` : ""}
         ${cheerLegend(marks)}
         <div class="tip-pic" id="tipPic" aria-live="polite">
           <figure class="tip-pic-card" id="tipPicCard" title="탭하면 크게 보여요"><img id="tipPicImg" alt="" decoding="async"><figcaption class="tip-pic-cap" id="tipPicCap"></figcaption></figure>
@@ -9165,11 +9226,13 @@ function viewMvSong(song){
   </div>`;
 }
 
-function mvGo(delta){
-  const list = mvSorted(), i = list.findIndex(s => s.id === mv.song.id);
-  const t = list[(i + delta + list.length) % list.length];
+function mvGo(delta, skipNoVideo){
+  const nb = mvNeighbor(delta, skipNoVideo);
+  if (!nb) return;
+  if (mv.queue && nb.pos >= 0) mv.queue.pos = nb.pos;
   mv.autoplay = true;
-  location.hash = "#/mv/" + encodeURIComponent(t.id);
+  if (nb.song.id === mv.song.id){ try { mv.player.seekTo(0, true); mv.player.playVideo(); } catch(e){} return; }
+  location.hash = "#/mv/" + encodeURIComponent(nb.song.id);
 }
 function paintSheet(){
   const q = mvSquash($("#sheetQ").value || "");
@@ -9208,7 +9271,7 @@ function updatePlayBtn(){
 function bindMv(id){
   const song = id ? SONGS.find(s => s.id === decodeURIComponent(id)) : null;
   if (!song){
-    mv.from = null;
+    mv.from = null; mv.queue = null;
     mvRows();
     $("#mvQ").addEventListener("input", e => { mv.query = e.target.value; mvRows(); });
     $("#mvSort").onclick = e => {
@@ -9227,6 +9290,9 @@ function bindMv(id){
   };
   $("#prevSong").onclick = () => mvGo(-1);
   $("#nextSong").onclick = () => mvGo(1);
+  { const p = mvNeighbor(-1), n = mvNeighbor(1);
+    if (p) $("#prevSong").title = "이전 곡: " + p.song.ko;
+    if (n) $("#nextSong").title = "다음 곡: " + n.song.ko; }
   $("#songTheme").onclick = () => $("#themeBtn").click();
   $("#pickerBtn").onclick = () => openSheet(!$("#songSheet").classList.contains("open"));
   $("#songSheet").addEventListener("click", e => {
@@ -9281,8 +9347,11 @@ function mvMount(song){
     videoId: song.youtubeId,
     playerVars: { rel:0, playsinline:1, modestbranding:1, autoplay:auto },
     events: {
-      onReady: () => { mv.ready = true; mvTick(song); updatePlayBtn(); },
-      onStateChange: () => { mvTick(song); updatePlayBtn(); }
+      onReady: () => { mv.ready = true; mvVolApply(); mvVolWatch(); if (auto){ try { mv.player.playVideo(); } catch(e){} } mvTick(song); updatePlayBtn(); },
+      onStateChange: e => {
+        mvTick(song); updatePlayBtn();
+        if (e.data === 0 && mv.song === song) mvGo(1, true);   // 영상이 끝나면 다음 곡 (마지막이면 처음으로)
+      }
     }
   });
 }
@@ -9311,6 +9380,7 @@ function mvTick(song){
 }
 function mvCleanup(){
   clearInterval(mv.timer); mv.timer = null;
+  clearInterval(mv.volTimer); mv.volTimer = null;
   hideTipPic();
   if (mv.player){ try { mv.player.destroy(); } catch(e){} }
   if (mv.keys){ document.removeEventListener("keydown", mv.keys); mv.keys = null; }
@@ -9440,7 +9510,8 @@ function bindSetlist(){
   });
   paintPicker(); paintConcert();
   $("#csetList").addEventListener("click", e => {
-    if (e.target.closest("a.set-row")) mv.from = { hash:"#/setlist", label:"셋리스트", y: window.scrollY };
+    const a = e.target.closest("a.set-row");
+    if (a){ mv.from = { hash:"#/setlist", label:"셋리스트", y: window.scrollY }; mvSetQueue(a, "셋리스트"); }
   });
 }
 
@@ -9508,7 +9579,11 @@ function viewDisco(){
 }
 function bindDisco(){
   document.querySelectorAll(".seg button").forEach(b => b.onclick = () => { disco.tab = b.dataset.t; render(); });
-  document.querySelectorAll("#app a.set-row, #app a.cg-item").forEach(a => a.addEventListener("click", () => { mv.from = { hash:"#/disco", label:"앨범", y: window.scrollY }; }));
+  document.querySelectorAll("#app a.set-row, #app a.cg-item").forEach(a => a.addEventListener("click", () => {
+    mv.from = { hash:"#/disco", label:"앨범", y: window.scrollY };
+    const alb = a.closest("details.disco-alb");
+    mvSetQueue(a, alb ? alb.querySelector(".disco-sum b").textContent : "싱글");
+  }));
 }
 
 /* ============ 가사 싱크 맞추기 도구 (#/sync/곡id) ============
