@@ -497,6 +497,15 @@ body.is-song header.top,body.is-song nav.tabs{display:none}
 @keyframes bzHR{0%,18%,39%,56%,100%{transform:translateX(2.4px)}9%,31%,46%{transform:translateX(0)}}
 @keyframes bzSp1{0%,7%{opacity:0}9%{opacity:1}16%,29%{opacity:0}31%{opacity:1}37%,44%{opacity:0}46%{opacity:1}53%,100%{opacity:0}}
 @media (prefers-reduced-motion: reduce){.ico-banzai .bz-clap,.ico-banzai .bz-h,.ico-banzai .bz-sp1{animation:none}.ico-banzai .bz-up{animation:none;opacity:0}}
+/* 한 손 들고 좌우로 — 어깨를 축으로 팔이 왔다 갔다, 몸도 살짝 따라감 */
+.ico-sway{width:1.45em;height:1.45em;vertical-align:-0.34em;color:var(--wave)}
+.ico-sway svg{width:100%;height:100%;overflow:visible}
+.ico-sway .sw-arm{transform-origin:15.4px 17.4px;animation:swArm 1.6s ease-in-out infinite}
+.ico-sway .sw-body{transform-origin:11.4px 23px;animation:swBody 1.6s ease-in-out infinite}
+@keyframes swArm{0%,100%{transform:rotate(-22deg)}50%{transform:rotate(28deg)}}
+@keyframes swBody{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+.lyric-line.active .ico-sway .sw-arm,.lyric-line.active .ico-sway .sw-body{animation-duration:1.2s}
+@media (prefers-reduced-motion: reduce){.ico-sway .sw-arm,.ico-sway .sw-body{animation:none}}
 /* 곡 화면 범례 */
 .cheer-legend{max-width:720px;margin:-4px auto 10px;padding:0 16px;display:flex;flex-wrap:wrap;gap:6px 12px;font-size:12px;color:var(--muted)}
 .cheer-legend span{display:inline-flex;align-items:center;gap:4px}
@@ -3328,45 +3337,54 @@ pic : handup
 
 
 
-あるがままの姿で
+[side]あるがままの姿で
 아루가 마마노 스가타데
 있는 그대로의 모습으로
+pic : side
 
-自分のままで生きさせて
+[side]自分のままで生きさせて
 지분노 마마데 이키사세테
 내 자신 그대로 살게 해서
+pic : side
 
-決して楽ではないが
+[side]決して楽ではないが
 켓시테 라쿠데와 나이가
 결코 편하지는 않지만
+pic : side
 
-きっと人生は素晴らしい
+[side]きっと人生は素晴らしい
 킷토 진세이와 스바라시이
 분명 인생은 아름다워
+pic : side
 
 
-
-青くさい
+[side]青くさい
 아오쿠사이
 미숙해
+pic : side
 
-なんて青くさい
+[side]なんて青くさい
 난테 아오쿠사이
 참으로 미숙해
+pic : side
 
-綺麗事だって言われても
+[side]綺麗事だって言われても
 키레이코토닷테 이와레테모
 겉만 보기 좋다는 말을 해도
+pic : side
 
-いいんだ 夢見る空は
+[side]いいんだ 夢見る空は
 이인다 유메미루 소라와
 괜찮아 꿈꾸는 하늘은
+pic : side
 
-いつだって青一色でいい
+[side]いつだって青一色でいい
 이츠닷테 아오 잇쇼쿠데 이이
 언제나 푸른 색 하나로 좋아
+pic : side
 
-라 라라라 라라 라라라 라 라라라 라 라라라라라 x 2
+[side]라 라라라 라라 라라라 라 라라라 라 라라라라라 x 2
+pic : side
 
 恐れない 人はいない
 오소레나이 히토와 이나이
@@ -3414,44 +3432,51 @@ pic : handup
 
 
 
-あるがままの姿で
+[side]あるがままの姿で
 아루가 마마노 스가타데
 있는 그대로의 모습으로
+pic : side
 
-自分のままで生きさせて
+[side]自分のままで生きさせて
 지분노 마마데 이키사세테
 내 자신 그대로 살게 해서
+pic : side
 
-正直者は馬鹿をみるが
+[side]正直者は馬鹿をみるが
 쇼-지키모노와 바카오 미루가
 정직한 사람은 손해를 보지만
+pic : side
 
-きっと人生は素晴らしい
+[side]きっと人生は素晴らしい
 킷토 진세이와 스바라시이
 분명 인생은 아름다워
+pic : side
 
 
-
-下らない
+[side]下らない
 쿠다라나이
 시시해
+pic : side
 
-なんて下らない
+[side]なんて下らない
 난테 쿠다라나이
 참으로 시시해
+pic : side
 
-無駄な事だって言われても
+[side]無駄な事だって言われても
 무다나 코토닷테 이와레테모
 쓸떼없는 것이라는 말을 들어도
+pic : side
 
-いいんだ 下を見ないで
+[side]いいんだ 下を見ないで
 이인다 시타오 미나이데
 괜찮아 아래를 보지 않고
+pic : side
 
-ひたすら登って行けたらいい
+[side]ひたすら登って行けたらいい
 히타스라 노봇테 이케타라이이
 한결같이 올라갈 수 있다면 좋아
-
+pic : side
 
 
 心が擦り切れて
@@ -3472,41 +3497,49 @@ pic : handup
 
 
 
-あるがままの姿で
+[side]あるがままの姿で
 아루가 마마노 스가타데
 있는 그대로의 모습으로
+pic : side
 
-自分のままで生きさせて
+[side]自分のままで生きさせて
 지분노 마마데 이키사세테
 내 자신 그대로 살게 해서
+pic : side
 
-努力は実りづらいが
+[side]努力は実りづらいが
 도료쿠와 미노리 즈라이가
 노력으로 결실을 맺기 힘들지만
+pic : side
 
-きっと人生は素晴らしい
+[side]きっと人生は素晴らしい
 킷토 진세이와 스바라시이
 분명 인생은 아름다워
+pic : side
 
 
-
-泥くさい
+[side]泥くさい
 도로쿠사이
 촌스러워
+pic : side
 
-なんて泥くさい
+[side]なんて泥くさい
 난테 도로쿠사이
 참으로 촌스러워
+pic : side
 
-だからこそ綺麗な綺麗な虹を
+[side]だからこそ綺麗な綺麗な虹を
 다카라코소 키레이나 키레이나 니지오
 그렇기에 아름답고 깨끗한 무지개를
+pic : side
 
-見つける権利がある
+[side]見つける権利がある
 미츠케루 켄리가 아루
 찾을 권리가 있어
+pic : side
 
-라 라라라 라라 라라라 라 라라라 라 라라라라라 x 2
+[side]라 라라라 라라 라라라 라 라라라 라 라라라라라 x 2
+pic : side
 
 音がさ 外れても
 오토가사 하즈레테모
@@ -4274,8 +4307,8 @@ pic : handup
     "wave-basic": { src: "./images/tips/wave-basic.gif", caption: "양손 머리 위로 · 좌우로 크게" },
     "handup": { src: "./images/tips/handup.gif", caption: "짝 짝짝 만세" },
     "jump": { src: "./images/tips/jump.gif", caption: "jump" },
+    "side": { src: "./images/tips/side.gif", caption: "좌우로 흔들" },
     "clap-basic": { src: "./images/tips/clap-basic.gif", caption: "머리 위에서 박수" },
-    "jump":       { src: "./images/tips/jump.gif",       caption: "점프!" },
   };
 
   /* ── 붙여 넣은 가사를 소절로 나눈다 ───────────────────────────
@@ -4293,6 +4326,7 @@ pic : handup
          [jump]  점프             [spin]  머리 위로 팔 돌리기 ([turn] 도 됨)
          [mic]   떼창 아이콘 ([chant] 도 됨)
          [banzai] 짝 짝짝 만세 ([manse] 도 됨)
+         [sway]  한 손 들고 좌우로 흔들기 ([side] 도 됨)
        색으로 구간 표시 (주로 한글 발음 줄에)
          {떼창 구간}      → 주황 글씨 + 왼쪽에 떼창 표시
          {{박수 구간}}    → 파랑 글씨
@@ -4307,7 +4341,7 @@ pic : handup
        pic: wave-basic
      ───────────────────────────────────────────────────────────── */
   const HANGUL = /[가-힣]/;
-  const CHEER_TOKEN = /[\[(](?:wave|clap|mic|chant|jump|spin|turn|banzai|manse)[\])]/gi;
+  const CHEER_TOKEN = /[\[(](?:wave|clap|mic|chant|jump|spin|turn|banzai|manse|sway|side)[\])]/gi;
   const PIC_ROW = /^pic\s*[:：]\s*(.+)$/i;
   const BG_ROW  = /^[+＋]\s*/;
   SONGS.forEach(sg => {
@@ -5201,7 +5235,11 @@ INLINE_ICONS.banzai = `<span class="ico ico-banzai" title="짝 짝짝 만세"><s
   + `<path d="M16.4 17.2L19.2 6.2"/><circle cx="19.6" cy="4.7" r="1.35" fill="currentColor"/>`
   + `<g class="bz-sp2" stroke-width="1.7"><path d="M12 1.2v1.6"/><path d="M8.4 2.3l.8 1"/><path d="M15.6 2.3l-.8 1"/></g></g></svg></span>`;
 INLINE_ICONS.manse = INLINE_ICONS.banzai;
-const ICON_TOKEN_RE = /[\[(](wave|clap|mic|chant|jump|spin|turn|banzai|manse)[\])]/gi;
+INLINE_ICONS.sway = `<span class="ico ico-sway" title="한 손 들고 좌우로"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">`
+  + `<g class="sw-body"><circle cx="11.4" cy="10" r="2.6" fill="currentColor" stroke="none"/><path d="M5.9 23.2v-2.4a5.5 5.5 0 0 1 11 0v2.4"/></g>`
+  + `<g class="sw-arm"><path d="M15.4 17.4V5.2"/><circle cx="15.4" cy="3.9" r="1.6" fill="currentColor" stroke="none"/></g></svg></span>`;
+INLINE_ICONS.side = INLINE_ICONS.sway;
+const ICON_TOKEN_RE = /[\[(](wave|clap|mic|chant|jump|spin|turn|banzai|manse|sway|side)[\])]/gi;
 const hasIconToken = (str, name) => typeof str === "string" && new RegExp(`[\\[(]${name}[\\])]`, "i").test(str);
 
 /* 가사 글자를 안전하게 바꾸면서  {떼창}  {{박수}}  [wave] 같은 표시를 살린다 */
@@ -5223,7 +5261,7 @@ function lineIsChant(l){
 const songMarksCache = new Map();
 function songMarks(song){
   if (songMarksCache.has(song.id)) return songMarksCache.get(song.id);
-  const m = { chant:0, clap:false, wave:false, jump:false, spin:false, banzai:false };
+  const m = { chant:0, clap:false, wave:false, jump:false, spin:false, banzai:false, sway:false };
   (song.lyrics || []).forEach(l => {
     [l.jp, l.ko, l.tr, l.bg].forEach(t => {
       if (typeof t !== "string") return;
@@ -5232,6 +5270,7 @@ function songMarks(song){
       if (hasIconToken(t, "jump")) m.jump = true;
       if (hasIconToken(t, "spin") || hasIconToken(t, "turn")) m.spin = true;
       if (hasIconToken(t, "banzai") || hasIconToken(t, "manse")) m.banzai = true;
+      if (hasIconToken(t, "sway") || hasIconToken(t, "side")) m.sway = true;
     });
     if (lineIsChant(l)) m.chant++;
   });
@@ -5248,6 +5287,7 @@ function songMarksHtml(song){
   if (m.jump)  h += `<span class="song-mark dot jump" title="점프">${useSvg("i-jump")}</span>`;
   if (m.spin)  h += `<span class="song-mark dot spin" title="팔 돌리기">${useSvg("i-cheer")}</span>`;
   if (m.banzai) h += `<span class="song-mark dot clap" title="짝 짝짝 만세">${useSvg("i-hand")}</span>`;
+  if (m.sway && !m.wave) h += `<span class="song-mark dot wave" title="한 손 좌우로">${useSvg("i-wave")}</span>`;
   return h ? `<span class="song-marks">${h}</span>` : "";
 }
 /* 곡 화면 영상 아래 — 이 곡에 나오는 응원만 알려 준다 */
@@ -5259,6 +5299,7 @@ function cheerLegend(m){
   if (m.jump)  parts.push(`<span>${INLINE_ICONS.jump} 점프</span>`);
   if (m.spin)  parts.push(`<span>${INLINE_ICONS.spin} 팔 돌리기</span>`);
   if (m.banzai) parts.push(`<span>${INLINE_ICONS.banzai} 짝 짝짝 만세</span>`);
+  if (m.sway)  parts.push(`<span>${INLINE_ICONS.sway} 한 손 좌우로</span>`);
   return parts.length ? `<div class="cheer-legend">${parts.join("")}</div>` : "";
 }
 
