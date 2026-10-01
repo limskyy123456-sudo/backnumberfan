@@ -529,6 +529,21 @@ body.is-song header.top,body.is-song nav.tabs{display:none}
 .post-body h2:first-child{margin-top:0}
 .post-body img{display:block;max-width:100%;border-radius:10px;border:1px solid var(--line)}
 .post-img{margin:4px 0 14px}
+/* 싱크 맞추기 도구 */
+.sync-top{position:sticky;top:54px;z-index:5;background:var(--bg);padding-bottom:8px}
+.sync-top .video-frame{margin-top:6px}
+.sync-btns{display:flex;gap:8px;margin-top:10px}
+.sync-tap{flex:1;justify-content:center;font-size:16px;padding:12px}
+.sync-tap:disabled{opacity:.5}
+.sync-state{margin-top:6px}
+.sync-list{list-style:none;margin:8px 0 12px;padding:0}
+.sync-list li{display:flex;gap:10px;padding:9px 8px;border-radius:10px}
+.sync-list li.next{background:var(--accent-soft);box-shadow:inset 3px 0 0 var(--accent)}
+.sync-list li.done{opacity:.55}
+.sync-t{flex:none;width:52px;font-variant-numeric:tabular-nums;font-size:12.5px;color:var(--muted);padding-top:2px}
+.sync-l b{display:block;font-size:15px}
+.sync-l small{display:block;font-size:12px;color:var(--muted)}
+.sync-out textarea{width:100%;margin:8px 0;padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:12px/1.5 ui-monospace,monospace}
 footer{margin:34px 0 10px;font-size:12px;color:var(--muted);text-align:center;line-height:1.7}
 
 /* 하단 탭 */
@@ -4634,6 +4649,14 @@ function viewHome(){
         <span class="menu-go">›</span>
       </a>
 
+      <!-- ▼ 임시: 가사 싱크 맞추기 (가사 다 맞추면 이 덩어리 지우기) ▼ -->
+      <a class="menu-row" href="sync.html">
+        <span class="menu-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M9 2h6"/></svg></span>
+        <span class="menu-label">가사 싱크 맞추기 <small class="muted" style="font-weight:400">임시</small></span>
+        <span class="menu-go">›</span>
+      </a>
+      <!-- ▲ 임시 끝 ▲ -->
+
       <div class="menu-links">
         <a class="menu-chip" href="${L.official}" target="_blank" rel="noopener">공식사이트 ↗</a>
         <a class="menu-chip" href="${L.youtube}" target="_blank" rel="noopener">YouTube ↗</a>
@@ -5139,7 +5162,7 @@ function viewMvSong(song){
         </div>
         <div class="lyrics-note"><span class="dot">●</span> ${lines.length && !song.unsynced
           ? "가사를 탭하면 해당 위치로 영상이 이동해요. 영상 재생 상태에 따라 가사 하이라이트가 동기화됩니다."
-          : lines.length ? `이 곡은 가사 시간이 아직 없어서 영상과 따라가지 않아요.` : "가사는 준비 중이에요."}</div>
+          : lines.length ? `이 곡은 가사 시간이 아직 없어서 영상과 따라가지 않아요. ${hasVideo ? `<a href="#/sync/${encodeURIComponent(song.id)}">싱크 맞추기 ›</a>` : ""}` : "가사는 준비 중이에요."}</div>
         ${cheerLegend(marks)}
         <div class="tip-pic" id="tipPic" aria-live="polite">
           <figure class="tip-pic-card" id="tipPicCard" title="탭하면 크게 보여요"><img id="tipPicImg" alt="" decoding="async"><figcaption class="tip-pic-cap" id="tipPicCap"></figcaption></figure>
@@ -5537,6 +5560,85 @@ function bindDisco(){
   document.querySelectorAll("#app a.set-row, #app a.cg-item").forEach(a => a.addEventListener("click", () => { mv.from = { hash:"#/disco", label:"앨범", y: window.scrollY }; }));
 }
 
+/* ============ 가사 싱크 맞추기 도구 (#/sync/곡id) ============
+   영상을 틀어 놓고 각 소절이 시작될 때 버튼(또는 스페이스바)을 누르면
+   lyricsTimes 숫자가 만들어진다. 다 누른 뒤 '복사'해서 index.html 에 붙여 넣으면 끝. */
+const syncS = { song:null, times:[], player:null, ready:false, timer:null };
+function viewSync(id){
+  const song = SONGS.find(s => s.id === decodeURIComponent(id || ""));
+  if (!song) return `<p class="sub" style="margin-top:20px">곡을 찾을 수 없어요.</p>`;
+  const lines = song.lyrics || [];
+  return `
+  <div class="sync-page">
+    <div class="sync-top">
+      <a class="back" href="#/mv/${encodeURIComponent(song.id)}">‹ ${esc(song.ko)}</a>
+      <h1 style="margin:6px 0 2px">싱크 맞추기</h1>
+      <p class="sub">영상을 재생하고, 강조된 줄이 <b>불리기 시작할 때</b> 아래 버튼(PC는 스페이스바)을 누르세요.</p>
+      <div class="video-frame"><div id="syncYt"></div></div>
+      <div class="sync-btns">
+        <button class="btn" id="syncUndo">↶ 한 줄 취소</button>
+        <button class="btn primary sync-tap" id="syncTap">지금 이 줄 시작!</button>
+      </div>
+      <div class="sync-state small muted" id="syncState"></div>
+    </div>
+    ${lines.length ? `<ol class="sync-list" id="syncList">${lines.map((l, i) => `
+      <li data-i="${i}"><span class="sync-t">--</span><span class="sync-l"><b>${esc(typeof l.ko === "string" ? l.ko : "")}</b><small>${esc(l.jp)}</small></span></li>`).join("")}</ol>
+      <div class="card sync-out">
+        <div class="small muted">다 누르면 아래 한 줄을 복사해서, index.html 의 이 곡 칸 <code>lyricsShift:0, lyricsTimes:[],</code> 부분에 바꿔 붙여 넣으세요.</div>
+        <textarea id="syncOut" readonly rows="3"></textarea>
+        <button class="btn" id="syncCopy">복사</button>
+      </div>`
+      : `<div class="card small">이 곡은 아직 가사가 없어요. 먼저 index.html 의 이 곡 칸 <b>lyricsText</b> 에 가사를 넣어 주세요.</div>`}
+  </div>`;
+}
+function syncPaint(){
+  const n = syncS.times.length, lines = syncS.song.lyrics || [];
+  document.querySelectorAll("#syncList li").forEach((li, i) => {
+    li.classList.toggle("done", i < n); li.classList.toggle("next", i === n);
+    li.querySelector(".sync-t").textContent = i < n ? syncS.times[i].toFixed(2) : "--";
+  });
+  const nx = document.querySelector("#syncList li.next");
+  if (nx) nx.scrollIntoView({ block:"center", behavior:"smooth" });
+  $("#syncState").textContent = n >= lines.length ? `완료! ${lines.length}줄 모두 찍었어요.` : `${n} / ${lines.length}줄`;
+  $("#syncOut").value = `lyricsShift:0, lyricsTimes:[${syncS.times.map(t => t.toFixed(2)).join(", ")}],`;
+  $("#syncTap").disabled = n >= lines.length;
+}
+function syncMark(){
+  if (!syncS.player || !syncS.ready) return;
+  const lines = syncS.song.lyrics || [];
+  if (syncS.times.length >= lines.length) return;
+  let t = 0; try { t = syncS.player.getCurrentTime(); } catch(e){ return; }
+  syncS.times.push(Math.max(0, t - 0.15));      // 누르는 반응 시간만큼 살짝 앞당김
+  syncPaint();
+}
+function bindSync(id){
+  const song = SONGS.find(s => s.id === decodeURIComponent(id || ""));
+  if (!song || !(song.lyrics || []).length) return;
+  syncS.song = song; syncS.times = []; syncS.ready = false;
+  $("#syncTap").onclick = syncMark;
+  $("#syncUndo").onclick = () => { syncS.times.pop(); syncPaint(); };
+  $("#syncCopy").onclick = async () => {
+    try { await navigator.clipboard.writeText($("#syncOut").value); $("#syncCopy").textContent = "복사했어요"; }
+    catch(e){ $("#syncOut").select(); }
+  };
+  syncS.keys = e => { if (e.code === "Space" && $("#syncTap")){ e.preventDefault(); syncMark(); } };
+  document.addEventListener("keydown", syncS.keys);
+  syncPaint();
+  const mount = () => {
+    if (!$("#syncYt")) return;
+    if (!window.YT || !window.YT.Player){ mvLoadApi(); setTimeout(mount, 300); return; }
+    syncS.player = new YT.Player("syncYt", { videoId: song.youtubeId, playerVars:{ rel:0, playsinline:1 },
+      events:{ onReady: () => { syncS.ready = true; } } });
+  };
+  if (song.youtubeId) mount();
+}
+function syncCleanup(){
+  if (syncS.player){ try { syncS.player.destroy(); } catch(e){} }
+  if (syncS.keys){ document.removeEventListener("keydown", syncS.keys); syncS.keys = null; }
+  syncS.player = null; syncS.ready = false;
+}
+
+
 function footer(){
   return `<footer>
     이 사이트는 팬이 만든 <b>비공식</b> 안내 페이지로, back number 및 소속사와 관계가 없어요.<br>
@@ -5546,13 +5648,13 @@ function footer(){
 }
 
 /* ============ 라우터 ============ */
-const ROUTES = { "":viewHome, schedule:viewSchedule, mv:viewMv, setlist:viewSetlist, disco:viewDisco, info:viewInfo, about:viewAbout };
+const ROUTES = { "":viewHome, schedule:viewSchedule, mv:viewMv, setlist:viewSetlist, disco:viewDisco, info:viewInfo, about:viewAbout, sync:viewSync };
 function render(){
-  mvCleanup();
+  mvCleanup(); syncCleanup();
   const [r, arg] = location.hash.replace(/^#\/?/, "").split("/");
   const view = ROUTES[r] || viewHome;
   $("#app").innerHTML = view(arg);
-  const tab = r === "about" ? "" : (r === "setlist" || r === "disco") ? "mv" : (ROUTES[r] ? r : "");
+  const tab = r === "about" ? "" : (r === "setlist" || r === "disco" || r === "sync") ? "mv" : (ROUTES[r] ? r : "");
   document.querySelectorAll("nav.tabs a").forEach(a => {
     if (a.dataset.r === tab) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
   });
@@ -5563,6 +5665,7 @@ function render(){
   if (view === viewSetlist) bindSetlist(arg);
   if (view === viewDisco) bindDisco();
   if (view === viewInfo) bindInfo();
+  if (view === viewSync) bindSync(arg);
 }
 let pendingScroll = null;
 window.addEventListener("hashchange", () => { render(); window.scrollTo(0, pendingScroll ?? 0); pendingScroll = null; });
