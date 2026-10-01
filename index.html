@@ -511,6 +511,10 @@ body.is-song header.top,body.is-song nav.tabs{display:none}
 .tip-pic.at-video.big .tip-pic-card{max-width:min(84vw,360px)}
 .tip-pic.at-video.big .tip-pic-card img{max-height:min(34svh,280px)}
 .tip-pic.at-lyrics{left:0;right:0;top:0;justify-content:center;padding:10px 12px 0;transform:translateY(-10px) scale(.97)}
+/* 큰 화면(가로 2단) — 영상 옆이 아니라 오른쪽 가사 칸 위쪽 가운데 */
+.tip-pic.at-side{top:0;left:62%;right:0;justify-content:center;padding:12px 16px 0;transform:translateY(-10px) scale(.97)}
+.tip-pic.at-side .tip-pic-card{max-width:min(100%,320px)}
+.tip-pic.at-side .tip-pic-card img{max-height:min(26svh,220px)}
 .tip-pic.show{opacity:1;visibility:visible;transform:none}
 .tip-pic-card{margin:0;pointer-events:auto;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:8px 8px 6px;box-shadow:0 10px 24px rgba(0,0,0,.22);max-width:min(100%,420px);display:flex;flex-direction:column;align-items:center;gap:6px;cursor:zoom-in}
 .tip-pic-card img{display:block;max-width:100%;max-height:clamp(96px,22svh,190px);width:auto;height:auto;border-radius:9px;background:var(--surface2)}
@@ -673,7 +677,7 @@ const DATA = {
       youtubeId:"", lyricsShift:0, lyricsTimes:[], lyricsTime:0, lyricsText:``, lyrics:[] },
     { id:"Tender", jp:"tender", ko:"tender", rom:"Tender", date:"2010.06.02", album:"あとのまつり", vtype:"",
       youtubeId:"", lyricsShift:0, lyricsTimes:[], lyricsTime:0, lyricsText:``, lyrics:[] },
-    { id:"SonoDressChottoMatta", jp:"そのドレスちょっと待った", ko:"그 드레스 잠깐만", rom:"Sono Dress Chotto Matta", date:"2010.06.02", album:"あとのまつり", vtype:"",
+    { id:"SonoDressChottoMatta", jp:"そのドレスちょっと待った", ko:"그 드레스 잠깐 기다려", rom:"Sono Dress Chotto Matta", date:"2010.06.02", album:"あとのまつり", vtype:"",
       youtubeId:"pXMBm8545I0", lyricsShift:0, lyricsTimes:[34.31, 39.32, 46.15, 52.66, 59.47, 63.72, 72.69, 78.78, 85.62, 87.78, 92.00, 96.39, 116.54, 121.80, 128.49, 134.98, 142.04, 150.56, 155.17, 161.14, 168.15, 174.34, 180.68, 184.10, 198.11, 202.07, 210.96, 217.06, 223.93, 230.33, 236.50], lyricsTime:0, lyricsText:`
 人づてに聞いた君の話
 히토즈테니 키-타 키미노 하나시
@@ -1023,6 +1027,7 @@ pic : handup
 [clap]{{また好きにならざるを得ないような人に}}
 {{마타 스키니 나라자루오 에나이 요-나 히토니}}
 {{다시 좋아할 수 밖에 없을 듯한 사람으로}}
+pic : handup
 
 
 [wave]スーパースターになったら
@@ -1096,10 +1101,12 @@ pic : handup
 [clap]{{君がどこの街に住んでいても}}
 {{키미가 도코노 마치니 슨데 이테모}}
 {{네가 어느 거리에 살고 있다 해도}}
+pic : handup
 
 [clap]{{遠くからでもよく見えるような光に}}
 {{토-쿠카라데모 요쿠 미에루 요-나 히카리니}}
 {{멀리서라도 잘 보일 듯한 빛으로}}
+pic : handup
 
 
 [wave]スーパースターになったら
@@ -1135,14 +1142,17 @@ pic : handup
 [clap]{{二度と何ひとつ諦めない}}
 {{니도토 나니 히토츠 아키라메나이}}
 {{두번 다신 무엇 하나 포기하지 않을거야}}
+pic : handup
 
 [clap]{{もう一度好きに}}
 {{모- 이치도 스키니}}
 {{다시 한번 좋아할}}
+pic : handup
 
 [clap]{{ならざるを得ないような人に}}
 {{나라자루오 에나이 요-나 히토니}}
 {{수 밖에 없을 듯한 사람으로}}
+pic : handup
 
 
 [wave]{スーパースターになったら}
@@ -1666,7 +1676,7 @@ pic : handup
       youtubeId:"G_ifvcsfAWI", lyricsShift:0, lyricsTimes:[], lyricsTime:0, lyricsText:``, lyrics:[] },
     { id:"HikariNoMachi", jp:"光の街", ko:"빛의 거리", rom:"Hikari no Machi", date:"2014.03.26", album:"ラブストーリー", vtype:"audio",
       youtubeId:"RhgTqqxxqds", lyricsShift:0, lyricsTimes:[], lyricsTime:0, lyricsText:``, lyrics:[] },
-    { id:"Motto", jp:"MOTTO", ko:"좀 더", rom:"Motto", date:"2014.03.26", album:"ラブストーリー", vtype:"audio",
+    { id:"Motto", jp:"MOTTO", ko:"MOTTO", rom:"Motto", date:"2014.03.26", album:"ラブストーリー", vtype:"audio",
       youtubeId:"aYmpJYGxL8w", lyricsShift:0, lyricsTimes:[10.47, 14.81, 19.70, 20.92, 25.13, 38.75, 43.28, 49.30, 55.08, 59.78, 62.25, 64.84, 70.09, 72.64, 75.61, 80.39, 84.65, 89.30, 90.62, 94.94, 119.04, 144.84, 149.14, 153.80, 155.19, 159.75, 164.51, 165.93], lyricsTime:0, lyricsText:`
 もっともっと私を知って欲しいんだって
 못토 못토 와타시오 싯테 호시인닷테
@@ -2537,7 +2547,7 @@ pic : handup
 `, lyrics:[] },
     { id:"Mabataki", jp:"瞬き", ko:"눈 깜빡임", rom:"Mabataki", date:"2017.12.20", album:"MAGIC", vtype:"mv",
       youtubeId:"h-KuoHHjGRs", lyricsShift:0, lyricsTimes:[], lyricsTime:0, lyricsText:``, lyrics:[] },
-    { id:"DaiFuseikai", jp:"大不正解", ko:"대오답", rom:"Dai Fuseikai", date:"2018.08.22", album:"MAGIC", vtype:"mv",
+    { id:"DaiFuseikai", jp:"大不正解", ko:"대부정해", rom:"Dai Fuseikai", date:"2018.08.22", album:"MAGIC", vtype:"mv",
       youtubeId:"yKIQv4sUTLA", lyricsShift:0.5, lyricsTimes:[12.97, 15.95, 19.39, 23.23, 26.07, 28.86, 31.85, 35.63, 39.85, 44.04, 50.00, 55.86, 60.07, 64.81, 69.08, 73.05, 76.01, 78.83, 81.81, 85.37, 88.89, 92.19, 94.69, 98.42, 102.53, 106.08, 123.45, 131.34, 135.50, 138.69, 142.12, 151.68, 161.35, 165.02, 168.21, 171.42, 174.49, 177.77, 181.45, 185.54, 188.21], lyricsTime:0, lyricsText:`
 僕等は完全無欠じゃ無い
 보쿠라와 칸젠무케츠쟈나이
@@ -3060,7 +3070,7 @@ pic : handup
 `, lyrics:[] },
     { id:"Kiiro", jp:"黄色", ko:"노란색", rom:"Kiiro", date:"2021.09.29", album:"ユーモア", vtype:"mv",
       youtubeId:"EMYa07zHC9w", lyricsShift:0, lyricsTimes:[], lyricsTime:0, lyricsText:``, lyrics:[] },
-    { id:"VelvetNoUta", jp:"ベルベットの詩", ko:"벨벳의 노래", rom:"Velvet no Uta", date:"2022.08.26", album:"ユーモア", vtype:"mv",
+    { id:"VelvetNoUta", jp:"ベルベットの詩", ko:"벨벳의 시", rom:"Velvet no Uta", date:"2022.08.26", album:"ユーモア", vtype:"mv",
       youtubeId:"kNH3eExqWFw", lyricsShift:2.8, lyricsTimes:[1.36, 4.26, 8.04, 10.81, 14.27, 17.51, 21.02, 23.84, 27.74, 30.71, 35.55, 38.58, 42.03, 44.76, 48.55, 49.69, 51.62, 55.06, 57.77, 64, 87.33, 90.30, 94.07, 96.55, 100.32, 103.20, 106.95, 109.51, 113.37, 116.71, 121.46, 124.58, 128.09, 130.67, 134.20, 135.53, 137.51, 141.01, 143.68, 166.80, 169.75, 173.35, 176.05, 181.35, 184.68, 188.02, 190.52, 194.33, 195.58, 197.53, 204.80, 210, 233.25, 236.29, 239.83, 242.37, 246.26, 249.05], lyricsTime:0, lyricsText:`
 心が擦り切れて
 코코로가 스리키레테
@@ -3845,7 +3855,7 @@ pic : handup
 츠요쿠 아리타이
 강하고 싶어
 `, lyrics:[] },
-    { id:"DoushitemoDoushitemo", jp:"どうしてもどうしても", ko:"어떻게 해서든 어떻게 해서든", rom:"Doushitemo Doushitemo", date:"2025.12.27", album:"디지털 싱글", vtype:"lyric",
+    { id:"DoushitemoDoushitemo", jp:"どうしてもどうしても", ko:"어떻게 해도 어떻게 해도", rom:"Doushitemo Doushitemo", date:"2025.12.27", album:"디지털 싱글", vtype:"lyric",
       youtubeId:"wl6V4GpVTj4", lyricsShift:0, lyricsTimes:[0.93, 4.66, 8.16, 11.91, 15.59, 19.04, 22.72, 26.17, 30.32, 37.54, 46.54, 49.83, 53.79, 56.99, 60.89, 64.56, 68.06, 71.63, 75.54, 82.74, 90.22, 93.77, 97.18, 100.70, 104.64, 107.60, 111.57, 114.66, 126.57, 130.07, 134.13, 136.11, 140.83, 148.10, 157.52, 160.93, 164.54, 167.84, 171.81, 174.76, 178.78, 181.86, 186.09, 189.27], lyricsTime:0, lyricsText:`
 はじまりはもう思い出せない
 하지마리와 모- 오모이다세나이
@@ -5042,9 +5052,10 @@ function hideTipPic(){
 /* 휴대폰·PC → 영상 옆/아래, 단축모드(영상 숨김) → 가사 위 가운데 */
 function placeTipPic(){
   const box = $("#tipPic"); if (!box) return;
-  const mode = mv.venue ? "at-lyrics" : "at-video";
-  const host = mv.venue ? document.querySelector(".song-body") : document.querySelector(".song-fixed-top");
-  box.classList.remove("at-video", "at-lyrics", "big");
+  const wide = window.matchMedia("(min-width:900px)").matches;
+  const mode = mv.venue ? "at-lyrics" : wide ? "at-side" : "at-video";
+  const host = (mv.venue || wide) ? document.querySelector(".song-body") : document.querySelector(".song-fixed-top");
+  box.classList.remove("at-video", "at-lyrics", "at-side", "big");
   box.classList.add(mode);
   if (host && box.parentElement !== host) host.appendChild(box);
 }
@@ -5062,6 +5073,7 @@ function updateTipPic(song, idx){
   box.classList.remove("big"); box.classList.add("show");
   currentPicKey = pic.key;
 }
+window.matchMedia("(min-width:900px)").addEventListener("change", () => { if ($("#tipPic")) placeTipPic(); });
 function preloadSongPics(song){
   const seen = new Set();
   (song.lyrics || []).forEach(l => {
