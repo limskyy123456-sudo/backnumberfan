@@ -15,21 +15,21 @@
   --bg:#f3f5f8; --surface:#ffffff; --surface2:#e8edf3; --ink:#1f2630; --muted:#687384;
   --line:#dbe2ea; --accent:#2d5f93; --accent-soft:#dde8f4; --gold:#c98a14; --gold-soft:#fbefd4;
   --green:#2f8a5b; --green-soft:#dff2e7; --blue:#7a4fa8; --blue-soft:#efe6f7;
-  --chant:#e07b12; --clap:#2c84c6; --wave:#3f9a2c; --jump:#8a5bd6; --spin:#d24f96;
+  --chant:#e07b12; --clap:#2c84c6; --wave:#3f9a2c; --jump:#8a5bd6; --spin:#d24f96; --now:#d63a3a; --now-soft:#fde4e2;
   --radius:16px; --shadow:0 1px 2px rgba(20,40,70,.06),0 4px 16px rgba(20,40,70,.06);
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
     --bg:#12161c; --surface:#1b2129; --surface2:#232b35; --ink:#e9eef4; --muted:#9aa6b5;
     --line:#2c3643; --accent:#86b4e6; --accent-soft:#1f3149; --gold:#e9b44c; --gold-soft:#43361c;
-    --green:#6cc795; --green-soft:#1f3a2c; --blue:#c3a4e8; --blue-soft:#2e2440; --chant:#f5942c; --clap:#4fa8e0; --wave:#8de05f; --jump:#b98cff; --spin:#ff86c8;
+    --green:#6cc795; --green-soft:#1f3a2c; --blue:#c3a4e8; --blue-soft:#2e2440; --chant:#f5942c; --clap:#4fa8e0; --wave:#8de05f; --jump:#b98cff; --spin:#ff86c8; --now:#ff7b72; --now-soft:#3d2326;
     --shadow:none;
   }
 }
 :root[data-theme="dark"]{
   --bg:#12161c; --surface:#1b2129; --surface2:#232b35; --ink:#e9eef4; --muted:#9aa6b5;
   --line:#2c3643; --accent:#86b4e6; --accent-soft:#1f3149; --gold:#e9b44c; --gold-soft:#43361c;
-  --green:#6cc795; --green-soft:#1f3a2c; --blue:#c3a4e8; --blue-soft:#2e2440; --chant:#f5942c; --clap:#4fa8e0; --wave:#8de05f; --jump:#b98cff; --spin:#ff86c8;
+  --green:#6cc795; --green-soft:#1f3a2c; --blue:#c3a4e8; --blue-soft:#2e2440; --chant:#f5942c; --clap:#4fa8e0; --wave:#8de05f; --jump:#b98cff; --spin:#ff86c8; --now:#ff7b72; --now-soft:#3d2326;
   --shadow:none;
 }
 *{box-sizing:border-box}
@@ -288,8 +288,8 @@ body.is-song header.top,body.is-song nav.tabs{display:none}
 .lyric-jp{display:block;font-size:clamp(13px,3.6vw,14px);color:var(--muted);line-height:1.5}
 .lyric-ko{display:block;font-size:clamp(15px,4.2vw,17px);font-weight:800;line-height:1.5;color:var(--ink)}
 .lyric-tr{display:block;font-size:clamp(12px,3.4vw,13px);color:var(--muted);line-height:1.5;margin-top:1px}
-.lyric-line.active{background:var(--accent-soft);box-shadow:inset 3px 0 0 var(--accent)}
-.lyric-line.active .lyric-ko{color:var(--accent)}
+.lyric-line.active{background:var(--now-soft);box-shadow:inset 3px 0 0 var(--now)}
+.lyric-line.active .lyric-ko{color:var(--now)}
 .nolyrics{padding:40px 10px;text-align:center;color:var(--muted);font-size:13px;line-height:1.9}
 .player-controls{position:fixed;right:18px;bottom:calc(22px + env(safe-area-inset-bottom));z-index:45;display:flex;flex-direction:column;align-items:flex-end;gap:10px}
 .play-toggle{display:none;align-items:center;justify-content:center;width:48px;height:48px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--accent);cursor:pointer;box-shadow:var(--shadow)}
@@ -2548,59 +2548,59 @@ pic : handup
     { id:"Mabataki", jp:"瞬き", ko:"눈 깜빡임", rom:"Mabataki", date:"2017.12.20", album:"MAGIC", vtype:"mv",
       youtubeId:"h-KuoHHjGRs", lyricsShift:0, lyricsTimes:[], lyricsTime:0, lyricsText:``, lyrics:[] },
     { id:"DaiFuseikai", jp:"大不正解", ko:"대부정해", rom:"Dai Fuseikai", date:"2018.08.22", album:"MAGIC", vtype:"mv",
-      youtubeId:"yKIQv4sUTLA", lyricsShift:0, lyricsTimes:[13.47, 16.46, 19.90, 23.88, 26.68, 29.79, 33.31, 37.31, 40.87, 46.95, 54.27, 57.11, 60.90, 66.89, 70.39, 73.48, 77.03, 79.72, 82.73, 86.17, 90.20, 92.96, 96.01, 99.51, 103.45, 120.27, 126.28, 133.26, 136.55, 139.64, 143.14, 159.14, 162.11, 165.67, 169.73, 172.42, 175.51, 178.98, 182.93, 186.02, 189.64], lyricsTime:0, lyricsText:`
-僕等は完全無欠じゃ無い
+      youtubeId:"yKIQv4sUTLA", lyricsShift:0, lyricsTimes:[13.47, 16.46, 19.90, 23.88, 26.68, 29.79, 33.31, 37.31, 40.87, 46.95, 54.27, 57.11, 60.90, 66.89, 70.39, 73.48, 77.03, 79.72, 82.73, 86.17, 90.20, 92.96, 96.01, 99.51, 103.45, 106, 120.27, 126.28, 133.26, 136.55, 139.64, 143.14, 159.14, 162.11, 165.67, 169.73, 172.42, 175.51, 178.98, 182.93, 186.02, 189.64, 192.5], lyricsTime:0, lyricsText:`
+[wave]僕等は完全無欠じゃ無い
 보쿠라와 칸젠무케츠쟈나이
 우리는 완전무결하지 않아
 
-原型を愛せる訳でも無い
+[wave]原型を愛せる訳でも無い
 겐케이오 아이세루 와케데모 나이
 본래 모습을 사랑할 수 있는 것도 아냐
 
-この無様に移ろう形を
+[wave]この無様に移ろう形を
 코노 부자마니 우츠로- 카타치오
 이 흉하게 이동하는 형태를
 
-安い化けの皮を
+[wave]安い化けの皮を
 야스이바케케노 카와오
 싸구려 가죽을
 
-噛み付き合い　剥ぎ取り合って
+[wave]噛み付き合い　剥ぎ取り合って
 카미츠키아이 하기토리앗테
 상호 간 물어뜯고 벗겨내며
 
-互いを見付けて来たんだろう
+[wave]互いを見付けて来たんだろう
 타가이오 미츠케테 키탄다로-
 서로를 바라봐왔잖아
 
-補い合うのなんざご免なんだ
+[wave]補い合うのなんざご免なんだ
 오기나이아우노 난자 고멘난다
 서로 보완해주는 것 따윈 질색이야
 
-さぁ好きに踊ろうぜ
+[wave]さぁ好きに踊ろうぜ
 사- 스키니 오도로-제
 자 마음대로 춤추자
 
 
-何を創るつもりなんだ
-나니오 츠쿠루 츠모리난다
-뭐를 만들 생각인거야
+[clap]{{何を創るつもりなんだ}}
+{{나니오 츠쿠루 츠모리난다}}
+{{뭐를 만들 생각인거야}}
 
-自分で散らかした瓦礫の上
-지분데 치라카시타 가레키노 우에
-스스로 어지럽힌 쓰레기 위에
+[clap]{{自分で散らかした瓦礫の上}}
+{{지분데 치라카시타 가레키노 우에}}
+{{스스로 어지럽힌 쓰레기 위에}}
 
-同じ物を欲しがって
-오나지 모노오 호시갓테
-같은 걸 탐내며
+[clap]{{同じ物を欲しがって}}
+{{오나지 모노오 호시갓테}}
+{{같은 걸 탐내며}}
 
-同じ時を過ごしたのが運の尽き
-오나지 토키오 스고시타노가 운노 츠키
-같은 시간을 보내는 것이 운의 끝
+[clap]{{同じ時を過ごしたのが運の尽き}}
+{{오나지 토키오 스고시타노가 운노 츠키}}
+{{같은 시간을 보내는 것이 운의 끝}}
 
-縁が目に見えりゃもうきっと腐ってる
-엔가 메니 미에랴 모- 킷토 쿠삿테루
-인연이 눈에 보인다면 이미 분명하게 썩어있지
+[clap]{{縁が目に見えりゃもうきっと腐ってる}}
+{{엔가 메니 미에랴 모- 킷토 쿠삿테루}}
+{{인연이 눈에 보인다면 이미 분명하게 썩어있지}}
 
 
 [clap]{{言葉は２層　面もそう}}
@@ -2624,47 +2624,47 @@ pic : handup
 pic : handup
 
 
-僕等は完全無欠じゃ無い
+[wave]僕等は完全無欠じゃ無い
 보쿠라와 칸젠무케츠쟈나이
 우리는 완전무결하지 않아
 
-原型を愛せる訳でも無い
+[wave]原型を愛せる訳でも無い
 겐케이오 아이세루 와케데모 나이
 본래 모습을 사랑할 수 있는 것도 아냐
 
-この無様に移ろう形を
+[wave]この無様に移ろう形を
 코노 부자마니 우츠로- 카타치오
 이 흉하게 이동하는 형태를
 
-安い化けの皮を
+[wave]安い化けの皮を
 야스이바케노 카와오
 싸구려 가죽을
 
-噛み付き合い　剥ぎ取り合って
+[wave]噛み付き合い　剥ぎ取り合って
 카미츠키아이 하기토리앗테
 상호 간 물어뜯고 벗겨내며
 
-互いを見付けて来たんだろう
+[wave]互いを見付けて来たんだろう
 타가이오 미츠케테 키탄다로-
 서로를 바라봐왔잖아
 
-補い合うのなんざご免なんだ
+[wave]補い合うのなんざご免なんだ
 오기나이아우노 난자 고멘난다
 서로 보완해주는 것 따윈 질색이야
 
-さぁ好きに踊ろうぜ
+[wave]さぁ好きに踊ろうぜ
 사- 스키니 오도로-제
 자 마음대로 춤추자
 
+[clap]{{전주에 박수}}
 
+[clap]{{誰になろうとしているんだ}}
+{{다레니 나로-토 시테 이룬다}}
+{{어떤 사람이 되려고 하는거야}}
 
-誰になろうとしているんだ
-다레니 나로-토 시테 이룬다
-어떤 사람이 되려고 하는거야
-
-最後はいつも自分を疑わないのに
-사이고와 이츠모 지분오 우타가와나이노니
-마지막엔 항상 스스로를 의심하지 않는데
+[clap]{{最後はいつも自分を疑わないのに}}
+{{사이고와 이츠모 지분오 우타가와나이노니}}
+{{마지막엔 항상 스스로를 의심하지 않는데}}
 
 
 [clap]{{背中合わせ　槍の雨}}
@@ -2688,46 +2688,49 @@ pic : handup
 pic : handup
 
 
-僕等は完全無欠じゃ無い
+[wave]僕等は完全無欠じゃ無い
 보쿠라와 칸젠무케츠쟈나이
 우리는 완전무결하지 않아
 
-原型を愛せる訳でも無い
+[wave]原型を愛せる訳でも無い
 겐케이오 아이세루 와케데모 나이
 본래 모습을 사랑할 수 있는 것도 아냐
 
-この無様に移ろう形を
+[wave]この無様に移ろう形を
 코노 부자마니 우츠로- 카타치오
 이 흉하게 이동하는 형태를
 
-安い化けの皮を
+[wave]安い化けの皮を
 야스이바케노 카와오
 싸구려 가죽을
 
-噛み付き合い　剥ぎ取り合って
+[wave]噛み付き合い　剥ぎ取り合って
 카미츠키아이 하기토리앗테
 상호 간 물어뜯고 벗겨내며
 
-互いを見付けて来たんだろう
+[wave]互いを見付けて来たんだろう
 타가이오 미츠케테 키탄다로-
 서로를 바라봐왔잖아
 
-補い合うのなんざご免なんだ
+[wave]補い合うのなんざご免なんだ
 오기나이아우노 난자 고멘난다
 서로 보완해주는 것 따윈 질색이야
 
-さぁ好きに踊ろうぜ
+[wave]さぁ好きに踊ろうぜ
 사- 스키니 오도로-제
 자 마음대로 춤추자
 
 
-暑苦しいのなんざご免なんだ
+[wave]暑苦しいのなんざご免なんだ
 아츠쿠루시-노 난자 고멘난다
 덥고 답답한 것 따윈 질색이야
 
-まぁ好きに呼べばいい
+[wave]まぁ好きに呼べばいい
 마- 스키니 요베바 이-
 여튼 마음대로 부르면 돼
+
+[clap]{{전주에 박수}}
+
 `, lyrics:[] },
     { id:"OldFashion", jp:"オールドファッション", ko:"올드 패션", rom:"Old Fashion", date:"2018.12.19", album:"MAGIC", vtype:"mv",
       youtubeId:"l0B0js0wCK8", lyricsShift:0, lyricsTimes:[], lyricsTime:0, lyricsText:``, lyrics:[] },
