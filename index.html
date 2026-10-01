@@ -481,6 +481,22 @@ body.is-song header.top,body.is-song nav.tabs{display:none}
   .ico-wave svg,.ico-clap .hand,.ico-clap .spark,.ico-mic svg,.ico-jump svg,.ico-spin .arm{animation:none}
   .ico-clap .hand.r{transform:scaleX(-1)}
 }
+/* 짝 짝짝 만세 — 짝(1) · 짝짝(2·3) 박수 친 뒤 두 팔 번쩍 */
+.ico-banzai{width:1.45em;height:1.45em;vertical-align:-0.34em;color:var(--clap)}
+.ico-banzai svg{width:100%;height:100%;overflow:visible}
+.ico-banzai .bz-clap{animation:bzClapShow 2.2s steps(1,end) infinite}
+.ico-banzai .bz-up{opacity:0;animation:bzUpShow 2.2s steps(1,end) infinite}
+.ico-banzai .bz-h.l{animation:bzHL 2.2s ease-in-out infinite}
+.ico-banzai .bz-h.r{animation:bzHR 2.2s ease-in-out infinite}
+.ico-banzai .bz-sp1{color:var(--gold);opacity:0;animation:bzSp1 2.2s ease-out infinite}
+.ico-banzai .bz-sp2{color:var(--gold)}
+.ico-banzai .bz-up{transform-origin:12px 17px}
+@keyframes bzClapShow{0%{opacity:1}60%{opacity:0}94%{opacity:1}}
+@keyframes bzUpShow{0%{opacity:0}60%{opacity:1}94%{opacity:0}}
+@keyframes bzHL{0%,18%,39%,56%,100%{transform:translateX(-2.4px)}9%,31%,46%{transform:translateX(0)}}
+@keyframes bzHR{0%,18%,39%,56%,100%{transform:translateX(2.4px)}9%,31%,46%{transform:translateX(0)}}
+@keyframes bzSp1{0%,7%{opacity:0}9%{opacity:1}16%,29%{opacity:0}31%{opacity:1}37%,44%{opacity:0}46%{opacity:1}53%,100%{opacity:0}}
+@media (prefers-reduced-motion: reduce){.ico-banzai .bz-clap,.ico-banzai .bz-h,.ico-banzai .bz-sp1{animation:none}.ico-banzai .bz-up{animation:none;opacity:0}}
 /* 곡 화면 범례 */
 .cheer-legend{max-width:720px;margin:-4px auto 10px;padding:0 16px;display:flex;flex-wrap:wrap;gap:6px 12px;font-size:12px;color:var(--muted)}
 .cheer-legend span{display:inline-flex;align-items:center;gap:4px}
@@ -1395,37 +1411,37 @@ pic : handup
 
 
 
-[wave]踊りながら
+[jump]踊りながら
 오도리나가라
 춤추면서
 pic : jump
 
-[wave]羽ばたく為のステージで　這いつくばっていても
+[jump]羽ばたく為のステージで　這いつくばっていても
 하바타쿠 타메노 스테-지데 하이츠쿠밧테 이테모
 날갯짓하기 위한 무대에서 엎드려 있어도
 pic : jump
 
-[wave]踊らされてるのも　随分前から分かっていて
+[jump]踊らされてるのも　随分前から分かっていて
 오도라사레테루노모 즈이분 마에카라 와캇테 이테
 놀아나는 것도 한참 전부터 알고 있고
 pic : jump
 
-[wave]それでも　それでも
+[jump]それでも　それでも
 소레데모 소레데모
 그런데도 그런데도
 pic : jump
 
-[wave]また踊りながら　必死で生きているんだ　理想の未来なんて
+[jump]また踊りながら　必死で生きているんだ　理想の未来なんて
 마타 오도리나가라 힛시데 이키테 이룬다 리소-노 미라이난테
 다시 춤추면서 필사적으로 살고 있어 이상적인 미래따위
 pic : jump
 
-[wave]用意されていない　でもその中で願ってるのさ
+[jump]用意されていない　でもその中で願ってるのさ
 요-이사레테 이나이 데모 소노 나카데 네갓테루노사
 준비되어 있지 않아 하지만 그 안에서 바라고 있는 거야
 pic : jump
 
-[wave]ああ光を　光を
+[jump]ああ光を　光を
 아- 히카리오 히카리오
 아아 빛을 빛을
 pic : jump
@@ -1448,37 +1464,37 @@ pic : jump
 {{섞여서 배설하고 있는 거겠지}}
 
 
-[wave]踊りながら
+[jump]踊りながら
 오도리나가라
 춤추면서
 pic : jump
 
-[wave]羽ばたく為のステージで　這いつくばっていても
+[jump]羽ばたく為のステージで　這いつくばっていても
 하바타쿠 타메노 스테-지데 하이츠쿠밧테 이테모
 날갯짓하기 위한 무대에서 엎드려 있어도
 pic : jump
 
-[wave]踊らされてるのも　随分前から分かっていて
+[jump]踊らされてるのも　随分前から分かっていて
 오도라사레테루노모 즈이분 마에카라 와캇테 이테
 놀아나는 것도 한참 전부터 알고 있고
 pic : jump
 
-[wave]それでも　それでも
+[jump]それでも　それでも
 소레데모 소레데모
 그런데도 그런데도
 pic : jump
 
-[wave]また踊りながら　必死で生きているんだ　答え行きの船なんて
+[jump]また踊りながら　必死で生きているんだ　答え行きの船なんて
 마타 오도리나가라 힛시데 이키테 이룬다 코타에이키노 후네난테
 다시 춤추면서 필사적으로 살고 있어 정답행 배따윈
 pic : jump
 
-[wave]どこにもなくて　でも逃げないで踊ってるのさ
+[jump]どこにもなくて　でも逃げないで踊ってるのさ
 도코니모 나쿠테 데모 니게나이데 오돗테루노사
 어디에도 없고 하지만 도망치지 않고 춤을 출거야
 pic : jump
 
-[wave]正しいリズムじゃないけど
+[jump]正しいリズムじゃないけど
 타다시- 리즈무쟈나이케도
 올바른 리듬은 아니지만
 pic : jump
@@ -1507,37 +1523,37 @@ pic : jump
 
 
 
-[wave]踊りながら
+[jump]踊りながら
 오도리나가라
 춤추면서
 pic : jump
 
-[wave]羽ばたく為のステージで　這いつくばっていても
+[jump]羽ばたく為のステージで　這いつくばっていても
 하바타쿠 타메노 스테-지데 하이츠쿠밧테 이테모
 날갯짓하기 위한 무대에서 엎드려 있어도
 pic : jump
 
-[wave]踊らされてるのも　随分前から分かっていて
+[jump]踊らされてるのも　随分前から分かっていて
 오도라사레테루노모 즈이분 마에카라 와캇테 이테
 놀아나는 것도 한참 전부터 알고 있고
 pic : jump
 
-[wave]それでも　それでも
+[jump]それでも　それでも
 소레데모 소레데모
 그런데도 그런데도
 pic : jump
 
-[wave]また踊りながら　必死で生きているんだ　理想の未来なんて
+[jump]また踊りながら　必死で生きているんだ　理想の未来なんて
 마타 오도리나가라 힛시데 이키테 이룬다 리소-노 미라이난테
 다시 춤추면서 필사적으로 살고 있어 이상적인 미래따위
 pic : jump
 
-[wave]用意されていない　でもその中で願ってるのさ
+[jump]用意されていない　でもその中で願ってるのさ
 요-이사레테 이나이 데모 소노 나카데 네갓테루노사
 준비되어 있지 않아 하지만 그 안에서 바라고 있는 거야
 pic : jump
 
-[wave]光に包まれるその日々を
+[jump]光に包まれるその日々を
 히카리니 츠츠마레루 소노 히비오
 빛에 감싸이는 그 나날을
 pic : jump
@@ -1572,32 +1588,32 @@ pic : jump
 {{고작 지인B한테 보인 미소가 그거라면 정말 무서운 사람이야}}
 
 
-[clap]{{君を惚れさせる　黒魔術は知らないし　海に誘う勇気も車もない}}
+[manse]{{君を惚れさせる　黒魔術は知らないし　海に誘う勇気も車もない}}
 {{키미오 호레사세루 쿠로마쥬츠와 시라나이시 우미니 사소- 유-키모 쿠루마모 나이}}
 {{너를 홀릴 흑마법은 모르고 바다에 가자 꼬실 용기도 차도 없어}}
 pic : handup
 
-[clap]{{でも見たい　となりで目覚めて　おはようと笑う君を}}
+[manse]{{でも見たい　となりで目覚めて　おはようと笑う君を}}
 {{데모 미타이 토나리데 메자메테 오하요-토 와라우 키미오}}
 {{그치만 보고파 옆에서 눈을 뜨고 좋은 아침이라며 웃는 너를}}
 pic : handup
 
-[wave]会いたいんだ　今すぐその角から　飛び出してきてくれないか
+[jump]会いたいんだ　今すぐその角から　飛び出してきてくれないか
 아이타인다 이마스구 소노 카도카라 토비다시테 키테 쿠레나이카
 보고 싶어 지금 당장 저 모퉁이에서 튀어나와주지 않을래
 pic : jump
 
-[wave]夏の魔物に連れ去られ　僕のもとへ
+[jump]夏の魔物に連れ去られ　僕のもとへ
 나츠노 마모노니 츠레사라레 보쿠노 모토에
 여름의 요괴한테 납치당해서 내 곁으로
 pic : jump
 
-[wave]生まれた星のもとが　違くたって　偶然と夏の魔法とやらの力で
+[jump]生まれた星のもとが　違くたって　偶然と夏の魔法とやらの力で
 우마레타 호시노 모토가 치가쿠탓테 구-젠토 나츠노 마호-토 야라노 치카라데
 태어난 별이 다르더라도 우연과 여름의 마법이라는 것의 힘으로
 pic : jump
 
-[wave]僕のものに　なるわけないか
+[jump]僕のものに　なるわけないか
 보쿠노 모노니 나루와케나이카
 내 것이 될 리가 없으려나
 pic : jump
@@ -1631,22 +1647,22 @@ pic : handup
 {{아니 잠깐만 그 녀석 누구야}}
 pic : handup
 
-[wave]会いたいんだ　今すぐその角から　飛び出してきてくれないか
+[jump]会いたいんだ　今すぐその角から　飛び出してきてくれないか
 아이타인다 이마스구 소노 카도카라 토비다시테 키테 쿠레나이카
 보고 싶어 지금 당장 저 모퉁이에서 튀어나와주지 않을래
 pic : jump
 
-[wave]夏の魔物に連れ去られ　僕のもとへ
+[jump]夏の魔物に連れ去られ　僕のもとへ
 나츠노 마모노니 츠레사라레 보쿠노 모토에
 여름의 요괴한테 납치당해서 내 곁으로
 pic : jump
 
-[wave]君が他の誰を　気になっていたって　偶然とアブラカタブラな力で
+[jump]君が他の誰を　気になっていたって　偶然とアブラカタブラな力で
 키미가 호카노 다레오 키니 낫테 이탓테 구-젠토 아부라카타부라나 치카라데
 네가 다른 누구를 마음에 두고 있어도 우연과 아브라카타브라한 힘으로
 pic : jump
 
-[wave]僕のものに
+[jump]僕のものに
 보쿠노 모노니
 내 것이
 pic : jump
@@ -1683,22 +1699,22 @@ pic : jump
 
 
 
-[wave]会いたいんだ　今すぐその角から　飛び出してきてくれないか
+[jump]会いたいんだ　今すぐその角から　飛び出してきてくれないか
 아이타인다 이마스구 소노 카도카라 토비다시테 키테 쿠레나이카
 보고 싶어 지금 당장 저 모퉁이에서 튀어나와주지 않을래
 pic : jump
 
-[wave]夏の魔物に連れ去られ　僕のもとへ
+[jump]夏の魔物に連れ去られ　僕のもとへ
 나츠노 마모노니 츠레사라레 보쿠노 모토에
 여름의 요괴한테 납치당해서 내 곁으로
 pic : jump
 
-[wave]生まれた星のもとが　違くたって　偶然と夏の魔法とやらの力で
+[jump]生まれた星のもとが　違くたって　偶然と夏の魔法とやらの力で
 우마레타 호시노 모토가 치가쿠탓테 구-젠토 나츠노 마호-토 야라노 치카라데
 태어난 별이 다르더라도 우연과 여름의 마법이라는 것의 힘으로
 pic : jump
 
-[wave]僕のものに　なるわけないか
+[jump]僕のものに　なるわけないか
 보쿠노 모노니 나루와케나이카
 내 것이 될 리가 없으려나
 pic : jump
@@ -4276,6 +4292,7 @@ pic : handup
          [wave]  손 흔들기        [clap]  박수
          [jump]  점프             [spin]  머리 위로 팔 돌리기 ([turn] 도 됨)
          [mic]   떼창 아이콘 ([chant] 도 됨)
+         [banzai] 짝 짝짝 만세 ([manse] 도 됨)
        색으로 구간 표시 (주로 한글 발음 줄에)
          {떼창 구간}      → 주황 글씨 + 왼쪽에 떼창 표시
          {{박수 구간}}    → 파랑 글씨
@@ -4290,7 +4307,7 @@ pic : handup
        pic: wave-basic
      ───────────────────────────────────────────────────────────── */
   const HANGUL = /[가-힣]/;
-  const CHEER_TOKEN = /[\[(](?:wave|clap|mic|chant|jump|spin|turn)[\])]/gi;
+  const CHEER_TOKEN = /[\[(](?:wave|clap|mic|chant|jump|spin|turn|banzai|manse)[\])]/gi;
   const PIC_ROW = /^pic\s*[:：]\s*(.+)$/i;
   const BG_ROW  = /^[+＋]\s*/;
   SONGS.forEach(sg => {
@@ -5175,7 +5192,16 @@ const INLINE_ICONS = {
 };
 INLINE_ICONS.turn = INLINE_ICONS.spin;
 INLINE_ICONS.chant = INLINE_ICONS.mic;
-const ICON_TOKEN_RE = /[\[(](wave|clap|mic|chant|jump|spin|turn)[\])]/gi;
+INLINE_ICONS.banzai = `<span class="ico ico-banzai" title="짝 짝짝 만세"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">`
+  + `<circle cx="12" cy="7" r="2.4"/><path d="M6.8 23v-3a5.2 5.2 0 0 1 10.4 0v3"/>`
+  + `<g class="bz-clap"><g class="bz-h l"><path d="M7.6 17.2L10 13.6"/><circle cx="10.8" cy="12.6" r="1.35" fill="currentColor"/></g>`
+  + `<g class="bz-h r"><path d="M16.4 17.2L14 13.6"/><circle cx="13.2" cy="12.6" r="1.35" fill="currentColor"/></g>`
+  + `<g class="bz-sp1" stroke-width="1.7"><path d="M9 10.2l-1.1-1.1"/><path d="M15 10.2l1.1-1.1"/></g></g>`
+  + `<g class="bz-up"><path d="M7.6 17.2L4.8 6.2"/><circle cx="4.4" cy="4.7" r="1.35" fill="currentColor"/>`
+  + `<path d="M16.4 17.2L19.2 6.2"/><circle cx="19.6" cy="4.7" r="1.35" fill="currentColor"/>`
+  + `<g class="bz-sp2" stroke-width="1.7"><path d="M12 1.2v1.6"/><path d="M8.4 2.3l.8 1"/><path d="M15.6 2.3l-.8 1"/></g></g></svg></span>`;
+INLINE_ICONS.manse = INLINE_ICONS.banzai;
+const ICON_TOKEN_RE = /[\[(](wave|clap|mic|chant|jump|spin|turn|banzai|manse)[\])]/gi;
 const hasIconToken = (str, name) => typeof str === "string" && new RegExp(`[\\[(]${name}[\\])]`, "i").test(str);
 
 /* 가사 글자를 안전하게 바꾸면서  {떼창}  {{박수}}  [wave] 같은 표시를 살린다 */
@@ -5197,7 +5223,7 @@ function lineIsChant(l){
 const songMarksCache = new Map();
 function songMarks(song){
   if (songMarksCache.has(song.id)) return songMarksCache.get(song.id);
-  const m = { chant:0, clap:false, wave:false, jump:false, spin:false };
+  const m = { chant:0, clap:false, wave:false, jump:false, spin:false, banzai:false };
   (song.lyrics || []).forEach(l => {
     [l.jp, l.ko, l.tr, l.bg].forEach(t => {
       if (typeof t !== "string") return;
@@ -5205,6 +5231,7 @@ function songMarks(song){
       if (hasIconToken(t, "clap") || /\{\{[\s\S]*?\}\}/.test(t)) m.clap = true;
       if (hasIconToken(t, "jump")) m.jump = true;
       if (hasIconToken(t, "spin") || hasIconToken(t, "turn")) m.spin = true;
+      if (hasIconToken(t, "banzai") || hasIconToken(t, "manse")) m.banzai = true;
     });
     if (lineIsChant(l)) m.chant++;
   });
@@ -5220,6 +5247,7 @@ function songMarksHtml(song){
   if (m.wave)  h += `<span class="song-mark dot wave common" title="손 흔들기">${useSvg("i-wave")}</span>`;
   if (m.jump)  h += `<span class="song-mark dot jump" title="점프">${useSvg("i-jump")}</span>`;
   if (m.spin)  h += `<span class="song-mark dot spin" title="팔 돌리기">${useSvg("i-cheer")}</span>`;
+  if (m.banzai) h += `<span class="song-mark dot clap" title="짝 짝짝 만세">${useSvg("i-hand")}</span>`;
   return h ? `<span class="song-marks">${h}</span>` : "";
 }
 /* 곡 화면 영상 아래 — 이 곡에 나오는 응원만 알려 준다 */
@@ -5230,6 +5258,7 @@ function cheerLegend(m){
   if (m.wave)  parts.push(`<span>${INLINE_ICONS.wave} 손 흔들기</span>`);
   if (m.jump)  parts.push(`<span>${INLINE_ICONS.jump} 점프</span>`);
   if (m.spin)  parts.push(`<span>${INLINE_ICONS.spin} 팔 돌리기</span>`);
+  if (m.banzai) parts.push(`<span>${INLINE_ICONS.banzai} 짝 짝짝 만세</span>`);
   return parts.length ? `<div class="cheer-legend">${parts.join("")}</div>` : "";
 }
 
