@@ -437,6 +437,10 @@ body.is-song header.top,body.is-song nav.tabs{display:none}
 .lp-grid{margin-top:12px}
 .lp-memo{display:inline-block;margin-top:3px;font-size:10.5px;font-weight:700;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:0 6px;font-variant-numeric:tabular-nums}
 .lp-links{display:flex;align-items:center;gap:12px;margin-top:8px}
+.vid-eds{display:grid;gap:4px;border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+.vid-eds div{display:flex;justify-content:space-between;gap:10px;font-size:12.5px}
+.vid-eds small{color:var(--muted);font-variant-numeric:tabular-nums;text-align:right}
+.vid-sec{font-size:11.5px;font-weight:800;color:var(--muted);padding:10px 4px 4px;letter-spacing:.02em}
 .mvrow .t small .alb{opacity:.75}
 .t-lyric{background:var(--green-soft);color:var(--green)}
 .info-p{margin:0 0 8px;line-height:1.7}
@@ -11065,6 +11069,44 @@ const SINGLES = [
   { jp:"幕が上がる", no:"11th Digital Single", date:"2025.07.31", img:"uk/UK1AS-03227_kTp" },
   { jp:"どうしてもどうしても", no:"12th Digital Single", date:"2025.12.27", img:"uk/UK1AS-03610_Soe" }
 ];
+const VIDEOS = [
+  { jp:"\u201canti sleeps tour 2024\u201d at SAITAMA SUPER ARENA", ko:"안티 슬립스 투어 2024 · 사이타마 슈퍼 아레나", no:"5th Live", date:"2025.06.18",
+    img:"um/UMBK-1341_TlM", shot:"2024.10.27 사이타마 슈퍼 아레나",
+    note:"시미즈 이요리의 어쿠스틱 솔로 파트(Disc 1)와 밴드 본편(Disc 2)을 함께 담은 공연. 통상반에도 투어 다큐멘터리가 들어 있어요.",
+    eds:[ ["초회한정 BOX · Blu-ray","UMXK-9043","12,100엔"], ["초회한정 BOX · DVD","UMBK-9319","11,000엔"], ["통상반 · Blu-ray (2장)","UMXK-1125/6","7,700엔"], ["통상반 · DVD (3장)","UMBK-1341/3","6,600엔"] ],
+    extra:"초회 BOX: 다큐멘터리, 3D 케이스, 3단 재킷, 56P 포토북, 스트랩 패스, 메탈 키홀더, 새틴 스티커",
+    tracks:["#Disc 1 · 시미즈 이요리 솔로","恋","東京の夕焼け","助演女優症","君がドアを閉めた後","日曜日","ささえる人の歌","ベルベットの詩","チェックのワンピース",
+      "#Disc 2 · back number","高嶺の花子さん","大不正解","アイラブユー","光の街","HAPPY BIRTHDAY","楽園の地図","水平線","最深部","ロンリネス","花束","ハッピーエンド","新しい恋人達に","怪盗","スーパースターになったら","バンド (クリープハイプ 커버)"],
+    src:"https://backnumber.info/discography/detail/95/" },
+  { jp:"in your humor tour 2023 at 東京ドーム", ko:"인 유어 유머 투어 2023 · 도쿄돔", no:"4th Live", date:"2023.10.11",
+    img:"um/UMBK-9310_glH", shot:"2023.04.16 도쿄돔",
+    note:"밴드 첫 돔 투어의 도쿄돔 공연. 앨범 『ユーモア』 수록곡이 중심이에요.",
+    eds:[ ["초회한정반 · Blu-ray","UMXK-9032","8,250엔"], ["초회한정반 · DVD (2장)","UMBK-9310","7,150엔"], ["통상반 · Blu-ray","UMXK-1104","6,930엔"], ["통상반 · DVD","UMBK-1320","5,830엔"] ],
+    extra:"초회한정반: 다큐멘터리, 52P 포토북, 클리어 케이스",
+    tracks:["アイラブユー","大不正解","SISTER","秘密のキス","クリスマスソング","ハッピーエンド","エメラルド","青い春","ヒーロースーツ","ヒロイン","手紙","Silent Journey in Tokyo","ゴールデンアワー","高嶺の花子さん","赤い花火","黄色","水平線","ベルベットの詩","スーパースターになったら","添い寝チャンスは突然に","花束","怪盗"],
+    src:"https://backnumber.info/discography/detail/87/" },
+  { jp:"NO MAGIC TOUR 2019 at 大阪城ホール", ko:"노 매직 투어 2019 · 오사카성 홀", no:"3rd Live", date:"2020.03.25",
+    img:"", shot:"2019.08.24 오사카성 홀",
+    note:"앨범 『MAGIC』 투어의 오사카성 홀 공연. 2021년 12월부터 음원 사이트에서도 라이브 음원으로 들을 수 있어요.",
+    eds:[ ["초회한정반 · Blu-ray / DVD","",""], ["통상반 · Blu-ray / DVD","",""] ],
+    extra:"초회한정반: 투어 밀착 다큐멘터리, 52P 포토북",
+    tracks:["大不正解","ARTIST","MOTTO","泡と羊","サマーワンダーランド","オールドファッション","雨と僕の話","思い出せなくなるその日まで","ロンリネス","エキシビジョンデスマッチ","003","SISTER","monaural fantasy","あかるいよるに","日曜日","電車の窓から","HAPPY BIRTHDAY","瞬き","最深部","高嶺の花子さん","スーパースターになったら","#앙코르","ハッピーエンド","手紙"],
+    src:"https://www.thefirsttimes.jp/?p=60102" },
+  { jp:"All Our Yesterdays Tour 2017 at SAITAMA SUPER ARENA", ko:"올 아워 예스터데이즈 투어 2017 · 사이타마 슈퍼 아레나", no:"2nd Live", date:"2017.11.15",
+    img:"um/UMBK-1255_igk", shot:"2017.06.04 사이타마 슈퍼 아레나",
+    note:"베스트 앨범 『アンコール』 발매 후 30만 명을 모은 아레나 투어. 첫 Blu-ray 발매작이에요.",
+    eds:[ ["초회한정반 · Blu-ray","UMXK-9017","7,700엔"], ["초회한정반 · DVD (2장)","UMBK-9298","6,600엔"], ["통상반 · Blu-ray","UMXK-1051","6,380엔"], ["통상반 · DVD","UMBK-1255","5,280엔"] ],
+    extra:"초회한정반: 전 공연 밀착 다큐멘터리, 박스 케이스, 52P 포토북",
+    tracks:["はなびら","高嶺の花子さん","003","そのドレスちょっと待った","花束","クリスマスソング","fish","黒い猫の歌","アップルパイ","MOTTO","SISTER","幸せ","助演女優症","恋","ハッピーエンド","君の恋人になったら","光の街","stay with me","繋いだ手から","青い春","スーパースターになったら","#앙코르","世田谷ラブストーリー","日曜日","海岸通り"],
+    src:"https://ja.wikipedia.org/wiki/All_Our_Yesterdays_Tour_2017_at_SAITAMA_SUPER_ARENA" },
+  { jp:"\u201clove stories tour 2014\u301c横浜ラブストーリー2\u301c\u201d", ko:"러브 스토리즈 투어 2014 ~요코하마 러브 스토리 2~", no:"1st Live", date:"2015.02.25",
+    img:"um/UMBK-9287_xOQ", shot:"2014.09.15 요코하마 아레나",
+    note:"첫 라이브 영상 작품. DVD로만 나왔고 Blu-ray는 없어요.",
+    eds:[ ["초회한정반 · DVD (2장)","UMBK-9287","6,380엔"], ["통상반 · DVD","",""] ],
+    extra:"초회한정반: 투어 밀착 메이킹 영상, 박스 케이스, 52P 포토북, 스티커",
+    tracks:["高嶺の花子さん","MOTTO","半透明人間","海岸通り","繋いだ手から","光の街","fish","幸せ","わたがし","ネタンデルタール人","bird's sorrow","003","花束","君がドアを閉めた後","世田谷ラブストーリー","stay with me","聖者の行進","青い春","スーパースターになったら","#앙코르","日曜日","恋","そのドレスちょっと待った"],
+    src:"https://www.universal-music.co.jp/backnumber/products/umbk-9287/" }
+];
 const LPS = [
   { date:"2026.12.05", title:"오리지널 앨범 6작 아날로그 LP (레코드의 날 2026)", status:"발매 예정",
     spec:"각 2LP · 180g 중량반 · 45회전 · 하프 스피드 마스터링 · 각 6,000엔(세금 별도)",
@@ -11262,7 +11304,7 @@ function viewHome(){
       </a>
       <a class="menu-row" href="#/disco">
         <span class="menu-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.5"/></svg></span>
-        <span class="menu-label">앨범 · LP</span>
+        <span class="menu-label">앨범 · 라이브 · LP</span>
         <span class="menu-go">›</span>
       </a>
       <a class="menu-row" href="#/about">
@@ -11803,7 +11845,7 @@ function viewMv(id){
   <h1>곡 목록</h1>
   <p class="sub">정규·미니 앨범과 싱글 전곡 · 뮤직비디오와 공식 음원으로 연결돼요.</p>
   <a class="card setlink" href="#/setlist"><b>콘서트 셋리스트</b><small>원맨·팬클럽 투어 · 페스 · 이벤트에서 부른 곡 순서</small><span>›</span></a>
-  <a class="card setlink" href="#/disco"><b>앨범 · LP</b><small>정규·미니·베스트 앨범 수록곡 · 싱글 · 아날로그 레코드</small><span>›</span></a>
+  <a class="card setlink" href="#/disco"><b>앨범 · 라이브 · LP</b><small>정규·미니·베스트 앨범 수록곡 · 싱글 · 라이브 BD · 아날로그 레코드</small><span>›</span></a>
   <div class="mvtools">
     <label class="mvsearch">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
@@ -12283,8 +12325,24 @@ function discoAlbum(a){
       : `<p class="small muted" style="margin:0">데뷔부터 「ハッピーエンド」까지 싱글과 인기곡을 모은 첫 베스트 앨범 (2CD). 수록곡은 정리해서 채울 예정이에요.</p>`}</div>
   </details>`;
 }
+function discoVideo(v){
+  let n = 0;
+  const rows = v.tracks.map(t => t.startsWith("#") ? `<div class="vid-sec">${esc(t.slice(1))}</div>` : discoTrack(t, ++n)).join("");
+  return `<details class="acc disco-alb vid-alb">
+    <summary>${cover(v.img, v.jp, "sm")}<span class="disco-sum"><b>${esc(v.jp)}</b><small>${esc(v.ko)}</small><small>${esc(v.no)} · ${esc(v.date)} 발매</small></span></summary>
+    <div class="in">
+      <p class="small" style="margin:0 0 4px"><b>수록 공연</b> ${esc(v.shot)}</p>
+      <p class="small muted" style="margin:0 0 8px">${esc(v.note)}</p>
+      <div class="vid-eds">${v.eds.map(([k, c, p]) => `<div><span>${esc(k)}</span><small>${esc([c, p].filter(Boolean).join(" · "))}</small></div>`).join("")}</div>
+      <p class="small muted" style="margin:6px 0 10px">${esc(v.extra)}</p>
+      <p class="small muted" style="margin:0 0 6px">${n}곡 수록</p>
+      <div class="set-list disco-tracks">${rows}</div>
+      <div class="lp-links">${srcLink(v.src)}</div>
+    </div>
+  </details>`;
+}
 function viewDisco(){
-  const T = [["album","앨범"],["single","싱글"],["lp","LP · 레코드"]];
+  const T = [["album","앨범"],["single","싱글"],["video","라이브 BD"],["lp","LP"]];
   let body = "";
   if (disco.tab === "album"){
     body = `<h2>정규 앨범</h2>${ALBUMS.filter(a => a.kind === "orig").slice().reverse().map(discoAlbum).join("")}
@@ -12298,6 +12356,10 @@ function viewDisco(){
           <b>${esc(s ? s.ko : x.jp)}</b><small>${esc(x.jp)}</small><small>${esc(x.date)}</small>`;
         return s ? `<a class="cg-item" href="#/mv/${encodeURIComponent(s.id)}">${inner}</a>` : `<div class="cg-item">${inner}</div>`;
       }).join("")}</div>`;
+  } else if (disco.tab === "video"){
+    body = `<p class="sub" style="margin-top:14px">라이브 Blu-ray · DVD ${VIDEOS.length}작 (최신순) · 누르면 수록곡이 펼쳐져요</p>
+      ${VIDEOS.map(discoVideo).join("")}
+      <div class="note tip">2020년 온라인 라이브 필름 『MAHOGANY』『ASH』는 스트리밍 공개작이라 실물 영상 작품으로는 나오지 않았어요.</div>`;
   } else {
     body = LPS.map(l => `
       <div class="card lp-card">
@@ -12311,8 +12373,8 @@ function viewDisco(){
       </div>`).join("") + `<div class="note tip">해외 배송이 안 되는 곳이 많아요. 일본 내 주소가 없으면 배송대행·구매대행을 이용하세요.</div>`;
   }
   return `
-  <h1>앨범 · LP</h1>
-  <p class="sub">정규·미니·베스트 앨범, 싱글, 아날로그 레코드 정리</p>
+  <h1>앨범 · 라이브 · LP</h1>
+  <p class="sub">정규·미니·베스트 앨범, 싱글, 라이브 영상, 아날로그 레코드 정리</p>
   <div class="seg" role="tablist">${T.map(([k, l]) => `<button role="tab" data-t="${k}" aria-selected="${disco.tab === k}">${l}</button>`).join("")}</div>
   ${body}
   <p class="src">※ 트랙 순서는 나무위키 기준이에요. › 가 있는 곡은 누르면 뮤비·음원으로 넘어가요.<br>※ 재킷 이미지는 유니버설 뮤직 공식 상품 이미지예요 (통상반 기준). 인디 시절 앨범과 일부 디지털 싱글은 이미지가 없어 글자로 표시해요.</p>
