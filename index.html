@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" href="icons/icon-192.png">
 <style>
 :root{
-  --bg:#f3f5f8; --surface:#ffffff; --surface2:#e8edf3; --ink:#1f2630; --muted:#687384;
+  --bg:#f3f5f8; --veil:rgba(243,245,248,.66); --surface:#ffffff; --surface2:#e8edf3; --ink:#1f2630; --muted:#687384;
   --line:#dbe2ea; --accent:#2d5f93; --accent-soft:#dde8f4; --gold:#c98a14; --gold-soft:#fbefd4;
   --green:#2f8a5b; --green-soft:#dff2e7; --blue:#7a4fa8; --blue-soft:#efe6f7;
   --chant:#e07b12; --clap:#2c84c6; --wave:#3f9a2c; --jump:#8a5bd6; --spin:#d24f96; --now:#d63a3a; --now-soft:#fde4e2;
@@ -20,20 +20,31 @@
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --bg:#12161c; --surface:#1b2129; --surface2:#232b35; --ink:#e9eef4; --muted:#9aa6b5;
+    --bg:#12161c; --veil:rgba(18,22,28,.66); --surface:#1b2129; --surface2:#232b35; --ink:#e9eef4; --muted:#9aa6b5;
     --line:#2c3643; --accent:#86b4e6; --accent-soft:#1f3149; --gold:#e9b44c; --gold-soft:#43361c;
     --green:#6cc795; --green-soft:#1f3a2c; --blue:#c3a4e8; --blue-soft:#2e2440; --chant:#f5942c; --clap:#4fa8e0; --wave:#8de05f; --jump:#b98cff; --spin:#ff86c8; --now:#ff7b72; --now-soft:#3d2326;
     --shadow:none;
   }
 }
 :root[data-theme="dark"]{
-  --bg:#12161c; --surface:#1b2129; --surface2:#232b35; --ink:#e9eef4; --muted:#9aa6b5;
+  --bg:#12161c; --veil:rgba(18,22,28,.66); --surface:#1b2129; --surface2:#232b35; --ink:#e9eef4; --muted:#9aa6b5;
   --line:#2c3643; --accent:#86b4e6; --accent-soft:#1f3149; --gold:#e9b44c; --gold-soft:#43361c;
   --green:#6cc795; --green-soft:#1f3a2c; --blue:#c3a4e8; --blue-soft:#2e2440; --chant:#f5942c; --clap:#4fa8e0; --wave:#8de05f; --jump:#b98cff; --spin:#ff86c8; --now:#ff7b72; --now-soft:#3d2326;
   --shadow:none;
 }
 *{box-sizing:border-box}
 html,body{margin:0}
+html{background:var(--bg)}
+#pageBg{display:none;position:fixed;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(var(--veil),var(--veil)),var(--bg-img) center/cover no-repeat}
+body.has-bg{background:transparent}
+body.has-bg #pageBg{display:block}
+body.has-bg .home-hero::before{display:none}
+/* 배경 사진 위 글자 잘 보이게 */
+body.has-bg .home-title,body.has-bg .next-cap,body.has-bg h1,body.has-bg .sub{text-shadow:0 0 14px var(--bg),0 0 4px var(--bg),0 0 1px var(--bg)}
+body.has-bg .next-cap{color:var(--ink);opacity:.85}
+body.has-bg .show-meta{background:color-mix(in srgb,var(--surface) 82%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-radius:14px;padding:2px 14px;box-shadow:0 4px 18px rgba(0,0,0,.08)}
+body.has-bg .show-meta > *:first-child{border-top:none}
+body.has-bg .show-meta > *:last-child{border-bottom:none}
 body{
   background:var(--bg); color:var(--ink);
   font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic","Hiragino Sans",sans-serif;
@@ -678,6 +689,7 @@ nav.tabs a[aria-current="page"]{color:var(--accent)}
 </style>
 </head>
 <body>
+<div id="pageBg" aria-hidden="true"></div>
 <!-- 응원 아이콘 모음 (가사 안 [wave] [clap] 등이 여기 그림을 가져다 씀) -->
 <svg class="icon-sprite" aria-hidden="true" focusable="false"><defs>
   <symbol id="i-wave" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -1759,7 +1771,7 @@ pic : jump
 온통 물들이는 거야 자 손을 꽉 잡아줘
 `, lyrics:[] },
     { id:"Ending", jp:"エンディング", ko:"엔딩", rom:"Ending", date:"2012.11.21", album:"blues", vtype:"mv",
-      youtubeId:"t3JZnGgxSWg", lyricsShift:0, lyricsTimes:[20.13, 33.17, 45.32, 56.53, 72.98, 83.29, 93.30, 113.69, 126.56, 138.84, 150.12, 158.23, 166.40, 176.65, 186.59, 193.53, 199.97, 206.31, 211.38, 219.56, 227.40, 239.61, 245.08, 255.66, 265.60, 271.98], lyricsTime:0, lyricsText:`
+      youtubeId:"t3JZnGgxSWg", lyricsShift:0, lyricsTimes:[20.13, 33.17, 45.32, 56.53, 72.98, 83.29, 93.30, 113.69, 126.56, 138.84, 150.12, 158.23, 166.40, 176.65, 186.59, 193.53, 199.97, 206.31, 211.38, 219.56, 229.50, 239.61, 245.08, 255.66, 265.60, 271.98], lyricsTime:0, lyricsText:`
 二人でいるといつでも　僕は僕の話ばっかりして
 후타리데 이루토 이츠데모 보쿠와 보쿠노 하나시밧카리시테
 둘이서 있으면 항상 나는 내 이야기만 하고
@@ -2125,7 +2137,143 @@ pic : jump
     { id:"BirdSSorrow", jp:"bird's sorrow", ko:"bird's sorrow", rom:"Bird's Sorrow", date:"2012.11.21", album:"blues", vtype:"audio",
       youtubeId:"kyWJig7aZuQ", lyricsShift:0, lyricsTimes:[], lyricsTime:0, lyricsText:``, lyrics:[] },
     { id:"JoenJoyuushou", jp:"助演女優症", ko:"조연 여배우증", rom:"Joen Joyuushou", date:"2012.11.21", album:"blues", vtype:"audio",
-      youtubeId:"wPMVb74M6Q4", lyricsShift:0, lyricsTimes:[], lyricsTime:0, lyricsText:``, lyrics:[] },
+      youtubeId:"wPMVb74M6Q4", lyricsShift:0, lyricsTimes:[31.43, 37.31, 43.07, 53.95, 65.07, 70.98, 76.45, 82.45, 88.12, 94.38, 101.08, 106.71, 112.41, 123.37, 134.43, 140.35, 145.90, 151.93, 157.52, 163.80, 170.50, 174.83, 181.81, 186.35, 191.91, 203.97, 209.45, 215.55, 221.06, 227.08, 232.61, 238.56, 244.18, 250.57], lyricsTime:0, lyricsText:`
+甘い声で誘い出して
+아마이 코에데 사소이다시테
+달콤한 목소리로 유혹해놓곤
+
+私の気持ち全部分かっているくせに
+와타시노 키모치 젠부 와캇테이루 쿠세니
+내 마음을 전부 알고 있는 주제에
+
+都合が良くって頭の悪い 女を演じてあげる
+츠고-가 요쿳테 아타마노 와루이 온나오 엔지테 아게루
+다루기 쉽고 머리가 나쁜 여자를 연기해줄게
+
+身体重ねる度に想いが募るのは
+카라다 카사네루 타비니 오모이가 츠노루노와
+몸을 겹칠 때마다 마음이 깊어지는 건
+
+どうやら私の方だけだね
+도-야라 와타시노 호-다케다네
+아무래도 나뿐만인가 봐
+
+今はもうあなたが好き
+이마와 모- 아나타가 스키
+지금은 아직 당신이 좋아
+
+それを口に出してしまえばほら
+소레오 쿠치니 다시테시마에바 호라
+그걸 입밖으로 내버린다면 이것 봐
+
+今はもうあなたが好き
+이마와 모- 아나타가 스키
+지금은 아직 당신이 좋아
+
+少しだけ楽になるかもしれない
+스코시다케 라쿠니 나루카모 시레나이
+조금은 편해질 지도 몰라
+
+取って付けたような台詞で 惑わせて
+톳테 츠케타 요-나 세리후데 마도와세테
+갖다 붙인 듯한 대사로 유혹해줘
+
+愛して欲しいと叫ぶ事は
+아이시테 호시이토 사케부 코토와
+"사랑해줬으면 좋겠어"라고 외치는 건
+
+いつの間にやら恥ずかしい事のようで
+이츠노 마니야라 하즈카시이 코토노 요-데
+어느새인가 부끄러운 거 같아서
+
+愛していますと叫ぶ事も 時代遅れみたいね
+아이시테이마스토 사케부 코토모 지다이 오쿠레 미타이다네
+"사랑합니다"라고 외치는 것도 시대에 뒤떨어진 거 같네
+
+開き直れば 私はきっと幸せね
+히라키 나오레바 와타시와 킷토 시아와세네
+뻔뻔해진다면 나는 분명 행복할 거야
+
+選ばれなくてもここに いられるのだから
+에라바레나쿠테모 코코니 이라레루노다카라
+선택 받지 못하더라도 여기 있을 수 있으니까
+
+今はもうあなたが好き
+이마와 모- 아나타가 스키
+지금은 아직 당신이 좋아
+
+それを口に出してしまえばほら
+소레오 쿠치니 다시테시마에바 호라
+그걸 입밖으로 내버린다면 이것 봐
+
+今はもうあなたが好き
+이마와 모- 아나타가 스키
+지금은 아직 당신이 좋아
+
+少しだけ楽になるかもしれない
+스코시다케 라쿠니 나루카모 시레나이
+조금은 편해질 지도 몰라
+
+取って付けたような台詞で 惑わせて
+톳테 츠케타 요-나 세리후데 마도와세테
+갖다 붙인 듯한 대사로 유혹해줘
+
+肌に触れてこんなにも
+하다니 후레테 콘나니모
+피부에 닿았는데 이렇게나
+
+きっと毒でも塗ってあったのね
+킷토 도쿠데모 눗테앗타노네
+분명 독이라도 발라져 있었겠지
+
+あなたの好きにすれば良い
+아나타노 스키니 스레바 이이
+당신이 하고 싶은 대로 해도 돼
+
+私の望んだものはもう全部
+와타시노 노존다 모노와 모- 젠부
+내가 바라던 것들은 이미 전부
+
+あなたの心以外 今ここにあるから
+아나타노 코코로 이가이 이마 코코니 아루카라
+당신의 마음 이외에는 지금 여기 있으니까
+
+今はもうあなたが好き
+이마와 모- 아나타가 스키
+지금은 아직 당신이 좋아
+
+それを口に出してしまえばほら
+소레오 쿠치니 다시테시마에바 호라
+그걸 입밖으로 내버린다면 이것 봐
+
+今はもうあなたが好き
+이마와 모- 아나타가 스키
+지금은 아직 당신이 좋아
+
+少しだけ楽になるかもしれない
+스코시다케 라쿠니 나루카모 시레나이
+조금은 편해질 지도 몰라
+
+今はもうあなたが好き
+이마와 모- 아나타가 스키
+지금은 아직 당신이 좋아
+
+探しても無いと分かってるから
+사가시테모 나이토 와캇테루카라
+찾아봐도 없다는 걸 알고 있으니까
+
+今はもうあなたが好き
+이마와 모- 아나타가 스키
+지금은 아직 당신이 좋아
+
+このまま夜に身をゆだねていよう
+코노마마 요루니 미오 유다네테이요-
+이대로 밤에 몸을 맡기자
+
+取って付けたような台詞で 惑わせて
+톳테 츠케타 요-나 세리후데 마도와세테
+갖다 붙인 듯한 대사로 유혹해줘
+`, lyrics:[] },
     { id:"BokuGaImaDekiruKotoWo", jp:"僕が今できることを", ko:"내가 지금 할 수 있는 일을", rom:"Boku ga Ima Dekiru Koto wo", date:"2012.11.21", album:"blues", vtype:"audio",
       youtubeId:"4o-V76O18i4", lyricsShift:0, lyricsTimes:[1.08, 7.68, 14.65, 21.64, 28.49, 41.94, 49.21, 58.69, 73.25, 80.03, 85.92, 100.54, 106.78, 144.24, 158.99, 165.54, 171.64, 186.29, 192.39, 199.25], lyricsTime:0, lyricsText:`
 歩いてきた道は
@@ -12746,6 +12894,41 @@ function footer(){
 }
 
 /* ============ 라우터 ============ */
+/* ============ 페이지 배경 이미지 ============
+   images/bg/ 에 사진을 넣고 아래 표에 적으면 그 화면 뒤에 깔린다.
+   라이트 모드는 밝은 막, 다크 모드는 어두운 막이 자동으로 덮여서 글자가 잘 보인다 (--veil).
+   다크 전용 사진을 따로 쓰려면 ["밝은.jpg","어두운.jpg"] 처럼 두 개를 적는다. */
+const PAGE_BG = {
+  home:     "images/bg/home.jpg",
+  // schedule: "images/bg/schedule.jpg",
+  // mv:       "images/bg/mv.jpg",
+  // setlist:  "images/bg/setlist.jpg",
+  // disco:    "images/bg/disco.jpg",
+  // info:     "images/bg/info.jpg",
+  // about:    "images/bg/about.jpg",
+  // all:      "images/bg/all.jpg",   // 위에 없는 화면 전부에 쓰는 기본 배경
+};
+const bgOk = {};
+function isDark(){
+  const t = document.documentElement.dataset.theme;
+  return t ? t === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+}
+function applyPageBg(){
+  const r = location.hash.replace(/^#\/?/, "").split("/")[0] || "home";
+  let v = PAGE_BG[r] ?? PAGE_BG.all ?? "";
+  if (Array.isArray(v)) v = isDark() ? (v[1] || v[0]) : v[0];
+  const show = ok => { document.body.classList.toggle("has-bg", ok);
+    if (ok) $("#pageBg").style.setProperty("--bg-img", `url("${v}")`); };
+  if (!v) return show(false);
+  if (bgOk[v] !== undefined) return show(bgOk[v]);
+  show(false);
+  const im = new Image();
+  im.onload = () => { bgOk[v] = true; applyPageBg(); };
+  im.onerror = () => { bgOk[v] = false; };
+  im.src = v;
+}
+matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change", applyPageBg);
+
 const ROUTES = { "":viewHome, schedule:viewSchedule, mv:viewMv, setlist:viewSetlist, disco:viewDisco, info:viewInfo, about:viewAbout, sync:viewSync, write:viewWrite };
 function render(){
   mvCleanup(); syncCleanup();
@@ -12757,6 +12940,7 @@ function render(){
     if (a.dataset.r === tab) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
   });
   document.body.classList.toggle("is-home", view === viewHome);
+  applyPageBg();
   document.body.classList.toggle("is-post", (view === viewInfo && !!arg) || view === viewWrite);
   if (view === viewHome){ startCountdown(); bindHome(); } else clearInterval(cdTimer);
   if (view === viewSchedule) bindSchedule();
@@ -12778,6 +12962,7 @@ window.addEventListener("hashchange", () => { render(); window.scrollTo(0, pendi
     const dark = root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
     root.dataset.theme = dark ? "light" : "dark";
     try { localStorage.setItem("bn-theme", root.dataset.theme); } catch(e){}
+    applyPageBg();
   };
 })();
 render();
