@@ -598,7 +598,46 @@ body.is-song header.top,body.is-song nav.tabs{display:none}
 @media (prefers-reduced-motion: reduce){.tip-pic{transition:none}}
 
 .info-empty{text-align:center;padding:34px 16px;color:var(--muted);line-height:1.8}
-.post-title{line-height:1.35}
+.post-title{line-height:1.35;margin:6px 0 4px}
+.post-head{margin:10px 0 14px}
+.post-meta{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.post-tag{background:var(--accent-soft);color:var(--accent);font-weight:700;border-radius:999px;padding:1px 9px}
+.mvrow .t .post-meta{margin-top:4px}
+.post-row{gap:12px}
+.post-row .set-go{color:var(--muted);font-size:18px}
+.post-thumb{flex:none;width:76px;height:56px;border-radius:9px;object-fit:cover;background:var(--surface2);border:1px solid var(--line)}
+.post-thumb.none{display:grid;place-items:center;font-size:12px;font-weight:700;color:var(--muted)}
+.post-body h3{margin:18px 0 6px;font-size:16px}
+.post-body figcaption{font-size:12.5px;color:var(--muted);text-align:center;margin-top:6px;line-height:1.5}
+.post-body img{cursor:zoom-in}
+.post-img > img{width:auto;max-height:78vh;margin:0 auto}
+.post-gallery{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:4px 0 14px}
+.post-gallery .post-img{margin:0}
+.post-gallery img{width:100%;height:100%;object-fit:cover}
+.post-list{margin:0 0 12px;padding-left:22px}
+.post-list li{margin:3px 0}
+.post-hr{border:none;border-top:1px solid var(--line);margin:20px 0}
+.post-yt{position:relative;aspect-ratio:16/9;margin:4px 0 14px;border-radius:10px;overflow:hidden;background:#000}
+.post-yt iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.post-nav{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.post-nav-item{display:block;border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:10px 12px;text-decoration:none;color:var(--ink);min-width:0}
+.post-nav-item:last-child{text-align:right}
+.post-nav-item small{display:block;color:var(--muted);font-size:11.5px}
+.post-nav-item b{display:block;font-size:13.5px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.post-zoom{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.86);display:grid;place-items:center;padding:16px;cursor:zoom-out}
+.post-zoom img{max-width:100%;max-height:100%;border-radius:8px}
+.info-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.write-grid{display:grid;gap:14px;margin-top:12px}
+@media (min-width:900px){.write-grid{grid-template-columns:1fr 1fr;align-items:start}.write-preview{position:sticky;top:70px;max-height:calc(100vh - 90px);overflow:auto}}
+.write-form{display:grid;gap:10px}
+.w-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.w-field{display:grid;gap:4px;font-size:12.5px;color:var(--muted)}
+.w-field input,.write-form textarea,.write-out textarea{width:100%;box-sizing:border-box;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:9px;padding:9px 10px;font:inherit;font-size:14px}
+.write-form textarea{line-height:1.6;resize:vertical}
+.write-out{margin-top:14px}
+.write-out textarea{font-family:ui-monospace,Consolas,monospace;font-size:12px}
+.w-tools{display:flex;flex-wrap:wrap;gap:6px}
+.w-tools .btn{font-size:13px;padding:6px 10px;cursor:pointer}
 .post-body{line-height:1.75}
 .post-body p{margin:0 0 12px}
 .post-body h2{margin:22px 0 8px}
@@ -668,7 +707,7 @@ nav.tabs a[aria-current="page"]{color:var(--accent)}
    ✏️ 데이터 — 업데이트는 여기만 고치면 됩니다
    - 날짜는 "2026-11-30" 형식, 시간이 있으면 "2026-11-30T18:30"
      (일본·한국 시간이 같아서 그대로 적으면 됨)
-   - type: live(공연) / ticket(티켓 접수) / release(발매) / media(방송·배신) / other(기타)
+   - type: live(공연) / ticket(티켓 접수) / release(발매) / media(방송·스트리밍) / other(기타)
    - end: 이틀 이상이거나 접수 기간이면 끝나는 날
    - tba: true → 날짜 미정 (달까지만 표시, 카운트다운 대신 COMING SOON)
    - src: 확인한 출처 링크 (공식 우선)
@@ -698,8 +737,8 @@ const DATA = {
     { type:"live", tour:"gy", date:"2026-09-26", end:"2026-09-27", venue:"AsiaWorld-Expo Hall 10", city:"홍콩", src:"https://backnumber.info/news/detail/400267" },
 
     // ── 방송·발매 ──
-    { type:"media", date:"2026-10-03T18:00", title:"U-NEXT 독점 라이브 배신 『Grateful Yesterdays Tour 2026』", note:"같은 시간 라이브 첫 부분을 공식 SNS에서 무료 공개", src:"https://backnumber.info/news/detail/400296" },
-    { type:"release", date:"2026-10-03T18:00", title:"라이브 음원 『Grateful Yesterdays Tour 2026 Live at NISSAN STADIUM』", note:"닛산 스타디움 2일차 공연 · 첫 음원 전용 라이브 배신", src:"https://backnumber.info/news/detail/400291" },
+    { type:"media", date:"2026-10-03T18:00", title:"U-NEXT 독점 라이브 생중계 『Grateful Yesterdays Tour 2026』", note:"같은 시간 라이브 첫 부분을 공식 SNS에서 무료 공개", src:"https://backnumber.info/news/detail/400296" },
+    { type:"release", date:"2026-10-03T18:00", title:"라이브 음원 『Grateful Yesterdays Tour 2026 Live at NISSAN STADIUM』", note:"닛산 스타디움 2일차 공연 · 음원 사이트 전용으로 처음 공개하는 라이브 음원", src:"https://backnumber.info/news/detail/400291" },
     { type:"release", date:"2026-12-05", title:"오리지널 앨범 6작 아날로그 LP 발매", note:"MAGIC · 유머 · 슈퍼스타 · blues · 러브스토리 · 샹들리에 (레코드의 날 2026)", src:"https://www.billboard-japan.com/d_news/detail/164638" },
 
     // ── 공연 ──
@@ -10785,9 +10824,9 @@ const CONCERT_SETLISTS = [
     songs:["黄色","怪盗","水平線"] },
   { year:2021, name:"back number fanclub tour \"one room party vol.6\"", short:"orp vol.6", dates:"2021.02.26 ~ 07.01 · 팬클럽 투어", basis:"마지막 공연 7/1 LINE CUBE SHIBUYA 순서", id:1281228,
     songs:["君の代わり",{ t:"そのドレスちょっと待った", note:"파트 셔플" },{ t:"赤い花火", note:"신곡 (당시 미발표)" },"リッツパーティー","Jaguar","水平線","エメラルド","KNOCK","one room","ヒロイン"] },
-  { year:2020, name:"back number live film 2020 \"ASH\"", short:"ASH", dates:"2020.10.25 · 온라인 배신 (밴드)", id:1264807,
+  { year:2020, name:"back number live film 2020 \"ASH\"", short:"ASH", dates:"2020.10.25 · 온라인 스트리밍 (밴드)", id:1264807,
     songs:["黒い猫の歌",{ t:"エメラルド", note:"신곡 (당시 발매 전)" },"高嶺の花子さん","SISTER","わたがし","君がドアを閉めた後","MOTTO","瞬き","あかるいよるに","僕は君の事が好きだけど君は僕を別に好きじゃないみたい","ハッピーエンド","HAPPY BIRTHDAY","花束",{ t:"水平線", note:"라이브 첫 공개" },"青い春","大不正解"] },
-  { year:2020, name:"back number live film 2020 \"MAHOGANY\"", short:"MAHOGANY", dates:"2020.09.22 · 온라인 배신 (어쿠스틱)", id:1264806,
+  { year:2020, name:"back number live film 2020 \"MAHOGANY\"", short:"MAHOGANY", dates:"2020.09.22 · 온라인 스트리밍 (어쿠스틱)", id:1264806,
     songs:["だいじなこと","fish","光の街","花束","黒い猫の歌","SISTER","雨と僕の話","わたがし","オールドファッション","sympathy","大不正解","one room"] },
   { year:2020, name:"back number fanclub tour 2020 \"one room party vol.5\"", short:"orp vol.5", dates:"2020.01.29 ~ 02.23 · 팬클럽 투어", basis:"마지막 공연 2/23 高松festhalle 순서", id:1185038,
     songs:["こぼれ落ちて","アップルパイ","sympathy","あとのうた","魔女と僕","春を歌にして","HAPPY BIRTHDAY","ミラーボールとシンデレラ","クリスマスソング","僕は君の事が好きだけど君は僕を別に好きじゃないみたい","青い春","大不正解",{ enc:true },"そのドレスちょっと待った","one room","SISTER"] },
@@ -11160,7 +11199,7 @@ const toDate = (s, endOfDay) => {
 const parts = s => { const [y,m,d] = s.slice(0,10).split("-").map(Number); return {y,m,d,w:WD[new Date(Date.UTC(y,m-1,d)).getUTCDay()]}; };
 const fmt = s => { const p = parts(s); return `${p.m}/${p.d}(${p.w})`; };
 const timeOf = s => s.includes("T") ? s.slice(11,16) : "";
-const TYPE = { live:["공연","t-live"], ticket:["티켓","t-ticket"], release:["발매","t-release"], media:["방송·배신","t-media"], other:["기타","t-other"] };
+const TYPE = { live:["공연","t-live"], ticket:["티켓","t-ticket"], release:["발매","t-release"], media:["방송·스트리밍","t-media"], other:["기타","t-other"] };
 
 function evTitle(e){
   if (e.title) return e.title;
@@ -11420,7 +11459,7 @@ function bindHome(){
 const sched = { filter: "all", past: false };
 try { const v = JSON.parse(localStorage.getItem("bn-sched") || "null"); if (v) Object.assign(sched, v); } catch(e){}
 function viewSchedule(){
-  const f = [["all","전체"],["live","공연"],["ticket","티켓"],["release","발매"],["media","방송·배신"]];
+  const f = [["all","전체"],["live","공연"],["ticket","티켓"],["release","발매"],["media","방송·스트리밍"]];
   let list = sorted().filter(e => sched.filter === "all" || e.type === sched.filter || (sched.filter === "media" && e.type === "other"));
   if (!sched.past) list = list.filter(e => status(e) !== "past");
   let html = "", cur = "";
@@ -11538,70 +11577,223 @@ function viewAbout(){
 
 
 /* ============ 화면: 정보 (#/info) ============
-   뮤비 목록처럼 "글 목록 → 글 화면" 으로 운영하는 곳.
-   ✏️ 새 글은 INFO_POSTS 맨 위에 한 덩어리 추가하면 됩니다 (최신 글이 위).
+   곡 목록처럼 "글 목록 → 글 화면(블로그)" 으로 운영하는 곳.
+   ✏️ 글 쓰는 법
+     1) 브라우저에서 index.html#/write 를 열면 글쓰기 화면이 나와요 (미리보기 + 사진 넣기).
+     2) 다 쓰고 [코드 복사] → 아래 INFO_POSTS 의 [ 바로 다음 줄에 붙여 넣기 (최신 글이 위).
+     3) 사진 파일은 폴더의 images/info/ 안에 넣기 (글쓰기 화면에서 고른 파일 이름 그대로).
+
+   글 한 개 모양
      {
        id:    "fanclub-guide",          // 주소에 쓰임 → #/info/fanclub-guide  (영문·숫자·- 만)
        title: "팬클럽 one room 가입 방법",
        date:  "2026.10.01",
        tag:   "팬클럽",                  // 목록 위 분류 버튼으로 자동 정리 (없어도 됨)
        summary: "목록에 보이는 한 줄 설명", // 없어도 됨
+       cover: "images/info/표지.jpg",     // 목록 썸네일 (없으면 본문 첫 사진)
        body: `
          여기에 본문을 씁니다. 빈 줄로 문단을 나눕니다.
 
-         ## 소제목            ← 줄 맨 앞에 ## 를 쓰면 소제목
-         - 목록 항목          ← - 로 시작하면 점 목록
-         ![사진 설명](images/info/사진.jpg)   ← 사진
-         [링크 글자](https://...)              ← 링크
+         ## 소제목                       ← 줄 맨 앞 ## (작은 소제목은 ###)
+         - 점 목록                       ← - 로 시작
+         1. 순서 목록                    ← 1. 2. 3.
+         > 팁 상자                       ← > 로 시작 (>! 로 시작하면 '주의' 상자)
+         **굵게**   [링크 글자](https://...)
+         ![사진 설명](images/info/사진.jpg)   ← 사진 (설명은 사진 아래 작게 표시, 누르면 크게)
+         ![](images/info/a.jpg)              ← 사진 줄을 빈 줄 없이 연달아 쓰면
+         ![](images/info/b.jpg)                 나란히 2장씩 보여요
+         https://youtu.be/영상ID          ← 유튜브 주소만 한 줄에 쓰면 영상이 들어가요
+         ---                              ← 구분선
        `
      },
 */
 const INFO_POSTS = [
 ];
+const INFO_IMG_DIR = "images/info/";
 const infoState = { tag:"전체" };
-function infoBody(src){
+const POST_IMG_RE = /^!\[([^\]]*)\]\(([^)\s]+)\)$/;
+const POST_YT_RE = /^(?:https?:\/\/)?(?:www\.|m\.)?(?:youtube\.com\/(?:watch\?v=|shorts\/|live\/)|youtu\.be\/)([\w-]{11})\S*$/;
+function postFirstImg(p){
+  if (p.cover) return p.cover;
+  const m = String(p.body || "").match(/!\[[^\]]*\]\(([^)\s]+)\)/);
+  return m ? m[1] : "";
+}
+/* src: 본문 글, img: 사진 주소 바꾸기(글쓰기 미리보기용) */
+function infoBody(src, img = u => u){
   const inline = t => esc(t)
-    .replace(/!\[([^\]]*)\]\(([^)\s]+)\)/g, (m, alt, u) => `<img src="${u}" alt="${alt}" loading="lazy">`)
     .replace(/\[([^\]]+)\]\((https?:[^)\s]+|#[^)\s]*)\)/g, (m, t2, u) => `<a href="${u}"${u.startsWith("#") ? "" : ' target="_blank" rel="noopener"'}>${t2}</a>`)
     .replace(/\*\*([^*]+)\*\*/g, "<b>$1</b>");
-  const blocks = String(src || "").replace(/\r/g, "").split(/\n\s*\n/).map(b => b.split("\n").map(x => x.trim()).filter(Boolean)).filter(b => b.length);
-  return blocks.map(lines => {
-    if (lines.every(l => /^[-•]\s/.test(l))) return `<ul class="plain">${lines.map(l => `<li>${inline(l.replace(/^[-•]\s+/, ""))}</li>`).join("")}</ul>`;
-    return lines.map(l => {
-      if (/^##\s/.test(l)) return `<h2>${inline(l.replace(/^##\s+/, ""))}</h2>`;
-      if (/^!\[/.test(l)) return `<figure class="post-img">${inline(l)}</figure>`;
-      if (/^[-•]\s/.test(l)) return `<ul class="plain"><li>${inline(l.replace(/^[-•]\s+/, ""))}</li></ul>`;
-      return `<p>${inline(l)}</p>`;
-    }).join("");
-  }).join("");
+  const fig = l => { const [, alt, u] = l.match(POST_IMG_RE);
+    return `<figure class="post-img"><img src="${esc(img(u))}" alt="${esc(alt)}" loading="lazy">${alt ? `<figcaption>${inline(alt)}</figcaption>` : ""}</figure>`; };
+  const kind = l => POST_IMG_RE.test(l) ? "img" : POST_YT_RE.test(l) ? "yt" : /^#{2,3}\s/.test(l) ? "h"
+    : /^[-•]\s/.test(l) ? "ul" : /^\d+[.)]\s/.test(l) ? "ol" : /^>/.test(l) ? "q" : /^-{3,}$/.test(l) ? "hr" : "p";
+  const out = [];
+  String(src || "").replace(/\r/g, "").split(/\n\s*\n/).forEach(block => {
+    const lines = block.split("\n").map(x => x.trim()).filter(Boolean);
+    let i = 0;
+    while (i < lines.length){
+      const k = kind(lines[i]); let j = i + 1;
+      if (!["h", "hr", "yt"].includes(k)) while (j < lines.length && kind(lines[j]) === k) j++;
+      const g = lines.slice(i, j);
+      if (k === "img") out.push(g.length > 1 ? `<div class="post-gallery">${g.map(fig).join("")}</div>` : fig(g[0]));
+      else if (k === "yt") out.push(`<div class="post-yt"><iframe src="https://www.youtube.com/embed/${lines[i].match(POST_YT_RE)[1]}" title="YouTube" allowfullscreen loading="lazy"></iframe></div>`);
+      else if (k === "h") out.push(/^###/.test(g[0]) ? `<h3>${inline(g[0].replace(/^###\s+/, ""))}</h3>` : `<h2>${inline(g[0].replace(/^##\s+/, ""))}</h2>`);
+      else if (k === "ul") out.push(`<ul class="post-list">${g.map(l => `<li>${inline(l.replace(/^[-•]\s+/, ""))}</li>`).join("")}</ul>`);
+      else if (k === "ol") out.push(`<ol class="post-list" start="${parseInt(g[0])}">${g.map(l => `<li>${inline(l.replace(/^\d+[.)]\s+/, ""))}</li>`).join("")}</ol>`);
+      else if (k === "q"){ const warn = /^>!/.test(g[0]);
+        out.push(`<div class="note ${warn ? "warn" : "tip"}">${g.map(l => inline(l.replace(/^>!?\s?/, ""))).join("<br>")}</div>`); }
+      else if (k === "hr") out.push(`<hr class="post-hr">`);
+      else out.push(`<p>${g.map(inline).join("<br>")}</p>`);
+      i = j;
+    }
+  });
+  return out.join("");
 }
+function postMeta(p){ return [p.tag ? `<span class="post-tag">${esc(p.tag)}</span>` : "", p.date ? `<span>${esc(p.date)}</span>` : ""].join(""); }
 function viewInfo(id){
   if (id){
-    const p = INFO_POSTS.find(x => x.id === decodeURIComponent(id));
-    if (p) return `
+    const i = INFO_POSTS.findIndex(x => x.id === decodeURIComponent(id));
+    const p = INFO_POSTS[i];
+    if (!p) return `<a class="back" href="#/info">‹ 정보 목록</a><p class="sub" style="margin-top:20px">글을 찾을 수 없어요.</p>${footer()}`;
+    const newer = INFO_POSTS[i - 1], older = INFO_POSTS[i + 1];
+    const nav = (q, label) => q ? `<a class="post-nav-item" href="#/info/${encodeURIComponent(q.id)}"><small>${label}</small><b>${esc(q.title)}</b></a>` : `<span></span>`;
+    return `
       <a class="back" href="#/info">‹ 정보 목록</a>
-      <h1 class="post-title">${esc(p.title)}</h1>
-      <p class="sub">${[p.tag, p.date].filter(Boolean).map(esc).join(" · ")}</p>
+      <header class="post-head">
+        <div class="post-meta">${postMeta(p)}</div>
+        <h1 class="post-title">${esc(p.title)}</h1>
+        ${p.summary ? `<p class="sub" style="margin:0">${esc(p.summary)}</p>` : ""}
+      </header>
       <article class="card post-body">${infoBody(p.body)}</article>
+      <nav class="post-nav">${nav(older, "‹ 이전 글")}${nav(newer, "다음 글 ›")}</nav>
       ${footer()}`;
   }
   const tags = ["전체", ...new Set(INFO_POSTS.map(p => p.tag).filter(Boolean))];
   if (!tags.includes(infoState.tag)) infoState.tag = "전체";
   const list = INFO_POSTS.filter(p => infoState.tag === "전체" || p.tag === infoState.tag);
+  const local = /^(file:|http:\/\/(localhost|127\.))/.test(location.href);
   return `
-  <h1>정보</h1>
-  <p class="sub">back number 관련 정보 모음</p>
+  <div class="info-top"><h1>정보</h1>${local ? `<a class="btn" href="#/write">✏️ 글쓰기</a>` : ""}</div>
+  <p class="sub">back number 관련 정보 모음 · ${INFO_POSTS.length}개의 글</p>
   ${tags.length > 2 ? `<div class="chips">${tags.map(t => `<button class="chip" data-tag="${esc(t)}" aria-pressed="${infoState.tag === t}">${esc(t)}</button>`).join("")}</div>` : ""}
-  ${list.length ? `<div class="card mvlist">${list.map(p => `
-    <a class="mvrow" href="#/info/${encodeURIComponent(p.id)}">
-      <span class="t"><b>${esc(p.title)}</b><small>${esc(p.summary || p.tag || "")}</small></span>
-      <span class="side"><small>${esc(p.date || "")}</small></span>
-    </a>`).join("")}</div>`
+  ${list.length ? `<div class="card mvlist">${list.map(p => { const th = postFirstImg(p); return `
+    <a class="mvrow post-row" href="#/info/${encodeURIComponent(p.id)}">
+      ${th ? `<img class="post-thumb" src="${esc(th)}" alt="" loading="lazy">` : `<span class="post-thumb none">${esc((p.tag || "글").slice(0, 2))}</span>`}
+      <span class="t"><b>${esc(p.title)}</b><small>${esc(p.summary || "")}</small><span class="post-meta">${postMeta(p)}</span></span>
+      <span class="set-go">›</span>
+    </a>`; }).join("")}</div>`
   : `<div class="card info-empty">아직 올라온 정보가 없어요.<br><span class="small muted">곧 하나씩 채울 예정이에요.</span></div>`}
   ${footer()}`;
 }
+function bindPostZoom(){
+  document.querySelectorAll(".post-body img").forEach(im => im.onclick = () => {
+    const z = document.createElement("div");
+    z.className = "post-zoom"; z.innerHTML = `<img src="${im.src}" alt="">`;
+    z.onclick = () => z.remove();
+    document.body.appendChild(z);
+  });
+}
 function bindInfo(){
   document.querySelectorAll("[data-tag]").forEach(b => b.onclick = () => { infoState.tag = b.dataset.tag; render(); });
+  bindPostZoom();
+}
+
+/* ============ 화면: 글쓰기 (#/write) ============
+   미리보기를 보며 글을 쓰고, [코드 복사] 로 INFO_POSTS 에 붙여 넣을 덩어리를 만든다.
+   쓰던 글은 이 브라우저에 자동 저장된다. 사진은 고르면 미리보기에만 보이고,
+   실제 사이트에 보이려면 같은 이름으로 폴더의 images/info/ 에 넣어야 한다. */
+const writeS = { urls:{} };
+function writeLoad(){ try { return JSON.parse(localStorage.getItem("bn-draft") || "null") || {}; } catch(e){ return {}; } }
+function viewWrite(){
+  const d = writeLoad(), today = new Date();
+  const ymd = `${today.getFullYear()}.${pad2(today.getMonth() + 1)}.${pad2(today.getDate())}`;
+  const f = (k, label, ph, v = "") => `<label class="w-field"><span>${label}</span><input id="w_${k}" value="${esc(d[k] ?? v)}" placeholder="${esc(ph)}"></label>`;
+  return `
+  <a class="back" href="#/info">‹ 정보 목록</a>
+  <h1>글쓰기</h1>
+  <p class="sub">쓰는 글은 이 브라우저에 자동 저장돼요. 다 쓰면 맨 아래 [코드 복사] → index.html 의 <code>INFO_POSTS = [</code> 바로 아래에 붙여 넣기.</p>
+  <div class="write-grid">
+    <div class="card write-form">
+      ${f("title", "제목", "예) 팬클럽 one room 가입 방법")}
+      <div class="w-row">${f("date", "날짜", "2026.10.01", ymd)}${f("tag", "분류", "예) 팬클럽 · 티켓 · 굿즈")}</div>
+      ${f("summary", "한 줄 설명 (목록에 보임)", "없어도 돼요")}
+      ${f("id", "주소 이름 (영문·숫자·-)", "비우면 날짜로 자동")}
+      <div class="w-tools">
+        <button class="btn" data-ins="## ">소제목</button>
+        <button class="btn" data-ins="- ">점 목록</button>
+        <button class="btn" data-ins="1. ">번호</button>
+        <button class="btn" data-wrap="**">굵게</button>
+        <button class="btn" data-ins="> ">팁 상자</button>
+        <button class="btn" data-ins="[링크 글자](https://)">링크</button>
+        <label class="btn primary">📷 사진 넣기<input id="w_files" type="file" accept="image/*" multiple hidden></label>
+      </div>
+      <textarea id="w_body" rows="16" placeholder="본문을 쓰세요. 빈 줄로 문단을 나눠요.&#10;&#10;사진은 [📷 사진 넣기] 로 고르면 커서 자리에 들어가요.&#10;사진 여러 장을 한 번에 고르면 나란히 2장씩 보여요.">${esc(d.body || "")}</textarea>
+      <p class="small muted" id="w_imgs" style="margin:6px 0 0"></p>
+    </div>
+    <div class="write-preview">
+      <div class="small muted" style="margin:0 0 6px">미리보기</div>
+      <div id="w_prev"></div>
+    </div>
+  </div>
+  <div class="card write-out">
+    <div class="small muted" style="margin-bottom:6px">아래 코드를 복사해서 붙여 넣으세요</div>
+    <textarea id="w_code" rows="8" readonly></textarea>
+    <div class="w-tools" style="margin-top:8px">
+      <button class="btn primary" id="w_copy">코드 복사</button>
+      <button class="btn" id="w_clear">새 글 (지우기)</button>
+    </div>
+  </div>
+  <div class="copy-toast" id="copyToast" aria-live="polite"></div>`;
+}
+function bindWrite(){
+  const g = k => $("#w_" + k), keys = ["title", "date", "tag", "summary", "id", "body"];
+  const val = () => Object.fromEntries(keys.map(k => [k, g(k).value]));
+  const q = s => JSON.stringify(s);
+  const update = () => {
+    const v = val();
+    try { localStorage.setItem("bn-draft", JSON.stringify(v)); } catch(e){}
+    const id = (v.id.trim() || "post-" + v.date.replace(/\D/g, "")).replace(/[^\w-]/g, "-");
+    const p = { title:v.title || "(제목 없음)", tag:v.tag, date:v.date, summary:v.summary };
+    $("#w_prev").innerHTML = `
+      <header class="post-head"><div class="post-meta">${postMeta(p)}</div><h1 class="post-title">${esc(p.title)}</h1>
+      ${p.summary ? `<p class="sub" style="margin:0">${esc(p.summary)}</p>` : ""}</header>
+      <article class="card post-body">${infoBody(v.body, u => writeS.urls[u] || u) || `<p class="muted">본문이 여기에 보여요.</p>`}</article>`;
+    bindPostZoom();
+    const body = v.body.replace(/\\/g, "\\\\").replace(/`/g, "\\`").replace(/\$\{/g, "\\${").split("\n").map(l => l ? "    " + l : "").join("\n");
+    g("code").value = `  {
+    id:${q(id)}, title:${q(v.title)}, date:${q(v.date)}, tag:${q(v.tag)},${v.summary ? `\n    summary:${q(v.summary)},` : ""}
+    body:\`
+${body}
+    \`
+  },`;
+    const imgs = [...v.body.matchAll(/!\[[^\]]*\]\(([^)\s]+)\)/g)].map(m => m[1]);
+    $("#w_imgs").textContent = imgs.length ? `사진 ${imgs.length}장 → 폴더에 넣을 파일: ${[...new Set(imgs)].join(", ")}` : "";
+  };
+  keys.forEach(k => g(k).addEventListener("input", update));
+  const ta = g("body");
+  const insert = (text, wrap) => {
+    const a = ta.selectionStart, b = ta.selectionEnd, t = ta.value;
+    let s;
+    if (wrap) s = wrap + (t.slice(a, b) || "글자") + wrap;
+    else { const bol = a === 0 || t[a - 1] === "\n"; s = (bol ? "" : "\n") + text; }
+    ta.value = t.slice(0, a) + s + t.slice(b);
+    ta.focus(); ta.selectionStart = ta.selectionEnd = a + s.length;
+    update();
+  };
+  document.querySelectorAll("[data-ins]").forEach(b => b.onclick = () => insert(b.dataset.ins));
+  document.querySelectorAll("[data-wrap]").forEach(b => b.onclick = () => insert("", b.dataset.wrap));
+  g("files").onchange = e => {
+    const files = [...e.target.files]; if (!files.length) return;
+    const lines = files.map(fl => { const path = INFO_IMG_DIR + fl.name; writeS.urls[path] = URL.createObjectURL(fl); return `![](${path})`; });
+    const a = ta.selectionStart, t = ta.value;
+    const before = a === 0 ? "" : t[a - 1] === "\n" ? (t[a - 2] === "\n" ? "" : "\n") : "\n\n";
+    insert(before.replace(/^\n/, "") + lines.join("\n") + "\n\n");
+    e.target.value = "";
+  };
+  $("#w_copy").onclick = () => copyToClipboard(g("code").value).then(() => copyToast("코드를 복사했어요"));
+  $("#w_clear").onclick = () => { if (!confirm("쓰던 글을 지우고 새로 쓸까요?")) return;
+    try { localStorage.removeItem("bn-draft"); } catch(e){} render(); };
+  update();
 }
 
 /* ============ 화면: 뮤비 (곡 목록 · 곡 화면) ============ */
@@ -12477,13 +12669,13 @@ function footer(){
 }
 
 /* ============ 라우터 ============ */
-const ROUTES = { "":viewHome, schedule:viewSchedule, mv:viewMv, setlist:viewSetlist, disco:viewDisco, info:viewInfo, about:viewAbout, sync:viewSync };
+const ROUTES = { "":viewHome, schedule:viewSchedule, mv:viewMv, setlist:viewSetlist, disco:viewDisco, info:viewInfo, about:viewAbout, sync:viewSync, write:viewWrite };
 function render(){
   mvCleanup(); syncCleanup();
   const [r, arg] = location.hash.replace(/^#\/?/, "").split("/");
   const view = ROUTES[r] || viewHome;
   $("#app").innerHTML = view(arg);
-  const tab = r === "about" ? "" : (r === "setlist" || r === "disco" || r === "sync") ? "mv" : (ROUTES[r] ? r : "");
+  const tab = r === "about" ? "" : (r === "setlist" || r === "disco" || r === "sync") ? "mv" : r === "write" ? "info" : (ROUTES[r] ? r : "");
   document.querySelectorAll("nav.tabs a").forEach(a => {
     if (a.dataset.r === tab) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
   });
@@ -12495,6 +12687,7 @@ function render(){
   if (view === viewDisco) bindDisco();
   if (view === viewInfo) bindInfo();
   if (view === viewSync) bindSync(arg);
+  if (view === viewWrite) bindWrite();
 }
 let pendingScroll = null;
 window.addEventListener("hashchange", () => { render(); window.scrollTo(0, pendingScroll ?? 0); pendingScroll = null; });
