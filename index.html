@@ -610,10 +610,18 @@ body.is-song header.top,body.is-song nav.tabs{display:none}
 .post-body h3{margin:18px 0 6px;font-size:16px}
 .post-body figcaption{font-size:12.5px;color:var(--muted);text-align:center;margin-top:6px;line-height:1.5}
 .post-body img{cursor:zoom-in}
-.post-img > img{width:auto;max-height:78vh;margin:0 auto}
-.post-gallery{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:4px 0 14px}
+.post-img.noimg::before{content:"사진 준비 중";display:grid;place-items:center;min-height:120px;border:1px dashed var(--line);border-radius:10px;color:var(--muted);font-size:13px}
+.post-img > img{width:auto;max-width:100%;max-height:78vh;margin:0 auto;object-fit:contain}
+.post-gallery{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:4px 0 14px;align-items:start}
 .post-gallery .post-img{margin:0}
-.post-gallery img{width:100%;height:100%;object-fit:cover}
+.post-gallery img{width:100%;height:auto;max-height:none;object-fit:contain}
+@media (min-width:900px){
+  body.is-post #app,body.is-post header.top .wrap{max-width:1040px}
+  .post-body{font-size:16px;padding:28px 36px}
+  .post-img > img{max-height:72vh}
+  .post-gallery{grid-template-columns:repeat(var(--n,2),minmax(0,1fr));gap:14px;justify-items:center}
+  .post-gallery img{width:auto;max-width:100%;max-height:72vh}
+}
 .post-list{margin:0 0 12px;padding-left:22px}
 .post-list li{margin:3px 0}
 .post-hr{border:none;border-top:1px solid var(--line);margin:20px 0}
@@ -4357,7 +4365,7 @@ pic : jump
 너를 좋아해
 `, lyrics:[] },
     { id:"Siren", jp:"サイレン", ko:"사이렌", rom:"Siren", date:"2015.12.09", album:"シャンデリア", vtype:"mv",
-      youtubeId:"V_CTnqX37yw", lyricsShift:0, lyricsTimes:[14.25, 17.77, 21.67, 24.44, 28.47, 31.47, 35.48, 40.13, 56.43, 59.78, 63.56, 66.52, 70.37, 73.42, 77.36, 82.10, 99.97, 103.13, 106.66, 110.16, 113.51, 117.19, 142.33, 145.22, 149.27, 153.82, 156.23, 159.34, 163.24, 167.99], lyricsTime:0, lyricsText:`
+      youtubeId:"V_CTnqX37yw", lyricsShift:2, lyricsTimes:[14.25, 17.77, 21.67, 24.44, 28.47, 31.47, 35.48, 40.13, 56.43, 59.78, 63.56, 66.52, 70.37, 73.42, 77.36, 82.10, 99.97, 103.13, 106.66, 110.16, 113.51, 117.19, 142.33, 145.22, 149.27, 153.82, 156.23, 159.34, 163.24, 167.99], lyricsTime:0, lyricsText:`
 未来が見え無いなんて
 미라이가 미에나이난테
 미래가 보이지 않는다니
@@ -4830,7 +4838,7 @@ pic : jump
 
 `, lyrics:[] },
     { id:"MirrorBallToCinderella", jp:"ミラーボールとシンデレラ", ko:"미러볼과 신데렐라", rom:"Mirror Ball to Cinderella", date:"2015.12.09", album:"シャンデリア", vtype:"audio",
-      youtubeId:"wJKyoBQ_vY4", lyricsShift:0, lyricsTimes:[22.70, 25.38, 29.26, 37.18, 45.14, 48.48, 53.02, 56.25, 75.87, 78.11, 82.05, 90.05, 94.53, 98.28, 101.44, 105.89, 109.12, 113.84, 117.18, 120.35, 125.50, 130.43, 133.53, 138.08, 141.15, 146.55], lyricsTime:0, lyricsText:`
+      youtubeId:"wJKyoBQ_vY4", lyricsShift:0, lyricsTimes:[22.70, 25.38, 29.26, 37.18, 45.14, 48.48, 53.02, 56.25, 75.87, 78.11, 82.05, 90.05, 94.53, 98.28, 101.44, 105.89, 109.12, 113.84, 117.18, 120.35, 128.50, 130.43, 133.53, 138.08, 141.15, 146.55], lyricsTime:0, lyricsText:`
 愛してるなんて言われたって
 아이시테루 난테 이와레탓테
 사랑해 라는 말을 들어도
@@ -11608,6 +11616,71 @@ function viewAbout(){
      },
 */
 const INFO_POSTS = [
+  {
+    id:"unext-guide", title:"U-NEXT 가입 및 모바일 시청방법", date:"2026.10.02", tag:"시청 방법",
+    summary:"10/3 닛산 스타디움 공연 생중계 · VPN 연결부터 가입, 폰으로 보기, 해지까지",
+    body:`
+    10/3 18시부터 Grateful Yesterdays Tour 2026 기념하여 닛산 스타디움 공연 배포 예정임
+    거기에 따른 U-NEXT 가입절차 및 모바일 시청 방법
+
+    ## 1. VPN 연결
+    U-NEXT 는 기본적으로 VPN 필요
+
+    ![](images/info/unext-01.jpg)
+
+    나는 아이폰 유저로 위 vpn사용중이나 일본 연결 되는 vpn 아무거나 가능
+
+    ## 2. 가입
+    Vpn 연결 후 U-NEXT 사이트 접속
+
+    ![](images/info/unext-02.jpg)
+    ![](images/info/unext-03.jpg)
+
+    접속 후 해당화면에서 31일 무료 클릭하여 아이디 생성
+
+    ![](images/info/unext-04.jpg)
+    ![](images/info/unext-05.jpg)
+
+    카타카나는 구글에서 카타카나 변환 쳐서 변경한것으로 넣으면 됨
+    이메일주소가 로그인 아이디가 되고 비밀번호는 느낌표같은 특문은 안되니 제외하고 입력
+    전화번호는 일본 번호 아무거나 넣으면됨 나는 배대지 전화번호 넣음
+
+    ![](images/info/unext-06.jpg)
+    ![](images/info/unext-07.jpg)
+
+    카드번호 입력하고 다음 넘어가면 됨
+    안되는 카드도 있음
+
+    나같은경우 신한 체크카드 JCB로 1엔 결제
+    미리 엔화 환전해놓고 결제 하면 편함
+    원정콘 선행이나 일본 결제시 JCB가 편해서 하나 만드는거 추천
+
+    ![](images/info/unext-08.jpg)
+
+    패밀리 연결할건지 묻는건데 필요없으니 넘어가면 된다
+
+    ![](images/info/unext-09.jpg)
+
+    ## 3. 모바일로 보기
+    이제 크롬어플에서 유넥스트 접속하여 아까 만든 아이디로 로그인
+    Backnumber 검색해서 재생을 누르면 어플을 받으라고 한다
+
+    ![](images/info/unext-10.jpg)
+
+    크롬 어플 우측상단 점3개 클릭
+
+    ![](images/info/unext-11.jpg)
+    ![](images/info/unext-12.jpg)
+
+    데스크톱 사이트로 보기하면 어플 다운없이 바로 시청 가능
+
+    ## 4. 해지
+    해지는 다음달 결제전에 해지하면 된다
+    해지 후 다른 이메일넣어서 다시 31일 무료 가능
+
+    일본 컨텐츠 다른것도 많으니 한번 가입해서 쓸만함
+    `
+  },
 ];
 const INFO_IMG_DIR = "images/info/";
 const infoState = { tag:"전체" };
@@ -11624,7 +11697,7 @@ function infoBody(src, img = u => u){
     .replace(/\[([^\]]+)\]\((https?:[^)\s]+|#[^)\s]*)\)/g, (m, t2, u) => `<a href="${u}"${u.startsWith("#") ? "" : ' target="_blank" rel="noopener"'}>${t2}</a>`)
     .replace(/\*\*([^*]+)\*\*/g, "<b>$1</b>");
   const fig = l => { const [, alt, u] = l.match(POST_IMG_RE);
-    return `<figure class="post-img"><img src="${esc(img(u))}" alt="${esc(alt)}" loading="lazy">${alt ? `<figcaption>${inline(alt)}</figcaption>` : ""}</figure>`; };
+    return `<figure class="post-img"><img src="${esc(img(u))}" alt="${esc(alt)}" loading="lazy" onerror="this.parentNode.classList.add('noimg');this.remove()">${alt ? `<figcaption>${inline(alt)}</figcaption>` : ""}</figure>`; };
   const kind = l => POST_IMG_RE.test(l) ? "img" : POST_YT_RE.test(l) ? "yt" : /^#{2,3}\s/.test(l) ? "h"
     : /^[-•]\s/.test(l) ? "ul" : /^\d+[.)]\s/.test(l) ? "ol" : /^>/.test(l) ? "q" : /^-{3,}$/.test(l) ? "hr" : "p";
   const out = [];
@@ -11635,7 +11708,7 @@ function infoBody(src, img = u => u){
       const k = kind(lines[i]); let j = i + 1;
       if (!["h", "hr", "yt"].includes(k)) while (j < lines.length && kind(lines[j]) === k) j++;
       const g = lines.slice(i, j);
-      if (k === "img") out.push(g.length > 1 ? `<div class="post-gallery">${g.map(fig).join("")}</div>` : fig(g[0]));
+      if (k === "img") out.push(g.length > 1 ? `<div class="post-gallery" style="--n:${Math.min(g.length, 4)}">${g.map(fig).join("")}</div>` : fig(g[0]));
       else if (k === "yt") out.push(`<div class="post-yt"><iframe src="https://www.youtube.com/embed/${lines[i].match(POST_YT_RE)[1]}" title="YouTube" allowfullscreen loading="lazy"></iframe></div>`);
       else if (k === "h") out.push(/^###/.test(g[0]) ? `<h3>${inline(g[0].replace(/^###\s+/, ""))}</h3>` : `<h2>${inline(g[0].replace(/^##\s+/, ""))}</h2>`);
       else if (k === "ul") out.push(`<ul class="post-list">${g.map(l => `<li>${inline(l.replace(/^[-•]\s+/, ""))}</li>`).join("")}</ul>`);
@@ -11678,7 +11751,7 @@ function viewInfo(id){
   ${tags.length > 2 ? `<div class="chips">${tags.map(t => `<button class="chip" data-tag="${esc(t)}" aria-pressed="${infoState.tag === t}">${esc(t)}</button>`).join("")}</div>` : ""}
   ${list.length ? `<div class="card mvlist">${list.map(p => { const th = postFirstImg(p); return `
     <a class="mvrow post-row" href="#/info/${encodeURIComponent(p.id)}">
-      ${th ? `<img class="post-thumb" src="${esc(th)}" alt="" loading="lazy">` : `<span class="post-thumb none">${esc((p.tag || "글").slice(0, 2))}</span>`}
+      ${th ? `<img class="post-thumb" src="${esc(th)}" alt="" loading="lazy" onerror="this.style.visibility='hidden'">` : `<span class="post-thumb none">${esc((p.tag || "글").slice(0, 2))}</span>`}
       <span class="t"><b>${esc(p.title)}</b><small>${esc(p.summary || "")}</small><span class="post-meta">${postMeta(p)}</span></span>
       <span class="set-go">›</span>
     </a>`; }).join("")}</div>`
@@ -12680,6 +12753,7 @@ function render(){
     if (a.dataset.r === tab) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
   });
   document.body.classList.toggle("is-home", view === viewHome);
+  document.body.classList.toggle("is-post", (view === viewInfo && !!arg) || view === viewWrite);
   if (view === viewHome){ startCountdown(); bindHome(); } else clearInterval(cdTimer);
   if (view === viewSchedule) bindSchedule();
   if (view === viewMv) bindMv(arg);
