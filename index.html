@@ -527,6 +527,20 @@ body.is-song header.top,body.is-song nav.tabs{display:none}
 @keyframes swBody{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
 .lyric-line.active .ico-sway .sw-arm,.lyric-line.active .ico-sway .sw-body{animation-duration:1.2s}
 @media (prefers-reduced-motion: reduce){.ico-sway .sw-arm,.ico-sway .sw-body{animation:none}}
+/* 가사 복사 */
+.lyric-copy-btn{flex:none;margin-left:auto;background:none;border:1px solid var(--line);border-radius:999px;padding:2px 10px;font:inherit;font-size:11.5px;color:var(--muted);cursor:pointer}
+.lyric-copy-btn:hover{border-color:var(--accent);color:var(--accent)}
+.lyric-copy-btn + .watch-on-yt{margin-left:0}
+.copy-menu{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.35);display:flex;align-items:flex-end;justify-content:center;padding:16px 16px calc(16px + env(safe-area-inset-bottom))}
+.copy-menu[hidden]{display:none}
+.copy-menu-card{width:min(100%,360px);background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:12px;display:flex;flex-direction:column;gap:6px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.copy-menu-card b{font-size:13px;color:var(--muted);padding:2px 6px 4px}
+.copy-menu-card button{font:inherit;font-size:14px;text-align:left;padding:11px 12px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+.copy-menu-card button:hover{border-color:var(--accent);color:var(--accent)}
+.copy-menu-card .copy-cancel{text-align:center;background:none;border:none;color:var(--muted)}
+.copy-toast{position:fixed;left:50%;bottom:calc(90px + env(safe-area-inset-bottom));transform:translate(-50%,10px);z-index:61;background:var(--ink);color:var(--bg);font-size:13px;padding:8px 14px;border-radius:999px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s}
+.copy-toast.show{opacity:1;transform:translate(-50%,0)}
+.song-page.venue .lyric-copy-btn{display:none}
 /* 재생 목록 안내 (셋리스트·앨범에서 들어왔을 때) */
 .queue-note{max-width:720px;margin:-6px auto 10px;padding:0 16px;font-size:12px;color:var(--accent)}
 .song-fixed-top .queue-note{margin-left:auto;margin-right:auto;width:100%}
@@ -11842,6 +11856,7 @@ function viewMvSong(song){
           </div>
           <div class="video-sub">
             <span>${esc(song.jp)} · ${esc(song.album)} · ${esc(song.date)}</span>
+            ${lines.length ? `<button class="lyric-copy-btn" id="lyricCopyBtn" aria-haspopup="true">가사 복사</button>` : ""}
             ${hasVideo ? `<a class="watch-on-yt" href="https://www.youtube.com/watch?v=${esc(song.youtubeId)}" target="_blank" rel="noopener">${song.vtype === "audio" ? "유튜브 공식 음원" : "유튜브에서 보기"} ↗</a>` : ""}
           </div>
         </div>
@@ -11884,6 +11899,17 @@ function viewMvSong(song){
       </button>
     </div>
 
+    <div class="copy-menu" id="copyMenu" hidden>
+      <div class="copy-menu-card" role="menu" aria-label="가사 복사">
+        <b>가사 복사</b>
+        <button role="menuitem" data-copy="all">전체 (일본어 · 발음 · 해석)</button>
+        <button role="menuitem" data-copy="jp">일본어만</button>
+        <button role="menuitem" data-copy="ko">한글 발음만</button>
+        <button role="menuitem" data-copy="tr">해석만</button>
+        <button class="copy-cancel" data-copy="">닫기</button>
+      </div>
+    </div>
+    <div class="copy-toast" id="copyToast" aria-live="polite"></div>
     <div class="song-sheet" id="songSheet" aria-hidden="true" inert>
       <div class="song-sheet-backdrop" data-close></div>
       <div class="song-sheet-panel" role="dialog" aria-modal="true" aria-label="곡 선택">
@@ -11942,6 +11968,46 @@ function updatePlayBtn(){
   b.innerHTML = playing ? I_PAUSE : I_PLAY;
 }
 
+/* ── 가사 복사 ── 응원 표시([wave] {떼창} 등)는 빼고 글자만 */
+function lyricPlain(t){
+  return String(t || "").replace(/[\[(](?:wave|clap|mic|chant|jump|spin|turn|banzai|manse|sway|side)[\])]/gi, "").replace(/[{}]/g, "").replace(/[ \u3000]{2,}/g, " ").trim();
+}
+function lyricCopyText(song, mode){
+  const head = `${song.jp} / ${song.ko} - back number`;
+  // 응원 안내만 있는 줄(예: [clap]{{전주에 박수}})은 가사가 아니므로 뺀다
+  const lines = (song.lyrics || []).filter(l => l.jp || !/[\[{(]/.test(l.ko || ""));
+  let body;
+  if (mode === "all") body = lines.map(l => [l.jp, l.ko, l.tr, l.bg ? `(${l.bg})` : ""].map(lyricPlain).filter(Boolean).join("\n")).join("\n\n");
+  else body = lines.map(l => lyricPlain(l[mode])).filter(Boolean).join("\n");
+  return head + "\n\n" + body + "\n";
+}
+async function copyToClipboard(text){
+  try { await navigator.clipboard.writeText(text); return true; } catch(e){}
+  try {
+    const ta = document.createElement("textarea");
+    ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select(); const ok = document.execCommand("copy"); ta.remove(); return ok;
+  } catch(e){ return false; }
+}
+function copyToast(msg){
+  const t = $("#copyToast"); if (!t) return;
+  t.textContent = msg; t.classList.add("show");
+  clearTimeout(copyToast.timer); copyToast.timer = setTimeout(() => t.classList.remove("show"), 1800);
+}
+function bindLyricCopy(song){
+  const btn = $("#lyricCopyBtn"), menu = $("#copyMenu"); if (!btn || !menu) return;
+  btn.onclick = () => { menu.hidden = false; };
+  menu.onclick = async e => {
+    const b = e.target.closest("[data-copy]");
+    if (!b && e.target !== menu) return;
+    menu.hidden = true;
+    const mode = b ? b.dataset.copy : "";
+    if (!mode) return;
+    const ok = await copyToClipboard(lyricCopyText(song, mode));
+    copyToast(ok ? "가사를 복사했어요" : "복사하지 못했어요");
+  };
+}
+
 function bindMv(id){
   const song = id ? SONGS.find(s => s.id === decodeURIComponent(id)) : null;
   if (!song){
@@ -11998,6 +12064,7 @@ function bindMv(id){
     else if (e.key === "ArrowRight") mvGo(1);
   };
   document.addEventListener("keydown", mv.keys);
+  bindLyricCopy(song);
   placeTipPic();
   $("#tipPicCard").onclick = () => $("#tipPic").classList.toggle("big");
   preloadSongPics(song);
