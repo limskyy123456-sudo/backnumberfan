@@ -218,7 +218,21 @@ body.is-home header.top{display:none}
 .show-row.live .show-day,.show-row.live .show-time{color:var(--accent)}
 .show-venue{display:block;padding-top:13px;border-top:1px solid var(--line);font-size:13px;letter-spacing:.08em;color:var(--muted);text-decoration:none}
 .main-menu{margin-top:30px;width:100%;max-width:420px}
-.menu-btn{display:block;padding:15px;border-radius:14px;background:var(--accent);color:#fff;font-size:17px;font-weight:800;text-decoration:none;letter-spacing:.02em}
+.menu-btn{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:4px 8px;padding:15px;border-radius:16px;background:var(--accent);color:#fff;font-size:17px;font-weight:800;text-decoration:none;letter-spacing:.02em;box-shadow:0 6px 18px rgba(0,0,0,.15)}
+.menu-btn .mb-play{width:18px;height:18px}
+.menu-btn small{flex-basis:100%;font-size:12px;font-weight:600;opacity:.8;letter-spacing:0}
+.tile-grid{margin-top:12px;width:100%;max-width:420px;display:grid;grid-template-columns:1fr 1fr;gap:10px;text-align:left}
+.tile{display:flex;flex-direction:column;gap:4px;min-height:96px;padding:14px;border-radius:16px;background:color-mix(in srgb,var(--surface) 86%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid var(--line);box-shadow:var(--shadow);color:var(--ink);text-decoration:none;transition:transform .15s,border-color .15s}
+.tile:hover{border-color:var(--accent)}
+.tile:active{transform:scale(.98)}
+.tile-ico{width:26px;height:26px;color:var(--accent);margin-bottom:6px}
+.tile-ico svg{width:26px;height:26px}
+.tile b{font-size:15px;font-weight:800}
+.tile small{font-size:11.5px;color:var(--muted);line-height:1.4}
+.tile-links{display:flex;justify-content:center;gap:18px;margin-top:16px;font-size:13px}
+.tile-links a{color:var(--muted);text-decoration:none;font-weight:600}
+.tile-links a:hover{color:var(--accent)}
+body.has-bg .tile-links a{text-shadow:0 0 8px var(--bg),0 0 2px var(--bg);color:var(--ink);opacity:.85}
 .menu-card{margin-top:14px;width:100%;max-width:420px;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);overflow:hidden}
 .menu-row{display:flex;align-items:center;gap:12px;padding:14px 16px;border-top:1px solid var(--line);color:var(--ink);text-decoration:none;cursor:pointer;list-style:none;font-weight:700;font-size:15px}
 .menu-card > .menu-row:first-child,.menu-card > .menu-acc:first-child > .menu-row{border-top:none}
@@ -16191,56 +16205,24 @@ function viewHome(){
         <span class="cd-clock" id="cd-clock">00:00:00</span>
       </div>
     </div>
-    <div class="show-meta" id="next-live"></div>
 
     <nav class="main-menu">
-      <a class="menu-btn" href="#/mv">곡 목록 · 뮤비</a>
+      <a class="menu-btn" href="#/mv"><svg class="mb-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>back number 노래<small>${SONGS.length}곡 · 가사 · 응원법</small></a>
     </nav>
 
-    <div class="menu-card">
-      <details class="menu-acc">
-        <summary class="menu-row">
-          <span class="menu-ico">${ico.cal}</span>
-          <span class="menu-label">라이브 일정</span>
-          <span class="menu-chev">⌄</span>
-        </summary>
-        <div class="menu-panel">
-          ${upcoming.length ? upcoming.map(e => `
-            <a class="live-item" href="${liveSrc(e)}" target="_blank" rel="noopener">
-              <span class="live-date">${esc(e.tba ? dateRange(e) : e.end ? `${fmt(e.date)} ~ ${fmt(e.end)}` : fmt(e.date))}</span>
-              <span class="live-name">${esc(liveTitle(e))}<small>${esc([e.venue, e.city].filter(Boolean).join(" · "))}</small></span>
-            </a>`).join("") : `<p class="muted small">발표된 공연이 없어요.</p>`}
-          <a class="live-more" href="#/schedule">발매·방송까지 전체 보기 ›</a>
-        </div>
-      </details>
+    <div class="tile-grid">
+      <a class="tile" href="#/schedule"><span class="tile-ico">${ico.cal}</span><b>라이브 일정</b><small>${upcoming.length ? esc("다음 공연 " + (upcoming[0].tba ? dateRange(upcoming[0]) : fmt(upcoming[0].date))) : "발표된 공연 없음"}</small></a>
+      <a class="tile" href="#/setlist"><span class="tile-ico">${ico.list}</span><b>셋리스트</b><small>콘서트별 곡 순서</small></a>
+      <a class="tile" href="#/disco"><span class="tile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.5"/></svg></span><b>앨범 · LP</b><small>라이브 BD 포함</small></a>
+      <a class="tile" href="#/goods"><span class="tile-ico">${ico.bag}</span><b>굿즈</b><small>2011~ 아카이브</small></a>
+      <a class="tile" href="#/about"><span class="tile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.01"/></svg></span><b>소개</b><small>멤버 · 연혁</small></a>
+      <a class="tile" href="#/info"><span class="tile-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h10l4 4v12H5z"/><path d="M9 12h6M9 16h6"/></svg></span><b>정보</b><small>원정 · 구매 가이드</small></a>
+    </div>
 
-      <a class="menu-row" href="#/setlist">
-        <span class="menu-ico">${ico.list}</span>
-        <span class="menu-label">콘서트 셋리스트</span>
-        <span class="menu-go">›</span>
-      </a>
-      <a class="menu-row" href="#/disco">
-        <span class="menu-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.5"/></svg></span>
-        <span class="menu-label">앨범 · 라이브 · LP</span>
-        <span class="menu-go">›</span>
-      </a>
-      <a class="menu-row" href="#/goods">
-        <span class="menu-ico">${ico.bag}</span>
-        <span class="menu-label">굿즈 아카이브</span>
-        <span class="menu-go">›</span>
-      </a>
-      <a class="menu-row" href="#/about">
-        <span class="menu-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.01"/></svg></span>
-        <span class="menu-label">back number 소개</span>
-        <span class="menu-go">›</span>
-      </a>
-
-
-      <div class="menu-links">
-        <a class="menu-chip" href="${L.official}" target="_blank" rel="noopener">공식사이트 ↗</a>
-        <a class="menu-chip" href="${L.youtube}" target="_blank" rel="noopener">YouTube ↗</a>
-        <a class="menu-chip" href="${L.x}" target="_blank" rel="noopener">X ↗</a>
-      </div>
+    <div class="tile-links">
+      <a href="${L.official}" target="_blank" rel="noopener">공식사이트 ↗</a>
+      <a href="${L.youtube}" target="_blank" rel="noopener">YouTube ↗</a>
+      <a href="${L.x}" target="_blank" rel="noopener">X ↗</a>
     </div>
 
     <div class="home-foot">
@@ -16252,7 +16234,7 @@ function viewHome(){
 
 let nextLiveKey = null;
 function paintNextLive(focus){
-  const box = $("#next-live"), cap = $("#next-cap");
+  const box = $("#next-live") || document.createElement("div"), cap = $("#next-cap");   // 공연 정보 박스는 숨김 (다시 쓰려면 홈에 <div class="show-meta" id="next-live"></div> 추가)
   const tba = focus ? null : nextTba();
   const key = focus ? "g" + focus.gi : tba ? "tba" : "none";
   if (key === nextLiveKey) return;
@@ -17381,7 +17363,7 @@ function viewMv(id){
     if (song) return viewMvSong(song);
   }
   return `
-  <h1>곡 목록</h1>
+  <h1>back number 노래</h1>
   <p class="sub">정규·미니 앨범과 싱글 전곡 · 뮤직비디오와 공식 음원으로 연결돼요.</p>
   <a class="card setlink" href="#/setlist"><b>콘서트 셋리스트</b><small>원맨·팬클럽 투어 · 페스 · 이벤트에서 부른 곡 순서</small><span>›</span></a>
   <a class="card setlink" href="#/disco"><b>앨범 · 라이브 · LP</b><small>정규·미니·베스트 앨범 수록곡 · 싱글 · 라이브 BD · 아날로그 레코드</small><span>›</span></a>
