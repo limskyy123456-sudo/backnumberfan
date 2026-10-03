@@ -15,21 +15,21 @@
   --bg:#f3f5f8; --veil:rgba(246,248,251,.6); --surface:#ffffff; --surface2:#e8edf3; --ink:#1f2630; --muted:#687384;
   --line:#dbe2ea; --accent:#2d5f93; --accent-soft:#dde8f4; --gold:#c98a14; --gold-soft:#fbefd4;
   --green:#2f8a5b; --green-soft:#dff2e7; --blue:#7a4fa8; --blue-soft:#efe6f7;
-  --chant:#e07b12; --clap:#2c84c6; --wave:#3f9a2c; --jump:#8a5bd6; --spin:#d24f96; --now:#d63a3a; --now-soft:#fde4e2;
+  --chant:#e07b12; --clap:#1c6aa8; --wave:#3f9a2c; --jump:#8a5bd6; --spin:#d24f96; --now:#d63a3a; --now-soft:#fde4e2; --ly-sub:#3f4957;
   --radius:16px; --shadow:0 1px 2px rgba(20,40,70,.06),0 4px 16px rgba(20,40,70,.06);
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
     --bg:#12161c; --veil:rgba(18,22,28,.66); --surface:#1b2129; --surface2:#232b35; --ink:#e9eef4; --muted:#9aa6b5;
     --line:#2c3643; --accent:#86b4e6; --accent-soft:#1f3149; --gold:#e9b44c; --gold-soft:#43361c;
-    --green:#6cc795; --green-soft:#1f3a2c; --blue:#c3a4e8; --blue-soft:#2e2440; --chant:#f5942c; --clap:#4fa8e0; --wave:#8de05f; --jump:#b98cff; --spin:#ff86c8; --now:#ff7b72; --now-soft:#3d2326;
+    --green:#6cc795; --green-soft:#1f3a2c; --blue:#c3a4e8; --blue-soft:#2e2440; --chant:#f5942c; --clap:#4fa8e0; --wave:#8de05f; --jump:#b98cff; --spin:#ff86c8; --now:#ff7b72; --now-soft:#3d2326; --ly-sub:#c3ccd7;
     --shadow:none;
   }
 }
 :root[data-theme="dark"]{
   --bg:#12161c; --veil:rgba(18,22,28,.66); --surface:#1b2129; --surface2:#232b35; --ink:#e9eef4; --muted:#9aa6b5;
   --line:#2c3643; --accent:#86b4e6; --accent-soft:#1f3149; --gold:#e9b44c; --gold-soft:#43361c;
-  --green:#6cc795; --green-soft:#1f3a2c; --blue:#c3a4e8; --blue-soft:#2e2440; --chant:#f5942c; --clap:#4fa8e0; --wave:#8de05f; --jump:#b98cff; --spin:#ff86c8; --now:#ff7b72; --now-soft:#3d2326;
+  --green:#6cc795; --green-soft:#1f3a2c; --blue:#c3a4e8; --blue-soft:#2e2440; --chant:#f5942c; --clap:#4fa8e0; --wave:#8de05f; --jump:#b98cff; --spin:#ff86c8; --now:#ff7b72; --now-soft:#3d2326; --ly-sub:#c3ccd7;
   --shadow:none;
 }
 *{box-sizing:border-box}
@@ -320,9 +320,9 @@ body.is-song header.top,body.is-song nav.tabs{display:none}
 .lyric-line:hover{background:var(--surface2)}
 .lyric-body{min-width:0;display:block;flex:1}
 .lyric-jp:empty,.lyric-tr:empty{display:none}
-.lyric-jp{display:block;font-size:clamp(13px,3.6vw,14px);color:var(--muted);line-height:1.5}
-.lyric-ko{display:block;font-size:clamp(15px,4.2vw,17px);font-weight:800;line-height:1.5;color:var(--ink)}
-.lyric-tr{display:block;font-size:clamp(12px,3.4vw,13px);color:var(--muted);line-height:1.5;margin-top:1px}
+.lyric-jp{display:block;font-size:clamp(13.5px,3.7vw,15px);font-weight:500;color:var(--ly-sub);line-height:1.5}
+.lyric-ko{display:block;font-size:clamp(16px,4.4vw,18px);font-weight:800;line-height:1.5;color:var(--ink);letter-spacing:-.01em}
+.lyric-tr{display:block;font-size:clamp(13px,3.5vw,14px);font-weight:500;color:var(--ly-sub);line-height:1.5;margin-top:1px}
 .lyric-line.active{background:var(--now-soft);box-shadow:inset 3px 0 0 var(--now)}
 .lyric-line.active .lyric-ko{color:var(--now)}
 .nolyrics{padding:40px 10px;text-align:center;color:var(--muted);font-size:13px;line-height:1.9}
