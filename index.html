@@ -17645,7 +17645,7 @@ function bindMv(id){
   });
   $("#sheetQ").addEventListener("input", paintSheet);
 
-  $("#venueBtn").onclick = () => { mv.venue = !mv.venue; try { localStorage.setItem("mv-venue", mv.venue ? "1" : ""); } catch(e){} applyVenue(); };
+  $("#venueBtn").onclick = () => { mv.venue = !mv.venue; try { localStorage.setItem("mv-venue", mv.venue ? "1" : ""); } catch(e){} applyVenue(); setTimeout(padLyrics, 50); };
   $("#autoBtn").onclick = e => { mv.auto = !mv.auto; e.currentTarget.classList.toggle("active", mv.auto); e.currentTarget.setAttribute("aria-pressed", mv.auto); mvSave(); if (mv.auto) mv.active = -1; };
   $("#playToggle").onclick = () => {
     if (!mv.player || !mv.ready) return;
@@ -17669,6 +17669,7 @@ function bindMv(id){
   document.addEventListener("keydown", mv.keys);
   bindLyricCopy(song);
   bindSongInfo();
+  padLyrics(); setTimeout(padLyrics, 300);
   placeTipPic();
   $("#tipPicCard").onclick = () => $("#tipPic").classList.toggle("big");
   preloadSongPics(song);
@@ -17723,6 +17724,14 @@ function mvTick(song){
     }
   }, 120);
 }
+/* 첫 가사도 자동 스크롤 위치(가운데쯤)에 오도록 목록 위쪽에 여백 */
+function padLyrics(){
+  const box = $("#lyricsScroll"), list = $("#lyricsList"), first = list && list.querySelector(".lyric-line");
+  if (!box || !first) return;
+  const pad = Math.max(8, Math.round(box.clientHeight * 0.38 - first.offsetHeight / 2 - first.offsetTop + parseFloat(list.style.paddingTop || 8)));
+  list.style.paddingTop = pad + "px";
+}
+window.addEventListener("resize", () => { if ($("#lyricsList")) padLyrics(); });
 function mvCleanup(){
   clearInterval(mv.timer); mv.timer = null;
   clearInterval(mv.volTimer); mv.volTimer = null;
