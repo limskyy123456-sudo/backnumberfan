@@ -357,6 +357,9 @@ body.is-song header.top,body.is-song nav.tabs{display:none}
 .song-sheet-head{display:flex;align-items:center;gap:8px;padding:0 16px 8px}
 .song-sheet-title{font-weight:800;font-size:16px}
 .song-sheet-count{flex:1;font-size:12px;color:var(--muted)}
+.sheet-mode{padding:5px 11px;border:1px solid var(--line);border-radius:999px;background:none;color:var(--accent);font:inherit;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap}
+.sheet-no{width:22px;flex:none;text-align:right;font-size:12px;font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums}
+.song-sheet-count{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .song-sheet-close{width:30px;height:30px;border:1px solid var(--line);border-radius:50%;background:none;color:var(--ink);cursor:pointer}
 .sheet-search{padding:0 16px 8px}
 .sheet-search input{width:100%;padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:inherit;font-size:14px}
@@ -17483,7 +17486,8 @@ function viewMvSong(song){
         <span class="song-sheet-grip"></span>
         <div class="song-sheet-head">
           <span class="song-sheet-title">곡 선택</span>
-          <span class="song-sheet-count">${SONGS.length}곡</span>
+          <span class="song-sheet-count" id="sheetCount">${SONGS.length}곡</span>
+          <button class="sheet-mode" id="sheetMode" hidden></button>
           <button class="song-sheet-close" data-close aria-label="닫기">✕</button>
         </div>
         <div class="sheet-search"><input id="sheetQ" type="search" autocomplete="off" placeholder="곡 제목 검색 (한국어·일본어·로마자)"></div>
@@ -17503,10 +17507,16 @@ function mvGo(delta, skipNoVideo){
 }
 function paintSheet(){
   const q = mvSquash($("#sheetQ").value || "");
-  const items = mvSorted().filter(s => !q || mvSquash(s.ko).includes(q) || mvSquash(s.jp).includes(q) || mvSquash(s.rom).includes(q));
+  const qu = mv.queue && mv.queue.ids.includes(mv.song.id) ? mv.queue : null;
+  const useQ = qu && !mv.sheetAll;
+  const base = useQ ? qu.ids.map(id => SONGS.find(x => x.id === id)).filter(Boolean) : mvSorted();
+  $("#sheetCount").textContent = useQ ? `${qu.label} 순서 · ${base.length}곡` : `${SONGS.length}곡`;
+  const mb = $("#sheetMode"); mb.hidden = !qu;
+  if (qu) mb.textContent = useQ ? "전체 곡 보기" : `${qu.label}만 보기`;
+  const items = base.filter(s => !q || mvSquash(s.ko).includes(q) || mvSquash(s.jp).includes(q) || mvSquash(s.rom).includes(q));
   $("#sheetList").innerHTML = items.length ? items.map(s => `
     <li><button class="song-sheet-item${s.id === mv.song.id ? " current" : ""}" data-id="${esc(s.id)}">
-      <span class="song-sheet-name">${esc(s.ko)}<small>${esc(s.jp)}</small></span>
+      ${useQ ? `<span class="sheet-no">${base.indexOf(s) + 1}</span>` : ""}<span class="song-sheet-name">${esc(s.ko)}<small>${esc(s.jp)}</small></span>
       ${s.id === mv.song.id ? `<span class="song-sheet-now">재생 중</span>` : mvBadge(s)}
     </button></li>`).join("") : `<li class="sheet-empty">찾는 곡이 없어요</li>`;
 }
@@ -17515,6 +17525,7 @@ function openSheet(open){
   sh.classList.toggle("open", open); sh.inert = !open; sh.setAttribute("aria-hidden", !open);
   $("#pickerBtn").setAttribute("aria-expanded", open);
   if (open){
+    mv.sheetAll = false;
     paintSheet();
     const cur = sh.querySelector(".current"); if (cur) cur.scrollIntoView({ block:"center" });
   }
@@ -17640,6 +17651,7 @@ function bindMv(id){
   $("#pickerBtn").onclick = () => openSheet(!$("#songSheet").classList.contains("open"));
   $("#songSheet").addEventListener("click", e => {
     if (e.target.closest("[data-close]")) return openSheet(false);
+    if (e.target.closest("#sheetMode")){ mv.sheetAll = !mv.sheetAll; paintSheet(); const c = $("#sheetList .current"); if (c) c.scrollIntoView({ block:"center" }); return; }
     const it = e.target.closest(".song-sheet-item");
     if (it){ openSheet(false); if (it.dataset.id !== song.id){ mv.autoplay = true; location.hash = "#/mv/" + encodeURIComponent(it.dataset.id); } }
   });
