@@ -15,21 +15,21 @@
   --bg:#f3f5f8; --veil:rgba(246,248,251,.6); --surface:#ffffff; --surface2:#e8edf3; --ink:#1f2630; --muted:#687384;
   --line:#dbe2ea; --accent:#2d5f93; --accent-soft:#dde8f4; --gold:#c98a14; --gold-soft:#fbefd4;
   --green:#2f8a5b; --green-soft:#dff2e7; --blue:#7a4fa8; --blue-soft:#efe6f7;
-  --chant:#e07b12; --clap:#2c84c6; --wave:#3f9a2c; --jump:#8a5bd6; --spin:#d24f96; --now:#d63a3a; --now-soft:#fde4e2;
+  --chant:#e07b12; --clap:#1c6aa8; --wave:#3f9a2c; --jump:#8a5bd6; --spin:#d24f96; --now:#d63a3a; --now-soft:#fde4e2; --ly-sub:#3f4957;
   --radius:16px; --shadow:0 1px 2px rgba(20,40,70,.06),0 4px 16px rgba(20,40,70,.06);
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
     --bg:#12161c; --veil:rgba(18,22,28,.66); --surface:#1b2129; --surface2:#232b35; --ink:#e9eef4; --muted:#9aa6b5;
     --line:#2c3643; --accent:#86b4e6; --accent-soft:#1f3149; --gold:#e9b44c; --gold-soft:#43361c;
-    --green:#6cc795; --green-soft:#1f3a2c; --blue:#c3a4e8; --blue-soft:#2e2440; --chant:#f5942c; --clap:#4fa8e0; --wave:#8de05f; --jump:#b98cff; --spin:#ff86c8; --now:#ff7b72; --now-soft:#3d2326;
+    --green:#6cc795; --green-soft:#1f3a2c; --blue:#c3a4e8; --blue-soft:#2e2440; --chant:#f5942c; --clap:#4fa8e0; --wave:#8de05f; --jump:#b98cff; --spin:#ff86c8; --now:#ff7b72; --now-soft:#3d2326; --ly-sub:#c3ccd7;
     --shadow:none;
   }
 }
 :root[data-theme="dark"]{
   --bg:#12161c; --veil:rgba(18,22,28,.66); --surface:#1b2129; --surface2:#232b35; --ink:#e9eef4; --muted:#9aa6b5;
   --line:#2c3643; --accent:#86b4e6; --accent-soft:#1f3149; --gold:#e9b44c; --gold-soft:#43361c;
-  --green:#6cc795; --green-soft:#1f3a2c; --blue:#c3a4e8; --blue-soft:#2e2440; --chant:#f5942c; --clap:#4fa8e0; --wave:#8de05f; --jump:#b98cff; --spin:#ff86c8; --now:#ff7b72; --now-soft:#3d2326;
+  --green:#6cc795; --green-soft:#1f3a2c; --blue:#c3a4e8; --blue-soft:#2e2440; --chant:#f5942c; --clap:#4fa8e0; --wave:#8de05f; --jump:#b98cff; --spin:#ff86c8; --now:#ff7b72; --now-soft:#3d2326; --ly-sub:#c3ccd7;
   --shadow:none;
 }
 *{box-sizing:border-box}
@@ -339,29 +339,12 @@ body.is-song header.top,body.is-song nav.tabs{display:none}
 .lyric-line:hover{background:var(--surface2)}
 .lyric-body{min-width:0;display:block;flex:1}
 .lyric-jp:empty,.lyric-tr:empty{display:none}
-.lyric-jp{display:block;font-size:clamp(13px,3.6vw,14px);color:var(--muted);line-height:1.5}
-.lyric-ko{display:block;font-size:clamp(15px,4.2vw,17px);font-weight:800;line-height:1.5;color:var(--ink)}
-.lyric-tr{display:block;font-size:clamp(12px,3.4vw,13px);color:var(--muted);line-height:1.5;margin-top:1px}
-.lyric-line.active{background:var(--now-soft);box-shadow:inset 3px 0 0 var(--now)}
-.lyric-line.active .lyric-ko{color:var(--now)}
+.lyric-jp{display:block;font-size:clamp(13.5px,3.7vw,15px);font-weight:500;color:var(--ly-sub);line-height:1.5}
+.lyric-ko{display:block;font-size:clamp(16px,4.4vw,18px);font-weight:800;line-height:1.5;color:var(--ink);letter-spacing:-.01em}
+.lyric-tr{display:block;font-size:clamp(13px,3.5vw,14px);font-weight:500;color:var(--ly-sub);line-height:1.5;margin-top:1px}
+.lyric-line.active{background:color-mix(in srgb,var(--ink) 6%,transparent);box-shadow:inset 3px 0 0 color-mix(in srgb,var(--ink) 30%,transparent)}
+.lyric-line.active .lyric-ko{color:var(--ink)}
 .nolyrics{padding:40px 10px;text-align:center;color:var(--muted);font-size:13px;line-height:1.9}
-.vol-wrap{position:relative;display:flex;align-items:center}
-.vol-btn{width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);box-shadow:var(--shadow);cursor:pointer;opacity:.85}
-.vol-btn svg{width:20px;height:20px}
-.vol-btn.active{border-color:var(--accent);color:var(--accent);opacity:1}
-.vol-btn.muted{color:var(--muted)}
-.vol-pop{position:absolute;right:52px;top:50%;transform:translateY(-50%);display:flex;align-items:center;gap:8px;padding:6px 12px 6px 6px;border-radius:999px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);white-space:nowrap}
-.vol-pop[hidden]{display:none}
-.vol-mute{width:32px;height:32px;flex:none;display:flex;align-items:center;justify-content:center;border:0;border-radius:50%;background:var(--surface2);color:var(--ink);cursor:pointer}
-.vol-mute svg{width:17px;height:17px}
-.vol-range{--p:100%;width:min(150px,42vw);height:28px;margin:0;background:none;-webkit-appearance:none;appearance:none;cursor:pointer}
-.vol-range::-webkit-slider-runnable-track{height:5px;border-radius:999px;background:linear-gradient(90deg,var(--accent) var(--p),var(--line) var(--p))}
-.vol-range::-moz-range-track{height:5px;border-radius:999px;background:linear-gradient(90deg,var(--accent) var(--p),var(--line) var(--p))}
-.vol-range::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;margin-top:-6.5px;border-radius:50%;background:var(--accent);border:2px solid var(--surface)}
-.vol-range::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--accent);border:2px solid var(--surface)}
-.vol-num{width:24px;text-align:right;font-size:12px;font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums}
-.vol-ios{padding:4px 6px 4px 10px;font-size:12px;color:var(--muted)}
-@media (hover:hover) and (pointer:fine){.vol-wrap{display:none}}
 .player-controls{position:fixed;right:18px;bottom:calc(22px + env(safe-area-inset-bottom));z-index:45;display:flex;flex-direction:column;align-items:flex-end;gap:10px}
 .play-toggle{display:none;align-items:center;justify-content:center;width:48px;height:48px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--accent);cursor:pointer;box-shadow:var(--shadow)}
 .play-toggle svg{width:20px;height:20px}
@@ -434,8 +417,6 @@ body.is-song header.top,body.is-song nav.tabs{display:none}
   .lyric-jp{font-size:12.5px}.lyric-ko{font-size:15px}.lyric-tr{font-size:12px}
   .player-controls{flex-direction:row;align-items:center;right:max(12px,env(safe-area-inset-right));bottom:calc(10px + env(safe-area-inset-bottom));gap:6px}
   .venue-toggle,.autoscroll-toggle{min-height:32px;padding:4px 8px}
-  .vol-btn{width:34px;height:34px}
-  .vol-pop{right:0;top:auto;bottom:44px;transform:none}
   .song-page.venue .lyrics-scroll{border-left:none}
   .song-page.venue .song-fixed-top{flex:0 0 0;padding:0}
   .song-page.venue .lyric-ko{font-size:clamp(17px,3.2vw,22px)}
@@ -17187,58 +17168,24 @@ function mvNeighbor(delta, skipNoVideo){
   return null;
 }
 
-/* ── 사이트 안 볼륨 조절 (모바일용) ── */
-const MV_IOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
-const I_VOL = m => m
-  ? `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M17 9l5 6M22 9l-5 6"/></svg>`
-  : `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg>`;
-function mvVolSave(){ try { localStorage.setItem("bn-vol", JSON.stringify(mvVol)); } catch(e){} }
-function volPaint(){
-  const b = $("#volBtn"); if (!b) return;
-  const off = mvVol.m;
-  b.innerHTML = I_VOL(off);
-  b.classList.toggle("muted", off);
-  const r = $("#volRange"); if (!r) return;
-  if (document.activeElement !== r) r.value = off ? 0 : mvVol.v;
-  r.style.setProperty("--p", (off ? 0 : mvVol.v) + "%");
-  $("#volNum").textContent = off ? "0" : mvVol.v;
-  $("#volMute").innerHTML = I_VOL(off);
-}
-function bindVol(){
-  const b = $("#volBtn"), pop = $("#volPop"); if (!b) return;
-  volPaint();
-  const open = o => { pop.hidden = !o; b.setAttribute("aria-expanded", o); b.classList.toggle("active", o); };
-  b.onclick = e => { e.stopPropagation(); open(pop.hidden); };
-  pop.onclick = e => e.stopPropagation();
-  if (mv.volClose) document.removeEventListener("click", mv.volClose);
-  mv.volClose = () => { if ($("#volPop")) open(false); };
-  document.addEventListener("click", mv.volClose);
-  const r = $("#volRange"); if (!r) return;
-  r.oninput = () => {
-    const v = +r.value;
-    if (v === 0) mvVol.m = true; else { mvVol.v = v; mvVol.m = false; }
-    mvVolSave(); mvVolApply(); volPaint();
-  };
-  $("#volMute").onclick = () => { mvVol.m = !mvVol.m; if (!mvVol.m && mvVol.v < 5) mvVol.v = 50; mvVolSave(); mvVolApply(); volPaint(); };
-}
-
 /* ── 소리 기억하기 ── 플레이어에서 맞춘 볼륨·음소거를 기억해 다음 곡·다음 방문에도 그대로 */
 const mvVol = { v:100, m:false };
 try { const v = JSON.parse(localStorage.getItem("bn-vol") || "null"); if (v){ mvVol.v = Number(v.v) || 100; mvVol.m = !!v.m; } } catch(e){}
 function mvVolApply(){
   if (!mv.player || !mv.ready) return;
+  mv.volHold = Date.now() + 2500;           // 적용 직후엔 플레이어가 예전 값(100)을 돌려줄 수 있어 잠깐 저장 안 함
   try { mv.player.setVolume(mvVol.v); mvVol.m ? mv.player.mute() : mv.player.unMute(); } catch(e){}
 }
 function mvVolWatch(){
   clearInterval(mv.volTimer);
   mv.volTimer = setInterval(() => {
-    if (!mv.player || !mv.ready) return;
+    if (!mv.player || !mv.ready || Date.now() < (mv.volHold || 0)) return;
     try {
       const v = mv.player.getVolume(), m = !!mv.player.isMuted();
       const nv = (typeof v === "number" && v > 0) ? v : mvVol.v;   // 0 은 음소거로 취급
       if (nv !== mvVol.v || m !== mvVol.m){
         mvVol.v = nv; mvVol.m = m;
-        mvVolSave(); volPaint();
+        try { localStorage.setItem("bn-vol", JSON.stringify(mvVol)); } catch(e){}
       }
     } catch(e){}
   }, 800);
@@ -17528,15 +17475,6 @@ function viewMvSong(song){
     </div>
 
     <div class="player-controls">
-      <div class="vol-wrap" id="volWrap">
-        <div class="vol-pop" id="volPop" hidden>
-          ${MV_IOS ? `<span class="vol-ios">아이폰·아이패드는 기기 볼륨 버튼으로만 조절돼요</span>` : `
-          <button class="vol-mute" id="volMute" aria-label="음소거 켜기/끄기"></button>
-          <input class="vol-range" id="volRange" type="range" min="0" max="100" step="1" aria-label="볼륨">
-          <span class="vol-num" id="volNum"></span>`}
-        </div>
-        <button class="vol-btn" id="volBtn" aria-label="볼륨 조절" aria-expanded="false"></button>
-      </div>
       <button class="play-toggle" id="playToggle" aria-label="재생 / 일시정지">${I_PLAY}</button>
       <button class="venue-toggle${mv.venue ? " active" : ""}" id="venueBtn" aria-label="단축모드 켜기/끄기" aria-pressed="${mv.venue}">
         <span class="venue-label">단축모드</span>
@@ -17739,7 +17677,6 @@ function bindMv(id){
   });
   $("#sheetQ").addEventListener("input", paintSheet);
 
-  bindVol();
   $("#venueBtn").onclick = () => { mv.venue = !mv.venue; try { localStorage.setItem("mv-venue", mv.venue ? "1" : ""); } catch(e){} applyVenue(); setTimeout(padLyrics, 50); };
   $("#autoBtn").onclick = e => { mv.auto = !mv.auto; e.currentTarget.classList.toggle("active", mv.auto); e.currentTarget.setAttribute("aria-pressed", mv.auto); mvSave(); if (mv.auto) mv.active = -1; };
   $("#playToggle").onclick = () => {
@@ -17784,12 +17721,14 @@ function mvMount(song){
   mvLoadApi();
   if (!window.YT || !window.YT.Player){ setTimeout(() => { if (mv.song === song && $("#yt")) mvMount(song); }, 300); return; }
   const auto = mv.autoplay ? 1 : 0; mv.autoplay = false;
+  mv.volPlayed = false; mv.ready = false;
   mv.player = new YT.Player("yt", {
     videoId: song.youtubeId,
     playerVars: { rel:0, playsinline:1, modestbranding:1, autoplay:auto },
     events: {
       onReady: () => { mv.ready = true; mvVolApply(); mvVolWatch(); if (auto){ try { mv.player.playVideo(); } catch(e){} } mvTick(song); updatePlayBtn(); },
       onStateChange: e => {
+        if (e.data === 1 && !mv.volPlayed){ mv.volPlayed = true; mvVolApply(); }   // 재생 시작 때 한 번 더 맞춰줌
         mvTick(song); updatePlayBtn();
         if (e.data === 0 && mv.song === song) mvGo(1, true);   // 영상이 끝나면 다음 곡 (마지막이면 처음으로)
       }
