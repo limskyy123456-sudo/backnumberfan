@@ -275,6 +275,17 @@ body.has-bg .tile-links a{text-shadow:0 0 8px var(--bg),0 0 2px var(--bg);color:
 }
 /* 뮤비 */
 .mvtools{display:flex;gap:8px;margin-bottom:10px}
+.mvsort-wrap{position:relative;flex:none;display:flex}
+.mvsort-btn{display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
+.mvsort-btn svg{width:15px;height:15px;transition:transform .2s}
+.mvsort-btn[aria-expanded="true"] svg{transform:rotate(180deg)}
+.mvsort-menu{position:absolute;right:0;top:calc(100% + 6px);z-index:30;min-width:170px;padding:6px;border-radius:14px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}
+.mvsort-menu[hidden]{display:none}
+.mvsort-group + .mvsort-group{border-top:1px solid var(--line);margin-top:4px;padding-top:4px}
+.mvsort-group small{display:block;padding:4px 10px 2px;font-size:11px;font-weight:700;color:var(--muted)}
+.mvsort-menu button{display:block;width:100%;text-align:left;padding:8px 10px;border:0;border-radius:8px;background:none;color:var(--ink);font:inherit;font-size:14px;cursor:pointer}
+.mvsort-menu button:hover{background:var(--surface2)}
+.mvsort-menu button[aria-selected="true"]{color:var(--accent);font-weight:800;background:var(--accent-soft)}
 .mvsearch{flex:1;min-width:0;display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:8px 12px;color:var(--muted)}
 .mvsearch input{flex:1;min-width:0;border:0;background:none;color:var(--ink);font:inherit;outline:none}
 .mvtools .btn{flex:none;font-size:13px;border-radius:12px}
@@ -15210,7 +15221,7 @@ pic : side
 
 `, lyrics:[] },
     { id:"MakuGaAgaru", jp:"幕が上がる", ko:"막이 오르다", rom:"Maku ga Agaru", date:"2025.07.31", album:"디지털 싱글", vtype:"mv",
-      youtubeId:"KPsEHgIiLr0", lyricsShift:0, lyricsTimes:[12.37, 18.25, 24.65, 27.49, 30.67, 37.96, 39.86, 44.21, 49.08, 52.38, 59.17, 63.04, 65.31, 72.02, 73.81, 93.46, 101.42, 105.60, 111.66, 118.96, 121.69, 125.21, 130.09, 133.41, 140.07, 144.05, 146.33, 153.23, 189.26, 194.95, 201.15, 208.62, 214.45, 221.21, 225.15, 227.36, 234.05, 235.87, 240.76, 245.57, 251.34, 258.03, 264.27], lyricsTime:0, lyricsText:`
+      youtubeId:"KPsEHgIiLr0", lyricsShift:6.1, lyricsTimes:[5.70, 11.58, 17.97, 19.90, 24.12, 31.43, 33.22, 37.71, 42.59, 45.81, 52.73, 56.77, 58.80, 65.45, 68.00, 86.72, 94.72, 99.08, 105.19, 112.40, 115.33, 118.76, 123.46, 126.89, 133.72, 137.58, 139.50, 146.78, 182.56, 188.33, 194.63, 201.94, 207.97, 214.75, 218.59, 220.60, 227.68, 230.20, 234.23, 239.06, 244.60, 251.27, 257.78], lyricsTime:0, lyricsText:`
 怖いけど
 코와이케도
 무섭지만
@@ -15231,6 +15242,7 @@ pic : side
 챤토 못테룻테 코토다로-
 제대로 쥐고 있다는 거겠지
 
+
 大丈夫だよって
 다이죠-부다욧테
 괜찮아 라고
@@ -15246,6 +15258,7 @@ pic : side
 強くなりたかった
 츠요쿠 나리타캇타
 강해지고 싶었어
+
 
 止まない拍手も　光の雨も
 야마나이 하쿠슈모 히카리노 아메모
@@ -15271,6 +15284,8 @@ pic : side
 나니카노 고-루닷타리스룬다
 어떤 목표이기도 하지
 
+
+
 探しても　嘆いても
 사가시테모 나게이테모
 찾아도 슬퍼해도
@@ -15287,6 +15302,7 @@ pic : side
 지분와 지분데 소노 마마
 나는 나 자신 그대로
 
+
 今更すくむ足と
 이마사라 스쿠무 아시토
 이제와서 움츠러진 발과
@@ -15302,6 +15318,7 @@ pic : side
 強くなりたかった
 츠요쿠 나리타캇타
 강해지고 싶었어
+
 
 止まない拍手も　光の雨も
 야마나이 하쿠슈모 히카리노 아메모
@@ -15323,6 +15340,8 @@ pic : side
 오왓타라 간밧타넷테 칸파이시테요
 끝나면 고생했어 라며 건배해줘
 
+
+
 決して一人では何も出来ない事
 케시테 히토리데와 나니모 데키나이 코토
 결코 혼자서는 아무것도 할 수 없다는 것
@@ -15338,6 +15357,7 @@ pic : side
 全部忘れて歌えたらいいのに
 젠부 와스레테 우타에타라 이-노니
 전부 잊고 노래할 수 있다면 좋을텐데
+
 
 止まない拍手も　光の雨も
 야마나이 하쿠슈모 히카리노 아메모
@@ -15363,6 +15383,7 @@ pic : side
 사이고노 고-루데 앗테 호시인다
 마지막 목표였으면 해
 
+
 だからその瞬間まで
 다카라 소노 슌칸마데
 그러니 그 순간까지
@@ -15375,9 +15396,13 @@ pic : side
 츠요쿠 나리타이
 강해지고 싶어
 
+
+
 強くなりたい
 츠요쿠 나리타이
 강해지고 싶어
+
+
 
 強くありたい
 츠요쿠 아리타이
@@ -17115,8 +17140,8 @@ ${body}
 
 /* ============ 화면: 뮤비 (곡 목록 · 곡 화면) ============ */
 const mv = { from:null, query:"", order:"new", auto:true, player:null, ready:false, timer:null, active:-1, song:null };
-const MV_ORDERS = ["new","old","name"];
-const MV_LABEL = { new:"발매일 ↓", old:"발매일 ↑", name:"가나다순" };
+const MV_ORDERS = ["new","old","name","namer","chant","chantr"];
+const MV_LABEL = { new:"발매일 최신순", old:"발매일 오래된순", name:"가나다순", namer:"가나다 역순", chant:"떼창 많은순", chantr:"떼창 적은순" };
 try { const v = JSON.parse(localStorage.getItem("bn-mv") || "null"); if (v){ mv.order = v.order || mv.order; } } catch(e){}
 function mvSave(){ try { localStorage.setItem("bn-mv", JSON.stringify({ order:mv.order, auto:mv.auto })); } catch(e){} }
 
@@ -17180,7 +17205,13 @@ function mvVolWatch(){
 const mvSquash = s => String(s).toLowerCase().replace(/[\s'’·・、。,.!?！？-]/g, "");
 function mvSorted(){
   const list = SONGS.slice();
+  const byNew = (a,b) => a.date === b.date ? a.ko.localeCompare(b.ko,"ko") : (a.date < b.date ? 1 : -1);
+  const ch = s => songMarks(s).chant || 0;
   if (mv.order === "name") list.sort((a,b) => a.ko.localeCompare(b.ko, "ko"));
+  else if (mv.order === "namer"){ const hg = x => /^[가-힣]/.test(x.ko) ? 0 : 1;   // 한글 제목 먼저(하→가), 영어 제목은 뒤로
+    list.sort((a,b) => hg(a) - hg(b) || b.ko.localeCompare(a.ko, "ko")); }
+  else if (mv.order === "chant") list.sort((a,b) => ch(b) - ch(a) || byNew(a,b));
+  else if (mv.order === "chantr") list.sort((a,b) => ch(a) - ch(b) || byNew(a,b));
   else if (mv.order === "old") list.sort((a,b) => a.date === b.date ? a.ko.localeCompare(b.ko,"ko") : (a.date > b.date ? 1 : -1));
   else list.sort((a,b) => a.date === b.date ? a.ko.localeCompare(b.ko,"ko") : (a.date < b.date ? 1 : -1));
   return list;
@@ -17381,7 +17412,13 @@ function viewMv(id){
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
       <input id="mvQ" type="search" placeholder="곡 제목·앨범 검색 (한국어·일본어·로마자)" value="${esc(mv.query)}">
     </label>
-    <button class="btn" id="mvSort">${MV_LABEL[mv.order]}</button>
+    <div class="mvsort-wrap">
+      <button class="btn mvsort-btn" id="mvSort" aria-haspopup="listbox" aria-expanded="false"><span id="mvSortLabel">${MV_LABEL[mv.order] || MV_LABEL.new}</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
+      <div class="mvsort-menu" id="mvSortMenu" role="listbox" hidden>
+        ${[["발매일", "new", "old"], ["가나다", "name", "namer"], ["떼창", "chant", "chantr"]].map(([g, a, b]) => `
+        <div class="mvsort-group"><small>${g}</small>${[a, b].map(k => `<button role="option" data-o="${k}" aria-selected="${mv.order === k}">${MV_LABEL[k]}</button>`).join("")}</div>`).join("")}
+      </div>
+    </div>
   </div>
   <div class="mvmeta small muted"><span id="mvMeta"></span><span>MV ${SONGS.filter(s => s.vtype === "mv" || s.vtype === "lyric" || s.vtype === "live").length} · 음원 ${SONGS.filter(s => s.vtype === "audio").length}</span></div>
   <div id="mvList"></div>
@@ -17634,10 +17671,20 @@ function bindMv(id){
     mv.from = null; mv.queue = null;
     mvRows();
     $("#mvQ").addEventListener("input", e => { mv.query = e.target.value; mvRows(); });
-    $("#mvSort").onclick = e => {
-      mv.order = MV_ORDERS[(MV_ORDERS.indexOf(mv.order) + 1) % MV_ORDERS.length];
-      e.currentTarget.textContent = MV_LABEL[mv.order]; mvSave(); mvRows();
+    const sb = $("#mvSort"), sm = $("#mvSortMenu");
+    const openSort = o => { sm.hidden = !o; sb.setAttribute("aria-expanded", o); };
+    sb.onclick = e => { e.stopPropagation(); openSort(sm.hidden); };
+    sm.onclick = e => {
+      e.stopPropagation();
+      const o = e.target.closest("[data-o]"); if (!o) return;
+      mv.order = o.dataset.o; mvSave();
+      $("#mvSortLabel").textContent = MV_LABEL[mv.order];
+      sm.querySelectorAll("[data-o]").forEach(x => x.setAttribute("aria-selected", x === o));
+      openSort(false); mvRows();
     };
+    if (mv.sortClose) document.removeEventListener("click", mv.sortClose);
+    mv.sortClose = () => { const m = $("#mvSortMenu"); if (m && !m.hidden) openSort(false); };
+    document.addEventListener("click", mv.sortClose);
     $("#mvList").addEventListener("click", e => { if (e.target.closest(".mvrow")) mv.listY = window.scrollY; });
     return;
   }
