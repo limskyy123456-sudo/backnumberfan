@@ -1,8 +1,0 @@
-짤방(응원 동작 사진) 넣는 곳
-
-1) 이 폴더에 gif · png · jpg · webp 파일을 넣습니다.
-2) index.html 에서 "const PICS" 를 찾아 한 줄 등록합니다.
-     "wave-basic": { src: "./images/tips/wave-basic.gif", caption: "양손 머리 위로 · 좌우로 크게" },
-3) 가사(lyricsText)에서 그 소절 바로 아래 줄에  pic: wave-basic  이라고 적습니다.
-
-파일이 아직 없으면 사진만 안 뜨고 화면은 그대로예요.
