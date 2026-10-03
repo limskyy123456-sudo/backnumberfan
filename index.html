@@ -15,21 +15,21 @@
   --bg:#f3f5f8; --veil:rgba(246,248,251,.6); --surface:#ffffff; --surface2:#e8edf3; --ink:#1f2630; --muted:#687384;
   --line:#dbe2ea; --accent:#2d5f93; --accent-soft:#dde8f4; --gold:#c98a14; --gold-soft:#fbefd4;
   --green:#2f8a5b; --green-soft:#dff2e7; --blue:#7a4fa8; --blue-soft:#efe6f7;
-  --chant:#e07b12; --clap:#1c6aa8; --wave:#3f9a2c; --jump:#8a5bd6; --spin:#d24f96; --now:#d63a3a; --now-soft:#fde4e2; --ly-sub:#3f4957;
+  --chant:#e07b12; --clap:#2c84c6; --wave:#3f9a2c; --jump:#8a5bd6; --spin:#d24f96; --now:#d63a3a; --now-soft:#fde4e2;
   --radius:16px; --shadow:0 1px 2px rgba(20,40,70,.06),0 4px 16px rgba(20,40,70,.06);
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
     --bg:#12161c; --veil:rgba(18,22,28,.66); --surface:#1b2129; --surface2:#232b35; --ink:#e9eef4; --muted:#9aa6b5;
     --line:#2c3643; --accent:#86b4e6; --accent-soft:#1f3149; --gold:#e9b44c; --gold-soft:#43361c;
-    --green:#6cc795; --green-soft:#1f3a2c; --blue:#c3a4e8; --blue-soft:#2e2440; --chant:#f5942c; --clap:#4fa8e0; --wave:#8de05f; --jump:#b98cff; --spin:#ff86c8; --now:#ff7b72; --now-soft:#3d2326; --ly-sub:#c3ccd7;
+    --green:#6cc795; --green-soft:#1f3a2c; --blue:#c3a4e8; --blue-soft:#2e2440; --chant:#f5942c; --clap:#4fa8e0; --wave:#8de05f; --jump:#b98cff; --spin:#ff86c8; --now:#ff7b72; --now-soft:#3d2326;
     --shadow:none;
   }
 }
 :root[data-theme="dark"]{
   --bg:#12161c; --veil:rgba(18,22,28,.66); --surface:#1b2129; --surface2:#232b35; --ink:#e9eef4; --muted:#9aa6b5;
   --line:#2c3643; --accent:#86b4e6; --accent-soft:#1f3149; --gold:#e9b44c; --gold-soft:#43361c;
-  --green:#6cc795; --green-soft:#1f3a2c; --blue:#c3a4e8; --blue-soft:#2e2440; --chant:#f5942c; --clap:#4fa8e0; --wave:#8de05f; --jump:#b98cff; --spin:#ff86c8; --now:#ff7b72; --now-soft:#3d2326; --ly-sub:#c3ccd7;
+  --green:#6cc795; --green-soft:#1f3a2c; --blue:#c3a4e8; --blue-soft:#2e2440; --chant:#f5942c; --clap:#4fa8e0; --wave:#8de05f; --jump:#b98cff; --spin:#ff86c8; --now:#ff7b72; --now-soft:#3d2326;
   --shadow:none;
 }
 *{box-sizing:border-box}
@@ -253,7 +253,26 @@ body.has-bg .tile-links a{text-shadow:0 0 8px var(--bg),0 0 2px var(--bg);color:
 .menu-chip{flex:1;text-align:center;padding:9px 6px;border:1px solid var(--line);border-radius:999px;color:var(--ink);font-size:13px;font-weight:600;text-decoration:none}
 .home-foot{margin-top:18px}
 .share-btn{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:9px 18px;font:inherit;font-size:13px;font-weight:600;cursor:pointer}
+.gd-note{margin:-6px 0 14px;padding:9px 12px;border-radius:10px;background:var(--surface2);color:var(--muted);font-size:12.5px;line-height:1.55}
 .credits{margin:22px 0 8px;text-align:center;font-size:11.5px;color:var(--muted)}
+/* PC 큰 화면: 홈을 화면 가운데에 크게 */
+@media (min-width:900px){
+  .home-hero{min-height:calc(100svh - 120px);justify-content:center;padding:48px 0 12px}
+  .home-title{font-size:100px}
+  .next-cap{margin-top:28px;font-size:13px}
+  .countdown{margin-top:12px}
+  .cd-dday,.cd-clock{font-size:46px}
+  .cd-pill.is-soon .cd-clock{font-size:28px}
+  .cd-pill{padding:16px 34px}
+  .main-menu{max-width:640px;margin-top:32px}
+  .menu-btn{padding:20px;font-size:20px;border-radius:18px}
+  .menu-btn small{font-size:13px}
+  .tile-grid{max-width:640px;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:12px}
+  .tile{min-height:120px;padding:18px;border-radius:18px}
+  .tile b{font-size:17px}
+  .tile small{font-size:12.5px}
+  .tile-links{font-size:14px;margin-top:22px;gap:24px}
+}
 /* 뮤비 */
 .mvtools{display:flex;gap:8px;margin-bottom:10px}
 .mvsearch{flex:1;min-width:0;display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:8px 12px;color:var(--muted)}
@@ -320,12 +339,29 @@ body.is-song header.top,body.is-song nav.tabs{display:none}
 .lyric-line:hover{background:var(--surface2)}
 .lyric-body{min-width:0;display:block;flex:1}
 .lyric-jp:empty,.lyric-tr:empty{display:none}
-.lyric-jp{display:block;font-size:clamp(13.5px,3.7vw,15px);font-weight:500;color:var(--ly-sub);line-height:1.5}
-.lyric-ko{display:block;font-size:clamp(16px,4.4vw,18px);font-weight:800;line-height:1.5;color:var(--ink);letter-spacing:-.01em}
-.lyric-tr{display:block;font-size:clamp(13px,3.5vw,14px);font-weight:500;color:var(--ly-sub);line-height:1.5;margin-top:1px}
+.lyric-jp{display:block;font-size:clamp(13px,3.6vw,14px);color:var(--muted);line-height:1.5}
+.lyric-ko{display:block;font-size:clamp(15px,4.2vw,17px);font-weight:800;line-height:1.5;color:var(--ink)}
+.lyric-tr{display:block;font-size:clamp(12px,3.4vw,13px);color:var(--muted);line-height:1.5;margin-top:1px}
 .lyric-line.active{background:var(--now-soft);box-shadow:inset 3px 0 0 var(--now)}
 .lyric-line.active .lyric-ko{color:var(--now)}
 .nolyrics{padding:40px 10px;text-align:center;color:var(--muted);font-size:13px;line-height:1.9}
+.vol-wrap{position:relative;display:flex;align-items:center}
+.vol-btn{width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);box-shadow:var(--shadow);cursor:pointer;opacity:.85}
+.vol-btn svg{width:20px;height:20px}
+.vol-btn.active{border-color:var(--accent);color:var(--accent);opacity:1}
+.vol-btn.muted{color:var(--muted)}
+.vol-pop{position:absolute;right:52px;top:50%;transform:translateY(-50%);display:flex;align-items:center;gap:8px;padding:6px 12px 6px 6px;border-radius:999px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);white-space:nowrap}
+.vol-pop[hidden]{display:none}
+.vol-mute{width:32px;height:32px;flex:none;display:flex;align-items:center;justify-content:center;border:0;border-radius:50%;background:var(--surface2);color:var(--ink);cursor:pointer}
+.vol-mute svg{width:17px;height:17px}
+.vol-range{--p:100%;width:min(150px,42vw);height:28px;margin:0;background:none;-webkit-appearance:none;appearance:none;cursor:pointer}
+.vol-range::-webkit-slider-runnable-track{height:5px;border-radius:999px;background:linear-gradient(90deg,var(--accent) var(--p),var(--line) var(--p))}
+.vol-range::-moz-range-track{height:5px;border-radius:999px;background:linear-gradient(90deg,var(--accent) var(--p),var(--line) var(--p))}
+.vol-range::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;margin-top:-6.5px;border-radius:50%;background:var(--accent);border:2px solid var(--surface)}
+.vol-range::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--accent);border:2px solid var(--surface)}
+.vol-num{width:24px;text-align:right;font-size:12px;font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums}
+.vol-ios{padding:4px 6px 4px 10px;font-size:12px;color:var(--muted)}
+@media (hover:hover) and (pointer:fine){.vol-wrap{display:none}}
 .player-controls{position:fixed;right:18px;bottom:calc(22px + env(safe-area-inset-bottom));z-index:45;display:flex;flex-direction:column;align-items:flex-end;gap:10px}
 .play-toggle{display:none;align-items:center;justify-content:center;width:48px;height:48px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--accent);cursor:pointer;box-shadow:var(--shadow)}
 .play-toggle svg{width:20px;height:20px}
@@ -398,6 +434,8 @@ body.is-song header.top,body.is-song nav.tabs{display:none}
   .lyric-jp{font-size:12.5px}.lyric-ko{font-size:15px}.lyric-tr{font-size:12px}
   .player-controls{flex-direction:row;align-items:center;right:max(12px,env(safe-area-inset-right));bottom:calc(10px + env(safe-area-inset-bottom));gap:6px}
   .venue-toggle,.autoscroll-toggle{min-height:32px;padding:4px 8px}
+  .vol-btn{width:34px;height:34px}
+  .vol-pop{right:0;top:auto;bottom:44px;transform:none}
   .song-page.venue .lyrics-scroll{border-left:none}
   .song-page.venue .song-fixed-top{flex:0 0 0;padding:0}
   .song-page.venue .lyric-ko{font-size:clamp(17px,3.2vw,22px)}
@@ -17149,6 +17187,41 @@ function mvNeighbor(delta, skipNoVideo){
   return null;
 }
 
+/* ── 사이트 안 볼륨 조절 (모바일용) ── */
+const MV_IOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+const I_VOL = m => m
+  ? `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M17 9l5 6M22 9l-5 6"/></svg>`
+  : `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg>`;
+function mvVolSave(){ try { localStorage.setItem("bn-vol", JSON.stringify(mvVol)); } catch(e){} }
+function volPaint(){
+  const b = $("#volBtn"); if (!b) return;
+  const off = mvVol.m;
+  b.innerHTML = I_VOL(off);
+  b.classList.toggle("muted", off);
+  const r = $("#volRange"); if (!r) return;
+  if (document.activeElement !== r) r.value = off ? 0 : mvVol.v;
+  r.style.setProperty("--p", (off ? 0 : mvVol.v) + "%");
+  $("#volNum").textContent = off ? "0" : mvVol.v;
+  $("#volMute").innerHTML = I_VOL(off);
+}
+function bindVol(){
+  const b = $("#volBtn"), pop = $("#volPop"); if (!b) return;
+  volPaint();
+  const open = o => { pop.hidden = !o; b.setAttribute("aria-expanded", o); b.classList.toggle("active", o); };
+  b.onclick = e => { e.stopPropagation(); open(pop.hidden); };
+  pop.onclick = e => e.stopPropagation();
+  if (mv.volClose) document.removeEventListener("click", mv.volClose);
+  mv.volClose = () => { if ($("#volPop")) open(false); };
+  document.addEventListener("click", mv.volClose);
+  const r = $("#volRange"); if (!r) return;
+  r.oninput = () => {
+    const v = +r.value;
+    if (v === 0) mvVol.m = true; else { mvVol.v = v; mvVol.m = false; }
+    mvVolSave(); mvVolApply(); volPaint();
+  };
+  $("#volMute").onclick = () => { mvVol.m = !mvVol.m; if (!mvVol.m && mvVol.v < 5) mvVol.v = 50; mvVolSave(); mvVolApply(); volPaint(); };
+}
+
 /* ── 소리 기억하기 ── 플레이어에서 맞춘 볼륨·음소거를 기억해 다음 곡·다음 방문에도 그대로 */
 const mvVol = { v:100, m:false };
 try { const v = JSON.parse(localStorage.getItem("bn-vol") || "null"); if (v){ mvVol.v = Number(v.v) || 100; mvVol.m = !!v.m; } } catch(e){}
@@ -17165,7 +17238,7 @@ function mvVolWatch(){
       const nv = (typeof v === "number" && v > 0) ? v : mvVol.v;   // 0 은 음소거로 취급
       if (nv !== mvVol.v || m !== mvVol.m){
         mvVol.v = nv; mvVol.m = m;
-        try { localStorage.setItem("bn-vol", JSON.stringify(mvVol)); } catch(e){}
+        mvVolSave(); volPaint();
       }
     } catch(e){}
   }, 800);
@@ -17455,6 +17528,15 @@ function viewMvSong(song){
     </div>
 
     <div class="player-controls">
+      <div class="vol-wrap" id="volWrap">
+        <div class="vol-pop" id="volPop" hidden>
+          ${MV_IOS ? `<span class="vol-ios">아이폰·아이패드는 기기 볼륨 버튼으로만 조절돼요</span>` : `
+          <button class="vol-mute" id="volMute" aria-label="음소거 켜기/끄기"></button>
+          <input class="vol-range" id="volRange" type="range" min="0" max="100" step="1" aria-label="볼륨">
+          <span class="vol-num" id="volNum"></span>`}
+        </div>
+        <button class="vol-btn" id="volBtn" aria-label="볼륨 조절" aria-expanded="false"></button>
+      </div>
       <button class="play-toggle" id="playToggle" aria-label="재생 / 일시정지">${I_PLAY}</button>
       <button class="venue-toggle${mv.venue ? " active" : ""}" id="venueBtn" aria-label="단축모드 켜기/끄기" aria-pressed="${mv.venue}">
         <span class="venue-label">단축모드</span>
@@ -17657,6 +17739,7 @@ function bindMv(id){
   });
   $("#sheetQ").addEventListener("input", paintSheet);
 
+  bindVol();
   $("#venueBtn").onclick = () => { mv.venue = !mv.venue; try { localStorage.setItem("mv-venue", mv.venue ? "1" : ""); } catch(e){} applyVenue(); setTimeout(padLyrics, 50); };
   $("#autoBtn").onclick = e => { mv.auto = !mv.auto; e.currentTarget.classList.toggle("active", mv.auto); e.currentTarget.setAttribute("aria-pressed", mv.auto); mvSave(); if (mv.auto) mv.active = -1; };
   $("#playToggle").onclick = () => {
@@ -18124,6 +18207,7 @@ function viewGoods(){
   return `
   <h1>굿즈 아카이브</h1>
   <p class="sub">2011년부터 지금까지 공연·투어별 공식 굿즈 모음 · 가격은 발매 당시 기준 (엔)</p>
+  <p class="gd-note">ⓘ 공식 사이트 굿즈 아카이브를 기준으로 정리했어요. 실물 사진이 없는 굿즈는 공식 일러스트·디자인 이미지로 대신 보여줘요.</p>
   <div class="chips" id="gdKind">${GOODS_KIND.map(([k, l]) => `<button class="chip" data-k="${k}" aria-pressed="${goodsS.kind === k}">${l}</button>`).join("")}</div>
   <label class="mvsearch gd-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
     <input id="gdQ" type="search" placeholder="굿즈 이름 검색" value="${esc(goodsS.q)}"></label>
