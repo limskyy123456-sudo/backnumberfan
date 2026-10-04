@@ -254,6 +254,13 @@ body.has-bg .tile-links a{text-shadow:0 0 8px var(--bg),0 0 2px var(--bg);color:
 .home-foot{margin-top:18px}
 .share-btn{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:9px 18px;font:inherit;font-size:13px;font-weight:600;cursor:pointer}
 .gd-note{margin:-6px 0 14px;padding:9px 12px;border-radius:10px;background:var(--surface2);color:var(--muted);font-size:12.5px;line-height:1.55}
+.home-foot{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.home-foot .share-btn{font-size:12.5px;padding:8px 14px}
+.install-guide{margin:10px auto 0;max-width:340px;text-align:left;padding:12px 14px;border-radius:14px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);font-size:13px;line-height:1.55}
+.install-guide[hidden]{display:none}
+.install-guide .ig-title{display:block;margin-bottom:4px}
+.install-guide ol{margin:0;padding-left:18px}
+.install-guide .ig-x{display:block;margin:8px 0 0 auto;border:0;background:none;color:var(--muted);font:inherit;font-size:12px;cursor:pointer}
 .credits{margin:22px 0 8px;text-align:center;font-size:11.5px;color:var(--muted)}
 /* PC 큰 화면: 홈을 화면 가운데에 크게 */
 @media (min-width:900px){
@@ -312,6 +319,7 @@ body.has-bg .tile-links a{text-shadow:0 0 8px var(--bg),0 0 2px var(--bg);color:
 .live-play.on{background:var(--accent);border-color:var(--accent);color:#fff}
 .live-player{margin:0 0 12px}
 .unmute-btn{position:absolute;left:10px;bottom:10px;z-index:3;display:inline-flex;align-items:center;gap:6px;padding:8px 13px;border:0;border-radius:999px;background:rgba(0,0,0,.72);color:#fff;font:inherit;font-size:13px;font-weight:700;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35)}
+.unmute-btn.hint{pointer-events:none;max-width:calc(100% - 20px);white-space:normal;text-align:left;line-height:1.4;font-size:12px}
 .unmute-btn svg{width:17px;height:17px}
 .unmute-btn[hidden]{display:none}
 .mvvideo{position:sticky;top:54px;z-index:5;background:var(--bg);margin:0 -16px;padding:0 0 6px}
@@ -2229,57 +2237,64 @@ pic : jump
 손을 뻗고 있어
 `, lyrics:[] },
     { id:"SonoDressChottoMatta", jp:"そのドレスちょっと待った", ko:"그 드레스 잠깐 기다려", rom:"Sono Dress Chotto Matta", date:"2010.06.02", album:"あとのまつり", vtype:"live",
-      youtubeId:"pXMBm8545I0", lyricsShift:0, lyricsTimes:[34.31, 39.32, 46.15, 52.66, 59.47, 63.72, 72.69, 78.78, 85.62, 87.78, 92.00, 96.39, 116.54, 121.80, 128.49, 134.98, 142.04, 150.56, 155.17, 161.14, 168.15, 174.34, 180.68, 184.10, 198.11, 202.07, 210.96, 217.06, 223.93, 230.33, 236.50], lyricsTime:0, lyricsText:`
-人づてに聞いた君の話
+      youtubeId:"pXMBm8545I0", lyricsShift:0, lyricsTimes:[7, 34.31, 39.32, 46.15, 52.66, 59.47, 63.72, 72.69, 78.78, 85.62, 87.78, 92.00, 96.39, 116.54, 121.80, 128.49, 134.98, 142.04, 150.56, 155.17, 161.14, 168.15, 174.34, 180.68, 184.10,185.5, 198.11, 202.07, 210.96, 217.06, 223.93, 230.33, 236.50], lyricsTime:0, lyricsText:`
+[clap]{{전주에 박수}}
+
+[clap]人づてに聞いた君の話
 히토즈테니 키-타 키미노 하나시
 소문으로 들은 네 이야기
 
-一生添い遂げる相手を見つけたって
+[clap]一生添い遂げる相手を見つけたって
 잇쇼- 소이토게루 아이테오 미츠케탓테
 평생 함께 할 결혼 상대를 찾았다고
 
-「へぇそうなんだよかったねおしあわせに」
+[clap]「へぇそうなんだよかったねおしあわせに」
 「헤- 소-난다 요캇타네 오시아와세니」
 「헤에 그렇구나 잘됐네 행복하길」
 
-言葉と真逆の気持ちに自分も驚いているよ
+[clap]言葉と真逆の気持ちに自分も驚いているよ
 코토바토 마갸쿠노 키모치니 지분모 오도로이테 이루요
 말과 정반대인 기분에 스스로도 놀라고 있는걸
 
-
-別れてずいぶん経つどころが
+[manse]別れてずいぶん経つどころが
 와카레테 즈이분 타츠도코로가
 헤어진 지 꽤 됐지만
+pic : handup
 
-僕なりに新しい幸せを手にしたつもりなのに
+[manse]僕なりに新しい幸せを手にしたつもりなのに
 보쿠나리니 아타라시- 시아와세오 테니 시타 츠모리나노니
 내 나름대로 새로운 행복을 손에 얻었다 생각했는데
+pic : handup
 
-
-もしもあの時僕が強がらずに電話をかけられてたら
+[jump]もしもあの時僕が強がらずに電話をかけられてたら
 모시모 아노 토키 보쿠가 츠요가라즈니 덴와오 카케라레테타라
 혹시 그 때 내가 가오잡지 않고 전화를 받았더라면
+pic : jump
 
-その鐘を鳴らす君のとなりには
+[jump]その鐘を鳴らす君のとなりには
 소노 카네오 나라스 키미노 토나리니와
 그 종을 울리는 네 곁에는
+pic : jump
 
-「ドレス似合ってるよ」
+[jump]「ドレス似合ってるよ」
 「도레스 니앗테루요」
 「드레스 어울리네」
+pic : jump
 
-とニヤニヤする僕がいたのかもしれないね
+[jump]とニヤニヤする僕がいたのかもしれないね
 토 니야니야스루 보쿠가 이타노카모 시레나이네
 라고 히죽히죽거리는 내가 있었을지도 몰라
+pic : jump
 
-君は今どんな顔して笑ってるの？
+[jump]君は今どんな顔して笑ってるの？
 키미와 이마 돈나 카오시테 와랏테루노?
 너는 지금 어떤 표정으로 웃고 있니?
+pic : jump
 
-どんな気持ちで　どんな相手と　どんな言葉で誓ってるの？
+[jump]どんな気持ちで　どんな相手と　どんな言葉で誓ってるの？
 돈나 키모치데 돈나 아이테토 돈나 코토바데 치캇테루노?
 어떤 기분으로 어떤 상대와 어떤 말로 맹세하고 있니?
-
+pic : jump
 
 
 意外としっかりした君の事だ
@@ -2299,69 +2314,81 @@ pic : jump
 내 지인이 아니기만을 기도하자
 
 
-別れた理由も切り出したのも全部自分なわけでありまして
+[manse]別れた理由も切り出したのも全部自分なわけでありまして
 와카레타 리유-모 키리다시타노모 젠부 지분나 와케데 아리마시테
 헤어진 이유도 헤어지잔 말을 꺼낸 것도 전부 저라서
+pic : handup
 
-会わせる顔すらないのです
+[manse]会わせる顔すらないのです
 아와세루 카오스라나이노데스
 마주할 면목조차 없어요
+pic : handup
 
-
-もしもあの時僕が誘惑から命からがら逃げ切れば
+[jump]もしもあの時僕が誘惑から命からがら逃げ切れば
 모시모 아노 토키 보쿠가 유-와쿠카라 이노치카라가라 니게키레바
 혹시 그 때 내가 유혹으로부터 목숨만 겨우 건져 도망칠 수 있었다면
+pic : jump
 
-その鐘を鳴らす君のとなりには
+[jump]その鐘を鳴らす君のとなりには
 소노 카네오 나라스 키미노 토나리니와
 그 종을 울리는 네 곁에는
+pic : jump
 
-白い服着て鼻の下を伸ばす僕がいたのかもしれないね
+[jump]白い服着て鼻の下を伸ばす僕がいたのかもしれないね
 시로이 후쿠 키테 하나노 시타오 노바스 보쿠가 이타노카모 시레나이네
-하얀 옷을 입고 황홀히 넋을 잃은 내가 있었을지도 몰라 (鼻の下を伸ばす: 하나노 시타오 노바스, 코 아래를 늘이다. 여자에 정신이 팔리다, 여색에 미치다 등의 뜻을 가진 일본 관용 표현. 문맥에 맞게 황홀히 넋을 잃었다고 해석)
+하얀 옷을 입고 황홀히 넋을 잃은 내가 있었을지도 몰라
+pic : jump
 
-君に言わせれば問題は他にも諸々あって
+[jump]君に言わせれば問題は他にも諸々あって
 키미니 이와세레바 몬다이와 호카니모 모로모로 앗테
 네가 말하길 문제는 그 외에도 여러가지 있다고
+pic : jump
 
-あの日はただのきっかけだって
+[jump]あの日はただのきっかけだって
 아노 히와 타다노 킷카케닷테
 그 날은 그냥 이유가 있었다고
+pic : jump
 
-わかってるよ
+[jump]わかってるよ
 와캇테루요
 알고 있어
+pic : jump
 
+[clap]{{전주에 박수}}
 
-
-君と僕の人生という道が
+[manse]君と僕の人生という道が
 키미토 보쿠노 진세이토 유- 미치가
 그대와 제 인생이라는 길이
+pic : jump
 
-もう二度と交わらない事をお喜び申し上げます
+[manse]もう二度と交わらない事をお喜び申し上げます
 모- 니도토 마지와라나이 코토오 오요로코비 모-시아게마스
 두번 다신 교차할 일이 없게 된 걸 진심으로 축하드립니다
+pic : jump
 
 
-今教会のドアを足で開けて君の手を強く握って
+[clap]今教会のドアを足で開けて君の手を強く握って
 이마 쿄-카이노 도아오 아시데 아케테 키미노 테오 츠요쿠 니깃테
 지금 교회 문을 발로 걷어차 열며 네 손을 세게 잡고
 
-走り出す勇気なんてものは無いよ
+[clap]走り出す勇気なんてものは無いよ
 하시리다스 유-키난테 모노와 나이요
 달려나갈 용기같은 건 없는걸
 
-だから言いたい事は山ほどあるけど仕方ない　キリがないし
+[jump]だから言いたい事は山ほどあるけど仕方ない　キリがないし
 다카라 이-타이 코토와 야마호도 아루케도 시카타나이 키리가 나이시
 그니까 말하고 싶은 건 산더미만큼 있지만 어쩔 수 없지 밑도 끝도 없고
+pic : jump
 
-こんな歌とモヤモヤした気持ちで申し訳ないが
+[jump]こんな歌とモヤモヤした気持ちで申し訳ないが
 콘나 우타토 모야모야시타 키모치데 모-시와케나이가
 이런 노래와 우울한 기분으로 전해드려 죄송하지만
+pic : jump
 
-お祝いの言葉に代えさせて頂きます
+[jump]お祝いの言葉に代えさせて頂きます
 오이와이노 코토바니 카에사세테 이타다키마스
 축하의 말을 이걸로 대신하겠습니다
+pic : jump
 `, lyrics:[] },
     { id:"Omaesan", jp:"おまえさん", ko:"당신", rom:"Omaesan", date:"2010.06.02", album:"あとのまつり", vtype:"",
       youtubeId:"kefJakXEh1g", lyricsShift:0, lyricsTimes:[39.45, 45.20, 51.17, 63.56, 68.96, 74.69, 83.97, 89.99, 95.95, 101.96, 111.33, 117.23, 123.22, 135.63, 140.94, 146.76, 154.71, 156.53, 167.78, 201.07, 207.08, 212.97, 219.01, 224.94, 230.97, 237.00, 242.96], lyricsTime:0, lyricsText:`
@@ -3661,38 +3688,39 @@ pic : jump
 분명 나만 그런 게 아닐 거야
 `, lyrics:[] },
     { id:"SuperstarNiNattara", jp:"スーパースターになったら", ko:"슈퍼스타가 된다면", rom:"Superstar ni Nattara", date:"2011.10.26", album:"スーパースター", vtype:"audio",
-      youtubeId:"T0jZGhaaYYk", lyricsShift:0, lyricsTimes:[0, 14.68, 17.75, 21.86, 25.00, 29.17, 32.33, 36.42, 39.46, 43.81, 50.34, 57.87, 61.31, 65.05, 68.72, 72.06, 75.44, 81.67, 87.02, 102.04, 105.12, 109.20, 112.30, 114.13, 116.57, 119.64, 123.68, 126.83, 131.05, 137.65, 145.25, 148.58, 152.27, 155.89, 159.62, 162.76, 169.03, 189.64, 195.39, 197.29, 203.41, 206.76, 210.37, 214.09, 217.91, 220.85, 227.16, 230], lyricsTime:0, lyricsText:`
+      youtubeId:"T0jZGhaaYYk", lyricsShift:0, lyricsTimes:[0, 14.68, 17.75, 21.86, 25.00, 29.17, 32.33, 36.42, 39.46, 43.81, 50.34, 57.87, 61.31, 65.05, 68.72, 72.06, 75.44, 81.67, 102.04, 105.12, 109.20, 112.30, 114.13, 116.57, 119.64, 123.68, 126.83, 131.05, 137.65, 145.25, 148.58, 152.27, 155.89, 159.62, 162.76, 169.03, 189.64, 195.39, 197.29, 203.41, 206.76, 210.37, 214.09, 217.91, 220.85, 227.16, 230], lyricsTime:0, lyricsText:`
 [clap]{{전주에 박수}}
 
-[clap]このまま終わってしまうのは
+このまま終わってしまうのは
 코노 마마 오왓테 시마우노와
 이대로 끝내버리는 건
 
-[clap]絶対嫌だなって思ってて
+絶対嫌だなって思ってて
 젯타이 이야다낫테 오못테테
 절대 싫다고 생각해서
 
-[clap]それでも何もせず変化を
+それでも何もせず変化を
 소레데모 나니모 세즈 헨카오
 그렇지만 아무것도 하지 않고 변화를
 
-[clap]待ってたら君もいなくなって
+待ってたら君もいなくなって
 맛테타라 키미모 이나쿠 낫테
 기다린다면 너도 사라질테니
 
-[clap]君に嫌われる理由など
+
+君に嫌われる理由など
 키미니 키라와레루 리유-나도
 네게 미움받는 이유같은 건
 
-[clap]山ほど思いついてしまうけど
+山ほど思いついてしまうけど
 야마호도 오모이츠이테 시마우케도
 산더미만큼 떠오르지만
 
-[clap]優柔不断と口だけの
+優柔不断と口だけの
 유-쥬-후단토 쿠치다케노
 우유부단과 말로만 행동하는
 
-[clap]二重苦がきっと決め手だった
+二重苦がきっと決め手だった
 니쥬-쿠가 킷토 키메테닷타
 이중 고통이 분명 결정타였어
 
@@ -3708,78 +3736,73 @@ pic : handup
 pic : handup
 
 
-[jump]スーパースターになったら
+[wave]スーパースターになったら
 스-파-스타-니 낫타라
 슈퍼스타가 된다면
-pic : jump
 
-[jump]迎えに行くよきっと
+[wave]迎えに行くよきっと
 무카에니 유쿠요 킷토
 데리러 갈게 꼭
-pic : jump
 
-[jump]僕を待ってなんていなくたって
+[wave]僕を待ってなんていなくたって
 보쿠오 맛테 난테 이나쿠탓테
 나를 기다리거나 한 건 아니라해도
-pic : jump
 
-[jump]迷惑だと言われても
+[wave]迷惑だと言われても
 메이와쿠다토 이와레테모
 민폐라는 말을 들어도
-pic : jump
 
-[jump]スーパースターになって
+[wave]スーパースターになって
 스-파-스타-니 낫테
 슈퍼스타가 되어
-pic : jump
 
-[jump]男らしくなった新しい僕で
+[wave]男らしくなった新しい僕で
 오토코라시쿠 낫타 아타라시- 보쿠데
 남자다워진 새로운 나로
-pic : jump
 
-[jump]迎えに行くから
+[wave]迎えに行くから
 무카에니 유쿠카라
 데리러 갈테니까
-pic : jump
 
-[clap]{{전주에 박수}}
 
-[clap]世界の流れは速いから
+
+世界の流れは速いから
 세카이노 나가레와 하야이카라
 세상의 흐름은 빠르니까
 
-[clap]たとえ僕の足が折れるまで
+たとえ僕の足が折れるまで
 타토에 보쿠노 아시가 오레루마데
 설령 내 다리가 부러질 때까지
 
-[clap]思い切り走ったとしても
+思い切り走ったとしても
 오모이키리 하싯타토시테모
 실컷 달린다고 해도
 
-[clap]置いていかれて
+置いていかれて
 오이테 이카레테
 뒤쳐져니
 
-[clap]恥をかくだけだ
+恥をかくだけだ
 하지오 카쿠다케다
 쪽팔릴 뿐이야
 
-[clap]そうやって理由を見つけて
+
+そうやって理由を見つけて
 소- 얏테 리유-오 미츠케테
 그렇게 이유를 찾아내어
 
-[clap]仕方ないよなとため息ついて
+仕方ないよなとため息ついて
 시카타나이요나토 타메이키 츠이테
 어쩔 수 없는 건가 라며 한숨쉬고
 
-[clap]今まではここで終わってた
+今まではここで終わってた
 이마마데와 코코데 오왓테타
 여태까지는 여기서 끝났어
 
-[clap]守るプライドを間違っていた
+守るプライドを間違っていた
 마모루 푸라이도오 마치갓테 이타
 지킬 자존심을 잘못 알고 있었어
+
 
 [manse]{{君がどこの街に住んでいても}}
 {{키미가 도코노 마치니 슨데 이테모}}
@@ -3792,40 +3815,34 @@ pic : handup
 pic : handup
 
 
-[jump]スーパースターになったら
+[wave]スーパースターになったら
 스-파-스타-니 낫타라
 슈퍼스타가 된다면
-pic : jump
 
-[jump]迎えに行くよきっと
+[wave]迎えに行くよきっと
 무카에니 유쿠요 킷토
 데리러 갈게 꼭
-pic : jump
 
-[jump]僕を待ってなんていなくたって
+[wave]僕を待ってなんていなくたって
 보쿠오 맛테 난테 이나쿠탓테
 나를 기다리거나 한 건 아니라해도
-pic : jump
 
-[jump]迷惑だと言われても
+[wave]迷惑だと言われても
 메이와쿠다토 이와레테모
 민폐라는 말을 들어도
-pic : jump
 
-[jump]スーパースターになって
+[wave]スーパースターになって
 스-파-스타-니 낫테
 슈퍼스타가 되어
-pic : jump
 
-[jump]君の事ずっと大事にするんだ
+[wave]君の事ずっと大事にするんだ
 키미노 코토 즛토 다이지니 스룬다
 너를 계속 소중히 대할거야
-pic : jump
 
-[jump]口だけじゃないから
+[wave]口だけじゃないから
 쿠치다케쟈나이카라
 말로만 하는 게 아니니까
-pic : jump
+
 
 
 [manse]{{二度と何ひとつ諦めない}}
@@ -3860,20 +3877,17 @@ pic : handup
 {메이와쿠다토 이와레테모}
 {민폐라는 말을 들어도}
 
-[jump]スーパースターになって
+[wave]スーパースターになって
 스-파-스타-니 낫테
 슈퍼스타가 되어
-pic : jump
 
-[jump]男らしくなった新しい僕で
+[wave]男らしくなった新しい僕で
 오토코라시쿠 낫타 아타라시- 보쿠데
 남자다워진 새로운 나로
-pic : jump
 
-[jump]迎えに行くから
+[wave]迎えに行くから
 무카에니 유쿠카라
 데리러 갈테니까
-pic : jump
 
 [clap]{{전주에 박수}}
 
@@ -7132,9 +7146,7 @@ pic : jump
 내가 지금 할 수 있는 일을
 `, lyrics:[] },
     { id:"TakaneNoHanakoSan", jp:"高嶺の花子さん", ko:"높은 산의 하나코상", rom:"Takane no Hanako-san", date:"2013.06.26", album:"ラブストーリー", vtype:"mv",
-      youtubeId:"SII-S-zCg-c", lyricsShift:1.2, lyricsTimes:[26, 40.26, 54.27, 66.96, 77.57, 84.20, 92.05, 98.02, 106.65, 127.71, 141.17, 146.01, 153.96, 160.78, 168.47, 171.10, 179.01, 185.01, 193.70, 200.15, 205.85, 214.05, 219.05, 224.18, 226.72, 234.63, 240.58, 248.50, 254.62, 263.39], lyricsTime:0, lyricsText:`
-[clap]{{전주에 박수}}
-
+      youtubeId:"SII-S-zCg-c", lyricsShift:1.2, lyricsTimes:[40.26, 54.27, 66.96, 77.57, 84.20, 92.05, 98.02, 106.65, 127.71, 141.17, 146.01, 153.96, 160.78, 168.47, 171.10, 179.01, 185.01, 193.70, 200.15, 205.85, 214.05, 219.05, 224.18, 226.72, 234.63, 240.58, 248.50, 254.62, 263.39], lyricsTime:0, lyricsText:`
 [clap]{{君から見た僕はきっと　ただの友達の友達}}
 {{키미카라 미타 보쿠와 킷토 타다노 토모다치노 토모다치}}
 {{네 시선으로 본 나는 분명 그저 친구의 친구}}
@@ -7224,25 +7236,26 @@ pic : jump
 pic : jump
 
 
-[clap]この胸の　焦りに身を任せ
+この胸の　焦りに身を任せ
 코노 무네노 아세리니 미오 마카세
 이 가슴의 초조함에 몸을 맡기고
 
-[clap]君のとこへ走ったとして　実は僕の方が
+君のとこへ走ったとして　実は僕の方が
 키미노 토코에 하싯타토시테 지츠와 보쿠노 호-가
 네가 있는 곳으로 달린다 한들 실은 내 쪽이
 
-[clap]悪い意味で　夏の魔法的なもので
+悪い意味で　夏の魔法的なもので
 와루이 이미데 나츠노 마호-테키나 모노데
 나쁜 의미로 여름의 마법적인 것에
 
-[clap]舞い上がってましたって　怖すぎる
+舞い上がってましたって　怖すぎる
 마이아갓테 마시탓테 코와스기루
 들떠 있었습니다 같은 너무 무서운
 
-[clap]オチばかり浮かんできて
+オチばかり浮かんできて
 오치바카리 우칸데 키테
 결말만 떠올라서
+
 
 真夏の空の下で　震えながら　君の事を考えます
 마나츠노 소라노 시타데 후루에나가라 키미노 코토오 칸가에마스
@@ -7251,6 +7264,7 @@ pic : jump
 好きなアイスの味はきっと
 스키나 아이스노 아지와 킷토
 좋아하는 아이스크림 맛은 분명
+
 
 
 [jump]会いたいんだ　今すぐその角から　飛び出してきてくれないか
@@ -16295,7 +16309,9 @@ function viewHome(){
 
     <div class="home-foot">
       <button class="share-btn" type="button" id="shareBtn">공유하기</button>
+      <button class="share-btn" type="button" id="installBtn"${IS_STANDALONE ? " hidden" : ""}>＋ 홈 화면에 바로가기</button>
     </div>
+    <div class="install-guide" id="installGuide" hidden></div>
   </section>
   <div class="credits">back number · 비공식 팬 제작 가이드 · back number 및 소속사와 관계없어요</div>`;
 }
@@ -16369,7 +16385,34 @@ function startCountdown(){
   };
   tick(); cdTimer = setInterval(tick, 1000);
 }
+/* ── 홈 화면 바로가기 (앱처럼 설치) ── */
+const IS_STANDALONE = matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
+let installEvt = null;
+window.addEventListener("beforeinstallprompt", e => { e.preventDefault(); installEvt = e; });
+window.addEventListener("appinstalled", () => { installEvt = null; const b = $("#installBtn"); if (b) b.hidden = true; });
+function installGuideHtml(){
+  const ua = navigator.userAgent, ios = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  const steps = ios
+    ? ["Safari 아래쪽 <b>공유 버튼</b> (네모에 위쪽 화살표)을 눌러요", "목록에서 <b>홈 화면에 추가</b>를 골라요", "오른쪽 위 <b>추가</b>를 누르면 끝"]
+    : /SamsungBrowser/.test(ua)
+    ? ["아래쪽 <b>≡ 메뉴</b>를 눌러요", "<b>페이지 추가 → 홈 화면</b>을 골라요"]
+    : /Android/.test(ua)
+    ? ["오른쪽 위 <b>⋮ 메뉴</b>를 눌러요", "<b>홈 화면에 추가</b> (또는 <b>앱 설치</b>)를 골라요"]
+    : ["주소창 오른쪽 <b>설치 아이콘</b> 또는 <b>⋮ 메뉴 → 저장 및 공유 → 바로가기 만들기</b>를 눌러요"];
+  return `<b class="ig-title">홈 화면에 바로가기 만들기</b><ol>${steps.map(x => `<li>${x}</li>`).join("")}</ol><button class="ig-x" type="button" aria-label="닫기">닫기</button>`;
+}
 function bindHome(){
+  { const ib = $("#installBtn"), g = $("#installGuide");
+    if (ib) ib.onclick = async () => {
+      if (installEvt){                        // 안드로이드 크롬·PC 크롬/엣지: 바로 설치 창
+        installEvt.prompt();
+        try { const r = await installEvt.userChoice; if (r.outcome === "accepted") ib.hidden = true; } catch(e){}
+        installEvt = null; return;
+      }
+      g.innerHTML = installGuideHtml(); g.hidden = !g.hidden;            // 아이폰 등: 방법 안내
+      g.querySelector(".ig-x").onclick = () => { g.hidden = true; };
+      if (!g.hidden) g.scrollIntoView({ block:"center", behavior:"smooth" });
+    }; }
   $("#shareBtn").onclick = async () => {
     const data = { title: "back number", text: "백넘버 한국 팬을 위한 비공식 가이드", url: location.origin + location.pathname };
     try {
@@ -17216,7 +17259,7 @@ function mvNeighbor(delta, skipNoVideo){
 
 /* ── 소리 기억하기 ── 플레이어에서 맞춘 볼륨·음소거를 기억해 다음 곡·다음 방문에도 그대로 */
 const mvVol = { v:100, m:false };
-try { const v = JSON.parse(localStorage.getItem("bn-vol") || "null"); if (v){ mvVol.v = Number(v.v) || 100; mvVol.m = !!v.m; } } catch(e){}
+try { const v = JSON.parse(localStorage.getItem("bn-vol") || "null"); if (v){ mvVol.v = Number(v.v) || 100; } } catch(e){}   // 새로고침하면 소리는 항상 켜진 상태로 시작 (볼륨 크기만 기억)
 function mvVolApply(){
   if (!mv.player || !mv.ready) return;
   mv.volHold = Date.now() + 2500;           // 적용 직후엔 플레이어가 예전 값(100)을 돌려줄 수 있어 잠깐 저장 안 함
@@ -17227,7 +17270,7 @@ function mvVolWatch(){
   mv.volTimer = setInterval(() => {
     if (!mv.player || !mv.ready || Date.now() < (mv.volHold || 0)) return;
     if (mv.autoMuted){                       // 자동재생용 음소거 중: 유튜브 화면에서 직접 소리를 켜면 버튼 숨김
-      try { if (!mv.player.isMuted()){ mv.autoMuted = false; const b = $("#unmuteBtn"); if (b) b.hidden = true; mv.volHold = Date.now() + 1500; } } catch(e){}
+      try { if (!mv.player.isMuted()){ mv.autoMuted = false; const b = $("#unmuteBtn"); if (b){ b.hidden = true; b.classList.remove("hint"); b.lastChild.textContent = "탭해서 소리 켜기"; } mv.volHold = Date.now() + 1500; } } catch(e){}
       return;
     }
     try {
@@ -17744,9 +17787,21 @@ function bindMv(id){
     if (n) $("#nextSong").title = "다음 곡: " + n.song.ko; }
   { const ub = $("#unmuteBtn");
     if (ub) ub.onclick = () => {
+      if (ub.classList.contains("hint")) return;
       mv.autoMuted = false; ub.hidden = true;
       try { mv.player.unMute(); mv.player.setVolume(mvVol.v); if (mvVol.m) mvVol.m = false; mv.player.playVideo(); } catch(e){}
       mv.volHold = Date.now() + 1500;
+      // 아이폰은 바깥 버튼으로 소리를 못 켜는 경우가 있어 확인 → 안 됐으면 영상 안을 직접 탭하라고 안내
+      setTimeout(() => {
+        if (!mv.player || !mv.ready) return;
+        let muted = false, st = -1;
+        try { muted = mv.player.isMuted(); st = mv.player.getPlayerState(); } catch(e){}
+        if (!muted && (st === 1 || st === 3)) return;
+        mv.autoMuted = true;
+        try { mv.player.mute(); mv.player.playVideo(); } catch(e){}
+        ub.classList.add("hint"); ub.hidden = false;
+        ub.lastChild.textContent = "영상 안의 🔇 아이콘을 눌러 소리를 켜 주세요 (한 번만 하면 다음 곡부터 계속 켜져요)";
+      }, 900);
     }; }
   $("#songTheme").onclick = () => $("#themeBtn").click();
   $("#pickerBtn").onclick = () => openSheet(!$("#songSheet").classList.contains("open"));
@@ -17801,7 +17856,23 @@ function mvMount(song){
   if (!song.youtubeId) return;
   mvLoadApi();
   if (!window.YT || !window.YT.Player){ setTimeout(() => { if (mv.song === song && $("#yt")) mvMount(song); }, 300); return; }
-  const auto = 1; mv.autoplay = false;       // 곡에 들어가면 항상 바로 재생
+  mv.autoplay = false;
+  if (mv.keepPlayer && mv.player && mv.ready){   // 곡 → 곡: 플레이어를 새로 만들지 않고 영상만 바꿈 (아이폰에서 소리 유지)
+    mv.keepPlayer = false; mv.volPlayed = false;
+    try { mv.player.loadVideoById(song.youtubeId); } catch(e){}
+    mvTick(song); updatePlayBtn();
+    setTimeout(() => {
+      if (mv.song !== song || !mv.player) return;
+      let st = -1; try { st = mv.player.getPlayerState(); } catch(e){}
+      if (st === 1 || st === 3) return;
+      mv.autoMuted = true;
+      try { mv.player.mute(); mv.player.playVideo(); } catch(e){}
+      const b = $("#unmuteBtn"); if (b) b.hidden = false;
+    }, 1500);
+    return;
+  }
+  mv.keepPlayer = false;
+  const auto = 1;                            // 곡에 들어가면 항상 바로 재생
   mv.volPlayed = false; mv.ready = false; mv.autoMuted = false;
   mv.player = new YT.Player("yt", {
     videoId: song.youtubeId,
@@ -17824,9 +17895,10 @@ function mvMount(song){
         mvTick(song); updatePlayBtn();
       },
       onStateChange: e => {
+        const sg = mv.song; if (!sg) return;    // 플레이어를 곡끼리 같이 쓰므로 지금 곡 기준
         if (e.data === 1 && !mv.volPlayed){ mv.volPlayed = true; mvVolApply(); }   // 재생 시작 때 한 번 더 맞춰줌
-        mvTick(song); updatePlayBtn();
-        if (e.data === 0 && mv.song === song) mvGo(1, true);   // 영상이 끝나면 다음 곡 (마지막이면 처음으로)
+        mvTick(sg); updatePlayBtn();
+        if (e.data === 0) mvGo(1, true);   // 영상이 끝나면 다음 곡 (마지막이면 처음으로)
       }
     }
   });
@@ -17862,6 +17934,33 @@ function padLyrics(){
   list.style.paddingTop = pad + "px";
 }
 window.addEventListener("resize", () => { if ($("#lyricsList")) padLyrics(); });
+function mvSoftCleanup(){                    // 곡 → 곡 이동: 플레이어는 남기고 나머지만 정리
+  clearInterval(mv.timer); mv.timer = null;
+  hideTipPic();
+  if (mv.keys){ document.removeEventListener("keydown", mv.keys); mv.keys = null; }
+}
+/* 새 화면 HTML을 넣되, keepSel 요소(영상 칸)는 그대로 두고 주변만 바꾼다 — iframe을 옮기면 다시 로드되므로 */
+function morphKeep(root, html, keepSel){
+  const keep = root.querySelector(keepSel); if (!keep) return false;
+  const tpl = document.createElement("div"); tpl.innerHTML = html;
+  const nk = tpl.querySelector(keepSel); if (!nk) return false;
+  const depth = (el, top) => { let d = 0; while (el && el !== top){ el = el.parentNode; d++; } return el === top ? d : -1; };
+  if (depth(keep, root) !== depth(nk, tpl)) return false;
+  let o = keep, n = nk;
+  while (o !== root){
+    const op = o.parentNode, np = n.parentNode;
+    const nKids = [...np.childNodes], ni = nKids.indexOf(n);
+    [...op.childNodes].forEach(c => { if (c !== o) op.removeChild(c); });
+    nKids.slice(0, ni).forEach(c => op.insertBefore(c, o));
+    nKids.slice(ni + 1).forEach(c => op.appendChild(c));
+    if (op !== root){
+      [...op.attributes].forEach(a => op.removeAttribute(a.name));
+      [...np.attributes].forEach(a => op.setAttribute(a.name, a.value));
+    }
+    o = op; n = np;
+  }
+  return true;
+}
 function mvCleanup(){
   clearInterval(mv.timer); mv.timer = null;
   clearInterval(mv.volTimer); mv.volTimer = null;
@@ -18389,10 +18488,20 @@ function applyPageBg(){
 
 const ROUTES = { "":viewHome, schedule:viewSchedule, mv:viewMv, setlist:viewSetlist, disco:viewDisco, info:viewInfo, about:viewAbout, sync:viewSync, write:viewWrite, goods:viewGoods };
 function render(){
-  mvCleanup(); syncCleanup();
   const [r, arg] = location.hash.replace(/^#\/?/, "").split("/");
   const view = ROUTES[r] || viewHome;
-  $("#app").innerHTML = view(arg);
+  const nextSong = view === viewMv && arg ? SONGS.find(s => s.id === decodeURIComponent(arg)) : null;
+  const songToSong = !!(nextSong && nextSong.youtubeId && mv.song && mv.song.youtubeId && mv.player && mv.ready && $("#songPage .video-frame iframe"));
+  syncCleanup();
+  if (songToSong){
+    mvSoftCleanup();
+    const html = view(arg);
+    if (morphKeep($("#app"), html, ".video-frame")) mv.keepPlayer = true;
+    else { mvCleanup(); $("#app").innerHTML = html; }
+  } else {
+    mvCleanup();
+    $("#app").innerHTML = view(arg);
+  }
   const tab = r === "about" ? "" : (r === "setlist" || r === "disco" || r === "sync") ? "mv" : r === "write" ? "info" : (ROUTES[r] ? r : "");
   document.querySelectorAll("nav.tabs a").forEach(a => {
     if (a.dataset.r === tab) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
@@ -18400,7 +18509,7 @@ function render(){
   document.body.classList.toggle("is-home", view === viewHome);
   applyPageBg();
   document.body.classList.toggle("is-post", (view === viewInfo && !!arg) || view === viewWrite);
-  if (view === viewHome) mv.auto = true;   // 메인 화면에 오거나 새로고침하면 자동 스크롤 다시 켜짐 (곡끼리 넘어갈 땐 유지)
+  if (view === viewHome){ mv.auto = true; mvVol.m = false; }   // 메인 화면에 오거나 새로고침하면 자동 스크롤·소리 다시 켜짐 (곡끼리 넘어갈 땐 유지)
   if (view === viewHome){ startCountdown(); bindHome(); } else clearInterval(cdTimer);
   if (view === viewSchedule) bindSchedule();
   if (view === viewMv) bindMv(arg);
