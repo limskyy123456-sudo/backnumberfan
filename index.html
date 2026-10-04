@@ -322,6 +322,23 @@ body{overflow-x:clip}
 .live-play svg{width:12px;height:12px}
 .live-play.on{background:var(--accent);border-color:var(--accent);color:#fff}
 .live-player{margin:0 0 12px}
+.fav-dot{font-style:normal;color:#e0556b;margin-right:4px;font-size:.9em}
+.ly-hit{display:block;margin-top:2px;font-size:12px;color:var(--accent);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ly-hit .ly-tr{color:var(--muted)}
+.ly-tag{display:inline-block;margin-right:6px;padding:0 6px;border-radius:5px;background:var(--accent-soft);color:var(--accent);font-size:10.5px;font-weight:800;line-height:17px;vertical-align:1px}
+.mvrow mark{background:color-mix(in srgb,var(--gold) 35%,transparent);color:inherit;border-radius:3px;padding:0 1px}
+.mv-group{display:inline-flex;align-items:center;gap:6px;margin:14px 0 6px;padding:3px 10px 3px 3px;border-radius:999px;background:color-mix(in srgb,var(--surface) 88%,transparent);font-size:12.5px;font-weight:700;color:var(--ink)}
+.mv-group:first-child{margin-top:4px}
+.mv-gtag{padding:1px 8px;border-radius:999px;font-size:11px;font-weight:800}
+.mv-gtag.t{background:var(--ink);color:var(--bg)}
+.mv-gtag.l{background:var(--accent-soft);color:var(--accent)}
+.fav-top.on{color:#e0556b;border-color:#e0556b}
+.row-fav{flex:none;width:34px;height:34px;margin:-4px -6px -4px -2px;display:flex;align-items:center;justify-content:center;border:0;background:none;color:var(--muted);opacity:.55;cursor:pointer;border-radius:50%}
+.row-fav svg{width:19px;height:19px}
+.row-fav.on{color:#e0556b;opacity:1}
+.row-fav:hover{opacity:1}
+.mvshuffle{flex:none;padding:7px 11px}
+.mvshuffle svg{width:17px;height:17px}
 .unmute-btn{position:absolute;left:10px;bottom:10px;z-index:3;display:inline-flex;align-items:center;gap:6px;padding:8px 13px;border:0;border-radius:999px;background:rgba(0,0,0,.72);color:#fff;font:inherit;font-size:13px;font-weight:700;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35)}
 .unmute-btn.hint{pointer-events:none;max-width:calc(100% - 20px);white-space:normal;text-align:left;line-height:1.4;font-size:12px}
 .unmute-btn svg{width:17px;height:17px}
@@ -12596,31 +12613,29 @@ ASSA! 흩뿌려서 닳은 감정에 솜을 채우며
 괴로운거야 지금 그 손끝으로 숨통을 끊어줘
 `, lyrics:[] },
     { id:"Kaitou", jp:"怪盗", ko:"괴도", rom:"Kaitou", date:"2021.05.24", album:"ユーモア", vtype:"mv",
-      youtubeId:"1DPldNasDgY", lyricsShift:0, lyricsTimes:[0, 21.90, 24.90, 29.86, 33.90, 36.87, 44.29, 51.18, 53.70, 56.14, 60.31, 63.52, 67.98, 70.60, 73.07, 77.33, 83.50, 97.89, 100.64, 105.86, 109.90, 112.49, 114.03, 117.91, 120.87, 122.62, 126.08, 138.56, 141.20, 143.64, 147.73, 150.90, 155.11, 157.80, 160.45, 164.54, 170.88, 176.22], lyricsTime:0, lyricsText:`
-[clap]{{전주에 박수}}
-
-[clap]じゃあちょっと目を閉じて
+      youtubeId:"1DPldNasDgY", lyricsShift:0, lyricsTimes:[21.90, 24.90, 29.86, 33.90, 36.87, 44.29, 51.18, 53.70, 56.14, 60.31, 63.52, 67.98, 70.60, 73.07, 77.33, 83.50, 97.89, 100.64, 105.86, 109.90, 112.49, 114.03, 117.91, 120.87, 122.62, 126.08, 138.56, 141.20, 143.64, 147.73, 150.90, 155.11, 157.80, 160.45, 164.54, 170.88, 176.22], lyricsTime:0, lyricsText:`
+じゃあちょっと目を閉じて
 쟈- 춋토 메오 토지테
 자 잠깐 눈을 감고
 
-[clap]僕の腕に掴まっておいてよ
+僕の腕に掴まっておいてよ
 보쿠노 우데니 츠카맛테 오이테요
 내 품 안에 붙잡혀 있어줘
 
-[clap]君の笑顔　盗む奴から
+君の笑顔　盗む奴から
 키미노 에가오 누스무 야츠카라
 네 미소를 훔친 놈으로부터
 
-[clap]君を盗むのさ
+君を盗むのさ
 키미오 누스무노사
 너를 훔칠 테니까
 
 
-[clap]物語の名前は伏せたまま始めよう
+物語の名前は伏せたまま始めよう
 모노가타리노 나마에와 후세타 마마 하지메요-
 이야기의 이름은 덮어놓은 채 시작하자
 
-[clap]連れ去ってと合図をくれたら
+連れ去ってと合図をくれたら
 츠레삿테토 아이즈오 쿠레타라
 데려가달라고 신호를 주면
 
@@ -12666,44 +12681,46 @@ ASSA! 흩뿌려서 닳은 감정에 솜을 채우며
 키미가 이레바 보쿠니 후카노- 난카 나이
 네가 있다면 내게 불가능따윈 없어
 
-[clap]もう行かなきゃなんて
+
+
+もう行かなきゃなんて
 모- 이카나캬 난테
 이제 가야 해 라니
 
-[clap]ガラスの靴で　月にでも帰るの？
+ガラスの靴で　月にでも帰るの？
 가라스노 쿠츠데 츠키니데모 카에루노?
 유리구두로 달에라도 돌아갈거야?
 
-[clap]君がどう否定したって
+君がどう否定したって
 키미가 도- 히테이시탓테
 네가 어떻게 부정한다 해도
 
-[clap]素敵なままだよ
+素敵なままだよ
 스테키나 마마다요
 그대로 멋진 걸
 
 
-[clap]君と出会えた僕と
+君と出会えた僕と
 키미토 데아에타 보쿠토
 너와 만난 나와
 
-[clap]出会えなかった先の僕を比べて
+出会えなかった先の僕を比べて
 데아에나캇타 사키노 보쿠오 쿠라베테
 만나지 못한 전의 나를 비교해서
 
-[clap]論文にしたいとこだけど
+論文にしたいとこだけど
 론분니 시타이토코 다케도
 논문을 쓰고 싶지만
 
-[clap]君の細胞全部の
+君の細胞全部の
 키미노 사이보- 젠부노
 네 세포 전부의
 
-[clap]尊さはきっと伝えられやしない
+尊さはきっと伝えられやしない
 토-토사와 킷토 츠타에라레야 시나이
 고귀함은 분명 전해지지 않을거야
 
-[clap]君自身に君を僕が証明するよ
+君自身に君を僕が証明するよ
 키미 지신니 키미오 보쿠가 쇼-메이스루요
 너 자신에게 너를 내가 증명할게
 
@@ -15096,29 +15113,29 @@ pic : side
 와스레나이데
 잊지 말아줘
 
-[clap]{라라라 라라라 라 라 x 2}
+{라라라 라라라 라 라 x 2}
 
-[clap]百年の恋から覚めて
+百年の恋から覚めて
 햐쿠넨노 코이카라 사메테
 백년의 사랑에서 깨어나
 
-[clap]途方に暮れる背中を
+途方に暮れる背中を
 토호-니 쿠레루 세나카오
 어찌할 바를 모르는 등 뒤를
 
-[clap]いつかは千年の愛が
+いつかは千年の愛が
 이츠카와 센넨노 아이가
 언젠가는 천년의 사랑이
 
-[clap]抱きしめるからね
+抱きしめるからね
 다키시메루카라네
 안아줄테니까
 
-[clap]くじ引きが外れて
+くじ引きが外れて
 쿠지비키가 하즈레테
 아이스크림 막대가 꽝이 나와서
 
-[clap][clap]泣き喚いてる子供
+泣き喚いてる子供
 나키와메이테루 코도모
 울부짖고 있는 아이야
 
@@ -15126,11 +15143,11 @@ pic : side
 세카이와 하지맛타바카리데
 세상은 시작되었을 뿐이고
 
-[clap]君のものだよ
+君のものだよ
 키미노 모노다요
 네 거야
 
-[clap]忘れないで　忘れないで
+忘れないで　忘れないで
 와스레나이데 와스레나이데
 잊지 말아줘 잊지 말아줘
 + 라라라 라라라 라 라 x 4
@@ -15193,28 +15210,28 @@ pic : side
 츠타에테 쿠레루
 알려주고 있어
 
-[clap]嬉しかったことは
+嬉しかったことは
 우레시캇타 코토와
 기뻤던 일은
 
-[clap]どれだけ嘆いた後でも
+どれだけ嘆いた後でも
 도레다케 나게이타 아토데모
 얼마나 슬퍼한 후라도
 
-[clap]あなたの中で光っていて
+あなたの中で光っていて
 아나타노 나카데 히캇테 이테
 당신 안에서 빛나고 있어서
 
-[clap]消えないからね
+消えないからね
 키에나이카라네
 사라지지 않을테니까
 
-[wave]忘れないで　忘れないで
+忘れないで　忘れないで
 와스레나이데 와스레나이데
 잊지 말아줘 잊지 말아줘
 + 라라라 라라라 라 라 x 4
 
-[wave]忘れないで　忘れないで
+忘れないで　忘れないで
 와스레나이데 와스레나이데
 잊지 말아줘 잊지 말아줘
 + 라라라 라라라 라 라 x 4
@@ -17303,9 +17320,10 @@ function mvSorted(){
   return list;
 }
 function mvMatch(s){
+  if (mv.favOnly && !FAV.has(s.id)) return false;
   if (!mv.query) return true;
   const q = mvSquash(mv.query);
-  return mvSquash(s.ko).includes(q) || mvSquash(s.jp).includes(q) || mvSquash(s.rom).includes(q) || mvSquash(s.album).includes(q);
+  return mvTitleHit(s, q) || !!mvLyricHit(s, q);
 }
 /* ============ 응원 구호 · 짤방 (바운디 사이트와 같은 방식) ============
    가사 쓰는 법은 위쪽 SONGS 설명(★ 응원 구호 넣는 법)을 보세요. */
@@ -17471,15 +17489,69 @@ function mvBadge(s){
   if (s.youtubeId) return `<span class="tag t-release">음원</span>`;
   return `<span class="tag t-done">없음</span>`;
 }
+/* ── 즐겨찾기 ♥ (이 기기에만 저장) ── */
+const FAV = new Set((() => { try { return JSON.parse(localStorage.getItem("bn-fav") || "[]"); } catch(e){ return []; } })());
+function favSave(){ try { localStorage.setItem("bn-fav", JSON.stringify([...FAV])); } catch(e){} }
+function favToggle(id){ FAV.has(id) ? FAV.delete(id) : FAV.add(id); favSave(); return FAV.has(id); }
+/* ── 가사 구절 검색 ── */
+const lyClean = t => String(t || "").replace(/\[[^\]]*\]/g, "").replace(/[{}]/g, "");
+function mvTitleHit(s, q){ return mvSquash(s.ko).includes(q) || mvSquash(s.jp).includes(q) || mvSquash(s.rom).includes(q) || mvSquash(s.album).includes(q); }
+function mvLyricHit(s, q){
+  if (q.length < 2) return null;
+  for (const l of (s.lyrics || [])){
+    for (const k of ["jp", "ko", "tr"]){ const t = lyClean(l[k]); if (t && mvSquash(t).includes(q)) return l; }
+  }
+  return null;
+}
+/* ── 이 곡을 부른 공연 (셋리스트에서 자동) ── */
+function songLiveRecord(song){
+  const out = [];
+  const scan = (list, kind) => list.forEach(c => {
+    let n = 0, enc = false;
+    (c.songs || []).forEach(x => {
+      if (x && x.enc){ enc = true; return; }
+      n++;
+      const t = typeof x === "string" ? x : x && x.t;
+      if (!t || setFind(t) !== song) return;
+      const pos = enc ? "앙코르" : n + "번째";
+      const hit = out.find(o => o.c === c);
+      if (hit) hit.pos.push(pos); else out.push({ c, kind, pos:[pos] });
+    });
+  });
+  scan(CONCERT_SETLISTS, "tour"); scan(CONCERT_FESTS, "fest");
+  return out;
+}
 function mvRows(){
   const items = mvSorted().filter(mvMatch);
-  $("#mvMeta").textContent = mv.query ? `검색 결과 ${items.length}곡` : `전체 ${SONGS.length}곡`;
-  $("#mvList").innerHTML = items.length
-    ? `<div class="card mvlist">${items.map(s => `
+  const q = mvSquash(mv.query || "");
+  const raw = String(mv.query || "").trim();
+  // 검색어가 들어간 부분을 강조 (그대로 들어 있을 때만)
+  const mark = t => { const e = esc(t); if (!raw) return e; const k = esc(raw); const i = e.toLowerCase().indexOf(k.toLowerCase()); return i < 0 ? e : e.slice(0, i) + `<mark>${e.slice(i, i + k.length)}</mark>` + e.slice(i + k.length); };
+  const row = (s, l) => `
         <a class="mvrow" href="#/mv/${encodeURIComponent(s.id)}">
-          <span class="t"><b>${esc(s.ko)}</b><small>${esc(s.jp)} <span class="alb">· ${esc(s.album)}</span></small></span>
+          <span class="t"><b>${l ? esc(s.ko) : mark(s.ko)}</b><small>${l ? esc(s.jp) : mark(s.jp)} <span class="alb">· ${esc(s.album)}</span></small>${l
+            ? (() => {                          // 검색어가 들어 있는 줄(일본어·발음·번역)을 앞에 보여 줌
+                const f = [lyClean(l.jp), lyClean(l.ko), lyClean(l.tr)].filter(Boolean);
+                const hit = f.find(t => mvSquash(t).includes(q)) || f[0] || "";
+                const other = f.find(t => t !== hit && t === lyClean(l.jp)) || "";
+                return `<small class="ly-hit"><span class="ly-tag">가사</span>${mark(hit)}${other ? ` <span class="ly-tr">· ${esc(other)}</span>` : ""}</small>`;
+              })() : ""}</span>
           <span class="side"><span class="side-top">${songMarksHtml(s)}${mvBadge(s)}</span><small>${esc(s.date)}</small></span>
-        </a>`).join("")}</div>`
+          <button class="row-fav${FAV.has(s.id) ? " on" : ""}" data-fav="${esc(s.id)}" aria-pressed="${FAV.has(s.id)}" aria-label="즐겨찾기">${FAV.has(s.id) ? I_HEART_ON : I_HEART}</button>
+        </a>`;
+  if (!q){
+    $("#mvMeta").textContent = mv.favOnly ? `♥ 즐겨찾기 ${items.length}곡` : `전체 ${SONGS.length}곡`;
+    $("#mvList").innerHTML = items.length ? `<div class="card mvlist">${items.map(s => row(s)).join("")}</div>`
+      : `<div class="card muted" style="text-align:center">${mv.favOnly ? "아직 즐겨찾기한 곡이 없어요 · 곡 옆 ♡를 눌러 보세요" : "찾는 곡이 없어요"}</div>`;
+    return;
+  }
+  // 검색: 제목으로 찾은 곡 / 가사에서 찾은 곡을 나눠서 보여 준다
+  const byTitle = items.filter(s => mvTitleHit(s, q));
+  const byLyric = items.filter(s => !mvTitleHit(s, q)).map(s => [s, mvLyricHit(s, q)]).filter(x => x[1]);
+  $("#mvMeta").textContent = `제목 ${byTitle.length}곡 · 가사 ${byLyric.length}곡`;
+  $("#mvList").innerHTML = (byTitle.length || byLyric.length)
+    ? (byTitle.length ? `<div class="mv-group"><span class="mv-gtag t">제목</span> 제목·앨범에서 찾은 곡 ${byTitle.length}</div><div class="card mvlist">${byTitle.map(s => row(s)).join("")}</div>` : "")
+    + (byLyric.length ? `<div class="mv-group"><span class="mv-gtag l">가사</span> 가사에서 찾은 곡 ${byLyric.length}</div><div class="card mvlist">${byLyric.map(([s, l]) => row(s, l)).join("")}</div>` : "")
     : `<div class="card muted" style="text-align:center">찾는 곡이 없어요</div>`;
 }
 
@@ -17496,15 +17568,17 @@ function viewMv(id){
   <div class="mvtools">
     <label class="mvsearch">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
-      <input id="mvQ" type="search" placeholder="곡 제목·앨범 검색 (한국어·일본어·로마자)" value="${esc(mv.query)}">
+      <input id="mvQ" type="search" placeholder="곡 제목·앨범·가사 한 구절로 검색" value="${esc(mv.query)}">
     </label>
     <div class="mvsort-wrap">
-      <button class="btn mvsort-btn" id="mvSort" aria-haspopup="listbox" aria-expanded="false"><span id="mvSortLabel">${MV_LABEL[mv.order] || MV_LABEL.new}</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
+      <button class="btn mvsort-btn" id="mvSort" aria-haspopup="listbox" aria-expanded="false"><span id="mvSortLabel">${mv.favOnly ? "♥ " : ""}${MV_LABEL[mv.order] || MV_LABEL.new}</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
       <div class="mvsort-menu" id="mvSortMenu" role="listbox" hidden>
         ${[["발매일", "new", "old"], ["가나다", "name", "namer"], ["떼창", "chant", "chantr"]].map(([g, a, b]) => `
         <div class="mvsort-group"><small>${g}</small>${[a, b].map(k => `<button role="option" data-o="${k}" aria-selected="${mv.order === k}">${MV_LABEL[k]}</button>`).join("")}</div>`).join("")}
+        <div class="mvsort-group"><small>보기</small><button role="option" data-v="all" aria-selected="${!mv.favOnly}">전체 곡</button><button role="option" data-v="fav" aria-selected="${!!mv.favOnly}">♥ 즐겨찾기만</button></div>
       </div>
     </div>
+    <button class="btn mvshuffle" id="mvShuffle" title="지금 목록에서 랜덤 재생" aria-label="랜덤 재생"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5M4 20 21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg></button>
   </div>
   <div class="mvmeta small muted"><span id="mvMeta"></span><span>MV ${SONGS.filter(s => s.vtype === "mv" || s.vtype === "lyric" || s.vtype === "live").length} · 음원 ${SONGS.filter(s => s.vtype === "audio").length}</span></div>
   <div id="mvList"></div>
@@ -17520,6 +17594,8 @@ const I_RIGHT = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stro
 const I_CARET = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>`;
 const I_PLAY  = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>`;
 const I_PAUSE = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>`;
+const I_HEART    = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 20.5s-7.5-4.6-9.2-9.4C1.6 7.6 3.9 4.5 7.2 4.5c2 0 3.6 1.1 4.8 2.8 1.2-1.7 2.8-2.8 4.8-2.8 3.3 0 5.6 3.1 4.4 6.6-1.7 4.8-9.2 9.4-9.2 9.4z"/></svg>`;
+const I_HEART_ON = I_HEART.replace('fill="none"', 'fill="currentColor"');
 const I_MOON  = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>`;
 try { mv.venue = localStorage.getItem("mv-venue") === "1"; } catch(e){ mv.venue = false; }
 
@@ -17539,6 +17615,7 @@ function viewMvSong(song){
         </button>
         <button class="song-nav-btn" id="nextSong" aria-label="다음 곡">${I_RIGHT}</button>
       </nav>
+      <button class="song-nav-btn fav-top${FAV.has(song.id) ? " on" : ""}" id="favBtn" aria-pressed="${FAV.has(song.id)}" aria-label="즐겨찾기" title="즐겨찾기">${FAV.has(song.id) ? I_HEART_ON : I_HEART}</button>
       <button class="song-nav-btn" id="songTheme" aria-label="화면 테마 바꾸기">${I_MOON}</button>
     </div>
 
@@ -17726,6 +17803,13 @@ function songInfoHtml(song){
         ${row("타이업", esc(info.tieup || ""))}
         ${row("크레딧", esc(info.credit || ""))}
         ${row("라이브 영상", videos.map(v => `${esc(v.jp)} <small>· ${esc(v.date)}</small>`).join("<br>"))}
+        ${(() => {
+          const rec = songLiveRecord(song); if (!rec.length) return "";
+          const tours = rec.filter(r => r.kind === "tour").length, fests = rec.length - tours;
+          const head = `<b>${[tours ? `투어 ${tours}회` : "", fests ? `페스·이벤트 ${fests}회` : ""].filter(Boolean).join(" · ")}</b>`;
+          const lines = rec.slice(0, 8).map(r => `${esc(String(r.c.year || ""))} ${esc(r.c.short || r.c.name)} <small>· ${r.pos.join(" · ")}</small>`);
+          return row("라이브 기록", `${head}<br>${lines.join("<br>")}${rec.length > 8 ? `<br><small>외 ${rec.length - 8}개 공연</small>` : ""}<br><small>※ 사이트에 등록된 셋리스트 기준</small>`);
+        })()}
         ${row("라이브 음원", liveAud.map(([a, t]) => `<a href="https://www.youtube.com/watch?v=${t[1]}" target="_blank" rel="noopener">${esc(a.jp)} ↗</a> <small>· ${esc(a.date)}</small>`).join("<br>"))}
       </div>
       ${info.story ? `<div class="post-body si-story">${infoBody(info.story)}</div>`
@@ -17765,16 +17849,43 @@ function bindMv(id){
     sb.onclick = e => { e.stopPropagation(); openSort(sm.hidden); };
     sm.onclick = e => {
       e.stopPropagation();
+      const v = e.target.closest("[data-v]");
+      if (v){
+        mv.favOnly = v.dataset.v === "fav";
+        sm.querySelectorAll("[data-v]").forEach(x => x.setAttribute("aria-selected", x === v));
+        $("#mvSortLabel").textContent = (mv.favOnly ? "♥ " : "") + MV_LABEL[mv.order];
+        openSort(false); mvRows(); return;
+      }
       const o = e.target.closest("[data-o]"); if (!o) return;
       mv.order = o.dataset.o; mvSave();
-      $("#mvSortLabel").textContent = MV_LABEL[mv.order];
+      $("#mvSortLabel").textContent = (mv.favOnly ? "♥ " : "") + MV_LABEL[mv.order];
       sm.querySelectorAll("[data-o]").forEach(x => x.setAttribute("aria-selected", x === o));
       openSort(false); mvRows();
     };
     if (mv.sortClose) document.removeEventListener("click", mv.sortClose);
     mv.sortClose = () => { const m = $("#mvSortMenu"); if (m && !m.hidden) openSort(false); };
     document.addEventListener("click", mv.sortClose);
-    $("#mvList").addEventListener("click", e => { if (e.target.closest(".mvrow")) mv.listY = window.scrollY; });
+    $("#mvList").addEventListener("click", e => {
+      const f = e.target.closest(".row-fav");
+      if (f){                                   // 목록에서 바로 ♥ (곡으로 넘어가지 않음)
+        e.preventDefault(); e.stopPropagation();
+        const on = favToggle(f.dataset.fav);
+        if (mv.favOnly && !on) return mvRows();
+        f.classList.toggle("on", on); f.setAttribute("aria-pressed", on); f.innerHTML = on ? I_HEART_ON : I_HEART;
+        return;
+      }
+      if (e.target.closest(".mvrow")) mv.listY = window.scrollY;
+    });
+    $("#mvShuffle").onclick = () => {            // 지금 보이는 목록(검색·즐겨찾기 반영)을 섞어서 연속 재생
+      const ids = mvSorted().filter(mvMatch).filter(x => x.youtubeId).map(x => x.id);
+      if (!ids.length) return;
+      for (let i = ids.length - 1; i > 0; i--){ const j = Math.floor(Math.random() * (i + 1)); [ids[i], ids[j]] = [ids[j], ids[i]]; }
+      mv.listY = window.scrollY;
+      mv.from = { hash:"#/mv", label:"곡 목록", y: window.scrollY };
+      mv.queue = ids.length > 1 ? { ids, pos:0, label:"랜덤" } : null;
+      mv.autoplay = true;
+      location.hash = "#/mv/" + encodeURIComponent(ids[0]);
+    };
     return;
   }
   mv.song = song; mv.active = -1;
@@ -17784,6 +17895,8 @@ function bindMv(id){
     if (mv.from){ pendingScroll = mv.from.y; location.hash = mv.from.hash; }
     else { pendingScroll = mv.listY || 0; location.hash = "#/mv"; }
   };
+  { const fb = $("#favBtn");
+    if (fb) fb.onclick = () => { const on = favToggle(song.id); fb.classList.toggle("on", on); fb.setAttribute("aria-pressed", on); fb.innerHTML = on ? I_HEART_ON : I_HEART; copyToast(on ? "즐겨찾기에 넣었어요" : "즐겨찾기에서 뺐어요"); }; }
   $("#prevSong").onclick = () => mvGo(-1);
   $("#nextSong").onclick = () => mvGo(1);
   { const p = mvNeighbor(-1), n = mvNeighbor(1);
