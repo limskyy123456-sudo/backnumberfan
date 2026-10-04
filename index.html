@@ -457,6 +457,7 @@ body.is-song header.top,body.is-song nav.tabs{display:none}
 .song-sheet-item.current{background:var(--accent-soft)}
 .song-sheet-item.current .song-sheet-name{color:var(--accent);font-weight:800}
 .song-sheet-now{font-size:11px;font-weight:800;color:var(--accent)}
+.sheet-side{flex:none;display:flex;align-items:center;gap:4px}
 .sheet-empty{padding:30px;text-align:center;color:var(--muted)}
 /* PC 등 큰 화면: 영상 왼쪽 / 가사 오른쪽 2단 */
 @media (min-width:900px){
@@ -16754,7 +16755,7 @@ const INFO_POSTS = [
 
     **구매 대행사이트**
 
-    회원가입은 우리나라 사이트다보니 난이도가 낮고, 온라인 쇼핑하듯이 쇼핑하면 된다. 
+    회원가입은 우리나라 사이트라 난이도가 낮고, 온라인 쇼핑하듯이 쇼핑하면 된다. 
 
     1.[와라토모](https://waratomo.com/) 
     ![](images/info/back-num-album/al1.webp)
@@ -17736,7 +17737,7 @@ function paintSheet(){
   $("#sheetList").innerHTML = items.length ? items.map(s => `
     <li><button class="song-sheet-item${s.id === mv.song.id ? " current" : ""}" data-id="${esc(s.id)}">
       ${useQ ? `<span class="sheet-no">${base.indexOf(s) + 1}</span>` : ""}<span class="song-sheet-name">${esc(s.ko)}<small>${esc(s.jp)}</small></span>
-      ${s.id === mv.song.id ? `<span class="song-sheet-now">재생 중</span>` : mvBadge(s)}
+      <span class="sheet-side">${songMarksHtml(s)}${s.id === mv.song.id ? `<span class="song-sheet-now">재생 중</span>` : mvBadge(s)}</span>
     </button></li>`).join("") : `<li class="sheet-empty">찾는 곡이 없어요</li>`;
 }
 function openSheet(open){
