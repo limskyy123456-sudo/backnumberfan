@@ -303,6 +303,17 @@ body.has-bg .tile-links a{text-shadow:0 0 8px var(--bg),0 0 2px var(--bg);color:
 .mvnav{display:flex;gap:6px}
 .mvnav a{text-decoration:none;font-size:20px;line-height:1}
 .mvtitle{margin-top:8px}
+.live-row{display:flex;align-items:center;gap:10px}
+.live-title{flex:1;min-width:0;display:block;text-decoration:none;color:var(--ink)}
+.live-title b{display:block;font-size:14.5px}
+.live-title small{display:block;font-size:12px;color:var(--muted)}
+.live-play{flex:none;display:inline-flex;align-items:center;gap:4px;padding:5px 10px;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--accent);font:inherit;font-size:12px;font-weight:700;cursor:pointer}
+.live-play svg{width:12px;height:12px}
+.live-play.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.live-player{margin:0 0 12px}
+.unmute-btn{position:absolute;left:10px;bottom:10px;z-index:3;display:inline-flex;align-items:center;gap:6px;padding:8px 13px;border:0;border-radius:999px;background:rgba(0,0,0,.72);color:#fff;font:inherit;font-size:13px;font-weight:700;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35)}
+.unmute-btn svg{width:17px;height:17px}
+.unmute-btn[hidden]{display:none}
 .mvvideo{position:sticky;top:54px;z-index:5;background:var(--bg);margin:0 -16px;padding:0 0 6px}
 .mvvideo .ratio{position:relative;aspect-ratio:16/9;background:#000}
 @media (min-width:640px){.mvvideo{margin:0}.mvvideo .ratio{border-radius:12px;overflow:hidden}}
@@ -16033,6 +16044,17 @@ const SINGLES = [
 */
 const SONG_INFO = {
 };
+/* 라이브 음원 (스트리밍 · 유튜브 공식 음원) — tracks: [곡 제목(일본어) 또는 "#SE 이름", 유튜브 영상 id] */
+const LIVE_ALBUMS = [
+  { jp:"\u201cGrateful Yesterdays Tour 2026\u201d Live at NISSAN STADIUM", ko:"그레이트풀 예스터데이즈 투어 2026 · 닛산 스타디움", type:"라이브 음원 · 디지털", date:"2026.10.03",
+    img:"https://i.ytimg.com/vi/uYGa3sRFosI/hqdefault.jpg", shot:"2026.06.14 닛산 스타디움 (요코하마) 2일차",
+    note:"back number 첫 라이브 음원 작품. 약 7만 명이 모인 닛산 스타디움 공연의 노래와 연주, 함성을 그대로 담았어요.",
+    list:"OLAK5uy_lpAborEPc8Bc5vCEhYJz1EpZM-PNy8H6I", link:"https://backnumber.lnk.to/tour2026_audio_streaming",
+    tracks:[ ["#La Entrada (SE)","9ikUn0V_eSU"], ["幕が上がる","uYGa3sRFosI"], ["スーパースターになったら","m-rl-a_axGA"], ["クリスマスソング","xqcGm5N_ios"],
+      ["青い春","djepiTN-g_0"], ["SISTER","gStHhkuvMes"], ["大不正解","dLh293Ytcb8"], ["花束","cUvs_XBWrtE"], ["チェックのワンピース","F736I-VKckw"],
+      ["ハッピーエンド","hiFsOJUupD4"], ["君の恋人になったら","KjZRacXMWpU"], ["ベルベットの詩","kfeZmhuqO9s"], ["MOTTO","MKcjD9bv1uY"], ["ブルーアンバー","ZZgv7PxoMqA"],
+      ["どうしてもどうしても","l86ExFvDSSk"], ["新しい恋人達に","u2n2JYpYeO0"], ["怪盗","ravrfjw7ftw"], ["水平線","jD2fdgEiH24"], ["ある未来より愛を込めて","ffx4vPnhX7c"], ["高嶺の花子さん","W5aJ6-gfDyA"] ] }
+];
 const VIDEOS = [
   { jp:"\u201canti sleeps tour 2024\u201d at SAITAMA SUPER ARENA", ko:"안티 슬립스 투어 2024 · 사이타마 슈퍼 아레나", no:"5th Live", date:"2025.06.18",
     img:"um/UMBK-1341_TlM", shot:"2024.10.27 사이타마 슈퍼 아레나",
@@ -17185,12 +17207,16 @@ try { const v = JSON.parse(localStorage.getItem("bn-vol") || "null"); if (v){ mv
 function mvVolApply(){
   if (!mv.player || !mv.ready) return;
   mv.volHold = Date.now() + 2500;           // 적용 직후엔 플레이어가 예전 값(100)을 돌려줄 수 있어 잠깐 저장 안 함
-  try { mv.player.setVolume(mvVol.v); mvVol.m ? mv.player.mute() : mv.player.unMute(); } catch(e){}
+  try { mv.player.setVolume(mvVol.v); if (mv.autoMuted) return; mvVol.m ? mv.player.mute() : mv.player.unMute(); } catch(e){}
 }
 function mvVolWatch(){
   clearInterval(mv.volTimer);
   mv.volTimer = setInterval(() => {
     if (!mv.player || !mv.ready || Date.now() < (mv.volHold || 0)) return;
+    if (mv.autoMuted){                       // 자동재생용 음소거 중: 유튜브 화면에서 직접 소리를 켜면 버튼 숨김
+      try { if (!mv.player.isMuted()){ mv.autoMuted = false; const b = $("#unmuteBtn"); if (b) b.hidden = true; mv.volHold = Date.now() + 1500; } } catch(e){}
+      return;
+    }
     try {
       const v = mv.player.getVolume(), m = !!mv.player.isMuted();
       const nv = (typeof v === "number" && v > 0) ? v : mvVol.v;   // 0 은 음소거로 취급
@@ -17461,6 +17487,7 @@ function viewMvSong(song){
         <div class="video-wrap">
           <div class="video-frame">
             <div id="yt"></div>
+            <button class="unmute-btn" id="unmuteBtn" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M17 9l5 6M22 9l-5 6"/></svg>탭해서 소리 켜기</button>
             ${hasVideo ? "" : `<div class="video-status">공식 유튜브에 없는 곡이에요</div>`}
           </div>
           <div class="video-sub">
@@ -17622,6 +17649,7 @@ function songInfoHtml(song){
   const singles = SINGLES.filter(x => is(x.jp));
   const cws = SINGLES.filter(x => (x.cw || []).some(is));
   const videos = (typeof VIDEOS !== "undefined" ? VIDEOS : []).filter(v => v.tracks.some(is));
+  const liveAud = LIVE_ALBUMS.map(a => [a, a.tracks.find(([t]) => is(t))]).filter(x => x[1]);
   const row = (k, v) => v ? `<div class="si-row"><span>${k}</span><div>${v}</div></div>` : "";
   const alb = albums.map(a => `${esc(a.jp)}${a.ko && a.ko !== a.jp ? ` <small>${esc(a.ko)}</small>` : ""} <small>· ${esc(a.date)} · ${a.tracks.findIndex(is) + 1}번 트랙</small>`).join("<br>");
   return `
@@ -17638,6 +17666,7 @@ function songInfoHtml(song){
         ${row("타이업", esc(info.tieup || ""))}
         ${row("크레딧", esc(info.credit || ""))}
         ${row("라이브 영상", videos.map(v => `${esc(v.jp)} <small>· ${esc(v.date)}</small>`).join("<br>"))}
+        ${row("라이브 음원", liveAud.map(([a, t]) => `<a href="https://www.youtube.com/watch?v=${t[1]}" target="_blank" rel="noopener">${esc(a.jp)} ↗</a> <small>· ${esc(a.date)}</small>`).join("<br>"))}
       </div>
       ${info.story ? `<div class="post-body si-story">${infoBody(info.story)}</div>`
         : `<p class="small muted si-empty">이 곡의 이야기는 아직 준비 중이에요.</p>`}
@@ -17700,6 +17729,12 @@ function bindMv(id){
   { const p = mvNeighbor(-1), n = mvNeighbor(1);
     if (p) $("#prevSong").title = "이전 곡: " + p.song.ko;
     if (n) $("#nextSong").title = "다음 곡: " + n.song.ko; }
+  { const ub = $("#unmuteBtn");
+    if (ub) ub.onclick = () => {
+      mv.autoMuted = false; ub.hidden = true;
+      try { mv.player.unMute(); mv.player.setVolume(mvVol.v); if (mvVol.m) mvVol.m = false; mv.player.playVideo(); } catch(e){}
+      mv.volHold = Date.now() + 1500;
+    }; }
   $("#songTheme").onclick = () => $("#themeBtn").click();
   $("#pickerBtn").onclick = () => openSheet(!$("#songSheet").classList.contains("open"));
   $("#songSheet").addEventListener("click", e => {
@@ -17753,13 +17788,28 @@ function mvMount(song){
   if (!song.youtubeId) return;
   mvLoadApi();
   if (!window.YT || !window.YT.Player){ setTimeout(() => { if (mv.song === song && $("#yt")) mvMount(song); }, 300); return; }
-  const auto = mv.autoplay ? 1 : 0; mv.autoplay = false;
-  mv.volPlayed = false; mv.ready = false;
+  const auto = 1; mv.autoplay = false;       // 곡에 들어가면 항상 바로 재생
+  mv.volPlayed = false; mv.ready = false; mv.autoMuted = false;
   mv.player = new YT.Player("yt", {
     videoId: song.youtubeId,
     playerVars: { rel:0, playsinline:1, modestbranding:1, autoplay:auto },
     events: {
-      onReady: () => { mv.ready = true; mvVolApply(); mvVolWatch(); if (auto){ try { mv.player.playVideo(); } catch(e){} } mvTick(song); updatePlayBtn(); },
+      onReady: () => {
+        mv.ready = true; mvVolApply(); mvVolWatch();
+        if (auto){
+          try { mv.player.playVideo(); } catch(e){}
+          // 모바일은 소리 있는 자동재생을 막아서 → 안 되면 음소거로 재생하고 '소리 켜기' 버튼을 띄운다
+          setTimeout(() => {
+            if (mv.song !== song || !mv.player || !mv.ready) return;
+            let st = -1; try { st = mv.player.getPlayerState(); } catch(e){}
+            if (st === 1 || st === 3) return;
+            mv.autoMuted = true;
+            try { mv.player.mute(); mv.player.playVideo(); } catch(e){}
+            const b = $("#unmuteBtn"); if (b) b.hidden = false;
+          }, 1200);
+        }
+        mvTick(song); updatePlayBtn();
+      },
       onStateChange: e => {
         if (e.data === 1 && !mv.volPlayed){ mv.volPlayed = true; mvVolApply(); }   // 재생 시작 때 한 번 더 맞춰줌
         mvTick(song); updatePlayBtn();
@@ -17941,7 +17991,7 @@ function bindSetlist(){
 /* ============ 화면: 앨범 · LP (#/disco) ============ */
 const disco = { tab:"album" };
 const ALBUM_KO = {}; ALBUMS.forEach(a => { ALBUM_KO[a.jp] = a.ko; });
-const jacket = code => code ? `https://content-jp.umgi.net/products/${code}_extralarge.jpg` : "";
+const jacket = code => !code ? "" : /^https?:/.test(code) ? code : `https://content-jp.umgi.net/products/${code}_extralarge.jpg`;
 function cover(code, label, cls = ""){
   return code
     ? `<span class="cover ${cls}"><img src="${jacket(code)}" alt="${esc(label)} 재킷" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('noimg');this.remove()"><i>${esc(label)}</i></span>`
@@ -17961,6 +18011,29 @@ function discoAlbum(a){
     <div class="in">${a.tracks.length
       ? `<p class="small muted" style="margin:0 0 6px">${a.tracks.length}곡${singles ? ` · 싱글 ${singles}곡 수록` : ""}</p><div class="set-list disco-tracks">${a.tracks.map((t, i) => discoTrack(t, i + 1)).join("")}</div>`
       : `<p class="small muted" style="margin:0">데뷔부터 「ハッピーエンド」까지 싱글과 인기곡을 모은 첫 베스트 앨범 (2CD). 수록곡은 정리해서 채울 예정이에요.</p>`}</div>
+  </details>`;
+}
+function discoLive(a, ai){
+  const rows = a.tracks.map(([t, yt], i) => {
+    const se = t.startsWith("#"), s = se ? null : setFind(t);
+    const name = se ? t.slice(1) : (s ? s.ko : t);
+    return `<div class="set-row live-row">
+      <span class="set-num">${pad2(i + 1)}</span>
+      ${s ? `<a class="live-title" href="#/mv/${encodeURIComponent(s.id)}" title="가사·응원법 보기"><b>${esc(name)}</b><small>${esc(s.jp)} ›</small></a>`
+          : `<span class="live-title"><b>${esc(name)}</b><small>${se ? "오프닝 SE" : ""}</small></span>`}
+      <button class="live-play" data-la="${ai}" data-i="${i}" aria-label="${esc(name)} 라이브 음원 듣기"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>라이브</button>
+    </div>`;
+  }).join("");
+  return `<details class="acc disco-alb live-alb">
+    <summary>${cover(a.img, a.jp, "sm")}<span class="disco-sum"><b>${esc(a.jp)}</b><small>${esc(a.ko)}</small><small>${esc(a.type)} · ${esc(a.date)}</small></span></summary>
+    <div class="in">
+      <p class="small" style="margin:0 0 4px"><b>수록 공연</b> ${esc(a.shot)}</p>
+      <p class="small muted" style="margin:0 0 10px">${esc(a.note)}</p>
+      <div class="live-player" id="livePlayer${ai}" hidden></div>
+      <p class="small muted" style="margin:0 0 6px">${a.tracks.length}트랙 · <b>라이브</b>를 누르면 공식 유튜브 음원이 재생돼요 · 곡 제목을 누르면 가사 화면으로 가요</p>
+      <div class="set-list disco-tracks">${rows}</div>
+      <div class="lp-links"><a class="btn primary" href="https://www.youtube.com/playlist?list=${a.list}" target="_blank" rel="noopener">유튜브에서 전곡 ↗</a><a class="btn" href="${a.link}" target="_blank" rel="noopener">스트리밍 ↗</a></div>
+    </div>
   </details>`;
 }
 function discoVideo(v){
@@ -17983,7 +18056,8 @@ function viewDisco(){
   const T = [["album","앨범"],["single","싱글"],["video","라이브 BD"],["lp","LP"]];
   let body = "";
   if (disco.tab === "album"){
-    body = `<h2>정규 앨범</h2>${ALBUMS.filter(a => a.kind === "orig").slice().reverse().map(discoAlbum).join("")}
+    body = `<h2>라이브 음원</h2>${LIVE_ALBUMS.map(discoLive).join("")}
+      <h2>정규 앨범</h2>${ALBUMS.filter(a => a.kind === "orig").slice().reverse().map(discoAlbum).join("")}
       <h2>미니 · 베스트</h2>${ALBUMS.filter(a => a.kind !== "orig").slice().reverse().map(discoAlbum).join("")}`;
   } else if (disco.tab === "single"){
     body = `<p class="sub" style="margin-top:14px">CD 싱글 22장 · 디지털 싱글 12곡 (최신순) · 누르면 뮤비로 가요</p>
@@ -18020,6 +18094,14 @@ function viewDisco(){
 }
 function bindDisco(){
   document.querySelectorAll(".seg button").forEach(b => b.onclick = () => { disco.tab = b.dataset.t; render(); });
+  document.querySelectorAll("a.live-title").forEach(a => a.addEventListener("click", () => { mv.from = { hash:"#/disco", label:"앨범", y: window.scrollY }; mv.queue = null; }));
+  document.querySelectorAll(".live-play").forEach(b => b.onclick = () => {
+    const a = LIVE_ALBUMS[+b.dataset.la], i = +b.dataset.i, box = $("#livePlayer" + b.dataset.la);
+    box.hidden = false;
+    box.innerHTML = `<div class="video-frame"><iframe src="https://www.youtube.com/embed/${a.tracks[i][1]}?list=${a.list}&index=${i + 1}&autoplay=1&rel=0&playsinline=1" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen title="라이브 음원"></iframe></div>`;
+    document.querySelectorAll(".live-play.on").forEach(x => x.classList.remove("on")); b.classList.add("on");
+    box.scrollIntoView({ block:"nearest", behavior:"smooth" });
+  });
   document.querySelectorAll("#app a.set-row, #app a.cg-item").forEach(a => a.addEventListener("click", () => {
     mv.from = { hash:"#/disco", label:"앨범", y: window.scrollY };
     const alb = a.closest("details.disco-alb");
