@@ -282,9 +282,10 @@ html{touch-action:manipulation}
 body{overflow-x:clip}
 @media (hover:none) and (pointer:coarse){input,select,textarea{font-size:16px !important}}
 /* ── 메인 B (포스터형) ── */
-.homeB{width:100vw;margin-left:calc(50% - 50vw);margin-top:calc(-1 * var(--app-top, 0px))}
+body.is-home #app{max-width:none;padding-left:0;padding-right:0}
+.homeB{position:relative;width:100%}
+.hb-theme{position:absolute;z-index:3;top:calc(14px + env(safe-area-inset-top));right:16px;background:rgba(255,255,255,.88);color:#1f2630;border-color:transparent;box-shadow:0 2px 10px rgba(0,0,0,.15)}
 .hb-hero{position:relative;height:clamp(300px,50svh,440px);background:linear-gradient(180deg,rgba(0,0,0,.08) 0%,rgba(0,0,0,.1) 45%,rgba(10,14,20,.82) 100%),url("images/bg/home.webp") 45% 35%/cover no-repeat;color:#fff}
-.hb-hero .hero-theme{top:calc(14px + env(safe-area-inset-top));right:16px;background:rgba(255,255,255,.85);color:#1f2630;border-color:transparent}
 .hb-title{position:absolute;left:22px;right:22px;bottom:46px}
 .hb-title small{display:block;font-size:11px;font-weight:700;letter-spacing:.22em;opacity:.9}
 .hb-title h1{margin:6px 0 0;font-size:clamp(50px,15vw,74px);line-height:.92;letter-spacing:-.04em;font-weight:800;text-transform:lowercase;text-shadow:0 2px 18px rgba(0,0,0,.35)}
@@ -335,11 +336,12 @@ body{overflow-x:clip}
 /* PC: 왼쪽 사진 / 오른쪽 내용 */
 @media (min-width:900px){
   .homeB{display:grid;grid-template-columns:52% 1fr;min-height:calc(100svh - 58px)}
+  .hb-theme{top:20px;right:24px;background:var(--surface);color:var(--ink);border:1px solid var(--line);box-shadow:none}
   .hb-hero{height:auto;min-height:calc(100svh - 58px);position:sticky;top:0;background:linear-gradient(90deg,rgba(0,0,0,.04),rgba(10,14,20,.5)),url("images/bg/home.webp") 45% 35%/cover no-repeat}
   .hb-title{left:56px;bottom:64px}
   .hb-title small{font-size:13px}
   .hb-title h1{font-size:clamp(90px,8.6vw,140px)}
-  .hb-sheet{margin:0;border-radius:0;padding:56px 56px 24px;display:flex;flex-direction:column;justify-content:center}
+  .hb-sheet{min-width:0;margin:0;border-radius:0;padding:64px 48px 24px;display:flex;flex-direction:column;justify-content:center}
   .hb-sheet > *{width:100%;max-width:600px}
   .cd-pill.hb-live{padding:20px 24px;border-radius:18px}
   .hb-live .next-cap{font-size:19px}
@@ -876,6 +878,11 @@ body.is-song header.top,body.is-song nav.tabs{display:none}
 .back.pill:hover{border-color:var(--accent);color:var(--accent)}
 .back.pill .ar{font-size:18px;line-height:1;margin-top:-2px}
 .w-pick{display:flex;gap:8px;margin:4px 0 6px}
+.w-srv{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:12px 14px;margin:6px 0 10px;font-size:14px}
+.w-key{display:flex;align-items:center;gap:8px;flex:1;min-width:0}
+.w-key span{font-size:13px;font-weight:700;white-space:nowrap}
+.w-key input{flex:1;min-width:0;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:9px;padding:8px 10px;font:inherit}
+.w-pub .btn{font-size:14px;padding:9px 14px}
 .w-pick select{flex:1;min-width:0;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:10px;padding:9px 10px;font:inherit;font-size:14px}
 .write-grid{display:grid;gap:14px;margin-top:12px}
 @media (min-width:900px){.write-grid{grid-template-columns:1fr 1fr;align-items:start}.write-preview{position:sticky;top:70px;max-height:calc(100vh - 90px);overflow:auto}}
@@ -16371,10 +16378,10 @@ function viewHome(){
   /* 메인 B (포스터형): 위(PC는 왼쪽) 큰 사진 + 제목 / 아래(PC는 오른쪽) 카운트다운 · 노래 · 메뉴 */
   return `
   <section class="homeB">
+    <button class="icon-btn hb-theme" data-theme-btn aria-label="화면 테마 바꾸기">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </button>
     <div class="hb-hero">
-      <button class="icon-btn hero-theme" data-theme-btn aria-label="화면 테마 바꾸기">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-      </button>
       <div class="hb-title"><small>KOREAN FAN GUIDE · 비공식</small><h1>back<br>number</h1></div>
     </div>
     <div class="hb-sheet">
@@ -17069,6 +17076,38 @@ const INFO_POSTS = [
   },
 ];
 const INFO_IMG_DIR = "images/info/";
+/* ── 서버 글쓰기 (Cloudflare D1·R2) ─────────────────────────────
+   사이트에 /api 가 연결돼 있을 때만 켜진다. 없으면(내 컴퓨터·연결 전) 아무 일도 안 함.
+   · 글쓴이는 #/write 에서 비밀번호를 넣고 [사이트에 바로 올리기]
+   · 올라온 글은 index.html 의 INFO_POSTS 글과 섞여서 날짜순으로 보인다 */
+const SRV = { on:false, posts:[], key:"", me:null };
+try { SRV.key = localStorage.getItem("bn-wkey") || ""; } catch(e){}
+const IS_LOCAL = /^(file:|http:\/\/(localhost|127\.))/.test(location.href);
+function allPosts(){
+  return [...SRV.posts.map(p => ({ ...p, srv:true })), ...INFO_POSTS]
+    .map((p, i) => [p, i]).sort((a, b) => String(b[0].date || "").localeCompare(String(a[0].date || "")) || a[1] - b[1]).map(x => x[0]);
+}
+function srvFetch(path, opt = {}){
+  const headers = { ...(opt.headers || {}) };
+  if (SRV.key) headers["x-writer-key"] = SRV.key;
+  return fetch(path, { ...opt, headers, cache:"no-store" }).then(async r => {
+    let j = null; try { j = await r.json(); } catch(e){}
+    if (!r.ok || !j) throw new Error((j && j.error) || "서버에 연결하지 못했어요");
+    return j;
+  });
+}
+async function srvLoad(rerender){
+  if (!/^https?:$/.test(location.protocol)) return;   // 파일로 열었을 때는 서버 없음
+  try {
+    const list = await srvFetch("/api/posts");
+    if (!Array.isArray(list)) return;
+    SRV.on = true; SRV.posts = list;
+    if (SRV.key && !SRV.me){ try { SRV.me = await srvFetch("/api/me"); } catch(e){ SRV.me = null; } }
+    const r0 = location.hash.replace(/^#\/?/, "").split("/")[0];
+    if (rerender && (r0 === "info" || r0 === "write")) render();
+  } catch(e){}
+}
+const srvCanEdit = p => !!(p && p.srv && SRV.me && (SRV.me.admin || SRV.me.name === p.author));
 const infoState = { tag:"전체" };
 const POST_IMG_RE = /^!\[([^\]]*)\]\(([^)\s]+)\)$/;
 const POST_YT_RE = /^(?:https?:\/\/)?(?:www\.|m\.)?(?:youtube\.com\/(?:watch\?v=|shorts\/|live\/)|youtu\.be\/)([\w-]{11})\S*$/;
@@ -17114,16 +17153,17 @@ function infoBody(src, img = u => u){
   });
   return out.join("");
 }
-function postMeta(p){ return [p.tag ? `<span class="post-tag">${esc(p.tag)}</span>` : "", p.date ? `<span>${esc(p.date)}</span>` : ""].join(""); }
+function postMeta(p){ return [p.tag ? `<span class="post-tag">${esc(p.tag)}</span>` : "", p.date ? `<span>${esc(p.date)}</span>` : "", p.author ? `<span>✍️ ${esc(p.author)}</span>` : ""].join(""); }
 function viewInfo(id){
+  const POSTS = allPosts();
   if (id){
-    const i = INFO_POSTS.findIndex(x => x.id === decodeURIComponent(id));
-    const p = INFO_POSTS[i];
+    const i = POSTS.findIndex(x => x.id === decodeURIComponent(id));
+    const p = POSTS[i];
     if (!p) return `<a class="back pill" href="#/info"><span class="ar">‹</span> 정보 목록</a><p class="sub" style="margin-top:20px">글을 찾을 수 없어요.</p>${footer()}`;
-    const newer = INFO_POSTS[i - 1], older = INFO_POSTS[i + 1];
+    const newer = POSTS[i - 1], older = POSTS[i + 1];
     const nav = (q, label) => q ? `<a class="post-nav-item" href="#/info/${encodeURIComponent(q.id)}"><small>${label}</small><b>${esc(q.title)}</b></a>` : `<span></span>`;
     return `
-      <div class="post-top"><a class="back pill" href="#/info"><span class="ar">‹</span> 정보 목록</a>${/^(file:|http:\/\/(localhost|127\.))/.test(location.href) ? `<a class="back" href="#/write/${encodeURIComponent(p.id)}">✏️ 이 글 수정</a>` : ""}</div>
+      <div class="post-top"><a class="back pill" href="#/info"><span class="ar">‹</span> 정보 목록</a>${(IS_LOCAL && !p.srv) || srvCanEdit(p) ? `<a class="back" href="#/write/${encodeURIComponent(p.id)}">✏️ 이 글 수정</a>` : ""}</div>
       <header class="post-head">
         <div class="post-meta">${postMeta(p)}</div>
         <h1 class="post-title">${esc(p.title)}</h1>
@@ -17133,18 +17173,18 @@ function viewInfo(id){
       <nav class="post-nav">${nav(older, "‹ 이전 글")}${nav(newer, "다음 글 ›")}</nav>
       ${footer()}`;
   }
-  const tags = ["전체", ...new Set(INFO_POSTS.map(p => p.tag).filter(Boolean))];
+  const tags = ["전체", ...new Set(POSTS.map(p => p.tag).filter(Boolean))];
   if (!tags.includes(infoState.tag)) infoState.tag = "전체";
-  const list = INFO_POSTS.filter(p => infoState.tag === "전체" || p.tag === infoState.tag);
-  const local = /^(file:|http:\/\/(localhost|127\.))/.test(location.href);
+  const list = POSTS.filter(p => infoState.tag === "전체" || p.tag === infoState.tag);
+  const local = IS_LOCAL || !!SRV.me;
   return `
   <div class="info-top"><h1>정보</h1>${local ? `<a class="btn" href="#/write">✏️ 글쓰기</a>` : ""}</div>
-  <p class="sub">back number 관련 정보 모음 · ${INFO_POSTS.length}개의 글</p>
+  <p class="sub">back number 관련 정보 모음 · ${POSTS.length}개의 글</p>
   ${tags.length > 2 ? `<div class="chips">${tags.map(t => `<button class="chip" data-tag="${esc(t)}" aria-pressed="${infoState.tag === t}">${esc(t)}</button>`).join("")}</div>` : ""}
   ${list.length ? `<div class="post-list-cards">${list.map(p => `
     <a class="post-card" href="#/info/${encodeURIComponent(p.id)}">
       <span class="pc-text">
-        <span class="pc-meta"><span class="post-tag">${esc(p.tag || "정보")}</span><span>${esc(p.date || "")}</span></span>
+        <span class="pc-meta"><span class="post-tag">${esc(p.tag || "정보")}</span><span>${esc(p.date || "")}</span>${p.author ? `<span>✍️ ${esc(p.author)}</span>` : ""}</span>
         <b class="pc-title">${esc(p.title)}</b>
         <small class="pc-sum">${esc(p.summary || postExcerpt(p))}</small>
       </span>
@@ -17181,30 +17221,36 @@ function dedentBody(b){
   return L.map(l => l.slice(Math.min(ind, l.match(/^[ \t]*/)[0].length)).replace(/[ \t]+$/, "")).join("\n");
 }
 function viewWrite(arg){
+  const POSTS = allPosts();
   if (arg){   // #/write/글id → 기존 글 불러와서 수정
-    const p = INFO_POSTS.find(x => x.id === decodeURIComponent(arg));
+    const p = POSTS.find(x => x.id === decodeURIComponent(arg));
     const cur = writeLoad();
     if (p && cur.edit !== p.id){
-      const d0 = { title:p.title || "", date:p.date || "", tag:p.tag || "", summary:p.summary || "", id:p.id, body:dedentBody(p.body), cover:p.cover || "", edit:p.id };
+      const d0 = { title:p.title || "", date:p.date || "", tag:p.tag || "", summary:p.summary || "", id:p.id, body:dedentBody(p.body), cover:p.cover || "", edit:p.id, srv:!!p.srv };
       try { localStorage.setItem("bn-draft", JSON.stringify(d0)); } catch(e){}
     }
   }
   const d = writeLoad(), today = new Date();
-  const editing = d.edit && INFO_POSTS.some(x => x.id === d.edit) ? d.edit : "";
+  const editing = d.edit && POSTS.some(x => x.id === d.edit) ? d.edit : "";
+  const edPost = editing ? POSTS.find(x => x.id === editing) : null;
+  const online = !!SRV.me;   // 비밀번호 확인된 글쓴이 → 서버에 바로 올리기
   const ymd = `${today.getFullYear()}.${pad2(today.getMonth() + 1)}.${pad2(today.getDate())}`;
   const f = (k, label, ph, v = "") => `<label class="w-field"><span>${label}</span><input id="w_${k}" value="${esc(d[k] ?? v)}" placeholder="${esc(ph)}"></label>`;
   return `
   <a class="back" href="#/info">‹ 정보 목록</a>
   <h1>${editing ? "글 수정" : "글쓰기"}</h1>
+  ${SRV.on ? `<div class="card w-srv">${SRV.me
+    ? `<span>✅ <b>${esc(SRV.me.name)}</b> 님으로 글쓰기${SRV.me.admin ? " (관리자)" : ""} · 사진은 고르면 바로 서버에 올라가요</span><button class="btn" id="w_logout">로그아웃</button>`
+    : `<label class="w-key"><span>글쓴이 비밀번호</span><input id="w_key" type="password" autocomplete="current-password" placeholder="받은 비밀번호"></label><button class="btn primary" id="w_login">확인</button>`}</div>` : ""}
   <div class="w-pick">
     <select id="w_pick" aria-label="기존 글 수정">
       <option value="">${editing ? "✏️ 다른 글 수정하기 / 새 글" : "✏️ 기존 글 불러와서 수정하기"}</option>
-      ${INFO_POSTS.map(x => `<option value="${esc(x.id)}"${x.id === editing ? " selected" : ""}>${esc(x.date || "")} · ${esc(x.title)}</option>`).join("")}
+      ${POSTS.filter(x => online ? srvCanEdit(x) : !x.srv).map(x => `<option value="${esc(x.id)}"${x.id === editing ? " selected" : ""}>${esc(x.date || "")} · ${esc(x.title)}${x.author ? " · " + esc(x.author) : ""}</option>`).join("")}
     </select>
     ${editing ? `<a class="btn" href="#/info/${encodeURIComponent(editing)}">원래 글 보기</a>` : ""}
   </div>
-  <p class="sub">${editing
-    ? `<b>「${esc(INFO_POSTS.find(x => x.id === editing).title)}」 수정 중</b> · 다 고치면 맨 아래 [코드 복사] → index.html 에서 <code>id:"${esc(editing)}"</code> 로 시작하는 글 덩어리 <b>전체</b>를 붙여 넣은 코드로 바꾸기.`
+  <p class="sub">${online ? (editing ? `<b>「${esc(edPost.title)}」 수정 중</b> · 다 고치면 맨 아래 [수정 저장]` : `다 쓰면 맨 아래 [사이트에 바로 올리기] 를 누르세요. 쓰던 글은 이 브라우저에 자동 저장돼요.`) : editing
+    ? `<b>「${esc(edPost.title)}」 수정 중</b> · 다 고치면 맨 아래 [코드 복사] → index.html 에서 <code>id:"${esc(editing)}"</code> 로 시작하는 글 덩어리 <b>전체</b>를 붙여 넣은 코드로 바꾸기.`
     : `쓰는 글은 이 브라우저에 자동 저장돼요. 다 쓰면 맨 아래 [코드 복사] → index.html 의 <code>INFO_POSTS = [</code> 바로 아래에 붙여 넣기.`}</p>
   <div class="write-grid">
     <div class="card write-form">
@@ -17229,7 +17275,13 @@ function viewWrite(arg){
       <div id="w_prev"></div>
     </div>
   </div>
-  <div class="card write-out">
+  ${online ? `<div class="card write-out w-pub">
+    <div class="w-tools">
+      ${editing && edPost && edPost.srv ? `<button class="btn primary" id="w_save">💾 수정 저장</button><button class="btn" id="w_del">🗑 이 글 삭제</button>` : `<button class="btn primary" id="w_post">🚀 사이트에 바로 올리기</button>`}
+      <button class="btn" id="w_clear2">${editing ? "새 글 쓰기" : "새 글 (지우기)"}</button>
+    </div>
+  </div>` : ""}
+  <div class="card write-out"${online ? " hidden" : ""}>
     <div class="small muted" style="margin-bottom:6px">아래 코드를 복사해서 붙여 넣으세요</div>
     <textarea id="w_code" rows="8" readonly></textarea>
     <div class="w-tools" style="margin-top:8px">
@@ -17264,7 +17316,7 @@ ${body}
   },`;
     const imgs = [...v.body.matchAll(/!\[[^\]]*\]\(([^)\s]+)\)/g)].map(m => m[1]);
     const folders = [...new Set(imgs.map(u => u.replace(/\/[^/]*$/, "/")))];
-    $("#w_imgs").innerHTML = imgs.length
+    $("#w_imgs").innerHTML = SRV.me ? (imgs.length ? `사진 ${imgs.length}장 · 서버에 올라가 있어요` : "") : imgs.length
       ? `사진 ${imgs.length}장 → <b>${folders.map(esc).join(", ")}</b> 폴더에 넣을 파일: ${[...new Set(imgs.map(u => u.split("/").pop()))].map(esc).join(", ")}`
       : `사진은 <b>${esc(INFO_IMG_DIR + postFolder())}/</b> 폴더에 넣으면 돼요 (주소 이름 = 폴더 이름)`;
   };
@@ -17281,8 +17333,23 @@ ${body}
   };
   document.querySelectorAll("[data-ins]").forEach(b => b.onclick = () => insert(b.dataset.ins));
   document.querySelectorAll("[data-wrap]").forEach(b => b.onclick = () => insert("", b.dataset.wrap));
-  g("files").onchange = e => {
+  g("files").onchange = async e => {
     const files = [...e.target.files]; if (!files.length) return;
+    if (SRV.me){                               // 서버 글쓰기: 사진을 바로 올리고 주소를 넣는다
+      e.target.value = "";
+      copyToast(`사진 ${files.length}장 올리는 중…`);
+      const urls = [];
+      for (const fl of files){
+        try { const r = await srvFetch("/api/upload", { method:"POST", headers:{ "content-type": fl.type }, body: fl }); urls.push(r.url); }
+        catch(err){ alert(`${fl.name}: ${err.message}`); }
+      }
+      if (!urls.length) return;
+      const a = ta.selectionStart, t = ta.value;
+      const before = a === 0 ? "" : t[a - 1] === "\n" ? (t[a - 2] === "\n" ? "" : "\n") : "\n\n";
+      insert(before.replace(/^\n/, "") + urls.map(u => `![](${u})`).join("\n") + "\n\n");
+      copyToast(`사진 ${urls.length}장을 올렸어요`);
+      return;
+    }
     const lines = files.map(fl => { const path = INFO_IMG_DIR + postFolder() + "/" + fl.name; writeS.urls[path] = URL.createObjectURL(fl); return `![](${path})`; });
     const a = ta.selectionStart, t = ta.value;
     const before = a === 0 ? "" : t[a - 1] === "\n" ? (t[a - 2] === "\n" ? "" : "\n") : "\n\n";
@@ -17293,6 +17360,41 @@ ${body}
   $("#w_clear").onclick = () => { if (!confirm(saved.edit ? "수정하던 내용을 버리고 새 글을 쓸까요?" : "쓰던 글을 지우고 새로 쓸까요?")) return;
     try { localStorage.removeItem("bn-draft"); } catch(e){}
     if (location.hash !== "#/write") location.hash = "#/write"; else render(); };
+  /* 서버 글쓰기: 로그인 · 올리기 · 수정 · 삭제 */
+  if ($("#w_login")) $("#w_login").onclick = async () => {
+    const k = $("#w_key").value.trim(); if (!k) return;
+    SRV.key = k;
+    try { SRV.me = await srvFetch("/api/me"); try { localStorage.setItem("bn-wkey", k); } catch(e){} render(); }
+    catch(err){ SRV.key = ""; SRV.me = null; alert(err.message); }
+  };
+  if ($("#w_key")) $("#w_key").onkeydown = e => { if (e.key === "Enter") $("#w_login").click(); };
+  if ($("#w_logout")) $("#w_logout").onclick = () => { SRV.key = ""; SRV.me = null; try { localStorage.removeItem("bn-wkey"); } catch(e){} render(); };
+  const payload = () => { const v = val(); return { title:v.title, date:v.date, tag:v.tag, summary:v.summary, id:v.id, body:v.body, cover:v.cover }; };
+  const done = async (id, msg) => {
+    try { localStorage.removeItem("bn-draft"); } catch(e){}
+    try { SRV.posts = await srvFetch("/api/posts"); } catch(e){}
+    alert(msg); location.hash = id ? "#/info/" + encodeURIComponent(id) : "#/info";
+  };
+  const busy = (b, on) => { if (b){ b.disabled = on; b.style.opacity = on ? .6 : 1; } };
+  if ($("#w_post")) $("#w_post").onclick = async e => {
+    if (!val().title.trim()) return alert("제목을 써 주세요");
+    if (!confirm("이 글을 사이트에 올릴까요?")) return;
+    busy(e.currentTarget, true);
+    try { const r = await srvFetch("/api/posts", { method:"POST", headers:{ "content-type":"application/json" }, body: JSON.stringify(payload()) }); await done(r.id, "올렸어요!"); }
+    catch(err){ alert(err.message); busy(e.currentTarget, false); }
+  };
+  if ($("#w_save")) $("#w_save").onclick = async e => {
+    busy(e.currentTarget, true);
+    try { const r = await srvFetch("/api/posts/" + encodeURIComponent(saved.edit), { method:"PUT", headers:{ "content-type":"application/json" }, body: JSON.stringify(payload()) }); await done(r.id, "저장했어요!"); }
+    catch(err){ alert(err.message); busy(e.currentTarget, false); }
+  };
+  if ($("#w_del")) $("#w_del").onclick = async e => {
+    if (!confirm("이 글을 사이트에서 지울까요? 되돌릴 수 없어요.")) return;
+    busy(e.currentTarget, true);
+    try { await srvFetch("/api/posts/" + encodeURIComponent(saved.edit), { method:"DELETE" }); await done("", "지웠어요"); }
+    catch(err){ alert(err.message); busy(e.currentTarget, false); }
+  };
+  if ($("#w_clear2")) $("#w_clear2").onclick = () => $("#w_clear").click();
   $("#w_pick").onchange = e => {
     const id = e.target.value;
     if (!id){ try { localStorage.removeItem("bn-draft"); } catch(e){} location.hash = "#/write"; if (location.hash === "#/write") render(); return; }
@@ -17303,6 +17405,8 @@ ${body}
   };
   update();
 }
+
+srvLoad(true);
 
 /* ============ 화면: 뮤비 (곡 목록 · 곡 화면) ============ */
 const mv = { from:null, query:"", order:"new", auto:true, player:null, ready:false, timer:null, active:-1, song:null };
