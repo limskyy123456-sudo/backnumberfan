@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
 <title>back number (비공식 팬 가이드)</title>
 <meta name="description" content="back number(백넘버) 일정·팬클럽·굿즈 정보를 한국 팬 기준으로 정리한 비공식 팬사이트">
 <meta name="theme-color" content="#f3f5f8" media="(prefers-color-scheme: light)">
@@ -261,6 +261,10 @@ body.has-bg .tile-links a{text-shadow:0 0 8px var(--bg),0 0 2px var(--bg);color:
 .install-guide .ig-title{display:block;margin-bottom:4px}
 .install-guide ol{margin:0;padding-left:18px}
 .install-guide .ig-x{display:block;margin:8px 0 0 auto;border:0;background:none;color:var(--muted);font:inherit;font-size:12px;cursor:pointer}
+/* 폰에서 확대·비율 깨짐 방지: 두 번 탭 확대 끄기, 입력칸 글자 16px(아이폰은 16px 미만이면 자동 확대), 가로 넘침 잘라내기 */
+html{touch-action:manipulation}
+body{overflow-x:clip}
+@media (hover:none) and (pointer:coarse){input,select,textarea{font-size:16px !important}}
 .credits{margin:22px 0 8px;text-align:center;font-size:11.5px;color:var(--muted)}
 /* PC 큰 화면: 홈을 화면 가운데에 크게 */
 @media (min-width:900px){
