@@ -515,8 +515,8 @@ body.is-song header.top,body.is-song nav.tabs{display:none}
 @media (min-width:900px){
   .song-body{flex-direction:row;align-items:stretch}
   .song-fixed-top{flex:1 1 62%;min-width:0;display:flex;flex-direction:column;justify-content:center;overflow-y:auto;padding:16px 0 24px}
-  .song-fixed-top .video-wrap{margin-top:0;width:100%;max-width:min(100%,calc((100svh - 250px) * 16 / 9));padding:0 24px}
-  .song-fixed-top .lyrics-note{margin-left:auto;margin-right:auto;width:100%;max-width:min(100%,calc((100svh - 250px) * 16 / 9));padding:0 24px}
+  .song-fixed-top .video-wrap{margin-top:0;width:100%;max-width:min(100%,calc((100svh - 420px) * 16 / 9));padding:0 24px}
+  .song-fixed-top .lyrics-note{margin-left:auto;margin-right:auto;width:100%;max-width:min(100%,calc((100svh - 420px) * 16 / 9));padding:0 24px}
   .lyrics-scroll{flex:1 1 38%;min-width:0;border-top:none;border-left:1px solid var(--line)}
   .lyrics-list{margin-top:0;padding:16px 18px 160px}
   .song-page.venue .lyrics-scroll{border-left:none}
@@ -760,7 +760,7 @@ body.is-song header.top,body.is-song nav.tabs{display:none}
 .song-page.venue .song-ctlrow .queue-note{display:block}
 .song-page.venue .lyrics-scroll{border-top:1px solid var(--line);border-left:none}
 @media (min-width:900px){
-  .song-fixed-top .song-ctlrow{max-width:min(100%,calc((100svh - 250px) * 16 / 9));padding:0 24px;margin-top:2px}
+  .song-fixed-top .song-ctlrow{max-width:min(100%,calc((100svh - 420px) * 16 / 9));padding:0 24px;margin-top:2px}
 }
 @media (orientation:landscape) and (max-height:540px){
   .song-fixed-top .song-ctlrow{margin:6px 0 0;padding:0 10px 0 max(12px,env(safe-area-inset-left))}
@@ -819,6 +819,51 @@ body.is-song header.top,body.is-song nav.tabs{display:none}
 .tip-pic.at-side.big .tip-pic-card{max-width:min(100%,500px)}
 @media (min-width:900px){.tip-pic.at-video{bottom:auto;top:16px;right:30px}}
 @media (prefers-reduced-motion: reduce){.tip-pic{transition:none}}
+/* 짤방 위치 (덮어쓰기): 영상 오른쪽 위 / 단축모드는 왼쪽 아래 */
+.video-wrap{position:relative}
+.tip-pic.at-video{top:8px;bottom:auto;left:auto;right:24px;justify-content:flex-end;transform:translateY(-6px) scale(.96)}
+.tip-pic.at-video .tip-pic-card{max-width:min(44vw,210px);padding:5px 5px 3px;border-radius:12px;gap:3px}
+.tip-pic.at-video .tip-pic-card :is(img,video){max-height:min(14svh,112px);border-radius:8px}
+.tip-pic.at-video.big .tip-pic-card{max-width:min(84vw,360px)}
+.tip-pic.at-video.big .tip-pic-card :is(img,video){max-height:min(30svh,240px)}
+.tip-pic.at-lyrics{top:auto;right:auto;left:12px;bottom:calc(14px + env(safe-area-inset-bottom));justify-content:flex-start;padding:0;transform:translateY(8px) scale(.96)}
+.tip-pic.at-lyrics .tip-pic-card{max-width:min(46vw,230px);padding:5px 5px 3px;gap:3px}
+.tip-pic.at-lyrics .tip-pic-card :is(img,video){max-height:min(20svh,170px)}
+.tip-pic.at-lyrics.big .tip-pic-card{max-width:min(84vw,420px)}
+.tip-pic.at-lyrics.big .tip-pic-card :is(img,video){max-height:min(40svh,320px)}
+@media (min-width:900px){
+  .tip-pic.at-video{top:10px;right:34px}
+  .tip-pic.at-video .tip-pic-card{max-width:280px}
+  .tip-pic.at-video .tip-pic-card :is(img,video){max-height:180px}
+  .tip-pic.at-lyrics{left:24px;bottom:24px}
+  .tip-pic.at-lyrics .tip-pic-card{max-width:320px}
+  .tip-pic.at-lyrics .tip-pic-card :is(img,video){max-height:220px}
+}
+/* 휴대폰 세로: '셋리스트' 줄 바로 아래 오른쪽 (top 은 JS로 맞춤) */
+.tip-pic.at-top{left:auto;right:12px;bottom:auto;justify-content:flex-end;padding:0;transform:translateY(-6px) scale(.96)}
+.tip-pic.at-top .tip-pic-card{max-width:min(46vw,210px);padding:5px 5px 3px;gap:3px}
+.tip-pic.at-top .tip-pic-card :is(img,video){max-height:min(13svh,104px)}
+.tip-pic.at-top.big .tip-pic-card{max-width:min(84vw,380px)}
+.tip-pic.at-top.big .tip-pic-card :is(img,video){max-height:min(36svh,300px)}
+/* PC: 영상을 조금 위로 붙이고, 영상 아래 남는 자리에 짤방 */
+@media (min-width:900px){
+  .song-page:not(.venue) .song-fixed-top{justify-content:flex-start;padding-top:18px}
+  .tip-pic.at-below{left:0;right:0;top:auto;bottom:16px;justify-content:center;padding:0 24px;transform:translateY(8px) scale(.97)}
+  .tip-pic.at-below .tip-pic-card{max-width:min(100%,340px);padding:6px 6px 4px;gap:4px}
+  .tip-pic.at-below .tip-pic-card :is(img,video){max-height:150px}
+  .tip-pic.at-below.big{bottom:12px}
+  .tip-pic.at-below.big .tip-pic-card{max-width:min(100%,560px)}
+  .tip-pic.at-below.big .tip-pic-card :is(img,video){max-height:min(60svh,420px)}
+}
+/* 휴대폰 가로: 왼쪽은 영상·버튼이라 오른쪽(가사 칸) 아래에 */
+@media (orientation:landscape) and (max-height:540px){
+  .song-page:not(.venue) .tip-pic.at-lyrics{left:auto;right:12px;justify-content:flex-end}
+}
+@media (orientation:landscape) and (max-height:540px){
+  .tip-pic.at-video{top:6px;right:16px}
+  .tip-pic.at-video .tip-pic-card :is(img,video){max-height:min(24svh,96px)}
+  .tip-pic.at-lyrics .tip-pic-card :is(img,video){max-height:min(20svh,76px)}
+}
 
 .info-empty{text-align:center;padding:34px 16px;color:var(--muted);line-height:1.8}
 .post-title{line-height:1.35;margin:6px 0 4px}
@@ -17655,13 +17700,27 @@ function hideTipPic(){
 /* 휴대폰·PC → 영상 옆/아래, 단축모드(영상 숨김) → 가사 위 가운데 */
 function placeTipPic(){
   const box = $("#tipPic"); if (!box) return;
+  // 휴대폰: 가사 칸 왼쪽 아래 (영상·버튼·지금 부르는 가사를 가리지 않게)
+  // PC: 영상 아래 빈 공간 (단축모드일 때는 가사 화면 왼쪽 아래)
   const wide = window.matchMedia("(min-width:900px)").matches;
-  const mode = mv.venue ? "at-lyrics" : wide ? "at-side" : "at-video";
-  const host = (mv.venue || wide) ? document.querySelector(".song-body") : document.querySelector(".song-fixed-top");
+  const land = window.matchMedia("(orientation:landscape) and (max-height:540px)").matches;
+  const below = wide && !mv.venue;
+  const top = !wide && !land;                // 휴대폰 세로: '셋리스트' 줄 바로 아래
+  const mode = below ? "at-below" : top ? "at-top" : "at-lyrics";
+  const host = below ? document.querySelector(".song-fixed-top") : document.querySelector(".song-body");
   box.classList.remove("at-video", "at-lyrics", "at-side", "big");
   box.classList.add(mode);
   if (host && box.parentElement !== host) host.appendChild(box);
+  tipPicTop();
 }
+/* 휴대폰 세로: 짤방을 '셋리스트 · 단축모드 · AUTO SCROLL' 줄 바로 아래에 붙인다 */
+function tipPicTop(){
+  const box = $("#tipPic"); if (!box || !box.classList.contains("at-top")) return;
+  const row = document.querySelector(".song-ctlrow"), body = document.querySelector(".song-body");
+  if (!row || !body) return;
+  box.style.top = Math.max(0, Math.round(row.getBoundingClientRect().bottom - body.getBoundingClientRect().top + 6)) + "px";
+}
+window.addEventListener("resize", () => { if ($("#tipPic")) placeTipPic(); });
 function updateTipPic(song, idx){
   const line = idx >= 0 ? (song.lyrics || [])[idx] : null;
   const pic = line ? resolvePic(line.pic) : null;
@@ -17683,7 +17742,7 @@ function updateTipPic(song, idx){
     if (img.getAttribute("src") !== pic.src) img.setAttribute("src", pic.src);
   }
   cap.textContent = pic.caption || "";
-  box.classList.remove("big"); box.classList.add("show");
+  box.classList.remove("big"); tipPicTop(); box.classList.add("show");
   currentPicKey = pic.key;
 }
 window.matchMedia("(min-width:900px)").addEventListener("change", () => { if ($("#tipPic")) placeTipPic(); });
