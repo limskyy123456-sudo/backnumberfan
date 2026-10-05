@@ -747,6 +747,30 @@ body.is-song header.top,body.is-song nav.tabs{display:none}
 .song-fixed-top .queue-note{margin-left:auto;margin-right:auto;width:100%}
 .song-page.venue .queue-note{display:none}
 /* 곡 화면 범례 */
+/* 단축모드 · AUTO SCROLL — 영상 아래 '이어서 재생' 줄 오른쪽 */
+.song-ctlrow{max-width:720px;margin:-4px auto 10px;padding:0 16px;display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;box-sizing:border-box}
+.song-ctlrow .queue-note{flex:1;min-width:0;margin:0;padding:0;width:auto;max-width:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.song-ctl{flex:none;display:flex;align-items:center;gap:6px}
+.song-ctl .venue-toggle,.song-ctl .autoscroll-toggle{min-height:30px;padding:3px 8px;gap:6px;border-radius:8px;box-shadow:none;font-size:11.5px}
+.song-ctl .venue-label,.song-ctl .autoscroll-label{font-size:11px}
+/* 단축모드(영상 숨김)일 때도 같은 줄이 맨 위(곡 제목 바로 아래)에 그대로 보이게 */
+.song-page.venue .song-body .song-fixed-top{height:auto;flex:none;padding:10px 0 0;overflow:visible;display:block}
+.song-page.venue .song-body{flex-direction:column}
+.song-page.venue .song-ctlrow{margin:0 auto 8px}
+.song-page.venue .song-ctlrow .queue-note{display:block}
+.song-page.venue .lyrics-scroll{border-top:1px solid var(--line);border-left:none}
+@media (min-width:900px){
+  .song-fixed-top .song-ctlrow{max-width:min(100%,calc((100svh - 250px) * 16 / 9));padding:0 24px;margin-top:2px}
+}
+@media (orientation:landscape) and (max-height:540px){
+  .song-fixed-top .song-ctlrow{margin:6px 0 0;padding:0 10px 0 max(12px,env(safe-area-inset-left))}
+  .song-page.venue .song-body .song-fixed-top{padding:6px 0 0}
+  .song-page:not(.venue) .qn-long{display:none}
+  .song-page.venue .song-fixed-top .song-ctlrow{margin:0 auto 6px;padding:0 max(12px,env(safe-area-inset-right)) 0 max(12px,env(safe-area-inset-left))}
+}
+/* 좁은 화면: '순서로 이어서 재생' 글자는 줄여서 버튼과 한 줄에 */
+@media (max-width:520px){ .qn-long{display:none} }
+.queue-note.empty{visibility:hidden}
 .cheer-legend{max-width:720px;margin:-4px auto 10px;padding:0 16px;display:flex;flex-wrap:wrap;gap:6px 12px;font-size:12px;color:var(--muted)}
 .cheer-legend span{display:inline-flex;align-items:center;gap:4px}
 .cheer-legend .ico{font-size:14px;margin:0}
@@ -17832,7 +17856,19 @@ function viewMvSong(song){
         <div class="lyrics-note"><span class="dot">●</span> ${lines.length && !song.unsynced
           ? "가사를 탭하면 해당 위치로 영상이 이동해요. 영상 재생 상태에 따라 가사 하이라이트가 동기화됩니다."
           : lines.length ? `이 곡은 가사 시간이 아직 없어서 영상과 따라가지 않아요. ${hasVideo ? `<a href="#/sync/${encodeURIComponent(song.id)}">싱크 맞추기 ›</a>` : ""}` : "가사는 준비 중이에요."}</div>
-        ${mv.queue && mv.queue.ids.includes(song.id) ? `<div class="queue-note">▶ <b>${esc(mv.queue.label)}</b> 순서로 이어서 재생 · ${(mv.queue.ids[mv.queue.pos] === song.id ? mv.queue.pos : mv.queue.ids.indexOf(song.id)) + 1} / ${mv.queue.ids.length}</div>` : ""}
+        <div class="song-ctlrow">
+          ${mv.queue && mv.queue.ids.includes(song.id) ? `<div class="queue-note">▶ <b>${esc(mv.queue.label)}</b><span class="qn-long"> 순서로 이어서 재생</span> · ${(mv.queue.ids[mv.queue.pos] === song.id ? mv.queue.pos : mv.queue.ids.indexOf(song.id)) + 1} / ${mv.queue.ids.length}</div>` : `<span class="queue-note empty"></span>`}
+          <div class="song-ctl" id="songCtl">
+            <button class="venue-toggle${mv.venue ? " active" : ""}" id="venueBtn" aria-label="단축모드 켜기/끄기" aria-pressed="${mv.venue}">
+              <span class="venue-label">단축모드</span>
+              <span class="venue-switch"><span class="venue-knob"></span></span>
+            </button>
+            <button class="autoscroll-toggle${mv.auto ? " active" : ""}" id="autoBtn" aria-label="자동 스크롤 켜기/끄기" aria-pressed="${mv.auto}">
+              <span class="autoscroll-label">AUTO SCROLL</span>
+              <span class="autoscroll-switch"><span class="autoscroll-knob"></span></span>
+            </button>
+          </div>
+        </div>
         ${cheerLegend(marks)}
         <div class="tip-pic" id="tipPic" aria-live="polite">
           <figure class="tip-pic-card" id="tipPicCard" title="탭하면 크게 보여요"><img id="tipPicImg" alt="" decoding="async"><video id="tipPicVid" muted loop playsinline autoplay preload="auto" hidden></video><figcaption class="tip-pic-cap" id="tipPicCap"></figcaption></figure>
@@ -17858,14 +17894,6 @@ function viewMvSong(song){
 
     <div class="player-controls">
       <button class="play-toggle" id="playToggle" aria-label="재생 / 일시정지">${I_PLAY}</button>
-      <button class="venue-toggle${mv.venue ? " active" : ""}" id="venueBtn" aria-label="단축모드 켜기/끄기" aria-pressed="${mv.venue}">
-        <span class="venue-label">단축모드</span>
-        <span class="venue-switch"><span class="venue-knob"></span></span>
-      </button>
-      <button class="autoscroll-toggle${mv.auto ? " active" : ""}" id="autoBtn" aria-label="자동 스크롤 켜기/끄기" aria-pressed="${mv.auto}">
-        <span class="autoscroll-label">AUTO SCROLL</span>
-        <span class="autoscroll-switch"><span class="autoscroll-knob"></span></span>
-      </button>
     </div>
 
     <div class="copy-menu" id="copyMenu" hidden>
