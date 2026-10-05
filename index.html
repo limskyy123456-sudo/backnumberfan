@@ -951,6 +951,16 @@ body.is-song header.top,body.is-song nav.tabs{display:none}
 .back.pill:hover{border-color:var(--accent);color:var(--accent)}
 .back.pill .ar{font-size:18px;line-height:1;margin-top:-2px}
 .w-pick{display:flex;gap:8px;margin:4px 0 6px}
+.w-thumbs{display:flex;gap:8px;overflow-x:auto;padding:8px 0 2px;scrollbar-width:thin}
+.w-thumbs:empty{display:none}
+.wt{position:relative;flex:none;width:76px;height:76px;padding:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--surface2);cursor:pointer}
+.wt img{width:100%;height:100%;object-fit:cover;display:block}
+.wt.bad{outline:2px solid #e0556b}
+.wt.bad::after{content:"사진 없음";position:absolute;inset:auto 0 0 0;background:#e0556b;color:#fff;font-size:10px;font-weight:700;text-align:center}
+.wt-n{position:absolute;left:4px;top:4px;min-width:18px;height:18px;padding:0 4px;border-radius:9px;background:rgba(0,0,0,.6);color:#fff;font-size:11px;font-weight:700;line-height:18px;text-align:center}
+.wt-x{position:absolute;right:3px;top:3px;width:20px;height:20px;border-radius:50%;background:rgba(0,0,0,.6);color:#fff;font-size:11px;line-height:20px;text-align:center}
+.wt:hover{border-color:var(--accent)}
+#w_body.drop{outline:2px dashed var(--accent);outline-offset:2px}
 .w-srv{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:12px 14px;margin:6px 0 10px;font-size:14px}
 .w-key{display:flex;align-items:center;gap:8px;flex:1;min-width:0}
 .w-key span{font-size:13px;font-weight:700;white-space:nowrap}
@@ -17340,7 +17350,8 @@ function viewWrite(arg){
         <button class="btn" data-ins="[링크 글자](https://)">링크</button>
         <label class="btn primary">📷 사진 넣기<input id="w_files" type="file" accept="image/*" multiple hidden></label>
       </div>
-      <textarea id="w_body" rows="16" placeholder="본문을 쓰세요. 빈 줄로 문단을 나눠요.&#10;&#10;사진은 [📷 사진 넣기] 로 고르면 커서 자리에 들어가요.&#10;사진 여러 장을 한 번에 고르면 나란히 2장씩 보여요.">${esc(d.body || "")}</textarea>
+      <textarea id="w_body" rows="16" placeholder="본문을 쓰세요. 빈 줄로 문단을 나눠요.&#10;캡처한 사진은 여기에 바로 붙여넣기(Ctrl+V)·끌어다 놓기도 돼요.&#10;&#10;사진은 [📷 사진 넣기] 로 고르면 커서 자리에 들어가요.&#10;사진 여러 장을 한 번에 고르면 나란히 2장씩 보여요.">${esc(d.body || "")}</textarea>
+      <div class="w-thumbs" id="w_thumbs"></div>
       <p class="small muted" id="w_imgs" style="margin:6px 0 0"></p>
     </div>
     <div class="write-preview">
@@ -17388,6 +17399,10 @@ ${body}
     \`
   },`;
     const imgs = [...v.body.matchAll(/!\[[^\]]*\]\(([^)\s]+)\)/g)].map(m => m[1]);
+    $("#w_thumbs").innerHTML = [...v.body.matchAll(/!\[[^\]]*\]\(([^)\s]+)\)/g)].map((m, k) => `
+      <button type="button" class="wt" data-at="${m.index}" data-len="${m[0].length}" title="${esc(m[1])}">
+        <img src="${esc(writeS.urls[m[1]] || m[1])}" alt="" loading="lazy" onerror="this.parentNode.classList.add('bad')"><span class="wt-n">${k + 1}</span><span class="wt-x" title="이 사진 빼기">✕</span>
+      </button>`).join("");
     const folders = [...new Set(imgs.map(u => u.replace(/\/[^/]*$/, "/")))];
     $("#w_imgs").innerHTML = SRV.me ? (imgs.length ? `사진 ${imgs.length}장 · 서버에 올라가 있어요` : "") : imgs.length
       ? `사진 ${imgs.length}장 → <b>${folders.map(esc).join(", ")}</b> 폴더에 넣을 파일: ${[...new Set(imgs.map(u => u.split("/").pop()))].map(esc).join(", ")}`
@@ -17406,34 +17421,60 @@ ${body}
   };
   document.querySelectorAll("[data-ins]").forEach(b => b.onclick = () => insert(b.dataset.ins));
   document.querySelectorAll("[data-wrap]").forEach(b => b.onclick = () => insert("", b.dataset.wrap));
-  g("files").onchange = async e => {
-    const files = [...e.target.files]; if (!files.length) return;
+  /* 사진 넣기: [📷 사진 넣기] · 캡처 붙여넣기(Ctrl+V) · 끌어다 놓기 모두 여기로 */
+  const addImages = async files => {
+    files = files.filter(f => f && /^image\//.test(f.type)); if (!files.length) return;
     if (SRV.on && !SRV.me){                    // 사이트에서 쓰는데 아직 비밀번호 확인 전 → 사진이 서버에 안 올라가므로 막는다
-      e.target.value = "";
       alert("사진을 넣기 전에 맨 위에서 글쓴이 비밀번호를 넣고 [확인]을 눌러 주세요.");
       $("#w_key")?.focus(); return;
     }
+    const at = ta.selectionStart;               // 올리는 동안 커서가 움직여도 원래 자리에 넣는다
+    let lines = [];
     if (SRV.me){                               // 서버 글쓰기: 사진을 바로 올리고 주소를 넣는다
-      e.target.value = "";
       copyToast(`사진 ${files.length}장 올리는 중…`);
-      const urls = [];
       for (const fl of files){
-        try { const r = await srvFetch("/api/upload", { method:"POST", headers:{ "content-type": fl.type }, body: fl }); urls.push(r.url); }
-        catch(err){ alert(`${fl.name}: ${err.message}`); }
+        try { const r = await srvFetch("/api/upload", { method:"POST", headers:{ "content-type": fl.type }, body: fl }); writeS.urls[r.url] = URL.createObjectURL(fl); lines.push(`![](${r.url})`); }
+        catch(err){ alert(`${fl.name || "사진"}: ${err.message}`); }
       }
-      if (!urls.length) return;
-      const a = ta.selectionStart, t = ta.value;
-      const before = a === 0 ? "" : t[a - 1] === "\n" ? (t[a - 2] === "\n" ? "" : "\n") : "\n\n";
-      insert(before.replace(/^\n/, "") + urls.map(u => `![](${u})`).join("\n") + "\n\n");
-      copyToast(`사진 ${urls.length}장을 올렸어요`);
-      return;
+      if (!lines.length) return;
+      copyToast(`사진 ${lines.length}장을 넣었어요`);
+    } else {
+      lines = files.map((fl, k) => {
+        // 캡처 붙여넣기는 이름이 모두 image.png 라서 겹치지 않게 새 이름
+        const nm = (!fl.name || /^image\.(png|jpe?g|gif|webp)$/i.test(fl.name)) ? `capture-${Date.now().toString(36)}${k}.${(fl.type.split("/")[1] || "png").replace("jpeg", "jpg")}` : fl.name;
+        const path = INFO_IMG_DIR + postFolder() + "/" + nm; writeS.urls[path] = URL.createObjectURL(fl); return `![](${path})`;
+      });
     }
-    const lines = files.map(fl => { const path = INFO_IMG_DIR + postFolder() + "/" + fl.name; writeS.urls[path] = URL.createObjectURL(fl); return `![](${path})`; });
-    const a = ta.selectionStart, t = ta.value;
+    ta.focus(); ta.selectionStart = ta.selectionEnd = Math.min(at, ta.value.length);
+    const t = ta.value, a = ta.selectionStart;
     const before = a === 0 ? "" : t[a - 1] === "\n" ? (t[a - 2] === "\n" ? "" : "\n") : "\n\n";
     insert(before.replace(/^\n/, "") + lines.join("\n") + "\n\n");
-    e.target.value = "";
   };
+  g("files").onchange = e => { const f = [...e.target.files]; e.target.value = ""; addImages(f); };
+  ta.addEventListener("paste", e => {
+    const f = [...(e.clipboardData?.files || [])].filter(x => /^image\//.test(x.type));
+    if (!f.length) return;                    // 글자 붙여넣기는 그대로
+    e.preventDefault(); addImages(f);
+  });
+  ta.addEventListener("dragover", e => { if ([...(e.dataTransfer?.types || [])].includes("Files")){ e.preventDefault(); ta.classList.add("drop"); } });
+  ta.addEventListener("dragleave", () => ta.classList.remove("drop"));
+  ta.addEventListener("drop", e => {
+    const f = [...(e.dataTransfer?.files || [])]; ta.classList.remove("drop");
+    if (!f.some(x => /^image\//.test(x.type))) return;
+    e.preventDefault(); addImages(f);
+  });
+  /* 본문 칸 아래 사진 미리보기 줄: 누르면 그 사진 줄로 이동, ✕ 로 빼기 */
+  $("#w_thumbs").addEventListener("click", e => {
+    const th = e.target.closest("[data-at]"); if (!th) return;
+    const at = +th.dataset.at, len = +th.dataset.len;
+    if (e.target.closest(".wt-x")){
+      const t = ta.value; let end = at + len; if (t[end] === "\n") end++;
+      ta.value = (t.slice(0, at) + t.slice(end)).replace(/\n{3,}/g, "\n\n"); update(); return;
+    }
+    ta.focus(); ta.selectionStart = at; ta.selectionEnd = at + len;
+    const lh = parseFloat(getComputedStyle(ta).lineHeight) || 20;
+    ta.scrollTop = Math.max(0, (ta.value.slice(0, at).split("\n").length - 3) * lh);
+  });
   $("#w_copy").onclick = () => copyToClipboard(g("code").value).then(() => copyToast("코드를 복사했어요"));
   $("#w_clear").onclick = () => { if (!confirm(saved.edit ? "수정하던 내용을 버리고 새 글을 쓸까요?" : "쓰던 글을 지우고 새로 쓸까요?")) return;
     try { localStorage.removeItem("bn-draft"); } catch(e){}
