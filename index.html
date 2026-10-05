@@ -757,6 +757,7 @@ body.is-song header.top,body.is-song nav.tabs{display:none}
 .song-marks{display:inline-flex;align-items:center;gap:3px}
 .song-mark{display:inline-flex;align-items:center;justify-content:center;gap:3px;height:20px;border-radius:999px;line-height:1}
 .song-mark svg{width:12px;height:12px}
+.song-mark.banzai svg{width:14px;height:14px}
 .song-mark b{font-size:11px;font-weight:800}
 .song-mark.chant{padding:0 7px 0 6px;background:color-mix(in srgb,var(--chant) 16%,transparent);color:var(--chant)}
 .song-mark.dot{width:20px}
@@ -17296,7 +17297,7 @@ function bindWrite(){
   const saved = writeLoad();
   const val = () => ({ ...Object.fromEntries(keys.map(k => [k, g(k).value])), edit:saved.edit || "", cover:saved.cover || "" });
   const q = s => JSON.stringify(s);
-  const postFolder = () => { const v = val(); return (v.id.trim() || "post-" + v.date.replace(/\D/g, "")).replace(/[^\w-]+/g, "-").replace(/^-|-$/g, ""); };
+  const postFolder = () => { const v = val(); const f = v.id.trim().replace(/[^\w-]+/g, "-").replace(/^-|-$/g, ""); return f || "post-" + v.date.replace(/\D/g, ""); };
   const update = () => {
     const v = val();
     try { localStorage.setItem("bn-draft", JSON.stringify(v)); } catch(e){}
@@ -17335,6 +17336,11 @@ ${body}
   document.querySelectorAll("[data-wrap]").forEach(b => b.onclick = () => insert("", b.dataset.wrap));
   g("files").onchange = async e => {
     const files = [...e.target.files]; if (!files.length) return;
+    if (SRV.on && !SRV.me){                    // 사이트에서 쓰는데 아직 비밀번호 확인 전 → 사진이 서버에 안 올라가므로 막는다
+      e.target.value = "";
+      alert("사진을 넣기 전에 맨 위에서 글쓴이 비밀번호를 넣고 [확인]을 눌러 주세요.");
+      $("#w_key")?.focus(); return;
+    }
     if (SRV.me){                               // 서버 글쓰기: 사진을 바로 올리고 주소를 넣는다
       e.target.value = "";
       copyToast(`사진 ${files.length}장 올리는 중…`);
@@ -17375,24 +17381,42 @@ ${body}
     try { SRV.posts = await srvFetch("/api/posts"); } catch(e){}
     alert(msg); location.hash = id ? "#/info/" + encodeURIComponent(id) : "#/info";
   };
+  const missingImgs = async () => {          // 본문 사진 중 열리지 않는 것 (서버에 안 올라간 사진)
+    const urls = [...new Set([...val().body.matchAll(/!\[[^\]]*\]\(([^)\s]+)\)/g)].map(m => m[1]))];
+    const bad = [];
+    for (const u of urls){
+      try { const r = await fetch(u, { method:"HEAD", cache:"no-store" }); if (!r.ok || !/^image\//.test(r.headers.get("content-type") || "")) bad.push(u); }
+      catch(e){ bad.push(u); }
+    }
+    return bad;
+  };
+  const photoOk = async () => {
+    const bad = await missingImgs(); if (!bad.length) return true;
+    return confirm(`사진 ${bad.length}장이 서버에 올라가 있지 않아 '사진 준비 중'으로 보여요.\n본문에서 그 줄을 지우고 [📷 사진 넣기]로 다시 넣는 걸 추천해요.\n\n${bad.join("\n")}\n\n그래도 이대로 올릴까요?`);
+  };
   const busy = (b, on) => { if (b){ b.disabled = on; b.style.opacity = on ? .6 : 1; } };
   if ($("#w_post")) $("#w_post").onclick = async e => {
+    const btn = e.currentTarget;
     if (!val().title.trim()) return alert("제목을 써 주세요");
+    if (!(await photoOk())) return;
     if (!confirm("이 글을 사이트에 올릴까요?")) return;
-    busy(e.currentTarget, true);
+    busy(btn, true);
     try { const r = await srvFetch("/api/posts", { method:"POST", headers:{ "content-type":"application/json" }, body: JSON.stringify(payload()) }); await done(r.id, "올렸어요!"); }
-    catch(err){ alert(err.message); busy(e.currentTarget, false); }
+    catch(err){ alert(err.message); busy(btn, false); }
   };
   if ($("#w_save")) $("#w_save").onclick = async e => {
-    busy(e.currentTarget, true);
+    const btn = e.currentTarget;
+    if (!(await photoOk())) return;
+    busy(btn, true);
     try { const r = await srvFetch("/api/posts/" + encodeURIComponent(saved.edit), { method:"PUT", headers:{ "content-type":"application/json" }, body: JSON.stringify(payload()) }); await done(r.id, "저장했어요!"); }
-    catch(err){ alert(err.message); busy(e.currentTarget, false); }
+    catch(err){ alert(err.message); busy(btn, false); }
   };
   if ($("#w_del")) $("#w_del").onclick = async e => {
+    const btn = e.currentTarget;
     if (!confirm("이 글을 사이트에서 지울까요? 되돌릴 수 없어요.")) return;
-    busy(e.currentTarget, true);
+    busy(btn, true);
     try { await srvFetch("/api/posts/" + encodeURIComponent(saved.edit), { method:"DELETE" }); await done("", "지웠어요"); }
-    catch(err){ alert(err.message); busy(e.currentTarget, false); }
+    catch(err){ alert(err.message); busy(btn, false); }
   };
   if ($("#w_clear2")) $("#w_clear2").onclick = () => $("#w_clear").click();
   $("#w_pick").onchange = e => {
@@ -17568,7 +17592,7 @@ function songMarksHtml(song){
   if (m.wave)  h += `<span class="song-mark dot wave common" title="손 흔들기">${useSvg("i-wave")}</span>`;
   if (m.jump)  h += `<span class="song-mark dot jump" title="점프">${useSvg("i-jump")}</span>`;
   if (m.spin)  h += `<span class="song-mark dot spin" title="팔 돌리기">${useSvg("i-cheer")}</span>`;
-  if (m.banzai) h += `<span class="song-mark dot clap" title="짝 짝짝 만세">${useSvg("i-hand")}</span>`;
+  if (m.banzai) h += `<span class="song-mark dot clap banzai" title="짝 짝짝 만세"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="6.2" r="2.3"/><path d="M12 10.2v5.6M12 15.8l-3.2 5M12 15.8l3.2 5M12 11.6 6.2 4.4M12 11.6l5.8-7.2"/></svg></span>`;   // 박수와 구분: 두 팔 번쩍
   if (m.sway && !m.wave) h += `<span class="song-mark dot wave" title="한 손 좌우로">${useSvg("i-wave")}</span>`;
   return h ? `<span class="song-marks">${h}</span>` : "";
 }
