@@ -16193,7 +16193,9 @@ const ALBUMS = [
   { kind:"orig", jp:"MAGIC", ko:"MAGIC", type:"6th Album", date:"2019.03.27", img:"um/UMCK-1616_jtO", tracks:["最深部", "サマーワンダーランド", "瞬き", "あかるいよるに", "ARTIST", "オールドファッション", "ロンリネス", "雨と僕の話", "エキシビジョンデスマッチ", "monaural fantasy", "HAPPY BIRTHDAY", "大不正解"] },
   { kind:"orig", jp:"ユーモア", ko:"유머", type:"7th Album", date:"2023.01.17", img:"um/UMCK-7197_Ihd", tracks:["秘密のキス", "怪盗", "アイラブユー", "ゴールデンアワー", "黄色", "添い寝チャンスは突然に", "Silent Journey in Tokyo", "エメラルド", "ベルベットの詩", "赤い花火", "ヒーロースーツ", "水平線"] },
   { kind:"other", jp:"逃した魚", ko:"놓친 물고기", type:"1st Mini Album · 인디", date:"2009.02.18", img:"", tracks:["重なり", "春を歌にして", "sympathy", "then", "海岸通り", "KNOCK", "西藤公園"] },
-  { kind:"other", jp:"アンコール", ko:"앙코르", type:"Best Album · 2CD", date:"2016.12.28", img:"um/UMCK-1560_tBE", tracks:[] }
+  { kind:"other", jp:"アンコール", ko:"앙코르", type:"Best Album · 2CD", date:"2016.12.28", img:"um/UMCK-1560_tBE", discs:[16, 16],
+    tracks:["高嶺の花子さん", "花束", "ハッピーエンド", "クリスマスソング", "はなびら", "黒い猫の歌", "fish", "君がドアを閉めた後", "青い春", "光の街", "stay with me", "MOTTO", "恋", "世田谷ラブストーリー", "半透明人間", "日曜日",
+            "春を歌にして", "僕の名前を", "SISTER", "助演女優症", "繋いだ手から", "エンディング", "そのドレスちょっと待った", "わたがし", "電車の窓から", "ヒロイン", "幸せ", "アップルパイ", "003", "手紙", "思い出せなくなるその日まで", "スーパースターになったら"] }
 ];
 const SINGLES = [
   { jp:"はなびら", no:"1st Single", date:"2011.04.06", img:"um/umck-5319_eRc" },
@@ -18114,7 +18116,7 @@ function songInfoHtml(song){
   const videos = (typeof VIDEOS !== "undefined" ? VIDEOS : []).filter(v => v.tracks.some(is));
   const liveAud = LIVE_ALBUMS.map(a => [a, a.tracks.find(([t]) => is(t))]).filter(x => x[1]);
   const row = (k, v) => v ? `<div class="si-row"><span>${k}</span><div>${v}</div></div>` : "";
-  const alb = albums.map(a => `${esc(a.jp)}${a.ko && a.ko !== a.jp ? ` <small>${esc(a.ko)}</small>` : ""} <small>· ${esc(a.date)} · ${a.tracks.findIndex(is) + 1}번 트랙</small>`).join("<br>");
+  const alb = albums.map(a => { const p = albumPos(a, a.tracks.findIndex(is)); return `${esc(a.jp)}${a.ko && a.ko !== a.jp ? ` <small>${esc(a.ko)}</small>` : ""} <small>· ${esc(a.date)} · ${p.disc ? `DISC ${p.disc} ` : ""}${p.n}번 트랙</small>`; }).join("<br>");
   return `
     <div class="si-head">
       <div><b class="si-ko">${esc(song.ko)}</b><small class="si-jp">${esc(song.jp)}${song.rom ? ` · ${esc(song.rom)}` : ""}</small></div>
@@ -18563,12 +18565,19 @@ function discoTrack(jp, n){
     <span class="set-go">${s ? "›" : ""}</span>`;
   return s ? `<a class="set-row" href="#/mv/${encodeURIComponent(s.id)}">${inner}</a>` : `<div class="set-row off">${inner}</div>`;
 }
+/* 여러 장(2CD 등)짜리 앨범: i번째 곡 → { disc, n } */
+function albumPos(a, i){
+  if (!a.discs) return { disc:0, n:i + 1 };
+  let d = 0, base = 0;
+  while (d < a.discs.length - 1 && i >= base + a.discs[d]){ base += a.discs[d]; d++; }
+  return { disc:d + 1, n:i - base + 1 };
+}
 function discoAlbum(a){
   const singles = a.tracks.filter(t => SINGLES.some(s => s.jp === t)).length;
   return `<details class="acc disco-alb">
     <summary>${cover(a.img, a.jp, "sm")}<span class="disco-sum"><b>${esc(a.jp)}</b><small>${esc(a.ko)}</small><small>${esc(a.type)} · ${esc(a.date)}</small></span></summary>
     <div class="in">${a.tracks.length
-      ? `<p class="small muted" style="margin:0 0 6px">${a.tracks.length}곡${singles ? ` · 싱글 ${singles}곡 수록` : ""}</p><div class="set-list disco-tracks">${a.tracks.map((t, i) => discoTrack(t, i + 1)).join("")}</div>`
+      ? `<p class="small muted" style="margin:0 0 6px">${a.discs ? `${a.discs.length}CD · ` : ""}${a.tracks.length}곡${singles ? ` · 싱글 ${singles}곡 수록` : ""}</p><div class="set-list disco-tracks">${a.tracks.map((t, i) => { const p = albumPos(a, i); return (a.discs && p.n === 1 ? `<div class="vid-sec">DISC ${p.disc}</div>` : "") + discoTrack(t, p.n); }).join("")}</div>`
       : `<p class="small muted" style="margin:0">데뷔부터 「ハッピーエンド」까지 싱글과 인기곡을 모은 첫 베스트 앨범 (2CD). 수록곡은 정리해서 채울 예정이에요.</p>`}</div>
   </details>`;
 }
