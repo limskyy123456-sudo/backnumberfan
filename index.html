@@ -955,6 +955,14 @@ body.is-song header.top,body.is-song nav.tabs{display:none}
 .post-nav-item:last-child{text-align:right}
 .post-nav-item small{display:block;color:var(--muted);font-size:11.5px}
 .post-nav-item b{display:block;font-size:13.5px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.post-table-wrap{margin:10px 0 14px;overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+.post-table{width:100%;border-collapse:collapse;font-size:13.5px;line-height:1.45}
+.post-table th,.post-table td{padding:9px 12px;text-align:left;vertical-align:top;border-top:1px solid var(--line)}
+.post-table thead th{border-top:none;background:var(--surface2);font-size:13px;font-weight:800}
+.post-table tbody th{font-weight:700;color:var(--muted);font-size:12.5px;white-space:nowrap}
+@media (max-width:520px){.post-table{font-size:13px}.post-table th,.post-table td{padding:8px 9px}.post-table tbody th{font-size:12px;white-space:normal;width:24%}}
+.post-table td{font-weight:600}
+.post-table td small{display:block;font-weight:500;color:var(--muted);font-size:12px}
 .file-dl{display:flex;align-items:center;gap:10px;margin:4px 0;padding:11px 14px;border:1px solid var(--line);border-radius:12px;background:var(--surface2);color:var(--ink);text-decoration:none;font-weight:700;line-height:1.4}
 .file-dl:hover{border-color:var(--accent)}
 .fd-ic{flex:none;width:30px;height:30px;border-radius:9px;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent)}
@@ -17158,7 +17166,15 @@ const INFO_POSTS = [
 
     **하나셀 vs 사쿠라모바일 비교**
 
-    ![](images/info/Ltk1/phone14.webp)
+    | | 하나셀 | 사쿠라모바일 |
+    |---|---|---|
+    | 개통비 | $69 | 5,500엔 |
+    | 기본료 | 연 $12 (첫해 무료) | 월 2,980엔 |
+    | 안 쓰는 달 | 그대로 두면 됨 | 정지 신청 · 월 220엔 |
+    | 데이터 | 3GB | 5GB |
+    | 통신망 | SoftBank | docomo |
+    | 전화·문자 받기 | 무료 | 무료 |
+    | 한국에서 받기 | ✕ 안 됨 | ○ 됨 (로밍) |
 
 
 
@@ -17499,7 +17515,7 @@ function infoBody(src, img = u => u){
     .replace(/\*\*([^*]+)\*\*/g, "<b>$1</b>");
   const fig = l => { const [, alt, u] = l.match(POST_IMG_RE);
     return `<figure class="post-img"><img src="${esc(img(u))}" alt="${esc(alt)}" loading="lazy" onerror="this.parentNode.classList.add('noimg');this.remove()">${alt ? `<figcaption>${inline(alt)}</figcaption>` : ""}</figure>`; };
-  const kind = l => POST_IMG_RE.test(l) ? "img" : POST_YT_RE.test(l) ? "yt" : /^#{2,3}\s/.test(l) ? "h"
+  const kind = l => POST_IMG_RE.test(l) ? "img" : POST_YT_RE.test(l) ? "yt" : /^\|.*\|$/.test(l) ? "tbl" : /^#{2,3}\s/.test(l) ? "h"
     : /^[-•]\s/.test(l) ? "ul" : /^\d+[.)]\s/.test(l) ? "ol" : /^>/.test(l) ? "q" : /^-{3,}$/.test(l) ? "hr" : "p";
   const out = [];
   String(src || "").replace(/\r/g, "").split(/\n\s*\n/).forEach(block => {
@@ -17517,6 +17533,11 @@ function infoBody(src, img = u => u){
       else if (k === "q"){ const warn = /^>!/.test(g[0]);
         out.push(`<div class="note ${warn ? "warn" : "tip"}">${g.map(l => inline(l.replace(/^>!?\s?/, ""))).join("<br>")}</div>`); }
       else if (k === "hr") out.push(`<hr class="post-hr">`);
+      else if (k === "tbl"){                     // | 표 | 칸 |  — 첫 줄은 제목 줄, |---| 줄은 건너뜀
+        const rows = g.filter(l => !/^\|[\s:|-]+\|$/.test(l)).map(l => l.slice(1, -1).split("|").map(c => c.trim()));
+        const [hd, ...bd] = rows;
+        out.push(`<div class="post-table-wrap"><table class="post-table"><thead><tr>${hd.map(c => `<th>${inline(c)}</th>`).join("")}</tr></thead><tbody>${bd.map(r => `<tr>${r.map((c, ci) => ci ? `<td>${inline(c)}</td>` : `<th scope="row">${inline(c)}</th>`).join("")}</tr>`).join("")}</tbody></table></div>`);
+      }
       else out.push(`<p>${g.map(inline).join("<br>")}</p>`);
       i = j;
     }
