@@ -638,6 +638,14 @@ body.is-song header.top,body.is-song nav.tabs{display:none}
 .m-jp{font-size:12.5px;color:var(--muted)}
 .m-meta{font-size:13px;margin-top:6px}
 .m-meta + .m-meta{margin-top:2px;color:var(--muted)}
+.sup-h{font-size:15px;margin:18px 0 4px}
+.sup-card{padding:10px 16px}
+.sup-tour{font-size:13px;font-weight:700;padding:2px 0 8px}
+.sup-row{display:flex;gap:12px;padding:8px 0;border-top:1px solid var(--line)}
+.sup-part{flex:none;width:96px;font-size:12px;font-weight:800;color:var(--accent);padding-top:2px}
+.sup-name{flex:1;min-width:0;line-height:1.5}
+.sup-name small{color:var(--muted);font-size:12px}
+.sup-name .sup-note{display:block}
 .timeline{padding:6px 16px}
 .tl-row{display:flex;gap:14px;padding:10px 0;border-top:1px solid var(--line)}
 .tl-row:first-child{border-top:none}
@@ -16900,6 +16908,19 @@ const INFO = {
     { ko:"코지마 카즈야", jp:"小島和也", en:"Kazuya Kojima", part:"베이스 · 코러스", birth:"1984.05.16", from:"군마현 이세사키시", note:"2005년 정식 가입" },
     { ko:"쿠리하라 히사시", jp:"栗原寿", en:"Hisashi Kurihara", part:"드럼", birth:"1985.07.24", from:"군마현 이세사키시", note:"2006년 합류" }
   ],
+  /* 서포트 멤버: 투어마다 바뀌어요. 새 투어가 시작되면 now 를 바꾸고, 이전 멤버는 past 로 옮기세요 */
+  support: {
+    now: { tour:"Grateful Yesterdays Tour 2026", list:[
+      { ko:"하타미야 코타", jp:"幡宮航太", part:"키보드", note:"2026 투어부터 새로 합류" },
+      { ko:"후지타 유스케", jp:"フジタユウスケ", part:"어쿠스틱 기타 · 코러스", note:"2026 투어부터 새로 합류" },
+      { ko:"카키자와 히데요시", jp:"柿澤秀吉", part:"기타", note:"SCENT OF HUMOR TOUR 2022 이후 다시 참여" }
+    ] },
+    past: { tour:"live film 2020 \u201cASH\u201d ~ anti sleeps tour 2024", list:[
+      { ko:"무라타 아키라", jp:"村田昭", part:"키보드", note:"" },
+      { ko:"야자와 소타", jp:"矢澤壮太", part:"기타 · 코러스", note:"밴드 URCHIN FARM 보컬·기타" },
+      { ko:"후지타 아키라", jp:"藤田顕", part:"기타", note:"" }
+    ] }
+  },
   history: [
     ["2004", "군마현에서 결성"],
     ["2009", "미니 앨범 『逃した魚』로 인디 데뷔"],
@@ -16953,6 +16974,14 @@ function viewAbout(){
       ${m.note ? `<div class="m-meta">${esc(m.note)}</div>` : ""}
     </div>`).join("")}</div>
 
+  <h3 class="sup-h">서포트 멤버</h3>
+  <p class="small muted" style="margin:0 0 8px">라이브에서 세 멤버와 함께 무대에 서는 연주자들이에요. 투어마다 바뀔 수 있어요.</p>
+  ${[["지금", I.support.now], ["이전", I.support.past]].map(([k, g]) => `
+  <div class="card sup-card">
+    <div class="sup-tour"><span class="tag ${k === "지금" ? "t-release" : "t-done"}">${k}</span> ${esc(g.tour)}</div>
+    ${g.list.map(m => `<div class="sup-row"><span class="sup-part">${esc(m.part)}</span><span class="sup-name"><b>${esc(m.ko)}</b> <small>${esc(m.jp)}</small>${m.note ? `<small class="sup-note">${esc(m.note)}</small>` : ""}</span></div>`).join("")}
+  </div>`).join("")}
+
   <h2>연혁</h2>
   <div class="card timeline">${I.history.map(([y, t]) => `
     <div class="tl-row"><span class="tl-y">${esc(y)}</span><span class="tl-t">${esc(t)}</span></div>`).join("")}</div>
@@ -16966,7 +16995,7 @@ function viewAbout(){
 
   <h2>공식 링크</h2>
   <div class="card glist">${I.links.map(([l, u]) => `<a href="${u}" target="_blank" rel="noopener">${esc(l)}<span>↗</span></a>`).join("")}</div>
-  <p class="src">※ 소개·멤버·연혁은 나무위키를 참고했어요.</p>
+  <p class="src">※ 소개·멤버·연혁은 나무위키를 참고했어요. 서포트 멤버는 공식 라이브 리포트(THE FIRST TIMES · OTOTOY · rockin'on) 기준이에요.</p>
   ${footer()}`;
 }
 
