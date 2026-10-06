@@ -18376,7 +18376,6 @@ function songInfoHtml(song){
         ${row("수록", alb || (cws.length ? "" : esc(song.album || "")))}
         ${row("타이업", esc(info.tieup || ""))}
         ${row("크레딧", esc(info.credit || ""))}
-        ${row("기타 코드", `<a href="https://www.ufret.jp/search.php?key=${encodeURIComponent(song.jp)}" target="_blank" rel="noopener">U-FRET 코드 악보 ↗</a> <small>· 일반 / 초보자 버전</small><br><a href="https://www.youtube.com/results?search_query=${encodeURIComponent(song.jp + " back number ギター 弾き方")}" target="_blank" rel="noopener">유튜브 기타 강좌 ↗</a>`)}
         ${row("라이브 영상", videos.map(v => `${esc(v.jp)} <small>· ${/초회/.test(v.no) ? esc(v.no) + " · " : ""}${esc(v.date)}</small>`).join("<br>"))}
         ${(() => {
           const rec = songLiveRecord(song); if (!rec.length) return "";
