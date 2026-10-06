@@ -955,6 +955,12 @@ body.is-song header.top,body.is-song nav.tabs{display:none}
 .post-nav-item:last-child{text-align:right}
 .post-nav-item small{display:block;color:var(--muted);font-size:11.5px}
 .post-nav-item b{display:block;font-size:13.5px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.file-dl{display:flex;align-items:center;gap:10px;margin:4px 0;padding:11px 14px;border:1px solid var(--line);border-radius:12px;background:var(--surface2);color:var(--ink);text-decoration:none;font-weight:700;line-height:1.4}
+.file-dl:hover{border-color:var(--accent)}
+.fd-ic{flex:none;width:30px;height:30px;border-radius:9px;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent)}
+.fd-ic svg{width:17px;height:17px}
+.fd-t{flex:1;min-width:0;overflow-wrap:anywhere;font-size:14px}
+.fd-x{flex:none;font-size:11.5px;font-weight:800;color:var(--accent)}
 .post-zoom{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.86);display:grid;place-items:center;padding:16px;cursor:zoom-out}
 .post-zoom img{max-width:100%;max-height:100%;border-radius:8px}
 .info-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
@@ -17481,8 +17487,14 @@ function postFirstImg(p){
   return m ? m[1] : "";
 }
 /* src: 본문 글, img: 사진 주소 바꾸기(글쓰기 미리보기용) */
+const FILE_ICON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>`;
+const FILE_EXTS = ".pdf,.srt,.vtt,.ass,.ssa,.smi,.sub,.lrc,.txt,.zip";
+const fileSize = n => n >= 1048576 ? (n / 1048576).toFixed(1) + "MB" : Math.max(1, Math.round(n / 1024)) + "KB";
 function infoBody(src, img = u => u){
   const inline = t => esc(t)
+    .replace(/\[([^\]]+)\]\(((?:\/file\/|files\/)[^)\s]+)\)/g, (m, t2, u) => {   // 📎 첨부 파일 → 다운로드 버튼
+      const ext = (u.match(/\.([a-z0-9]+)$/i) || [])[1] || "";
+      return `<a class="file-dl" href="${u}" download><span class="fd-ic">${FILE_ICON}</span><span class="fd-t">${t2.replace(/^📎\s*/, "")}</span><span class="fd-x">${ext.toUpperCase()}${ext ? " · " : ""}받기</span></a>`; })
     .replace(/\[([^\]]+)\]\((https?:[^)\s]+|#[^)\s]*)\)/g, (m, t2, u) => `<a href="${u}"${u.startsWith("#") ? "" : ' target="_blank" rel="noopener"'}>${t2}</a>`)
     .replace(/\*\*([^*]+)\*\*/g, "<b>$1</b>");
   const fig = l => { const [, alt, u] = l.match(POST_IMG_RE);
@@ -17624,6 +17636,7 @@ function viewWrite(arg){
         <button class="btn" data-ins="> ">팁 상자</button>
         <button class="btn" data-ins="[링크 글자](https://)">링크</button>
         <label class="btn primary">📷 사진 넣기<input id="w_files" type="file" accept="image/*" multiple hidden></label>
+        <label class="btn" title="PDF · 자막(srt, vtt, ass, smi) · txt · zip / 한 파일 10MB까지">📎 파일 넣기<input id="w_attach" type="file" accept="${FILE_EXTS}" multiple hidden></label>
       </div>
       <textarea id="w_body" rows="16" placeholder="본문을 쓰세요. 빈 줄로 문단을 나눠요.&#10;캡처한 사진은 여기에 바로 붙여넣기(Ctrl+V)·끌어다 놓기도 돼요.&#10;&#10;사진은 [📷 사진 넣기] 로 고르면 커서 자리에 들어가요.&#10;사진 여러 장을 한 번에 고르면 나란히 2장씩 보여요.">${esc(d.body || "")}</textarea>
       <div class="w-thumbs" id="w_thumbs"></div>
@@ -17726,6 +17739,34 @@ ${body}
     insert(before.replace(/^\n/, "") + lines.join("\n") + "\n\n");
   };
   g("files").onchange = e => { const f = [...e.target.files]; e.target.value = ""; addImages(f); };
+  /* 파일 넣기 (PDF · 자막 등): 서버에 올리고 [📎 이름](/file/…) 줄을 넣는다 → 글에서는 다운로드 버튼 */
+  const addFiles = async files => {
+    const okExt = FILE_EXTS.split(",");
+    files = files.filter(f => f && okExt.includes((f.name.match(/\.[^.]+$/) || [""])[0].toLowerCase()));
+    if (!files.length) return alert("올릴 수 있는 파일: PDF · 자막(srt, vtt, ass, ssa, smi, sub, lrc) · txt · zip");
+    const big = files.filter(f => f.size > 10 * 1048576);
+    if (big.length) return alert(`10MB가 넘는 파일은 올릴 수 없어요:\n${big.map(f => f.name).join("\n")}`);
+    const at = ta.selectionStart, lines = [];
+    if (SRV.on && !SRV.me){ alert("파일을 넣기 전에 맨 위에서 글쓴이 비밀번호를 넣고 [확인]을 눌러 주세요."); $("#w_key")?.focus(); return; }
+    if (SRV.me){
+      copyToast(`파일 ${files.length}개 올리는 중…`);
+      for (const fl of files){
+        try { const r = await srvFetch("/api/file?name=" + encodeURIComponent(fl.name), { method:"POST", headers:{ "content-type": fl.type || "application/octet-stream" }, body: fl });
+          lines.push(`[📎 ${r.name.replace(/[\[\]]/g, "")} (${fileSize(r.size)})](${r.url})`); }
+        catch(err){ alert(`${fl.name}: ${err.message}`); }
+      }
+      if (!lines.length) return;
+      copyToast(`파일 ${lines.length}개를 넣었어요`);
+    } else {                                  // 내 컴퓨터에서 쓸 때: files/ 폴더에 직접 넣는 방식
+      files.forEach(fl => lines.push(`[📎 ${fl.name.replace(/[\[\]]/g, "")} (${fileSize(fl.size)})](files/${fl.name})`));
+      alert(`이 파일을 backnumber 폴더 안 files 폴더에 넣고 같이 올려 주세요:\n${files.map(f => f.name).join("\n")}`);
+    }
+    ta.focus(); ta.selectionStart = ta.selectionEnd = Math.min(at, ta.value.length);
+    const t = ta.value, a = ta.selectionStart;
+    const before = a === 0 ? "" : t[a - 1] === "\n" ? (t[a - 2] === "\n" ? "" : "\n") : "\n\n";
+    insert(before.replace(/^\n/, "") + lines.join("\n") + "\n\n");
+  };
+  g("attach").onchange = e => { const f = [...e.target.files]; e.target.value = ""; addFiles(f); };
   ta.addEventListener("paste", e => {
     const f = [...(e.clipboardData?.files || [])].filter(x => /^image\//.test(x.type));
     if (!f.length) return;                    // 글자 붙여넣기는 그대로
@@ -17735,8 +17776,11 @@ ${body}
   ta.addEventListener("dragleave", () => ta.classList.remove("drop"));
   ta.addEventListener("drop", e => {
     const f = [...(e.dataTransfer?.files || [])]; ta.classList.remove("drop");
-    if (!f.some(x => /^image\//.test(x.type))) return;
-    e.preventDefault(); addImages(f);
+    if (!f.length) return;
+    e.preventDefault();
+    const im = f.filter(x => /^image\//.test(x.type)), other = f.filter(x => !/^image\//.test(x.type));
+    if (im.length) addImages(im);
+    if (other.length) addFiles(other);
   });
   /* 본문 칸 아래 사진 미리보기 줄: 누르면 그 사진 줄로 이동, ✕ 로 빼기 */
   $("#w_thumbs").addEventListener("click", e => {
