@@ -311,6 +311,13 @@ body.is-home #app{max-width:none;padding-left:0;padding-right:0}
 .hb-live.is-live{background:var(--accent);color:#fff}
 .hb-live.is-end{background:var(--surface2);color:var(--muted)}
 .hb-tt{margin-top:10px}
+.hb-notice{display:flex;align-items:center;gap:12px;margin-top:10px;padding:12px 14px;border-radius:14px;background:color-mix(in srgb,var(--gold) 14%,var(--surface));border:1px solid color-mix(in srgb,var(--gold) 45%,transparent);color:var(--ink);text-decoration:none}
+.hb-n-dot{flex:none;width:9px;height:9px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 0 color-mix(in srgb,var(--gold) 60%,transparent);animation:hbPulse 1.6s ease-out infinite}
+@keyframes hbPulse{to{box-shadow:0 0 0 9px transparent}}
+.hb-n-t{flex:1;min-width:0}
+.hb-n-t b{display:block;font-size:14.5px;font-weight:800}
+.hb-n-t small{display:block;font-size:12px;color:var(--muted);margin-top:1px}
+.hb-n-go{flex:none;font-size:12px;font-weight:800;color:var(--gold)}
 .hb-song{display:flex;align-items:center;gap:14px;margin-top:10px;padding:14px 16px;border-radius:16px;background:var(--accent);color:#fff;text-decoration:none;box-shadow:0 6px 18px color-mix(in srgb,var(--accent) 30%,transparent)}
 :root[data-theme="dark"] .hb-song{color:#0f1a28}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .hb-song{color:#0f1a28}}
@@ -1079,6 +1086,8 @@ nav.tabs a[aria-current="page"]{color:var(--accent)}
    - end: 이틀 이상이거나 접수 기간이면 끝나는 날
    - tba: true → 날짜 미정 (달까지만 표시, 카운트다운 대신 COMING SOON)
    - src: 확인한 출처 링크 (공식 우선)
+   - home: "문구" → 접수 기간 동안만 메인 화면 위쪽에 알림으로 보임 (end 가 지나면 자동으로 사라짐)
+   - soldout: true → 품절. 메인 알림이 바로 사라지고 일정에는 '품절' 표시
    ============================================================ */
 const DATA = {
   lastChecked: "2026-09-30",
@@ -1107,7 +1116,7 @@ const DATA = {
     // ── 방송·발매 ──
     { type:"media", date:"2026-10-03T18:00", title:"U-NEXT 독점 라이브 생중계 『Grateful Yesterdays Tour 2026』", note:"같은 시간 라이브 첫 부분을 공식 SNS에서 무료 공개", src:"https://backnumber.info/news/detail/400296" },
     { type:"release", date:"2026-10-03T18:00", title:"라이브 음원 『Grateful Yesterdays Tour 2026 Live at NISSAN STADIUM』", note:"닛산 스타디움 2일차 공연 · 음원 사이트 전용으로 처음 공개하는 라이브 음원", src:"https://backnumber.info/news/detail/400291" },
-    { type:"ticket", date:"2026-10-07T18:00", end:"2026-10-13T12:00", title:"닛산 스타디움 Blu-ray·DVD 팬클럽 한정반 예약", note:"one room GOLD KEY 회원 · 10/13(화) 정오쯤까지 신청 권장 (수량이 다 차면 일찍 마감)", src:"https://backnumber.info/news/detail/400303" },
+    { type:"ticket", date:"2026-10-07T18:00", end:"2026-10-13T12:00", home:"팬클럽 회원 Blu-ray·DVD 예약 접수 중", title:"닛산 스타디움 Blu-ray·DVD 팬클럽 한정반 예약", note:"one room GOLD KEY 회원 · 10/13(화) 정오쯤까지 신청 권장 (수량이 다 차면 일찍 마감)", src:"https://backnumber.info/news/detail/400303" },
     { type:"release", date:"2026-12-23", title:"Blu-ray·DVD 『Grateful Yesterdays Tour 2026 at NISSAN STADIUM』 발매", note:"2026.06.14 닛산 스타디움 공연 19곡 + 투어 다큐멘터리 · 팬클럽 한정반 BD 15,400엔 / DVD 14,300엔 · 통상반 BD 7,700엔 / DVD 6,600엔", src:"https://backnumber.info/news/detail/400303" },
     { type:"release", date:"2026-12-05", title:"오리지널 앨범 6작 아날로그 LP 발매", note:"MAGIC · 유머 · 슈퍼스타 · blues · 러브스토리 · 샹들리에 (레코드의 날 2026)", src:"https://www.billboard-japan.com/d_news/detail/164638" },
 
@@ -16820,6 +16829,7 @@ function status(e, now=new Date()){
 function statusTag(e){
   if (e.tba) return `<span class="tag t-check">날짜 미정</span>`;
   const st = status(e);
+  if (e.soldout) return `<span class="tag t-done">품절</span>`;
   if (e.type === "ticket"){
     if (st === "now") return `<span class="tag t-open">접수 중</span>`;
     if (st === "past") return `<span class="tag t-done">마감</span>`;
@@ -16932,6 +16942,12 @@ function viewHome(){
         </div>
         <div class="hb-tt" id="liveTT" hidden></div>
       </div>
+      ${DATA.events.filter(e => e.home && !e.soldout && status(e) === "now").map(e => `
+      <a class="hb-notice" href="${esc(e.src || "#/schedule")}"${e.src ? ' target="_blank" rel="noopener"' : ""}>
+        <span class="hb-n-dot"></span>
+        <span class="hb-n-t"><b>${esc(e.home)}</b><small>${e.end ? `~ ${fmt(e.end)}${timeOf(e.end) ? " " + (timeOf(e.end) === "12:00" ? "정오" : timeOf(e.end)) : ""}까지` : ""}${e.note ? ` · ${esc(e.note.split(" · ")[0].replace(/^one room\s*/i, ""))}` : ""}</small></span>
+        <span class="hb-n-go">공지 ↗</span>
+      </a>`).join("")}
       <a class="hb-song" href="#/mv"><svg class="hb-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg><span><b>back number 노래</b><small>${SONGS.length}곡 · 가사 · 응원법</small></span>${GO}</a>
       <nav class="hb-rows" aria-label="메뉴">${menu.map(([h, ic, t, sub]) => `
         <a href="${h}"><i class="hb-ico">${ic}</i><span><b>${t}</b><small>${esc(sub)}</small></span>${GO}</a>`).join("")}
