@@ -1,5 +1,5 @@
 // 파일을 고쳐서 올릴 때마다 버전 숫자를 올려 주세요 (예: v2 → v3)
-const CACHE = "backnumber-guide-v35";
+const CACHE = "backnumber-guide-v36";
 const FILES = ["./", "./index.html", "./manifest.json", "./icons/icon.svg", "./icons/icon-192.png", "./icons/icon-512.png"];
 
 self.addEventListener("install", e => {
@@ -10,7 +10,10 @@ self.addEventListener("activate", e => {
 });
 // 인터넷 되면 항상 최신 파일, 안 되면 저장해 둔 파일
 self.addEventListener("fetch", e => {
-  if (e.request.method !== "GET" || new URL(e.request.url).origin !== location.origin) return;
+  const u = new URL(e.request.url);
+  if (e.request.method !== "GET" || u.origin !== location.origin) return;
+  if (/^\/(file|api|img)\//.test(u.pathname)) return;   // 첨부 파일 · 서버 글 · 사진은 저장하지 않고 그대로
+
   e.respondWith(
     fetch(e.request).then(res => {
       const copy = res.clone();
