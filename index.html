@@ -972,6 +972,7 @@ body.is-song header.top,body.is-song nav.tabs{display:none}
 .post-table td small{display:block;font-weight:500;color:var(--muted);font-size:12px}
 .file-dl{display:flex;align-items:center;gap:10px;margin:4px 0;padding:11px 14px;border:1px solid var(--line);border-radius:12px;background:var(--surface2);color:var(--ink);text-decoration:none;font-weight:700;line-height:1.4}
 .file-dl:hover{border-color:var(--accent)}
+.file-dl.busy{opacity:.6}
 .fd-ic{flex:none;width:30px;height:30px;border-radius:9px;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent)}
 .fd-ic svg{width:17px;height:17px}
 .fd-t{flex:1;min-width:0;overflow-wrap:anywhere;font-size:14px}
@@ -17881,11 +17882,34 @@ function postFirstImg(p){
 const FILE_ICON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>`;
 const FILE_EXTS = ".pdf,.srt,.vtt,.ass,.ssa,.smi,.sub,.lrc,.txt,.zip";
 const fileSize = n => n >= 1048576 ? (n / 1048576).toFixed(1) + "MB" : Math.max(1, Math.round(n / 1024)) + "KB";
+/* 홈 화면 앱(아이폰)에는 다운로드 기능이 없어서 미리보기만 뜬다 →
+   파일을 받아서 공유 창을 띄운다 ("파일에 저장"을 누르면 원래 이름 그대로 저장) */
+const fileDl = { ready:null };
+document.addEventListener("click", async e => {
+  const a = e.target.closest("a.file-dl"); if (!a) return;
+  const isApp = matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
+  if (!isApp || !navigator.canShare || !window.File) return;          // 일반 브라우저는 그냥 다운로드
+  e.preventDefault();
+  const url = a.getAttribute("href");
+  const share = f => navigator.share({ files:[f] }).catch(err => { if (err && err.name === "NotAllowedError"){ fileDl.ready = { url, f }; copyToast("한 번 더 누르면 저장 창이 떠요"); } });
+  if (fileDl.ready && fileDl.ready.url === url){ const f = fileDl.ready.f; fileDl.ready = null; return share(f); }
+  try {
+    a.classList.add("busy"); copyToast("파일 받는 중…");
+    const r = await fetch(url, { cache:"no-store" }); if (!r.ok) throw new Error();
+    const cd = r.headers.get("content-disposition") || "";
+    let name = (cd.match(/filename\*=UTF-8''([^;]+)/i) || [])[1];
+    name = name ? decodeURIComponent(name) : ((cd.match(/filename="([^"]+)"/i) || [])[1] || decodeURIComponent(url.split("?")[0].split("/").pop()));
+    const f = new File([await r.blob()], name, { type:"application/octet-stream" });
+    a.classList.remove("busy");
+    if (!navigator.canShare({ files:[f] })) return void (location.href = url);
+    share(f);
+  } catch(err){ a.classList.remove("busy"); location.href = url; }
+});
 function infoBody(src, img = u => u){
   const inline = t => esc(t)
     .replace(/\[([^\]]+)\]\(((?:\/file\/|files\/)[^)\s]+)\)/g, (m, t2, u) => {   // 📎 첨부 파일 → 다운로드 버튼
       const ext = (u.match(/\.([a-z0-9]+)$/i) || [])[1] || "";
-      return `<a class="file-dl" href="${u}" download target="_blank" rel="noopener"><span class="fd-ic">${FILE_ICON}</span><span class="fd-t">${t2.replace(/^📎\s*/, "")}</span><span class="fd-x">${ext.toUpperCase()}${ext ? " · " : ""}받기</span></a>`; })
+      return `<a class="file-dl" href="${u}${u.startsWith("/file/") ? "?dl=2" : ""}" download target="_blank" rel="noopener"><span class="fd-ic">${FILE_ICON}</span><span class="fd-t">${t2.replace(/^📎\s*/, "")}</span><span class="fd-x">${ext.toUpperCase()}${ext ? " · " : ""}받기</span></a>`; })
     .replace(/\[([^\]]+)\]\((https?:[^)\s]+|#[^)\s]*)\)/g, (m, t2, u) => `<a href="${u}"${u.startsWith("#") ? "" : ' target="_blank" rel="noopener"'}>${t2}</a>`)
     .replace(/\*\*([^*]+)\*\*/g, "<b>$1</b>");
   const fig = l => { const [, alt, u] = l.match(POST_IMG_RE);
@@ -18816,7 +18840,8 @@ async function copyToClipboard(text){
   } catch(e){ return false; }
 }
 function copyToast(msg){
-  const t = $("#copyToast"); if (!t) return;
+  let t = $("#copyToast");
+  if (!t){ t = document.createElement("div"); t.className = "copy-toast"; t.id = "copyToast"; t.setAttribute("aria-live", "polite"); document.body.appendChild(t); }
   t.textContent = msg; t.classList.add("show");
   clearTimeout(copyToast.timer); copyToast.timer = setTimeout(() => t.classList.remove("show"), 1800);
 }
