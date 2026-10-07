@@ -5,6 +5,8 @@ export async function onRequestGet({ env, params }){
   const obj = await env.BUCKET.get(key);
   if (!obj) return new Response("Not found", { status: 404 });
   const h = new Headers(); obj.writeHttpMetadata(h); h.set("etag", obj.httpEtag);
+  // PDF·zip 말고는 내려받기 전용 형식으로 (예전에 text/plain 으로 올린 자막도 .ass.txt 로 안 바뀌게)
+  if (!/\.(pdf|zip)$/i.test(key)) h.set("content-type", "application/octet-stream");
   if (!h.get("content-disposition")) h.set("content-disposition", "attachment");
   if (!h.get("cache-control")) h.set("cache-control", "public, max-age=31536000, immutable");
   h.set("x-content-type-options", "nosniff");

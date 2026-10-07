@@ -15579,8 +15579,8 @@ pic : side
 지금이라도 솔직하게 답할게
 
 2009年11月16日
-니센큐-넨 쥬-이치가츠 쥬-로쿠니치
-2009년 11월 16일
+니센쥬이치-넨 이치가츠 니쥬-산니-치
+2009년 1월 23일
 
 アンコールでの長い拍手
 안코-루데노 나가이 하쿠슈
@@ -17885,7 +17885,7 @@ function infoBody(src, img = u => u){
   const inline = t => esc(t)
     .replace(/\[([^\]]+)\]\(((?:\/file\/|files\/)[^)\s]+)\)/g, (m, t2, u) => {   // 📎 첨부 파일 → 다운로드 버튼
       const ext = (u.match(/\.([a-z0-9]+)$/i) || [])[1] || "";
-      return `<a class="file-dl" href="${u}" download><span class="fd-ic">${FILE_ICON}</span><span class="fd-t">${t2.replace(/^📎\s*/, "")}</span><span class="fd-x">${ext.toUpperCase()}${ext ? " · " : ""}받기</span></a>`; })
+      return `<a class="file-dl" href="${u}" download target="_blank" rel="noopener"><span class="fd-ic">${FILE_ICON}</span><span class="fd-t">${t2.replace(/^📎\s*/, "")}</span><span class="fd-x">${ext.toUpperCase()}${ext ? " · " : ""}받기</span></a>`; })
     .replace(/\[([^\]]+)\]\((https?:[^)\s]+|#[^)\s]*)\)/g, (m, t2, u) => `<a href="${u}"${u.startsWith("#") ? "" : ' target="_blank" rel="noopener"'}>${t2}</a>`)
     .replace(/\*\*([^*]+)\*\*/g, "<b>$1</b>");
   const fig = l => { const [, alt, u] = l.match(POST_IMG_RE);
