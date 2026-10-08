@@ -1,6 +1,6 @@
 // 파일을 고쳐서 올릴 때마다 버전 숫자를 올려 주세요 (예: v2 → v3)
-const CACHE = "backnumber-guide-v36";
-const FILES = ["./", "./index.html", "./manifest.json", "./icons/icon.svg", "./icons/icon-192.png", "./icons/icon-512.png"];
+const CACHE = "backnumber-guide-v37";
+const FILES = ["./", "./index.html", "./lyrics.js", "./manifest.json", "./icons/icon.svg", "./icons/icon-192.png", "./icons/icon-512.png"];
 
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(FILES)).then(() => self.skipWaiting()));

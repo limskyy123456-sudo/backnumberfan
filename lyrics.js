@@ -1,1151 +1,19 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
-<title>back number (비공식 팬 가이드)</title>
-<meta name="description" content="back number(백넘버) 전곡 가사·응원법, 콘서트 셋리스트, 앨범·굿즈, 공연 일정을 한국 팬 기준으로 정리한 비공식 팬사이트">
-<link rel="canonical" href="https://backnumberfankor.pages.dev/">
-<!-- 카톡·트위터 등 공유 미리보기 -->
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="back number 한국 팬 가이드">
-<meta property="og:title" content="back number 한국 팬 가이드 (비공식)">
-<meta property="og:description" content="back number(백넘버) 전곡 가사·응원법, 콘서트 셋리스트, 앨범·굿즈, 공연 일정을 한국 팬 기준으로 정리한 비공식 팬사이트">
-<meta property="og:url" content="https://backnumberfankor.pages.dev/">
-<meta property="og:image" content="https://backnumberfankor.pages.dev/images/og.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="back number 백넘버 한국 팬 가이드">
-<meta property="og:locale" content="ko_KR">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="back number 한국 팬 가이드 (비공식)">
-<meta name="twitter:description" content="back number(백넘버) 전곡 가사·응원법, 콘서트 셋리스트, 앨범·굿즈, 공연 일정을 한국 팬 기준으로 정리한 비공식 팬사이트">
-<meta name="twitter:image" content="https://backnumberfankor.pages.dev/images/og.jpg">
-<meta name="theme-color" content="#f3f5f8" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#12161c" media="(prefers-color-scheme: dark)">
-<link rel="manifest" href="manifest.json">
-<link rel="icon" href="icons/icon.svg?v=2" type="image/svg+xml">
-<link rel="apple-touch-icon" href="icons/icon-192.png?v=2">
-<style>
-:root{
-  --bg:#f3f5f8; --veil:rgba(246,248,251,.6); --surface:#ffffff; --surface2:#e8edf3; --ink:#1f2630; --muted:#687384;
-  --line:#dbe2ea; --accent:#2d5f93; --accent-soft:#dde8f4; --gold:#c98a14; --gold-soft:#fbefd4;
-  --green:#2f8a5b; --green-soft:#dff2e7; --blue:#7a4fa8; --blue-soft:#efe6f7;
-  --chant:#e07b12; --clap:#1c6aa8; --wave:#3f9a2c; --jump:#8a5bd6; --spin:#d24f96; --now:#d63a3a; --now-soft:#fde4e2; --ly-sub:#3f4957;
-  --radius:16px; --shadow:0 1px 2px rgba(20,40,70,.06),0 4px 16px rgba(20,40,70,.06);
-}
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --bg:#12161c; --veil:rgba(18,22,28,.66); --surface:#1b2129; --surface2:#232b35; --ink:#e9eef4; --muted:#9aa6b5;
-    --line:#2c3643; --accent:#86b4e6; --accent-soft:#1f3149; --gold:#e9b44c; --gold-soft:#43361c;
-    --green:#6cc795; --green-soft:#1f3a2c; --blue:#c3a4e8; --blue-soft:#2e2440; --chant:#f5942c; --clap:#4fa8e0; --wave:#8de05f; --jump:#b98cff; --spin:#ff86c8; --now:#ff7b72; --now-soft:#3d2326; --ly-sub:#c3ccd7;
-    --shadow:none;
-  }
-}
-:root[data-theme="dark"]{
-  --bg:#12161c; --veil:rgba(18,22,28,.66); --surface:#1b2129; --surface2:#232b35; --ink:#e9eef4; --muted:#9aa6b5;
-  --line:#2c3643; --accent:#86b4e6; --accent-soft:#1f3149; --gold:#e9b44c; --gold-soft:#43361c;
-  --green:#6cc795; --green-soft:#1f3a2c; --blue:#c3a4e8; --blue-soft:#2e2440; --chant:#f5942c; --clap:#4fa8e0; --wave:#8de05f; --jump:#b98cff; --spin:#ff86c8; --now:#ff7b72; --now-soft:#3d2326; --ly-sub:#c3ccd7;
-  --shadow:none;
-}
-*{box-sizing:border-box}
-html,body{margin:0}
-html{background:var(--bg)}
-#pageBg{display:none;position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;background:var(--bg)}
-#pageBg::after{content:"";position:absolute;inset:0;z-index:2;background:var(--veil)}
-#pageBg .bgl{position:absolute;inset:0;z-index:1;background:center/cover no-repeat;opacity:0;transition:opacity 1.8s ease;will-change:opacity}
-#pageBg .bgl.on{opacity:1}
-/* 곡 화면: 배경 위로 가사가 잘 읽히게 막을 더 진하게 */
-#pageBg[data-k="song"]::after{background:color-mix(in srgb,var(--bg) 84%,transparent)}
-body.has-bg .song-page{background:transparent}
-body.has-bg .song-topbar{background:color-mix(in srgb,var(--surface) 78%,transparent);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
-/* 라이트 모드: 어두운 공연 사진도 밝고 깨끗하게 */
-:root:not([data-theme="dark"]) #pageBg .bgl{filter:brightness(1.35) saturate(1.15)}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) #pageBg .bgl{filter:none}}
-body.has-bg{background:transparent}
-body.has-bg #pageBg{display:block}
-body.has-bg .home-hero::before{display:none}
-/* 배경 사진 위 글자 잘 보이게 */
-body.has-bg .home-title,body.has-bg .next-cap,body.has-bg h1,body.has-bg .sub,body.has-bg .mvmeta{text-shadow:0 0 14px var(--bg),0 0 4px var(--bg),0 0 1px var(--bg)}
-body.has-bg .next-cap{color:var(--ink);opacity:.85}
-body.has-bg .show-meta{background:color-mix(in srgb,var(--surface) 82%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-radius:14px;padding:2px 14px;box-shadow:0 4px 18px rgba(0,0,0,.08)}
-body.has-bg .show-meta > *:first-child{border-top:none}
-body.has-bg .show-meta > *:last-child{border-bottom:none}
-body{
-  background:var(--bg); color:var(--ink);
-  font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic","Hiragino Sans",sans-serif;
-  font-size:15px; line-height:1.6; -webkit-text-size-adjust:100%;
-  padding-bottom:calc(76px + env(safe-area-inset-bottom));
-}
-a{color:var(--accent)}
-.wrap{max-width:640px;margin:0 auto;padding:0 16px}
-
-/* 상단 */
-header.top{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-header.top .wrap{display:flex;align-items:center;gap:10px;height:54px}
-.logo{font-weight:800;letter-spacing:-.02em;font-size:17px;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:8px}
-.logo .dot{width:10px;height:10px;border-radius:50%;background:var(--accent)}
-.badge-unofficial{font-size:11px;font-weight:700;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:2px 8px}
-.spacer{flex:1}
-.icon-btn{background:none;border:1px solid var(--line);color:var(--ink);border-radius:999px;width:34px;height:34px;display:grid;place-items:center;cursor:pointer}
-.icon-btn svg{width:18px;height:18px}
-.refresh-btn{margin-right:8px}
-.hb-theme.hb-refresh{right:60px}
-[data-refresh].spin svg{animation:rfSpin .8s linear infinite}
-@keyframes rfSpin{to{transform:rotate(360deg)}}
-
-/* 공통 */
-h1{font-size:24px;letter-spacing:-.03em;margin:22px 0 4px}
-h2{font-size:17px;letter-spacing:-.02em;margin:26px 0 10px}
-.sub{color:var(--muted);font-size:13px;margin:0 0 14px}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);margin-bottom:12px}
-.muted{color:var(--muted)}
-.small{font-size:13px}
-.tag{display:inline-block;font-size:11px;font-weight:700;border-radius:6px;padding:1px 7px;vertical-align:middle}
-.t-live{background:var(--accent-soft);color:var(--accent)}
-.t-ticket{background:var(--gold-soft);color:var(--gold)}
-.t-release{background:var(--blue-soft);color:var(--blue)}
-.t-open{background:var(--green-soft);color:var(--green)}
-.t-done{background:var(--surface2);color:var(--muted)}
-.t-check{background:var(--gold-soft);color:var(--gold)}
-.btn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--surface);color:var(--ink);text-decoration:none;border-radius:999px;padding:7px 14px;font-size:14px;font-weight:600;cursor:pointer}
-.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
-.src{font-size:12px;color:var(--muted)}
-.src a{color:var(--muted)}
-
-/* 홈 히어로 */
-.hero{background:linear-gradient(135deg,var(--accent) 0%,#4f86bd 100%);color:#fff;border:none;padding:20px}
-.hero .label{font-size:12px;font-weight:700;opacity:.9;letter-spacing:.04em}
-.hero .title{font-size:19px;font-weight:800;letter-spacing:-.02em;margin:4px 0 2px;line-height:1.35}
-.hero .meta{font-size:13px;opacity:.92}
-.count{display:flex;gap:8px;margin-top:14px}
-.count div{background:rgba(255,255,255,.18);border-radius:12px;padding:8px 0;flex:1;text-align:center}
-.count b{display:block;font-size:24px;font-variant-numeric:tabular-nums;line-height:1.2}
-.count span{font-size:11px;opacity:.9}
-
-.links{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.links a{display:block;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px;text-decoration:none;color:var(--ink);font-weight:700;font-size:14px}
-.links a small{display:block;font-weight:400;color:var(--muted);font-size:12px}
-
-/* 일정 */
-.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
-.chip{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:5px 12px;font-size:13px;cursor:pointer}
-.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-.toggle{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:6px;margin:0 0 6px}
-.month{font-size:13px;font-weight:800;color:var(--muted);margin:18px 0 6px;letter-spacing:.02em}
-.ev{display:flex;gap:12px;padding:12px 0;border-top:1px solid var(--line)}
-.ev:first-of-type{border-top:none}
-.ev .d{width:54px;flex:none;text-align:center}
-.ev .d b{display:block;font-size:20px;line-height:1.1;font-variant-numeric:tabular-nums}
-.ev .d span{font-size:11px;color:var(--muted)}
-.ev .b{flex:1;min-width:0}
-.ev .ttl{font-weight:700;line-height:1.4}
-.ev .info{font-size:13px;color:var(--muted)}
-.ev.past{opacity:.5}
-
-/* 목록·단계 */
-ol.steps{counter-reset:s;list-style:none;padding:0;margin:0}
-ol.steps li{counter-increment:s;position:relative;padding:0 0 14px 38px}
-ol.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:26px;height:26px;border-radius:50%;background:var(--accent);color:#fff;font-weight:800;font-size:13px;display:grid;place-items:center}
-ol.steps li > b{display:block}
-ul.plain{padding-left:18px;margin:6px 0}
-ul.plain li{margin:3px 0}
-dl.kv{display:grid;grid-template-columns:88px 1fr;gap:8px 12px;margin:0}
-dl.kv dt{color:var(--muted);font-size:13px}
-dl.kv dd{margin:0;font-weight:600}
-.todo{border:1px dashed var(--gold);background:var(--gold-soft);border-radius:12px;padding:10px 12px;font-size:13px;margin-top:10px}
-.todo b{color:var(--gold)}
-
-.goods{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-top:1px solid var(--line)}
-.goods:first-child{border-top:none}
-.goods .n{font-weight:600}
-.goods .p{white-space:nowrap;font-variant-numeric:tabular-nums;font-weight:700}
-
-details.acc{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);margin-bottom:10px;box-shadow:var(--shadow)}
-details.acc summary{list-style:none;cursor:pointer;padding:14px 16px;font-weight:700;display:flex;justify-content:space-between;align-items:center}
-details.acc summary::-webkit-details-marker{display:none}
-details.acc summary::after{content:"＋";color:var(--muted)}
-details.acc[open] summary::after{content:"－"}
-details.acc .in{padding:0 16px 16px}
-
-.glist{padding:2px 16px}
-.glist a{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:12px 0;border-top:1px solid var(--line);color:var(--ink);text-decoration:none;font-size:15px}
-.glist a:first-child{border-top:none}
-.glist a small{display:block;color:var(--muted);font-size:12px;margin-top:1px}
-.glist a span{color:var(--muted);font-size:18px}
-.back{display:inline-block;margin-top:16px;font-size:14px;text-decoration:none;color:var(--muted)}
-.back + h1{margin-top:6px}
-code{background:var(--surface2);border-radius:4px;padding:1px 5px;font-size:13px;word-break:break-all}
-.note{border-radius:12px;padding:10px 12px;font-size:14px;margin:12px 0}
-.note.tip{background:var(--green-soft)}
-.note.tip::before{content:"TIP  ";font-weight:800;color:var(--green)}
-.note.warn{background:var(--gold-soft)}
-.note.warn::before{content:"주의  ";font-weight:800;color:var(--gold)}
-.jstep h3{font-size:16px;margin:26px 0 8px;letter-spacing:-.02em}
-.jstep h3:first-child{margin-top:2px}
-.jstep p{margin:0 0 10px}
-.shot{margin:4px 0 16px}
-.shot img{display:block;width:100%;max-width:420px;border-radius:10px;border:1px solid var(--line)}
-.shot figcaption{font-size:12px;color:var(--muted);margin-top:4px}
-.shot.empty div{border:1.5px dashed var(--line);border-radius:10px;padding:14px;text-align:center;font-size:12px;color:var(--muted);line-height:1.7;background:var(--surface2)}
-.shot.empty span{color:var(--ink)}
-.qa{background:var(--surface2);border-radius:12px;padding:10px 12px;margin:0 0 12px;font-size:14px}
-.qa p{margin:4px 0 0!important}
-.seg{display:flex;gap:6px;background:var(--surface2);padding:4px;border-radius:14px;margin:26px 0 12px;scroll-margin-top:64px}
-.seg button{flex:1;border:0;background:none;color:var(--muted);font:inherit;font-size:14px;font-weight:700;padding:10px 6px;border-radius:10px;cursor:pointer}
-.seg button[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
-.acct{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.acct > div > b{display:block;margin:6px 0 2px}
-.acct ul.plain{padding-left:16px}
-@media (max-width:420px){.acct{grid-template-columns:1fr}}
-/* 홈 (바운디 구성) */
-body.is-home header.top{display:none}
-.home-hero{position:relative;text-align:center;padding:calc(56px + env(safe-area-inset-top)) 0 10px;display:flex;flex-direction:column;align-items:center}
-.home-hero::before{content:"";position:absolute;left:-16px;right:-16px;top:0;height:78svh;z-index:-1;
-  background:linear-gradient(180deg,color-mix(in srgb,var(--bg) 20%,transparent) 0%,color-mix(in srgb,var(--bg) 55%,transparent) 55%,var(--bg) 100%),url('images/home-bg.jpg') center 30%/cover no-repeat,
-  radial-gradient(120% 70% at 50% 0%,var(--accent-soft) 0%,transparent 70%)}
-.hero-theme{position:absolute;top:calc(14px + env(safe-area-inset-top));right:0;background:color-mix(in srgb,var(--surface) 80%,transparent)}
-.home-title{margin:0;font-size:clamp(46px,14vw,78px);font-weight:700;letter-spacing:-.03em;line-height:1;text-transform:lowercase}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .menu-btn,:root:not([data-theme="light"]) .btn.primary{color:#0f1a28}}
-:root[data-theme="dark"] .menu-btn,:root[data-theme="dark"] .btn.primary{color:#0f1a28}
-.home-sub{margin-top:10px;font-size:12px;font-weight:700;letter-spacing:.24em;color:var(--muted)}
-.t-media{background:var(--green-soft);color:var(--green)}
-.t-other{background:var(--surface2);color:var(--muted)}
-.menu-row.soon{cursor:default;color:var(--muted)}
-.menu-row.soon .menu-ico{color:var(--muted)}
-.soon-tag{font-size:11px;font-weight:700;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:1px 8px}
-.show-note{display:block;padding:13px 2px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);line-height:1.6}
-.show-note b{color:var(--ink)}
-.next-cap{margin-top:30px;font-size:12px;font-weight:700;letter-spacing:.18em;color:var(--muted);max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.next-cap:empty{display:none}
-.countdown{margin-top:10px;display:flex;justify-content:center;width:100%}
-.cd-pill{display:inline-flex;align-items:center;gap:clamp(12px,3.4vw,18px);padding:clamp(11px,3vw,15px) clamp(20px,5.6vw,30px);border-radius:10px;background:var(--ink);color:var(--bg)}
-.cd-dday,.cd-clock{font-size:clamp(28px,8.2vw,38px);line-height:1;font-weight:800;letter-spacing:.02em;font-variant-numeric:tabular-nums}
-.cd-clock{font-weight:600;opacity:.88;white-space:nowrap}
-.cd-pill.is-soon .cd-clock{font-size:clamp(17px,5vw,24px);letter-spacing:.08em}
-.cd-sep{width:1px;align-self:stretch;background:currentColor;opacity:.3}
-.cd-pill.is-live{background:var(--accent);color:#fff}
-.cd-pill.is-end{background:var(--surface2);color:var(--muted)}
-.cd-pill.is-end .cd-sep,.cd-pill.is-end .cd-clock{display:none}
-.show-meta{margin-top:26px;width:100%;max-width:420px;text-align:left}
-.show-meta:empty{display:none}
-.show-row{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:13px 2px;border-top:1px solid var(--line);color:inherit;text-decoration:none}
-.show-day{font-size:clamp(18px,5vw,22px);font-weight:800;letter-spacing:.02em;font-variant-numeric:tabular-nums}
-.show-day .dow{margin-left:6px;font-size:.7em;color:var(--muted);letter-spacing:.08em}
-.show-time{font-size:clamp(16px,4.4vw,20px);font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums}
-.show-time .go{margin-left:8px;font-size:.7em;opacity:.5}
-.show-row.past{opacity:.38}
-.show-row.live .show-day,.show-row.live .show-time{color:var(--accent)}
-.show-venue{display:block;padding-top:13px;border-top:1px solid var(--line);font-size:13px;letter-spacing:.08em;color:var(--muted);text-decoration:none}
-.main-menu{margin-top:30px;width:100%;max-width:420px}
-.menu-btn{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:4px 8px;padding:15px;border-radius:16px;background:var(--accent);color:#fff;font-size:17px;font-weight:800;text-decoration:none;letter-spacing:.02em;box-shadow:0 6px 18px rgba(0,0,0,.15)}
-.menu-btn .mb-play{width:18px;height:18px}
-.menu-btn small{flex-basis:100%;font-size:12px;font-weight:600;opacity:.8;letter-spacing:0}
-.tile-grid{margin-top:12px;width:100%;max-width:420px;display:grid;grid-template-columns:1fr 1fr;gap:10px;text-align:left}
-.tile{display:flex;flex-direction:column;gap:4px;min-height:96px;padding:14px;border-radius:16px;background:color-mix(in srgb,var(--surface) 86%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid var(--line);box-shadow:var(--shadow);color:var(--ink);text-decoration:none;transition:transform .15s,border-color .15s}
-.tile:hover{border-color:var(--accent)}
-.tile:active{transform:scale(.98)}
-.tile-ico{width:26px;height:26px;color:var(--accent);margin-bottom:6px}
-.tile-ico svg{width:26px;height:26px}
-.tile b{font-size:15px;font-weight:800}
-.tile small{font-size:11.5px;color:var(--muted);line-height:1.4}
-.tile-links{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 18px;margin-top:16px;font-size:13px}
-.tile-links a{color:var(--muted);text-decoration:none;font-weight:600}
-.tile-links a:hover{color:var(--accent)}
-body.has-bg .tile-links a{text-shadow:0 0 8px var(--bg),0 0 2px var(--bg);color:var(--ink);opacity:.85}
-.menu-card{margin-top:14px;width:100%;max-width:420px;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);overflow:hidden}
-.menu-row{display:flex;align-items:center;gap:12px;padding:14px 16px;border-top:1px solid var(--line);color:var(--ink);text-decoration:none;cursor:pointer;list-style:none;font-weight:700;font-size:15px}
-.menu-card > .menu-row:first-child,.menu-card > .menu-acc:first-child > .menu-row{border-top:none}
-.menu-row::-webkit-details-marker{display:none}
-.menu-ico{flex:none;width:22px;height:22px;color:var(--accent)}
-.menu-ico svg{width:22px;height:22px}
-.menu-label{flex:1}
-.menu-go,.menu-chev{color:var(--muted);font-size:18px}
-.menu-acc[open] .menu-chev{transform:rotate(180deg)}
-.menu-panel{padding:0 16px 12px}
-.live-item{display:flex;gap:12px;padding:10px 0;border-top:1px solid var(--line);color:var(--ink);text-decoration:none;font-size:14px}
-.live-item:first-child{border-top:none}
-.live-date{flex:none;width:118px;font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums;padding-top:1px}
-.live-name{flex:1;min-width:0;font-weight:600;line-height:1.4}
-.live-name small{display:block;font-weight:400;font-size:12px;color:var(--muted)}
-.live-more{display:block;padding-top:8px;font-size:13px;font-weight:700;text-decoration:none}
-.menu-links{display:flex;gap:6px;padding:12px 16px 14px;border-top:1px solid var(--line)}
-.menu-chip{flex:1;text-align:center;padding:9px 6px;border:1px solid var(--line);border-radius:999px;color:var(--ink);font-size:13px;font-weight:600;text-decoration:none}
-.home-foot{margin-top:18px}
-.share-btn{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:9px 18px;font:inherit;font-size:13px;font-weight:600;cursor:pointer}
-.gd-note{margin:-6px 0 14px;padding:9px 12px;border-radius:10px;background:var(--surface2);color:var(--muted);font-size:12.5px;line-height:1.55}
-.home-foot{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
-.home-foot .share-btn{font-size:12.5px;padding:8px 14px}
-.install-guide{margin:10px auto 0;max-width:340px;text-align:left;padding:12px 14px;border-radius:14px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);font-size:13px;line-height:1.55}
-.install-guide[hidden]{display:none}
-.install-guide .ig-title{display:block;margin-bottom:4px}
-.install-guide ol{margin:0;padding-left:18px}
-.install-guide .ig-x{display:block;margin:8px 0 0 auto;border:0;background:none;color:var(--muted);font:inherit;font-size:12px;cursor:pointer}
-/* 폰에서 확대·비율 깨짐 방지: 두 번 탭 확대 끄기, 입력칸 글자 16px(아이폰은 16px 미만이면 자동 확대), 가로 넘침 잘라내기 */
-html{touch-action:manipulation}
-body{overflow-x:clip}
-@media (hover:none) and (pointer:coarse){input,select,textarea{font-size:16px !important}}
-/* ── 메인 B (포스터형) ── */
-body.is-home #app{max-width:none;padding-left:0;padding-right:0}
-.homeB{position:relative;width:100%}
-.hb-theme{position:absolute;z-index:3;top:calc(14px + env(safe-area-inset-top));right:16px;background:rgba(255,255,255,.88);color:#1f2630;border-color:transparent;box-shadow:0 2px 10px rgba(0,0,0,.15)}
-.hb-hero{position:relative;height:clamp(300px,50svh,440px);background:linear-gradient(180deg,rgba(0,0,0,.08) 0%,rgba(0,0,0,.1) 45%,rgba(10,14,20,.82) 100%),url("images/bg/home.webp") 45% 35%/cover no-repeat;color:#fff}
-.hb-title{position:absolute;left:22px;right:22px;bottom:46px}
-.hb-title small{display:block;font-size:11px;font-weight:700;letter-spacing:.22em;opacity:.9}
-.hb-title h1{margin:6px 0 0;font-size:clamp(50px,15vw,74px);line-height:.92;letter-spacing:-.04em;font-weight:800;text-transform:lowercase;text-shadow:0 2px 18px rgba(0,0,0,.35)}
-.hb-sheet{position:relative;margin-top:-24px;border-radius:24px 24px 0 0;background:var(--bg);padding:16px 16px 8px;max-width:none}
-.hb-sheet > *{max-width:560px;margin-left:auto;margin-right:auto}
-.cd-pill.hb-live{display:block;width:100%;padding:14px 16px;border-radius:16px;background:#1f2630;color:#fff;gap:0}
-:root[data-theme="dark"] .cd-pill.hb-live{background:#232b35}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .cd-pill.hb-live{background:#232b35}}
-.hb-live-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
-.hb-live-l{min-width:0}
-.hb-kicker{display:block;font-size:10.5px;font-weight:800;letter-spacing:.18em;opacity:.7}
-.hb-live .next-cap{display:block;margin:2px 0 0;font-size:15px;font-weight:800;letter-spacing:0;color:inherit;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.hb-live .next-cap:empty::before{content:"발표 예정"}
-.hb-live-r{flex:none;display:flex;flex-direction:column;align-items:flex-end;gap:2px}
-.hb-live .cd-sep{display:none}
-.hb-live .cd-dday{font-size:clamp(24px,7vw,30px);line-height:1.05}
-.hb-live .cd-clock{font-size:12px;letter-spacing:.14em;font-weight:700;opacity:.75}
-.hb-live.is-soon .cd-clock{font-size:12px;letter-spacing:.14em}
-.hb-live.is-live{background:var(--accent);color:#fff}
-.hb-live.is-end{background:var(--surface2);color:var(--muted)}
-.hb-tt{margin-top:10px}
-.hb-notice{display:flex;align-items:center;gap:12px;margin-top:10px;padding:12px 14px;border-radius:14px;background:color-mix(in srgb,var(--gold) 14%,var(--surface));border:1px solid color-mix(in srgb,var(--gold) 45%,transparent);color:var(--ink);text-decoration:none}
-.hb-n-dot{flex:none;width:9px;height:9px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 0 color-mix(in srgb,var(--gold) 60%,transparent);animation:hbPulse 1.6s ease-out infinite}
-@keyframes hbPulse{to{box-shadow:0 0 0 9px transparent}}
-.hb-n-t{flex:1;min-width:0}
-.hb-n-t b{display:block;font-size:14.5px;font-weight:800}
-.hb-n-t small{display:block;font-size:12px;color:var(--muted);margin-top:1px}
-.hb-n-go{flex:none;font-size:12px;font-weight:800;color:var(--gold)}
-.hb-song{display:flex;align-items:center;gap:14px;margin-top:10px;padding:14px 16px;border-radius:16px;background:var(--accent);color:#fff;text-decoration:none;box-shadow:0 6px 18px color-mix(in srgb,var(--accent) 30%,transparent)}
-:root[data-theme="dark"] .hb-song{color:#0f1a28}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .hb-song{color:#0f1a28}}
-.hb-play{width:22px;height:22px;flex:none}
-.hb-song span{flex:1;min-width:0}
-.hb-song b{display:block;font-size:17px;font-weight:800}
-.hb-song small{font-size:12px;opacity:.85;font-weight:600}
-.hb-go{width:18px;height:18px;flex:none;opacity:.6}
-.hb-rows{margin-top:10px;background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:grid}
-.hb-rows a{display:flex;align-items:center;gap:12px;padding:11px 14px;border-top:1px solid var(--line);color:var(--ink);text-decoration:none}
-.hb-rows a:first-child{border-top:0}
-.hb-rows a:hover{background:var(--surface2)}
-.hb-ico{flex:none;width:34px;height:34px;border-radius:10px;background:var(--accent-soft);color:var(--accent);display:flex;align-items:center;justify-content:center}
-.hb-ico svg{width:19px;height:19px}
-.hb-rows span{flex:1;min-width:0}
-.hb-rows b{display:block;font-size:15px;font-weight:800}
-.hb-rows small{display:block;font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.hb-rows .hb-go{color:var(--muted)}
-.homeB .tile-links{margin-top:16px}
-.homeB .home-foot{margin-top:12px}
-.homeB .credits{margin:18px auto 6px}
-@media (min-width:560px){
-  .hb-rows{grid-template-columns:1fr 1fr}
-  .hb-rows a:nth-child(2){border-top:0}
-  .hb-rows a:nth-child(odd){border-right:1px solid var(--line)}
-}
-/* PC: 왼쪽 사진 / 오른쪽 내용 */
-@media (min-width:900px){
-  .homeB{display:grid;grid-template-columns:52% 1fr;min-height:calc(100svh - 58px)}
-  .hb-theme.hb-refresh{right:68px}
-  .hb-theme{top:20px;right:24px;background:var(--surface);color:var(--ink);border:1px solid var(--line);box-shadow:none}
-  .hb-hero{height:auto;min-height:calc(100svh - 58px);position:sticky;top:0;background:linear-gradient(90deg,rgba(0,0,0,.04),rgba(10,14,20,.5)),url("images/bg/home.webp") 45% 35%/cover no-repeat}
-  .hb-title{left:56px;bottom:64px}
-  .hb-title small{font-size:13px}
-  .hb-title h1{font-size:clamp(90px,8.6vw,140px)}
-  .hb-sheet{min-width:0;margin:0;border-radius:0;padding:64px 48px 24px;display:flex;flex-direction:column;justify-content:center}
-  .hb-sheet > *{width:100%;max-width:600px}
-  .cd-pill.hb-live{padding:20px 24px;border-radius:18px}
-  .hb-live .next-cap{font-size:19px}
-  .hb-live .cd-dday{font-size:40px}
-  .hb-song{padding:18px 22px;border-radius:18px}
-  .hb-song b{font-size:21px}
-  .hb-rows a{padding:14px 18px}
-  .hb-rows b{font-size:16px}
-}
-.credits{margin:22px 0 8px;text-align:center;font-size:11.5px;color:var(--muted)}
-/* 뮤비 */
-.mvtools{display:flex;gap:8px;margin-bottom:10px}
-/* 곡 목록: 스크롤해도 검색창 · 정렬 · 랜덤 버튼은 맨 위에 붙어 있게 */
-.mvtools{position:sticky;top:55px;z-index:9;margin:0 -16px 10px;padding:8px 16px;background:color-mix(in srgb,var(--bg) 94%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
-.mvtools.stuck{border-bottom:1px solid var(--line);box-shadow:0 6px 14px rgba(0,0,0,.06)}
-.mvsort-wrap{position:relative;flex:none;display:flex}
-.mvsort-btn{display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
-.mvsort-btn svg{width:15px;height:15px;transition:transform .2s}
-.mvsort-btn[aria-expanded="true"] svg{transform:rotate(180deg)}
-.mvsort-menu{position:absolute;right:0;top:calc(100% + 6px);z-index:30;min-width:170px;padding:6px;border-radius:14px;background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow)}
-.mvsort-menu[hidden]{display:none}
-.mvsort-group + .mvsort-group{border-top:1px solid var(--line);margin-top:4px;padding-top:4px}
-.mvsort-group small{display:block;padding:4px 10px 2px;font-size:11px;font-weight:700;color:var(--muted)}
-.mvsort-menu button{display:block;width:100%;text-align:left;padding:8px 10px;border:0;border-radius:8px;background:none;color:var(--ink);font:inherit;font-size:14px;cursor:pointer}
-.mvsort-menu button:hover{background:var(--surface2)}
-.mvsort-menu button[aria-selected="true"]{color:var(--accent);font-weight:800;background:var(--accent-soft)}
-.mvsearch{flex:1;min-width:0;display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:8px 12px;color:var(--muted)}
-.mvsearch input{flex:1;min-width:0;border:0;background:none;color:var(--ink);font:inherit;outline:none}
-.mvtools .btn{flex:none;font-size:13px;border-radius:12px}
-.mvmeta{display:flex;justify-content:space-between;margin:0 2px 8px}
-.mvlist{padding:0 16px}
-.mvrow{display:flex;align-items:center;gap:10px;padding:11px 0;border-top:1px solid var(--line);text-decoration:none;color:var(--ink)}
-.mvrow:first-child{border-top:none}
-.mvrow .t{flex:1;min-width:0}
-.mvrow .t b{display:block;font-weight:600;font-size:15px}
-.mvrow .t small{display:block;color:var(--muted);font-size:12px}
-.mvrow .side{flex:none;display:flex;flex-direction:column;align-items:flex-end;gap:3px}
-.mvrow .side small{font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
-.mvhead{display:flex;align-items:center;justify-content:space-between;margin-top:12px}
-.mvhead .back{margin-top:0}
-.mvnav{display:flex;gap:6px}
-.mvnav a{text-decoration:none;font-size:20px;line-height:1}
-.mvtitle{margin-top:8px}
-.live-row{display:flex;align-items:center;gap:10px}
-.live-title{flex:1;min-width:0;display:block;text-decoration:none;color:var(--ink)}
-.live-title b{display:block;font-size:14.5px}
-.live-title small{display:block;font-size:12px;color:var(--muted)}
-.live-play{flex:none;display:inline-flex;align-items:center;gap:4px;padding:5px 10px;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--accent);font:inherit;font-size:12px;font-weight:700;cursor:pointer}
-.live-play svg{width:12px;height:12px}
-.live-play.on{background:var(--accent);border-color:var(--accent);color:#fff}
-.live-player{margin:0 0 12px}
-.fav-dot{font-style:normal;color:#e0556b;margin-right:4px;font-size:.9em}
-.ly-hit{display:block;margin-top:2px;font-size:12px;color:var(--accent);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.ly-hit .ly-tr{color:var(--muted)}
-.ly-tag{display:inline-block;margin-right:6px;padding:0 6px;border-radius:5px;background:var(--accent-soft);color:var(--accent);font-size:10.5px;font-weight:800;line-height:17px;vertical-align:1px}
-.mvrow mark{background:color-mix(in srgb,var(--gold) 35%,transparent);color:inherit;border-radius:3px;padding:0 1px}
-.mv-group{display:inline-flex;align-items:center;gap:6px;margin:14px 0 6px;padding:3px 10px 3px 3px;border-radius:999px;background:color-mix(in srgb,var(--surface) 88%,transparent);font-size:12.5px;font-weight:700;color:var(--ink)}
-.mv-group:first-child{margin-top:4px}
-.mv-gtag{padding:1px 8px;border-radius:999px;font-size:11px;font-weight:800}
-.mv-gtag.t{background:var(--ink);color:var(--bg)}
-.mv-gtag.l{background:var(--accent-soft);color:var(--accent)}
-.fav-top.on{color:#e0556b;border-color:#e0556b}
-.row-fav{flex:none;width:34px;height:34px;margin:-4px -6px -4px -2px;display:flex;align-items:center;justify-content:center;border:0;background:none;color:var(--muted);opacity:.55;cursor:pointer;border-radius:50%}
-.row-fav svg{width:19px;height:19px}
-.row-fav.on{color:#e0556b;opacity:1}
-.row-fav:hover{opacity:1}
-.mvshuffle{flex:none;padding:7px 11px}
-.mvshuffle svg{width:17px;height:17px}
-.unmute-btn{position:absolute;left:10px;bottom:10px;z-index:3;display:inline-flex;align-items:center;gap:6px;padding:8px 13px;border:0;border-radius:999px;background:rgba(0,0,0,.72);color:#fff;font:inherit;font-size:13px;font-weight:700;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.35)}
-.unmute-btn.hint{pointer-events:none;max-width:calc(100% - 20px);white-space:normal;text-align:left;line-height:1.4;font-size:12px}
-.unmute-btn svg{width:17px;height:17px}
-.unmute-btn[hidden]{display:none}
-.mvvideo{position:sticky;top:54px;z-index:5;background:var(--bg);margin:0 -16px;padding:0 0 6px}
-.mvvideo .ratio{position:relative;aspect-ratio:16/9;background:#000}
-@media (min-width:640px){.mvvideo{margin:0}.mvvideo .ratio{border-radius:12px;overflow:hidden}}
-.mvvideo iframe,.mvvideo #yt{position:absolute;inset:0;width:100%;height:100%;border:0}
-.novideo{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:#b3a59b;font-size:13px;text-align:center;padding:16px}
-.mvbar{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:8px 0 10px}
-.mvlyrics{padding:8px}
-.ly{display:block;width:100%;text-align:left;background:none;border:0;color:inherit;font:inherit;padding:9px 10px;border-radius:10px;cursor:pointer}
-.ly .jp{display:block;font-size:14px;color:var(--muted)}
-.ly .ko{display:block;font-size:16px;font-weight:700;margin-top:2px}
-.ly .tr{display:block;font-size:13px;color:var(--muted);margin-top:2px}
-.ly .jp:empty,.ly .tr:empty{display:none}
-.ly.on{background:var(--accent-soft)}
-.ly.on .ko{color:var(--accent)}
-.nolyrics{text-align:center;padding:30px 6px;line-height:1.9;margin:0}
-/* 곡 화면 (바운디 구성) */
-body.is-song{overflow:hidden}
-body.is-song header.top,body.is-song nav.tabs{display:none}
-.song-page{position:fixed;inset:0;z-index:40;height:100svh;display:flex;flex-direction:column;overflow:hidden;background:var(--bg)}
-.song-topbar{flex:none;display:flex;align-items:center;gap:8px;padding:calc(12px + env(safe-area-inset-top)) 12px 12px;background:var(--surface);border-bottom:1px solid var(--line)}
-.back-btn{flex:none;background:none;border:1px solid var(--line);color:var(--ink);border-radius:999px;padding:8px 12px;font:inherit;font-size:14px;cursor:pointer}
-.song-nav{flex:1;min-width:0;display:flex;align-items:center;gap:6px}
-.song-nav-btn{flex:none;width:34px;height:34px;display:flex;align-items:center;justify-content:center;background:none;border:1px solid var(--line);border-radius:50%;color:var(--ink);cursor:pointer}
-.song-nav-btn svg{width:18px;height:18px}
-.song-nav-btn:hover{border-color:var(--accent);color:var(--accent)}
-.song-picker-btn{flex:1;min-width:0;display:flex;align-items:center;justify-content:center;gap:7px;background:var(--surface2);border:1px solid var(--line);border-radius:999px;color:var(--ink);padding:7px 12px;font:inherit;cursor:pointer}
-.song-picker-title{min-width:0;font-weight:800;font-size:clamp(13px,3.9vw,16px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.song-picker-caret{flex:none;width:15px;height:15px;color:var(--muted);transition:transform .25s}
-.song-picker-caret svg{width:15px;height:15px}
-.song-picker-btn[aria-expanded="true"] .song-picker-caret{transform:rotate(180deg)}
-.song-body{flex:1;min-height:0;display:flex;flex-direction:column}
-.song-fixed-top{flex:none}
-.video-wrap{max-width:720px;margin:16px auto 0;padding:0 16px}
-.video-frame{position:relative;width:100%;padding-top:56.25%;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#000;box-shadow:var(--shadow)}
-.video-frame iframe,.video-frame > div{position:absolute;inset:0;width:100%;height:100%;border:0}
-.video-status{display:flex;align-items:center;justify-content:center;color:#b3a59b;font-size:13px}
-.video-sub{display:flex;justify-content:space-between;gap:10px;margin-top:8px;font-size:11.5px;color:var(--muted)}
-.video-sub > span{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.watch-on-yt{flex:none;color:var(--muted);text-decoration:none}
-.lyrics-note{max-width:720px;margin:12px auto 12px;padding:0 16px;font-size:12px;color:var(--muted);display:flex;gap:8px;align-items:flex-start}
-.lyrics-note .dot{color:var(--accent)}
-.lyrics-scroll{position:relative;flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;border-top:1px solid var(--line)}
-.lyrics-list{max-width:720px;margin:10px auto 0;padding:8px 10px 160px;list-style:none}
-.lyric-line{width:100%;display:flex;gap:10px;align-items:flex-start;background:none;border:none;padding:13px 10px;border-radius:10px;text-align:left;cursor:pointer;color:inherit;font:inherit;transition:background-color .18s}
-.lyric-line:hover{background:var(--surface2)}
-.lyric-body{min-width:0;display:block;flex:1}
-.lyric-jp:empty,.lyric-tr:empty{display:none}
-.lyric-jp{display:block;font-size:clamp(13.5px,3.7vw,15px);font-weight:500;color:var(--ly-sub);line-height:1.5}
-.lyric-ko{display:block;font-size:clamp(16px,4.4vw,18px);font-weight:800;line-height:1.5;color:var(--ink);letter-spacing:-.01em}
-.lyric-tr{display:block;font-size:clamp(13px,3.5vw,14px);font-weight:500;color:var(--ly-sub);line-height:1.5;margin-top:1px}
-.lyric-line.active{background:color-mix(in srgb,var(--ink) 6%,transparent);box-shadow:inset 3px 0 0 color-mix(in srgb,var(--ink) 30%,transparent)}
-.lyric-line.active .lyric-ko{color:var(--ink)}
-.nolyrics{padding:40px 10px;text-align:center;color:var(--muted);font-size:13px;line-height:1.9}
-.player-controls{position:fixed;right:18px;bottom:calc(22px + env(safe-area-inset-bottom));z-index:45;display:flex;flex-direction:column;align-items:flex-end;gap:10px}
-.play-toggle{display:none;align-items:center;justify-content:center;width:48px;height:48px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--accent);cursor:pointer;box-shadow:var(--shadow)}
-.play-toggle svg{width:20px;height:20px}
-.play-toggle.playing{border-color:var(--accent)}
-.song-page.venue .play-toggle{display:flex}
-.venue-toggle,.autoscroll-toggle{display:flex;align-items:center;gap:7px;min-height:40px;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:6px 10px;cursor:pointer;box-shadow:var(--shadow);font:inherit}
-.venue-toggle:not(.active),.autoscroll-toggle:not(.active){opacity:.75}
-.venue-toggle.active,.autoscroll-toggle.active{border-color:var(--accent)}
-.venue-label,.autoscroll-label{font-size:11px;font-weight:800;letter-spacing:.05em;color:var(--muted);white-space:nowrap}
-.venue-toggle.active .venue-label,.autoscroll-toggle.active .autoscroll-label{color:var(--accent)}
-.venue-switch,.autoscroll-switch{width:26px;height:15px;border-radius:999px;background:var(--surface2);border:1px solid var(--line);display:flex;align-items:center;padding:1px}
-.venue-knob,.autoscroll-knob{width:11px;height:11px;border-radius:50%;background:var(--muted);transition:transform .2s,background .2s}
-.venue-toggle.active .venue-knob,.autoscroll-toggle.active .autoscroll-knob{transform:translateX(11px);background:var(--accent)}
-/* 단축모드 — 영상은 화면 밖으로 치우고(소리는 계속) 발음 줄만 크게 */
-.song-page.venue .song-fixed-top{height:0;overflow:visible}
-@media (min-width:900px){.song-page.venue .song-fixed-top{flex:0 0 0;padding:0}}
-.song-page.venue .video-wrap{position:fixed;left:-10000px;top:0;width:220px;margin:0;padding:0;opacity:0;pointer-events:none}
-.song-page.venue .lyrics-note{display:none}
-.song-page.venue .lyric-jp,.song-page.venue .lyric-tr{display:none}
-.song-page.venue .lyric-ko{font-size:clamp(19px,5.6vw,26px);line-height:1.45}
-.song-page.venue .lyric-line{padding:15px 10px}
-/* 곡 목록 시트 */
-.song-sheet{position:fixed;inset:0;z-index:60;opacity:0;pointer-events:none;transition:opacity .25s}
-.song-sheet.open{opacity:1;pointer-events:auto}
-.song-sheet-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.45)}
-.song-sheet-panel{position:absolute;left:0;right:0;bottom:0;max-height:78svh;display:flex;flex-direction:column;background:var(--surface);border-radius:18px 18px 0 0;padding:8px 0 env(safe-area-inset-bottom);transform:translateY(100%);transition:transform .28s ease;max-width:640px;margin:0 auto}
-.song-sheet.open .song-sheet-panel{transform:translateY(0)}
-.song-sheet-grip{display:block;width:40px;height:4px;border-radius:999px;background:var(--line);margin:4px auto 8px}
-.song-sheet-head{display:flex;align-items:center;gap:8px;padding:0 16px 8px}
-.song-sheet-title{font-weight:800;font-size:16px}
-.song-sheet-count{flex:1;font-size:12px;color:var(--muted)}
-.sheet-mode{padding:5px 11px;border:1px solid var(--line);border-radius:999px;background:none;color:var(--accent);font:inherit;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap}
-.sheet-no{width:22px;flex:none;text-align:right;font-size:12px;font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums}
-.song-sheet-count{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.song-sheet-close{width:30px;height:30px;border:1px solid var(--line);border-radius:50%;background:none;color:var(--ink);cursor:pointer}
-.sheet-search{padding:0 16px 8px}
-.sheet-search input{width:100%;padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:inherit;font-size:14px}
-.song-sheet-list{list-style:none;margin:0;padding:0 8px 12px;overflow-y:auto}
-.song-sheet-item{width:100%;display:flex;align-items:center;gap:10px;padding:10px;border:0;border-radius:10px;background:none;color:var(--ink);font:inherit;text-align:left;cursor:pointer}
-.song-sheet-item:hover{background:var(--surface2)}
-.song-sheet-name{flex:1;min-width:0;font-weight:600;font-size:14.5px}
-.song-sheet-name small{display:block;font-weight:400;font-size:12px;color:var(--muted)}
-.song-sheet-item.current{background:var(--accent-soft)}
-.song-sheet-item.current .song-sheet-name{color:var(--accent);font-weight:800}
-.song-sheet-now{font-size:11px;font-weight:800;color:var(--accent)}
-.sheet-side{flex:none;display:flex;align-items:center;gap:4px}
-.sheet-empty{padding:30px;text-align:center;color:var(--muted)}
-/* PC 등 큰 화면: 영상 왼쪽 / 가사 오른쪽 2단 */
-@media (min-width:900px){
-  .song-body{flex-direction:row;align-items:stretch}
-  .song-fixed-top{flex:1 1 62%;min-width:0;display:flex;flex-direction:column;justify-content:center;overflow-y:auto;padding:16px 0 24px}
-  .song-fixed-top .video-wrap{margin-top:0;width:100%;max-width:min(100%,calc((100svh - 420px) * 16 / 9));padding:0 24px}
-  .song-fixed-top .lyrics-note{margin-left:auto;margin-right:auto;width:100%;max-width:min(100%,calc((100svh - 420px) * 16 / 9));padding:0 24px}
-  .lyrics-scroll{flex:1 1 38%;min-width:0;border-top:none;border-left:1px solid var(--line)}
-  .lyrics-list{margin-top:0;padding:16px 18px 160px}
-  .song-page.venue .lyrics-scroll{border-left:none}
-}
-/* 휴대폰 가로 (화면 높이가 낮을 때) — 영상 왼쪽 · 가사 오른쪽으로 나눠서 둘 다 보이게 */
-@media (orientation:landscape) and (max-height:540px){
-  .song-topbar{padding:calc(6px + env(safe-area-inset-top)) max(12px,env(safe-area-inset-right)) 6px max(12px,env(safe-area-inset-left))}
-  .song-topbar .back-btn,.song-topbar .song-nav-btn{width:32px;height:32px}
-  .song-body{flex-direction:row;align-items:stretch}
-  .song-fixed-top{flex:1 1 56%;min-width:0;display:flex;flex-direction:column;justify-content:center;overflow-y:auto;padding:8px 0}
-  .song-fixed-top .video-wrap{margin:0 auto;width:100%;max-width:min(100%,calc((100svh - 96px) * 16 / 9));padding:0 10px 0 max(12px,env(safe-area-inset-left))}
-  .song-fixed-top .lyrics-note{display:none}
-  .song-fixed-top .queue-note,.song-fixed-top .cheer-legend{margin:6px 0 0;padding:0 10px 0 max(12px,env(safe-area-inset-left))}
-  .video-sub{margin-top:5px}
-  .lyrics-scroll{flex:1 1 44%;min-width:0;border-top:none;border-left:1px solid var(--line)}
-  .lyrics-list{margin-top:0;padding:6px max(8px,env(safe-area-inset-right)) 110px 6px}
-  .lyric-line{padding:9px 8px}
-  .lyric-jp{font-size:12.5px}.lyric-ko{font-size:15px}.lyric-tr{font-size:12px}
-  .player-controls{flex-direction:row;align-items:center;right:max(12px,env(safe-area-inset-right));bottom:calc(10px + env(safe-area-inset-bottom));gap:6px}
-  .venue-toggle,.autoscroll-toggle{min-height:32px;padding:4px 8px}
-  .song-page.venue .lyrics-scroll{border-left:none}
-  .song-page.venue .song-fixed-top{flex:0 0 0;padding:0}
-  .song-page.venue .lyric-ko{font-size:clamp(17px,3.2vw,22px)}
-}
-/* 셋리스트 */
-.setlink{display:flex;flex-wrap:wrap;align-items:center;text-decoration:none;color:var(--ink);padding:12px 16px}
-.setlink b{flex:1 1 100%;font-size:15px}
-.setlink small{flex:1;color:var(--muted);font-size:12px}
-.setlink span{color:var(--muted);font-size:18px;margin-top:-22px}
-.cset-kinds{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:8px 0 8px}
-.cset-kind{padding:8px 6px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink);font:inherit;font-size:13px;font-weight:700;cursor:pointer}
-.cset-kind small{font-size:11px;color:var(--muted);font-weight:400}
-.cset-kind.active{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
-.cset-years{margin:0 0 14px}
-.cset-yrs{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:4px;margin-bottom:6px}
-.cset-yr{flex:1;min-width:0;padding:6px 2px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--muted);font:inherit;font-size:12px;font-weight:700;font-variant-numeric:tabular-nums;cursor:pointer}
-.cset-yr::before{content:"’";opacity:.5}
-.cset-yr.active{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
-.cset-mons{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:6px}
-.cset-mon{padding:4px 9px;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--muted);font:inherit;font-size:12px;cursor:pointer}
-.cset-mon.active{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
-.cset-panel.scroll{max-height:40vh;overflow-y:auto;overscroll-behavior:contain;padding-right:2px}
-.cset-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}
-@media (min-width:600px){.cset-tabs{grid-template-columns:repeat(5,minmax(0,1fr))}}
-.cset-tab{min-width:0;min-height:36px;padding:6px 8px;text-align:left;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink);font:inherit;cursor:pointer}
-.cset-tab b{font-size:12.5px;line-height:1.25;word-break:keep-all}
-.cset-tab.active{border-color:var(--accent);background:var(--accent-soft)}
-.cset-tab.active b{color:var(--accent)}
-.cset-fests{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:3px}
-.cset-fest{width:100%;display:flex;align-items:flex-start;gap:8px;padding:7px 9px;border:1px solid transparent;border-radius:10px;background:var(--surface);color:var(--ink);font:inherit;font-size:13px;line-height:1.35;text-align:left;cursor:pointer}
-.cset-fest-date{flex:none;width:40px;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;padding-top:1px}
-.cset-fest-name{flex:1;min-width:0;word-break:keep-all}
-.cset-fest-name small{display:block;margin-top:1px;font-size:11.5px;color:var(--muted)}
-.cset-fest.active{border-color:var(--accent);background:var(--accent-soft)}
-.cset-fest.active .cset-fest-name{color:var(--accent)}
-.cset-head{text-align:center;margin:18px 0 12px}
-.cset-head h2{margin:0 0 6px;font-size:18px;line-height:1.4}
-.cset-head p{margin:0;font-size:13px;line-height:1.8;color:var(--ink)}
-.cset-meta{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin:0 4px 6px;font-variant-numeric:tabular-nums}
-.set-list{padding:2px 16px}
-.set-row{display:flex;align-items:center;gap:12px;padding:11px 0;border-top:1px solid var(--line);color:var(--ink);text-decoration:none}
-.set-row:first-child{border-top:none}
-.set-num{flex:none;width:24px;text-align:right;font-variant-numeric:tabular-nums;color:var(--muted);font-weight:700;font-size:13px}
-.set-title{flex:1;min-width:0}
-.set-title b{display:block;font-size:15px;font-weight:600}
-.set-title small{display:block;font-size:12px;color:var(--muted)}
-.set-title em{font-style:normal;color:var(--gold)}
-.set-title.none b{color:var(--muted)}
-.set-go{flex:none;color:var(--muted);font-size:18px}
-.set-enc{margin:4px -16px 0;padding:8px 16px 4px;border-top:1px dashed var(--line);font-size:11.5px;font-weight:800;letter-spacing:.1em;color:var(--accent)}
-.set-enc + .set-row{border-top:none}
-.disco-alb summary{gap:12px;justify-content:flex-start}
-.disco-alb summary::after{margin-left:auto}
-.disco-sum{flex:1;min-width:0}
-.disco-sum b{display:block;font-size:16px}
-.disco-sum small{display:block;font-weight:400;font-size:12px;color:var(--muted)}
-.disco-tracks{padding:0}
-.cover{position:relative;display:block;aspect-ratio:1/1;width:100%;border-radius:8px;overflow:hidden;background:var(--surface2);border:1px solid var(--line)}
-.cover.sm{flex:none;width:68px}
-.cover img{display:block;width:100%;height:100%;object-fit:cover}
-.cover i{display:none}
-.cover.noimg{display:flex;align-items:center;justify-content:center;padding:8px;background:linear-gradient(135deg,var(--accent-soft),var(--surface2))}
-.cover.noimg i{display:block;font-style:normal;font-weight:800;font-size:13px;line-height:1.3;text-align:center;color:var(--accent);overflow-wrap:anywhere}
-.cover.sm.noimg i{font-size:10.5px}
-.cover-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px 10px;margin:4px 0 8px}
-@media (min-width:560px){.cover-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
-.cg-item{display:block;min-width:0;color:var(--ink);text-decoration:none;padding:0;border:0}
-.cg-item b{display:block;margin-top:6px;font-size:13px;line-height:1.35;word-break:keep-all}
-.cg-item small{display:block;font-size:11px;color:var(--muted);line-height:1.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.cg-no{display:block;margin-top:6px;font-size:10.5px;font-weight:800;color:var(--accent);letter-spacing:.02em}
-.cg-no.dig{color:var(--green)}
-.cg-no + b{margin-top:1px}
-.lp-head{display:flex;align-items:center;gap:6px;margin-bottom:4px}
-.lp-title{font-weight:800;font-size:16px;margin-bottom:2px}
-.lp-grid{margin-top:12px}
-.lp-memo{display:inline-block;margin-top:3px;font-size:10.5px;font-weight:700;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:0 6px;font-variant-numeric:tabular-nums}
-.lp-links{display:flex;align-items:center;gap:12px;margin-top:8px}
-.vid-eds{display:grid;gap:4px;border:1px solid var(--line);border-radius:10px;padding:8px 10px}
-.vid-eds div{display:flex;justify-content:space-between;gap:10px;font-size:12.5px}
-.vid-eds small{color:var(--muted);font-variant-numeric:tabular-nums;text-align:right}
-.vid-sec{font-size:11.5px;font-weight:800;color:var(--muted);padding:10px 4px 4px;letter-spacing:.02em}
-.mvrow .t small .alb{opacity:.75}
-.t-lyric{background:var(--green-soft);color:var(--green)}
-.t-livevid{background:var(--gold-soft);color:var(--gold)}
-.info-p{margin:0 0 8px;line-height:1.7}
-.info-kv{margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
-.member-grid{display:grid;grid-template-columns:1fr;gap:0}
-@media (min-width:560px){.member-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.member-grid .card{margin-bottom:0}}
-.m-part{font-size:11.5px;font-weight:800;color:var(--accent);letter-spacing:.04em}
-.m-name{font-size:18px;font-weight:800;margin-top:2px}
-.m-jp{font-size:12.5px;color:var(--muted)}
-.m-meta{font-size:13px;margin-top:6px}
-.m-meta + .m-meta{margin-top:2px;color:var(--muted)}
-.sup-h{font-size:15px;margin:18px 0 4px}
-.sup-card{padding:10px 16px}
-.sup-tour{font-size:13px;font-weight:700;padding:2px 0 8px}
-.sup-row{display:flex;gap:12px;padding:8px 0;border-top:1px solid var(--line)}
-.sup-part{flex:none;width:96px;font-size:12px;font-weight:800;color:var(--accent);padding-top:2px}
-.sup-name{flex:1;min-width:0;line-height:1.5}
-.sup-name small{color:var(--muted);font-size:12px}
-.sup-name .sup-note{display:block}
-.timeline{padding:6px 16px}
-.tl-row{display:flex;gap:14px;padding:10px 0;border-top:1px solid var(--line)}
-.tl-row:first-child{border-top:none}
-.tl-y{flex:none;width:40px;font-weight:800;color:var(--accent);font-variant-numeric:tabular-nums}
-.tl-t{flex:1;min-width:0;font-size:14px;line-height:1.5}
-/* ── 응원 구호 (바운디 사이트와 같은 방식) ───────────────────────── */
-.icon-sprite{position:absolute;width:0;height:0;overflow:hidden}
-.seg-chant{color:var(--chant)}
-.seg-clap{color:var(--clap)}
-.lyric-line.active .lyric-ko .seg-chant{color:var(--chant)}
-.lyric-line.active .lyric-ko .seg-clap{color:var(--clap)}
-.lyric-bg{display:block;margin-top:3px;font-size:clamp(13px,3.6vw,15px);font-weight:700;line-height:1.5;color:var(--chant);font-style:italic}
-.lyric-icons{flex:none;display:flex;flex-direction:column;gap:4px;width:22px;padding-top:2px}
-.lyric-type-icon{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center}
-.lyric-type-icon.chant{background:color-mix(in srgb,var(--chant) 16%,transparent);color:var(--chant)}
-.lyric-type-icon .ico{margin:0;font-size:11px}
-.lyric-type-icon .ico svg{width:100%;height:100%}
-.song-page.venue .lyric-icons{padding-top:6px}
-/* 움직이는 아이콘 */
-.ico{display:inline-flex;align-items:center;justify-content:center;vertical-align:-0.2em;margin:0 2px}
-.ico-wave{width:1.15em;height:1.15em;color:var(--wave)}
-.ico-wave svg{width:100%;height:100%;transform-origin:60% 85%;animation:handWave 1.1s ease-in-out infinite}
-@keyframes handWave{0%,100%{transform:rotate(-16deg)}50%{transform:rotate(16deg)}}
-.ico-clap{position:relative;width:1.5em;height:1.15em;color:var(--clap)}
-.ico-clap .hand{position:absolute;top:0;width:.85em;height:1.15em;display:block}
-.ico-clap .hand svg{width:100%;height:100%}
-.ico-clap .hand.l{left:0;animation:clapL .62s ease-in-out infinite}
-.ico-clap .hand.r{right:0;animation:clapR .62s ease-in-out infinite}
-.ico-clap .spark{position:absolute;left:50%;top:-.12em;width:.9em;height:.9em;margin-left:-.45em;color:var(--gold);opacity:0;animation:clapSpark .62s ease-out infinite;pointer-events:none}
-.ico-clap .spark svg{width:100%;height:100%}
-@keyframes clapL{0%,100%{transform:translateX(-8%) rotate(-14deg)}46%,56%{transform:translateX(6%) rotate(-2deg)}}
-@keyframes clapR{0%,100%{transform:scaleX(-1) translateX(-8%) rotate(-14deg)}46%,56%{transform:scaleX(-1) translateX(6%) rotate(-2deg)}}
-@keyframes clapSpark{0%,38%{opacity:0;transform:scale(.5) translateY(2px)}50%{opacity:.95;transform:scale(1) translateY(0)}74%,100%{opacity:0;transform:scale(1.3) translateY(-2px)}}
-.ico-jump{position:relative;width:1.3em;height:1.45em;vertical-align:-0.3em;color:var(--jump)}
-.ico-jump svg{position:absolute;left:0;top:0;width:100%;height:84%;transform-origin:50% 100%;animation:iconJump .72s cubic-bezier(.3,.7,.4,1) infinite}
-.ico-jump .ground{position:absolute;left:6%;right:6%;bottom:0;height:2px;border-radius:2px;background:currentColor;opacity:.42}
-@keyframes iconJump{0%{transform:translateY(0) scaleY(1)}14%{transform:translateY(5%) scaleY(.91)}46%{transform:translateY(-17%) scaleY(1.03)}78%,100%{transform:translateY(0) scaleY(1)}}
-.ico-spin{position:relative;width:1.55em;height:1.55em;vertical-align:-0.38em;color:var(--spin)}
-.ico-spin .body,.ico-spin .arm{position:absolute;inset:0;width:100%;height:100%}
-.ico-spin .arm{transform-origin:47.5% 67.1%;animation:iconArmCircle 1.15s linear infinite}
-@keyframes iconArmCircle{0%{transform:rotate(11deg) scale(1)}25%{transform:rotate(0) scale(1.14)}50%{transform:rotate(-11deg) scale(1)}75%{transform:rotate(0) scale(.86)}100%{transform:rotate(11deg) scale(1)}}
-.ico-mic{width:1.05em;height:1.05em;color:var(--chant)}
-.ico-mic svg{width:100%;height:100%;animation:micPulse 1.2s ease-in-out infinite}
-@keyframes micPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.18)}}
-.lyric-line.active .ico-wave svg{animation-duration:.75s}
-.lyric-line.active .ico-clap .hand,.lyric-line.active .ico-clap .spark{animation-duration:.45s}
-.lyric-line.active .ico-mic svg{animation-duration:.8s}
-.lyric-line.active .ico-jump svg{animation-duration:.5s}
-.lyric-line.active .ico-spin .arm{animation-duration:.8s}
-.lyric-type-icon .ico-mic,.legend-icon .ico-mic{color:inherit}
-@media (prefers-reduced-motion: reduce){
-  .ico-wave svg,.ico-clap .hand,.ico-clap .spark,.ico-mic svg,.ico-jump svg,.ico-spin .arm{animation:none}
-  .ico-clap .hand.r{transform:scaleX(-1)}
-}
-/* 짝 짝짝 만세 — 짝(1) · 짝짝(2·3) 박수 친 뒤 두 팔 번쩍 */
-.ico-banzai{width:1.45em;height:1.45em;vertical-align:-0.34em;color:var(--clap)}
-.ico-banzai svg{width:100%;height:100%;overflow:visible}
-.ico-banzai .bz-clap{animation:bzClapShow 2.2s steps(1,end) infinite}
-.ico-banzai .bz-up{opacity:0;animation:bzUpShow 2.2s steps(1,end) infinite}
-.ico-banzai .bz-h.l{animation:bzHL 2.2s ease-in-out infinite}
-.ico-banzai .bz-h.r{animation:bzHR 2.2s ease-in-out infinite}
-.ico-banzai .bz-sp1{color:var(--gold);opacity:0;animation:bzSp1 2.2s ease-out infinite}
-.ico-banzai .bz-sp2{color:var(--gold)}
-.ico-banzai .bz-up{transform-origin:12px 17px}
-@keyframes bzClapShow{0%{opacity:1}60%{opacity:0}94%{opacity:1}}
-@keyframes bzUpShow{0%{opacity:0}60%{opacity:1}94%{opacity:0}}
-@keyframes bzHL{0%,18%,39%,56%,100%{transform:translateX(-2.4px)}9%,31%,46%{transform:translateX(0)}}
-@keyframes bzHR{0%,18%,39%,56%,100%{transform:translateX(2.4px)}9%,31%,46%{transform:translateX(0)}}
-@keyframes bzSp1{0%,7%{opacity:0}9%{opacity:1}16%,29%{opacity:0}31%{opacity:1}37%,44%{opacity:0}46%{opacity:1}53%,100%{opacity:0}}
-@media (prefers-reduced-motion: reduce){.ico-banzai .bz-clap,.ico-banzai .bz-h,.ico-banzai .bz-sp1{animation:none}.ico-banzai .bz-up{animation:none;opacity:0}}
-/* 한 손 들고 좌우로 — 어깨를 축으로 팔이 왔다 갔다, 몸도 살짝 따라감 */
-.ico-sway{width:1.45em;height:1.45em;vertical-align:-0.34em;color:var(--wave)}
-.ico-sway svg{width:100%;height:100%;overflow:visible}
-.ico-sway .sw-arm{transform-origin:15.4px 17.4px;animation:swArm 1.6s ease-in-out infinite}
-.ico-sway .sw-body{transform-origin:11.4px 23px;animation:swBody 1.6s ease-in-out infinite}
-@keyframes swArm{0%,100%{transform:rotate(-22deg)}50%{transform:rotate(28deg)}}
-@keyframes swBody{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
-.lyric-line.active .ico-sway .sw-arm,.lyric-line.active .ico-sway .sw-body{animation-duration:1.2s}
-@media (prefers-reduced-motion: reduce){.ico-sway .sw-arm,.ico-sway .sw-body{animation:none}}
-/* 가사 복사 */
-.lyric-copy-btn{flex:none;margin-left:auto;background:none;border:1px solid var(--line);border-radius:999px;padding:2px 10px;font:inherit;font-size:11.5px;color:var(--muted);cursor:pointer}
-.lyric-copy-btn:hover{border-color:var(--accent);color:var(--accent)}
-.lyric-copy-btn + .watch-on-yt{margin-left:0}
-.copy-menu{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.35);display:flex;align-items:flex-end;justify-content:center;padding:16px 16px calc(16px + env(safe-area-inset-bottom))}
-.copy-menu[hidden]{display:none}
-.copy-menu-card{width:min(100%,360px);background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:12px;display:flex;flex-direction:column;gap:6px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
-.copy-menu-card b{font-size:13px;color:var(--muted);padding:2px 6px 4px}
-.copy-menu-card button{font:inherit;font-size:14px;text-align:left;padding:11px 12px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
-.copy-menu-card button:hover{border-color:var(--accent);color:var(--accent)}
-.copy-menu-card .copy-cancel{text-align:center;background:none;border:none;color:var(--muted)}
-.song-info-btn.has{border-color:var(--accent);color:var(--accent)}
-.lyric-copy-btn + .lyric-copy-btn{margin-left:6px}
-.info-sheet{align-items:flex-end}
-.info-card{width:min(100%,560px);max-height:min(82svh,760px);padding:0;gap:0;overflow:hidden}
-.info-card .si-head{display:flex;align-items:flex-start;gap:10px;padding:16px 16px 12px;border-bottom:1px solid var(--line)}
-.info-card .si-head > div{flex:1;min-width:0}
-.info-card .si-ko{display:block;font-size:18px;color:var(--ink);padding:0;line-height:1.35}
-.info-card .si-jp{display:block;color:var(--muted);font-size:12.5px;margin-top:2px}
-.info-card .si-x{flex:none;width:32px;height:32px;padding:0;text-align:center;border-radius:999px;background:var(--bg);font-size:14px;color:var(--muted)}
-.info-card .si-body{overflow:auto;padding:12px 16px 18px;-webkit-overflow-scrolling:touch}
-.si-table{display:grid;gap:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;font-size:13.5px}
-.si-row{display:grid;grid-template-columns:76px 1fr;gap:10px;padding:9px 12px;border-top:1px solid var(--line);line-height:1.55}
-.si-row:first-child{border-top:none}
-.si-row > span{color:var(--muted);font-size:12.5px}
-.si-row small{color:var(--muted);font-size:11.5px}
-.si-story{margin-top:14px;font-size:14.5px;padding:0 2px!important}
-.si-story img{cursor:zoom-in}
-.si-empty{margin:14px 2px 0;text-align:center}
-@media (min-width:900px){.info-sheet{align-items:center}}
-.copy-toast{position:fixed;left:50%;bottom:calc(90px + env(safe-area-inset-bottom));transform:translate(-50%,10px);z-index:61;background:var(--ink);color:var(--bg);font-size:13px;padding:8px 14px;border-radius:999px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s}
-.copy-toast.show{opacity:1;transform:translate(-50%,0)}
-.song-page.venue .lyric-copy-btn{display:none}
-/* 재생 목록 안내 (셋리스트·앨범에서 들어왔을 때) */
-.queue-note{max-width:720px;margin:-6px auto 10px;padding:0 16px;font-size:12px;color:var(--accent)}
-.song-fixed-top .queue-note{margin-left:auto;margin-right:auto;width:100%}
-.song-page.venue .queue-note{display:none}
-/* 곡 화면 범례 */
-/* 단축모드 · AUTO SCROLL — 영상 아래 '이어서 재생' 줄 오른쪽 */
-.song-ctlrow{max-width:720px;margin:-4px auto 10px;padding:0 16px;display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;box-sizing:border-box}
-.song-ctlrow .queue-note{flex:1;min-width:0;margin:0;padding:0;width:auto;max-width:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.song-ctl{flex:none;display:flex;align-items:center;gap:6px}
-.song-ctl .venue-toggle,.song-ctl .autoscroll-toggle{min-height:30px;padding:3px 8px;gap:6px;border-radius:8px;box-shadow:none;font-size:11.5px}
-.song-ctl .venue-label,.song-ctl .autoscroll-label{font-size:11px}
-/* 단축모드(영상 숨김)일 때도 같은 줄이 맨 위(곡 제목 바로 아래)에 그대로 보이게 */
-.song-page.venue .song-body .song-fixed-top{height:auto;flex:none;padding:10px 0 0;overflow:visible;display:block}
-.song-page.venue .song-body{flex-direction:column}
-.song-page.venue .song-ctlrow{margin:0 auto 8px}
-.song-page.venue .song-ctlrow .queue-note{display:block}
-.song-page.venue .lyrics-scroll{border-top:1px solid var(--line);border-left:none}
-@media (min-width:900px){
-  .song-fixed-top .song-ctlrow{max-width:min(100%,calc((100svh - 420px) * 16 / 9));padding:0 24px;margin-top:2px}
-}
-@media (orientation:landscape) and (max-height:540px){
-  .song-fixed-top .song-ctlrow{margin:6px 0 0;padding:0 10px 0 max(12px,env(safe-area-inset-left))}
-  .song-page.venue .song-body .song-fixed-top{padding:6px 0 0}
-  .song-page:not(.venue) .qn-long{display:none}
-  .song-page.venue .song-fixed-top .song-ctlrow{margin:0 auto 6px;padding:0 max(12px,env(safe-area-inset-right)) 0 max(12px,env(safe-area-inset-left))}
-}
-/* 좁은 화면: '순서로 이어서 재생' 글자는 줄여서 버튼과 한 줄에 */
-@media (max-width:520px){ .qn-long{display:none} }
-.queue-note.empty{visibility:hidden}
-.cheer-legend{max-width:720px;margin:-4px auto 10px;padding:0 16px;display:flex;flex-wrap:wrap;gap:6px 12px;font-size:12px;color:var(--muted)}
-.cheer-legend span{display:inline-flex;align-items:center;gap:4px}
-.cheer-legend .ico{font-size:14px;margin:0}
-.cheer-legend b{color:var(--chant);font-weight:800}
-.song-page.venue .cheer-legend{display:none}
-/* 곡 목록 배지 */
-.mvrow .side-top{display:flex;align-items:center;gap:4px}
-.song-marks{display:inline-flex;align-items:center;gap:3px}
-.song-mark{display:inline-flex;align-items:center;justify-content:center;gap:3px;height:20px;border-radius:999px;line-height:1}
-.song-mark svg{width:12px;height:12px}
-.song-mark.banzai svg{width:14px;height:14px}
-.song-mark b{font-size:11px;font-weight:800}
-.song-mark.chant{padding:0 7px 0 6px;background:color-mix(in srgb,var(--chant) 16%,transparent);color:var(--chant)}
-.song-mark.dot{width:20px}
-.song-mark.clap{background:color-mix(in srgb,var(--clap) 15%,transparent);color:var(--clap)}
-.song-mark.wave{background:color-mix(in srgb,var(--wave) 16%,transparent);color:var(--wave)}
-.song-mark.jump{background:color-mix(in srgb,var(--jump) 17%,transparent);color:var(--jump)}
-.song-mark.spin{background:color-mix(in srgb,var(--spin) 16%,transparent);color:var(--spin)}
-@media (max-width:420px){.song-mark.common{display:none}}
-/* 짤방 — 지정한 가사 줄에서만 떴다 사라짐 */
-.song-fixed-top{position:relative;z-index:5}
-.song-body{position:relative}
-.tip-pic{position:absolute;z-index:6;display:flex;pointer-events:none;opacity:0;visibility:hidden;transition:opacity .24s ease,transform .24s ease,visibility .24s}
-.tip-pic.at-video{right:14px;bottom:-46px;justify-content:flex-end;transform:translateY(10px) scale(.94)}
-.tip-pic.at-video .tip-pic-card{max-width:min(54vw,240px);padding:6px 6px 4px;border-radius:14px;gap:4px}
-.tip-pic.at-video .tip-pic-card :is(img,video){max-height:min(15svh,128px);border-radius:10px}
-.tip-pic.at-video .tip-pic-cap{font-size:11px}
-.tip-pic.at-video.big .tip-pic-card{max-width:min(84vw,360px)}
-.tip-pic.at-video.big .tip-pic-card :is(img,video){max-height:min(34svh,280px)}
-.tip-pic.at-lyrics{left:0;right:0;top:0;justify-content:center;padding:10px 12px 0;transform:translateY(-10px) scale(.97)}
-/* 큰 화면(가로 2단) — 영상 옆이 아니라 오른쪽 가사 칸 위쪽 가운데 */
-.tip-pic.at-side{top:0;left:62%;right:0;justify-content:center;padding:12px 16px 0;transform:translateY(-10px) scale(.97)}
-.tip-pic.at-side .tip-pic-card{max-width:min(100%,320px)}
-.tip-pic.at-side .tip-pic-card :is(img,video){max-height:min(26svh,220px)}
-.tip-pic.show{opacity:1;visibility:visible;transform:none}
-.tip-pic-card{margin:0;pointer-events:auto;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:8px 8px 6px;box-shadow:0 10px 24px rgba(0,0,0,.22);max-width:min(100%,420px);display:flex;flex-direction:column;align-items:center;gap:6px;cursor:zoom-in}
-.tip-pic-card [hidden]{display:none!important}
-.tip-pic-card :is(img,video){display:block;max-width:100%;max-height:clamp(96px,22svh,190px);width:auto;height:auto;border-radius:9px;background:var(--surface2)}
-.tip-pic-cap{font-size:12px;line-height:1.4;color:var(--accent);font-weight:700;text-align:center;padding:0 4px 2px}
-.tip-pic-cap:empty{display:none}
-.tip-pic.big .tip-pic-card{cursor:zoom-out;max-width:min(100%,560px)}
-.tip-pic.big .tip-pic-card :is(img,video){max-height:min(52svh,420px)}
-/* 탭해서 크게 — 작은 gif 도 실제로 커지도록 너비를 직접 준다 */
-.tip-pic.big .tip-pic-card :is(img,video){width:min(84vw,460px);max-height:min(56svh,420px);object-fit:contain}
-.tip-pic.at-side.big{left:max(40%,calc(100% - 520px))}
-.tip-pic.at-side.big .tip-pic-card{max-width:min(100%,500px)}
-@media (min-width:900px){.tip-pic.at-video{bottom:auto;top:16px;right:30px}}
-@media (prefers-reduced-motion: reduce){.tip-pic{transition:none}}
-/* 짤방 위치 (덮어쓰기): 영상 오른쪽 위 / 단축모드는 왼쪽 아래 */
-.video-wrap{position:relative}
-.tip-pic.at-video{top:8px;bottom:auto;left:auto;right:24px;justify-content:flex-end;transform:translateY(-6px) scale(.96)}
-.tip-pic.at-video .tip-pic-card{max-width:min(44vw,210px);padding:5px 5px 3px;border-radius:12px;gap:3px}
-.tip-pic.at-video .tip-pic-card :is(img,video){max-height:min(14svh,112px);border-radius:8px}
-.tip-pic.at-video.big .tip-pic-card{max-width:min(84vw,360px)}
-.tip-pic.at-video.big .tip-pic-card :is(img,video){max-height:min(30svh,240px)}
-.tip-pic.at-lyrics{top:auto;right:auto;left:12px;bottom:calc(14px + env(safe-area-inset-bottom));justify-content:flex-start;padding:0;transform:translateY(8px) scale(.96)}
-.tip-pic.at-lyrics .tip-pic-card{max-width:min(46vw,230px);padding:5px 5px 3px;gap:3px}
-.tip-pic.at-lyrics .tip-pic-card :is(img,video){max-height:min(20svh,170px)}
-.tip-pic.at-lyrics.big .tip-pic-card{max-width:min(84vw,420px)}
-.tip-pic.at-lyrics.big .tip-pic-card :is(img,video){max-height:min(40svh,320px)}
-@media (min-width:900px){
-  .tip-pic.at-video{top:10px;right:34px}
-  .tip-pic.at-video .tip-pic-card{max-width:280px}
-  .tip-pic.at-video .tip-pic-card :is(img,video){max-height:180px}
-  .tip-pic.at-lyrics{left:24px;bottom:24px}
-  .tip-pic.at-lyrics .tip-pic-card{max-width:320px}
-  .tip-pic.at-lyrics .tip-pic-card :is(img,video){max-height:220px}
-}
-/* 휴대폰 세로: '셋리스트' 줄 바로 아래 오른쪽 (top 은 JS로 맞춤) */
-.tip-pic.at-top{left:auto;right:12px;bottom:auto;justify-content:flex-end;padding:0;transform:translateY(-6px) scale(.96)}
-.tip-pic.at-top .tip-pic-card{max-width:min(46vw,210px);padding:5px 5px 3px;gap:3px}
-.tip-pic.at-top .tip-pic-card :is(img,video){max-height:min(13svh,104px)}
-.tip-pic.at-top.big .tip-pic-card{max-width:min(84vw,380px)}
-.tip-pic.at-top.big .tip-pic-card :is(img,video){max-height:min(36svh,300px)}
-/* PC: 영상을 조금 위로 붙이고, 영상 아래 남는 자리에 짤방 */
-@media (min-width:900px){
-  .song-page:not(.venue) .song-fixed-top{justify-content:flex-start;padding-top:18px}
-  .tip-pic.at-below{left:0;right:0;top:auto;bottom:16px;justify-content:center;padding:0 24px;transform:translateY(8px) scale(.97)}
-  .tip-pic.at-below .tip-pic-card{max-width:min(100%,340px);padding:6px 6px 4px;gap:4px}
-  .tip-pic.at-below .tip-pic-card :is(img,video){max-height:150px}
-  .tip-pic.at-below.big{bottom:12px}
-  .tip-pic.at-below.big .tip-pic-card{max-width:min(100%,560px)}
-  .tip-pic.at-below.big .tip-pic-card :is(img,video){max-height:min(60svh,420px)}
-}
-/* 휴대폰 가로: 왼쪽은 영상·버튼이라 오른쪽(가사 칸) 아래에 */
-@media (orientation:landscape) and (max-height:540px){
-  .song-page:not(.venue) .tip-pic.at-lyrics{left:auto;right:12px;justify-content:flex-end}
-}
-@media (orientation:landscape) and (max-height:540px){
-  .tip-pic.at-video{top:6px;right:16px}
-  .tip-pic.at-video .tip-pic-card :is(img,video){max-height:min(24svh,96px)}
-  .tip-pic.at-lyrics .tip-pic-card :is(img,video){max-height:min(20svh,76px)}
-}
-
-.info-empty{text-align:center;padding:34px 16px;color:var(--muted);line-height:1.8}
-.post-title{line-height:1.35;margin:6px 0 4px}
-.post-head{margin:10px 0 14px}
-.post-meta{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
-.post-tag{background:var(--accent-soft);color:var(--accent);font-weight:700;border-radius:999px;padding:1px 9px}
-.mvrow .t .post-meta{margin-top:4px}
-.post-row{gap:12px}
-.post-list-cards{display:grid;gap:10px}
-.gd-search{display:flex;margin:2px 0 8px}
-.gd-cats{display:flex;gap:6px;overflow-x:auto;padding:2px 0 8px;margin:0 -16px 4px;padding-left:16px;padding-right:16px;scrollbar-width:none}
-.gd-cats::-webkit-scrollbar{display:none}
-.gd-cchip{flex:none;display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
-.gd-cchip span{font-size:11px;opacity:.6;font-variant-numeric:tabular-nums}
-@media (min-width:700px){.gd-cats{flex-wrap:wrap;overflow:visible;margin:0 0 4px;padding:2px 0 8px}}
-.gd-search svg{flex:none;width:18px;height:18px}
-.gd-cat{flex:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:12px;padding:0 10px;font:inherit;font-size:13.5px}
-.gd-count{margin:4px 2px 8px}
-.gd-set{margin-bottom:10px}
-.gd-set summary{display:flex;align-items:center;gap:12px}
-.gd-year{flex:none;font-weight:800;font-size:13px;color:var(--accent);background:var(--accent-soft);border-radius:8px;padding:4px 7px;font-variant-numeric:tabular-nums}
-.gd-sum{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
-.gd-sum b{font-size:15px;line-height:1.35}
-.gd-sum small{color:var(--muted);font-size:12px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
-.gd-kind{font-weight:700;font-size:11px;border-radius:999px;padding:0 7px;background:var(--surface2);color:var(--muted)}
-.gd-kind.k-tour{background:var(--accent-soft);color:var(--accent)}
-.gd-kind.k-fc{background:var(--gold-soft);color:var(--gold)}
-.gd-kind.k-season{background:var(--green-soft);color:var(--green)}
-.gd-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:10px;padding:4px 0 6px}
-.gd-item{margin:0;display:flex;flex-direction:column;gap:5px;min-width:0}
-.gd-img{display:block;aspect-ratio:1;border-radius:10px;overflow:hidden;background:#fff;border:1px solid var(--line)}
-.gd-img img{width:100%;height:100%;object-fit:contain;cursor:zoom-in;display:block}
-.gd-img.none{background:var(--surface2);position:relative}
-.gd-img.none::after{content:"사진 없음";position:absolute;inset:0;display:grid;place-items:center;font-size:11px;color:var(--muted)}
-.gd-item figcaption{display:flex;flex-direction:column;gap:1px}
-.gd-name{font-size:12px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-.gd-price{font-size:11.5px;color:var(--muted);font-variant-numeric:tabular-nums}
-@media (min-width:900px){.gd-grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}}
-.post-card{display:flex;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 14px 14px 16px;text-decoration:none;color:var(--ink);transition:border-color .15s,transform .15s}
-.post-card:hover{border-color:var(--accent)}
-.post-card:active{transform:scale(.99)}
-.pc-text{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
-.pc-meta{display:flex;align-items:center;gap:8px;font-size:11.5px;color:var(--muted);font-variant-numeric:tabular-nums}
-.pc-title{font-size:15.5px;font-weight:700;line-height:1.4}
-.pc-sum{color:var(--muted);font-size:12.5px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.pc-cover{flex:none;width:72px;height:72px;border-radius:10px;object-fit:cover;border:1px solid var(--line)}
-.pc-go{flex:none;color:var(--muted);font-size:18px}
-.post-row .set-go{color:var(--muted);font-size:18px}
-.post-thumb{flex:none;width:76px;height:56px;border-radius:9px;object-fit:cover;background:var(--surface2);border:1px solid var(--line)}
-.post-thumb.none{display:grid;place-items:center;font-size:12px;font-weight:700;color:var(--muted)}
-.post-body h3{margin:18px 0 6px;font-size:16px}
-.post-body figcaption{font-size:12.5px;color:var(--muted);text-align:center;margin-top:6px;line-height:1.5}
-.post-body img{cursor:zoom-in}
-.post-img.noimg::before{content:"사진 준비 중";display:grid;place-items:center;min-height:120px;border:1px dashed var(--line);border-radius:10px;color:var(--muted);font-size:13px}
-.post-img > img{width:auto;max-width:100%;max-height:78vh;margin:0 auto;object-fit:contain}
-.post-gallery{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:4px 0 14px;align-items:start}
-.post-gallery .post-img{margin:0}
-.post-gallery img{width:100%;height:auto;max-height:none;object-fit:contain}
-@media (min-width:900px){
-  body.is-post #app,body.is-post header.top .wrap{max-width:1040px}
-  .post-body{font-size:16px;padding:28px 36px}
-  .post-img > img{max-height:72vh}
-  .post-gallery{grid-template-columns:repeat(var(--n,2),minmax(0,1fr));gap:14px;justify-items:center}
-  .post-gallery img{width:auto;max-width:100%;max-height:72vh}
-}
-.post-list{margin:0 0 12px;padding-left:22px}
-.post-list li{margin:3px 0}
-.post-hr{border:none;border-top:1px solid var(--line);margin:20px 0}
-.post-yt{position:relative;aspect-ratio:16/9;margin:4px 0 14px;border-radius:10px;overflow:hidden;background:#000}
-.post-yt iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-.post-nav{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
-.post-nav-item{display:block;border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:10px 12px;text-decoration:none;color:var(--ink);min-width:0}
-.post-nav-item:last-child{text-align:right}
-.post-nav-item small{display:block;color:var(--muted);font-size:11.5px}
-.post-nav-item b{display:block;font-size:13.5px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.post-table-wrap{margin:10px 0 14px;overflow-x:auto;border:1px solid var(--line);border-radius:12px}
-.post-table{width:100%;border-collapse:collapse;font-size:13.5px;line-height:1.45}
-.post-table th,.post-table td{padding:9px 12px;text-align:left;vertical-align:top;border-top:1px solid var(--line)}
-.post-table thead th{border-top:none;background:var(--surface2);font-size:13px;font-weight:800}
-.post-table tbody th{font-weight:700;color:var(--muted);font-size:12.5px;white-space:nowrap}
-@media (max-width:520px){.post-table{font-size:13px}.post-table th,.post-table td{padding:8px 9px}.post-table tbody th{font-size:12px;white-space:normal;width:24%}}
-.post-table td{font-weight:600}
-.post-table td small{display:block;font-weight:500;color:var(--muted);font-size:12px}
-.file-dl{display:flex;align-items:center;gap:10px;margin:4px 0;padding:11px 14px;border:1px solid var(--line);border-radius:12px;background:var(--surface2);color:var(--ink);text-decoration:none;font-weight:700;line-height:1.4}
-.file-dl:hover{border-color:var(--accent)}
-.file-dl.busy{opacity:.6}
-.fd-ic{flex:none;width:30px;height:30px;border-radius:9px;display:grid;place-items:center;background:var(--accent-soft);color:var(--accent)}
-.fd-ic svg{width:17px;height:17px}
-.fd-t{flex:1;min-width:0;overflow-wrap:anywhere;font-size:14px}
-.fd-x{flex:none;font-size:11.5px;font-weight:800;color:var(--accent)}
-.post-zoom{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.86);display:grid;place-items:center;padding:16px;cursor:zoom-out}
-.post-zoom img{max-width:100%;max-height:100%;border-radius:8px}
-.info-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
-.post-top{display:flex;justify-content:space-between;align-items:center;margin-top:14px}
-.post-top .back{margin-top:0}
-.back.pill{display:inline-flex;align-items:center;gap:4px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:7px 14px 7px 10px;font-size:14px;font-weight:700;color:var(--ink);box-shadow:0 2px 10px rgba(0,0,0,.08)}
-.back.pill:hover{border-color:var(--accent);color:var(--accent)}
-.back.pill .ar{font-size:18px;line-height:1;margin-top:-2px}
-.w-pick{display:flex;gap:8px;margin:4px 0 6px}
-.w-thumbs{display:flex;gap:8px;overflow-x:auto;padding:8px 0 2px;scrollbar-width:thin}
-.w-thumbs:empty{display:none}
-.wt{position:relative;flex:none;width:76px;height:76px;padding:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--surface2);cursor:pointer}
-.wt img{width:100%;height:100%;object-fit:cover;display:block}
-.wt.bad{outline:2px solid #e0556b}
-.wt.bad::after{content:"사진 없음";position:absolute;inset:auto 0 0 0;background:#e0556b;color:#fff;font-size:10px;font-weight:700;text-align:center}
-.wt-n{position:absolute;left:4px;top:4px;min-width:18px;height:18px;padding:0 4px;border-radius:9px;background:rgba(0,0,0,.6);color:#fff;font-size:11px;font-weight:700;line-height:18px;text-align:center}
-.wt-x{position:absolute;right:3px;top:3px;width:20px;height:20px;border-radius:50%;background:rgba(0,0,0,.6);color:#fff;font-size:11px;line-height:20px;text-align:center}
-.wt:hover{border-color:var(--accent)}
-#w_body.drop{outline:2px dashed var(--accent);outline-offset:2px}
-.w-srv{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:12px 14px;margin:6px 0 10px;font-size:14px}
-.w-key{display:flex;align-items:center;gap:8px;flex:1;min-width:0}
-.w-key span{font-size:13px;font-weight:700;white-space:nowrap}
-.w-key input{flex:1;min-width:0;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:9px;padding:8px 10px;font:inherit}
-.w-pub .btn{font-size:14px;padding:9px 14px}
-.w-pick select{flex:1;min-width:0;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:10px;padding:9px 10px;font:inherit;font-size:14px}
-.write-grid{display:grid;gap:14px;margin-top:12px}
-@media (min-width:900px){.write-grid{grid-template-columns:1fr 1fr;align-items:start}.write-preview{position:sticky;top:70px;max-height:calc(100vh - 90px);overflow:auto}}
-.write-form{display:grid;gap:10px}
-.w-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.w-field{display:grid;gap:4px;font-size:12.5px;color:var(--muted)}
-.w-field input,.write-form textarea,.write-out textarea{width:100%;box-sizing:border-box;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:9px;padding:9px 10px;font:inherit;font-size:14px}
-.write-form textarea{line-height:1.6;resize:vertical}
-.write-out{margin-top:14px}
-.write-out textarea{font-family:ui-monospace,Consolas,monospace;font-size:12px}
-.w-tools{display:flex;flex-wrap:wrap;gap:6px}
-.w-tools .btn{font-size:13px;padding:6px 10px;cursor:pointer}
-.post-body{line-height:1.75}
-.post-body p{margin:0 0 12px}
-.post-body h2{margin:22px 0 8px}
-.post-body h2:first-child{margin-top:0}
-.post-body img{display:block;max-width:100%;border-radius:10px;border:1px solid var(--line)}
-.post-img{margin:4px 0 14px}
-/* 싱크 맞추기 도구 */
-.sync-top{position:sticky;top:54px;z-index:5;background:var(--bg);padding-bottom:8px}
-.sync-top .video-frame{margin-top:6px}
-.sync-btns{display:flex;gap:8px;margin-top:10px}
-.sync-tap{flex:1;justify-content:center;font-size:16px;padding:12px}
-.sync-tap:disabled{opacity:.5}
-.sync-state{margin-top:6px}
-.sync-list{list-style:none;margin:8px 0 12px;padding:0}
-.sync-list li{display:flex;gap:10px;padding:9px 8px;border-radius:10px}
-.sync-list li.next{background:var(--accent-soft);box-shadow:inset 3px 0 0 var(--accent)}
-.sync-list li.done{opacity:.55}
-.sync-t{flex:none;width:52px;font-variant-numeric:tabular-nums;font-size:12.5px;color:var(--muted);padding-top:2px}
-.sync-l b{display:block;font-size:15px}
-.sync-l small{display:block;font-size:12px;color:var(--muted)}
-.sync-out textarea{width:100%;margin:8px 0;padding:8px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:12px/1.5 ui-monospace,monospace}
-footer{margin:34px 0 10px;font-size:12px;color:var(--muted);text-align:center;line-height:1.7}
-
-/* 하단 탭 */
-nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--surface);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom)}
-nav.tabs .wrap{display:flex;padding:0}
-nav.tabs a{flex:1;text-align:center;text-decoration:none;color:var(--muted);font-size:11px;font-weight:600;padding:8px 0 9px}
-nav.tabs a svg{display:block;margin:0 auto 2px;width:22px;height:22px}
-nav.tabs a[aria-current="page"]{color:var(--accent)}
-</style>
-</head>
-<body>
-<div id="pageBg" aria-hidden="true"></div>
-<!-- 응원 아이콘 모음 (가사 안 [wave] [clap] 등이 여기 그림을 가져다 씀) -->
-<svg class="icon-sprite" aria-hidden="true" focusable="false"><defs>
-  <symbol id="i-wave" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M8.5 12V7.2a1.5 1.5 0 0 1 3 0v4"/><path d="M11.5 11V5.5a1.5 1.5 0 0 1 3 0V11"/><path d="M14.5 11.2V7.6a1.5 1.5 0 0 1 3 0v6.2a6.6 6.6 0 0 1-6.6 6.6 5.9 5.9 0 0 1-4.2-1.7l-2.9-2.9a1.6 1.6 0 0 1 2.3-2.3l1.9 1.8"/><path d="M8.5 12V10a1.5 1.5 0 0 0-3 0v2.6"/><path d="M19.6 5.2a4 4 0 0 1 0 5.6"/><path d="M21.8 3.2a7 7 0 0 1 0 9.6"/>
-  </symbol>
-  <symbol id="i-hand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M8.5 12V7.2a1.5 1.5 0 0 1 3 0v4"/><path d="M11.5 11V5.5a1.5 1.5 0 0 1 3 0V11"/><path d="M14.5 11.2V7.6a1.5 1.5 0 0 1 3 0v6.2a6.6 6.6 0 0 1-6.6 6.6 5.9 5.9 0 0 1-4.2-1.7l-2.9-2.9a1.6 1.6 0 0 1 2.3-2.3l1.9 1.8"/><path d="M8.5 12V10a1.5 1.5 0 0 0-3 0v2.6"/>
-  </symbol>
-  <symbol id="i-spark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round">
-    <path d="M12 2.5v3.2"/><path d="M4.7 5.5l2.2 2.3"/><path d="M19.3 5.5l-2.2 2.3"/><path d="M2.6 13h3.1"/><path d="M21.4 13h-3.1"/>
-  </symbol>
-  <!-- 몸통(고정) : 머리 + 상체. 팔은 아래 i-cheer-arm 이 통째로 돌아간다 -->
-  <symbol id="i-cheer" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="7.8" cy="6.4" r="2.7"/>
-    <path d="M3.2 21.8v-1.7a5.1 5.1 0 0 1 10.2 0v1.7"/>
-  </symbol>
-  <!-- 든 팔(회전) : 어깨(12.3,16)를 축으로, 팔 전체가 기울며 손이 작은 원을 그린다.
-       손끝에는 치켜세운 검지 -->
-  <symbol id="i-cheer-arm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M11.4 16.1 14.54 8.1"/>
-    <circle cx="14.85" cy="7.35" r=".85" stroke-width="1.9"/>
-    <path d="M15.05 6.79 16.26 3.72" stroke-width="1.7"/>
-  </symbol>
-  <symbol id="i-jump" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
-    <circle cx="12" cy="4" r="2.2"/><path d="M12 6.5v5.5"/><path d="M12 8 7.5 4.8"/><path d="M12 8 16.5 4.8"/><path d="M12 12 8 17.5"/><path d="M12 12 16 17.5"/>
-  </symbol>
-  <symbol id="i-mic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/>
-  </symbol>
-</defs></svg>
-
-
-<script>
 /* ============================================================
-   ✏️ 데이터 — 업데이트는 여기만 고치면 됩니다
-   - 날짜는 "2026-11-30" 형식, 시간이 있으면 "2026-11-30T18:30"
-     (일본·한국 시간이 같아서 그대로 적으면 됨)
-   - type: live(공연) / ticket(티켓 접수) / release(발매) / media(방송·스트리밍) / other(기타)
-   - end: 이틀 이상이거나 접수 기간이면 끝나는 날
-   - tba: true → 날짜 미정 (달까지만 표시, 카운트다운 대신 COMING SOON)
-   - src: 확인한 출처 링크 (공식 우선)
-   - home: "문구" → 접수 기간 동안만 메인 화면 위쪽에 알림으로 보임 (end 가 지나면 자동으로 사라짐)
-   - soldout: true → 품절. 메인 알림이 바로 사라지고 일정에는 '품절' 표시
+   back number 가사 · 싱크 데이터  (곡 화면에 들어갈 때만 불러와요)
+   - 곡 정보(제목·영상·발매일)는 index.html 의 SONGS 에 있고,
+     가사는 여기서 같은 id 로 찾아서 붙여요.
+   - "곡id": { lyricsShift:0, lyricsTimes:[...], lyricsText:`
+       일본어
+       한글 발음
+       해석
+     ` },
+   - 싱크 맞추기에서 복사한 "lyricsShift:0, lyricsTimes:[…]," 줄은
+     그 곡의 lyricsShift ~ lyricsTimes 부분에 바꿔 넣으면 돼요.
+   - 새 곡: index.html SONGS 에 곡 정보를 넣고, 여기 맨 아래에 같은 id 로 가사 추가
+     (index.html 곡 칸에 lyricsText 를 바로 넣어도 예전처럼 동작해요)
    ============================================================ */
-const DATA = {
-  lastChecked: "2026-09-30",
-
-  links: {
-    official:  "https://backnumber.info/?lang=ko",
-    schedule:  "https://backnumber.info/schedule/?lang=ko",
-    news:      "https://backnumber.info/news/?lang=ko",
-    fanclub:   "https://backnumber.info/?lang=ko",
-    store:     "https://store.plusmember.jp/backnumberonlinestore/",
-    youtube:   "https://www.youtube.com/c/backnumberchannel",
-    x:         "https://x.com/backnumberstaff",
-    instagram: "https://www.instagram.com/back_number_official/",
-    tiktok:    "https://www.tiktok.com/@back_number_official"
-  },
-
-  events: [
-    // ── 지난 일정 (기록용) ──
-    { type:"other", date:"2026-09-04", title:"one room TV 생방송 스페셜", note:"one room 회원 한정", src:"https://backnumber.info/schedule/list/2026/09/?lang=ko" },
-    { type:"live", tour:"gy", date:"2026-09-12T18:00", end:"2026-09-13", venue:"KINTEX 9A·9B홀", city:"고양", note:"개장 16:30 · 개연 18:00", src:"https://backnumber.info/news/detail/400256" },
-    { type:"media", date:"2026-09-13", title:"FM802 『802 BINTANG GARDEN』 출연", src:"https://backnumber.info/schedule/list/2026/09/?lang=ko" },
-    { type:"media", date:"2026-09-24", title:"M-ON! 『back number 특집』 재방송", src:"https://backnumber.info/schedule/list/2026/09/?lang=ko" },
-    { type:"media", date:"2026-09-25", title:"J-WAVE 『ALL GOOD FRIDAY』 출연", src:"https://backnumber.info/schedule/list/2026/09/?lang=ko" },
-    { type:"live", tour:"gy", date:"2026-09-26", end:"2026-09-27", venue:"AsiaWorld-Expo Hall 10", city:"홍콩", src:"https://backnumber.info/news/detail/400267" },
-
-    // ── 방송·발매 ──
-    { type:"media", date:"2026-10-03T18:00", title:"U-NEXT 독점 라이브 생중계 『Grateful Yesterdays Tour 2026』", note:"같은 시간 라이브 첫 부분을 공식 SNS에서 무료 공개", src:"https://backnumber.info/news/detail/400296" },
-    { type:"release", date:"2026-10-03T18:00", title:"라이브 음원 『Grateful Yesterdays Tour 2026 Live at NISSAN STADIUM』", note:"닛산 스타디움 2일차 공연 · 음원 사이트 전용으로 처음 공개하는 라이브 음원", src:"https://backnumber.info/news/detail/400291" },
-    { type:"ticket", date:"2026-10-07T18:00", end:"2026-10-13T12:00", home:"팬클럽 회원 Blu-ray·DVD 예약 접수 중", title:"닛산 스타디움 Blu-ray·DVD 팬클럽 한정반 예약", note:"one room GOLD KEY 회원 · 10/13(화) 정오쯤까지 신청 권장 (수량이 다 차면 일찍 마감)", src:"https://backnumber.info/news/detail/400303" },
-    { type:"release", date:"2026-12-23", title:"Blu-ray·DVD 『Grateful Yesterdays Tour 2026 at NISSAN STADIUM』 발매", note:"2026.06.14 닛산 스타디움 공연 19곡 + 투어 다큐멘터리 · 팬클럽 한정반 BD 15,400엔 / DVD 14,300엔 · 통상반 BD 7,700엔 / DVD 6,600엔", src:"https://backnumber.info/news/detail/400303" },
-    { type:"release", date:"2026-12-05", title:"오리지널 앨범 6작 아날로그 LP 발매", note:"MAGIC · 유머 · 슈퍼스타 · blues · 러브스토리 · 샹들리에 (레코드의 날 2026)", src:"https://www.billboard-japan.com/d_news/detail/164638" },
-
-    // ── 공연 ──
-    { type:"live", tba:true, date:"2027-09-01", title:"back number fanclub tour 『one room party vol.8』", short:"one room party vol.8", venue:"장소 추후 발표", note:"one room GOLD KEY 회원 한정 (SILVER KEY·일반 판매 없음)", src:"https://backnumber.info/news/detail/400237" }
-  ],
-
-  tours: {
-    gy: { title:"back number \"Grateful Yesterdays Tour 2026\"", src:"https://backnumber.info/schedule/?lang=ko" }
-  }
-};
-</script>
-
-<script>
-/* ──────────────────────────────────────────────────────────────
-   back number 곡 목록 — 전곡 (나무위키 디스코그래피 기준)
-   · vtype: mv(뮤직비디오) / lyric(가사 영상) / audio(공식 음원) / ""(유튜브에 없음)
-   · album: 처음 실린 앨범 (싱글만 있는 곡은 "싱글"·"디지털 싱글")
-   · date: 처음 발매된 날 (싱글이 먼저 나온 곡은 싱글 날짜)
-
-   ★ 가사 넣는 법 (아이묭 사이트와 같음)
-     lyricsText 안(백틱 ` ` 사이)에 일본어 / 한글 발음 / 해석 순서로 붙여 넣기
-     · 소절 시간은 lyricsTimes: [12.5, 18.2, ...]  · 전체 밀림은 lyricsShift
-   ────────────────────────────────────────────────────────────── */
-
-  const SONGS = [
-    { id:"Kasanari", jp:"重なり", ko:"겹침", rom:"Kasanari", date:"2009.02.18", album:"逃した魚", vtype:"audio",
-      youtubeId:"t_doFJyNsBA", lyricsShift:0, lyricsTimes:[1.30, 6.84, 13.79, 19.30, 26.21, 32.00, 38.62, 44.95, 51.14, 57.54, 70.54, 82.84, 95.20, 101.09, 107.67, 113.94, 120.17, 126.60, 132.80, 145.38, 151.62, 159.60, 165.27, 183.00, 189.22, 195.45, 201.77, 209.09], lyricsTime:0, lyricsText:`
+window.LYRICS = {
+"Kasanari": { lyricsShift:0, lyricsTimes:[1.30, 6.84, 13.79, 19.30, 26.21, 32.00, 38.62, 44.95, 51.14, 57.54, 70.54, 82.84, 95.20, 101.09, 107.67, 113.94, 120.17, 126.60, 132.80, 145.38, 151.62, 159.60, 165.27, 183.00, 189.22, 195.45, 201.77, 209.09], lyricsText:`
 ひとつため息をついてあなたは
 히토츠 타메이키오 츠이테 아나타와
 한번 한숨을 쉬며 당신은
@@ -1270,9 +138,9 @@ const DATA = {
 에란데요 보쿠오
 골라줘 나를
 
-`, lyrics:[] },
-    { id:"HaruWoUtaNiShite", jp:"春を歌にして", ko:"봄을 노래로 해서", rom:"Haru wo Uta ni Shite", date:"2009.02.18", album:"逃した魚", vtype:"audio",
-      youtubeId:"r8nCMwiohyo", lyricsShift:0, lyricsTimes:[33.24, 46.19, 51.87, 57.78, 64.82, 70.87, 77.92, 84.81, 90.25, 97.39, 103.27, 136.99, 142.92, 149.97, 155.60, 164.86, 171.77, 177.76, 184.76, 194.89, 200.51, 207.84, 213.35, 220.02, 226.94, 245.56, 250.84, 258.00, 271.06, 276.74, 283.97, 289.70, 297.15, 302.63], lyricsTime:0, lyricsText:`
+` },
+
+"HaruWoUtaNiShite": { lyricsShift:0, lyricsTimes:[33.24, 46.19, 51.87, 57.78, 64.82, 70.87, 77.92, 84.81, 90.25, 97.39, 103.27, 136.99, 142.92, 149.97, 155.60, 164.86, 171.77, 177.76, 184.76, 194.89, 200.51, 207.84, 213.35, 220.02, 226.94, 245.56, 250.84, 258.00, 271.06, 276.74, 283.97, 289.70, 297.15, 302.63], lyricsText:`
 並木道のやわらかい風はあなたの手のひらみたいに
 나미키미치노 야와라카이 카제와 아나타노 테노히라 미타이니
 가로수 길의 부드러운 바람은 마치 당신의 손바닥처럼
@@ -1408,9 +276,9 @@ const DATA = {
 この春を歌にして
 코노 하루오 우타니 시테
 이 봄을 노래로 만들어서
-`, lyrics:[] },
-    { id:"Sympathy", jp:"sympathy", ko:"sympathy", rom:"Sympathy", date:"2009.02.18", album:"逃した魚", vtype:"audio",
-      youtubeId:"QzmPXUSW63M", lyricsShift:0, lyricsTimes:[33.60, 39.39, 45.41, 51.34, 56.55, 62.71, 70.98, 81.39, 93.49, 103.60, 117.57, 123.41, 129.48, 135.34, 165.63, 175.92, 189.44, 191.41, 206.72, 213.51, 225.46, 234.19, 237.63, 249.49, 259.57], lyricsTime:0, lyricsText:`
+` },
+
+"Sympathy": { lyricsShift:0, lyricsTimes:[33.60, 39.39, 45.41, 51.34, 56.55, 62.71, 70.98, 81.39, 93.49, 103.60, 117.57, 123.41, 129.48, 135.34, 165.63, 175.92, 189.44, 191.41, 206.72, 213.51, 225.46, 234.19, 237.63, 249.49, 259.57], lyricsText:`
 雲がゆっくり流れる夜
 쿠모가 윳쿠리 나가레루 요루
 구름이 천천히 흘러가는 밤
@@ -1510,9 +378,9 @@ const DATA = {
 離さないでいよう
 하나사나이데이요-
 놓지 말자
-`, lyrics:[] },
-    { id:"Then", jp:"then", ko:"then", rom:"then", date:"2009.02.18", album:"逃した魚", vtype:"audio",
-      youtubeId:"TkMWqEO6KmY", lyricsShift:0, lyricsTimes:[29.12, 41.10, 47.45, 56.81, 64.67, 73.94, 78.47, 84.65, 93.71, 96.46, 130.64, 139.85, 147.91, 157.24, 161.52, 166.31, 175.50, 180.08, 184.77, 193.98, 198.53], lyricsTime:0, lyricsText:`
+` },
+
+"Then": { lyricsShift:0, lyricsTimes:[29.12, 41.10, 47.45, 56.81, 64.67, 73.94, 78.47, 84.65, 93.71, 96.46, 130.64, 139.85, 147.91, 157.24, 161.52, 166.31, 175.50, 180.08, 184.77, 193.98, 198.53], lyricsText:`
 今も同じ歌声に変わらない感情を乗せて放つ
 이마모 오나지 우타고에니 카와라나이 칸죠-오 노세테 하나츠
 지금도 똑같은 노랫소리로 변하지 않는 감정을 실어 내보내
@@ -1596,9 +464,9 @@ const DATA = {
 空いたシート弱く照らしながら
 아이타 시-토 요와쿠 테라시나가라
 빈 좌석을 약하게 비추면서
-`, lyrics:[] },
-    { id:"KaiganDoori", jp:"海岸通り", ko:"해안 거리", rom:"Kaigan Doori", date:"2009.02.18", album:"逃した魚", vtype:"audio",
-      youtubeId:"0BIDBlDHOJM", lyricsShift:0, lyricsTimes:[0, 13.70, 20.49, 25.49, 42.84, 49.17, 56.93, 63.27, 70.92, 77.78, 86.05, 92.81, 97.71, 100.06, 106.90, 111.81, 114, 129.25, 141.23, 143.80, 150.40, 158.44, 165.10, 173.61, 176.5, 202.56, 209.39, 214.35, 216.62, 223.54, 230.80, 237.54, 243.09], lyricsTime:0, lyricsText:`
+` },
+
+"KaiganDoori": { lyricsShift:0, lyricsTimes:[0, 13.70, 20.49, 25.49, 42.84, 49.17, 56.93, 63.27, 70.92, 77.78, 86.05, 92.81, 97.71, 100.06, 106.90, 111.81, 114, 129.25, 141.23, 143.80, 150.40, 158.44, 165.10, 173.61, 176.5, 202.56, 209.39, 214.35, 216.62, 223.54, 230.80, 237.54, 243.09], lyricsText:`
 [clap]{{전주에 박수}}
 
 
@@ -1747,9 +615,9 @@ pic : jump
 너랑 함께 돌아가자
 pic : jump
 
-`, lyrics:[] },
-    { id:"Knock", jp:"KNOCK", ko:"KNOCK", rom:"Knock", date:"2009.02.18", album:"逃した魚", vtype:"audio",
-      youtubeId:"PnOGRYznF14", lyricsShift:0, lyricsTimes:[29.88, 44.20, 73.44, 87.61, 101.07, 104.61, 108.25, 115.52, 119.21, 122.74, 126.38, 171.14, 174.68, 178.21, 185.48, 189.03, 192.61, 199.85, 203.54, 207.19, 210.74], lyricsTime:0, lyricsText:`
+` },
+
+"Knock": { lyricsShift:0, lyricsTimes:[29.88, 44.20, 73.44, 87.61, 101.07, 104.61, 108.25, 115.52, 119.21, 122.74, 126.38, 171.14, 174.68, 178.21, 185.48, 189.03, 192.61, 199.85, 203.54, 207.19, 210.74], lyricsText:`
 夜の風が窓をたたく 君はうつむいている
 요루노 카제가 마도오 타타쿠 키미와 우츠무 이테이루
 밤바람이 창문을 두드리고, 너는 고개를 숙이고 있어
@@ -1833,9 +701,9 @@ pic : jump
 必死に目をこらすんだけど
 힛시니 메오 코라슨다케도
 필사적으로 눈을 부릅뜨고 있지만
-`, lyrics:[] },
-    { id:"SaitouKouen", jp:"西藤公園", ko:"니시후지 공원", rom:"Nishifuji Kouen", date:"2009.02.18", album:"逃した魚", vtype:"audio",
-      youtubeId:"0yXS-HJxpOY", lyricsShift:0, lyricsTimes:[1.96, 7.66, 14.76, 27.75, 40.66, 53.28, 66.02, 79.64, 118.67, 130.25, 131.47, 144.44, 157.35, 168.13, 182.88, 189.00, 209.52, 212.31, 224.91, 237.97, 244.14, 250.93, 264.51, 270.42], lyricsTime:0, lyricsText:`
+` },
+
+"SaitouKouen": { lyricsShift:0, lyricsTimes:[1.96, 7.66, 14.76, 27.75, 40.66, 53.28, 66.02, 79.64, 118.67, 130.25, 131.47, 144.44, 157.35, 168.13, 182.88, 189.00, 209.52, 212.31, 224.91, 237.97, 244.14, 250.93, 264.51, 270.42], lyricsText:`
       「私は冬が好き
 와타시와 후유가 스키
 "나는 겨울이 좋아
@@ -1931,9 +799,9 @@ pic : jump
 僕は君が
 보쿠와 키미가
 나는 네가...
-`, lyrics:[] },
-    { id:"StayWithMe", jp:"stay with me", ko:"stay with me", rom:"Stay with Me", date:"2010.06.02", album:"あとのまつり", vtype:"live",
-      youtubeId:"ks3J1sG4cTg", lyricsShift:0, lyricsTimes:[44.93, 58.11, 71.19, 84.15, 90.11, 96.46, 109.76, 116.18, 122.06, 135.61, 142.12, 155.24, 169.94, 183.31, 196.04, 208.03, 214.78, 237.76, 251.45, 258.08, 263.82, 277.17, 283.58], lyricsTime:0, lyricsText:`
+` },
+
+"StayWithMe": { lyricsShift:0, lyricsTimes:[44.93, 58.11, 71.19, 84.15, 90.11, 96.46, 109.76, 116.18, 122.06, 135.61, 142.12, 155.24, 169.94, 183.31, 196.04, 208.03, 214.78, 237.76, 251.45, 258.08, 263.82, 277.17, 283.58], lyricsText:`
 私がいつでも笑っているのは弱い自分を隠すため
 와타시가 이츠데모 와랏테이루노와 요와이 지분오 카쿠스타메
 내가 언제나 웃고 있는 것은 약한 자신을 숨기기 위해서야
@@ -2025,9 +893,9 @@ pic : jump
 すべての報われない想いに光を
 스베테노 무쿠와레나이 오모이니 히카리오
 모든 보답 받지 못하는 마음에 빛을
-`, lyrics:[] },
-    { id:"AtoNoUta", jp:"あとのうた", ko:"그 후의 노래", rom:"Ato no Uta", date:"2010.06.02", album:"あとのまつり", vtype:"live",
-      youtubeId:"ZG-sOUE07SA", lyricsShift:0, lyricsTimes:[15.99, 22.83, 29.81, 36.64, 42.71, 50.14, 57.10, 64.47, 84.90, 91.74, 98.67, 105.58, 109.10, 125.75, 133.62, 139.51, 146.80, 153.20, 158.78, 167.55, 174.35, 194.63, 202.15, 208.56, 216.18, 223.52, 226.95, 230.50, 237.26, 244.46], lyricsTime:0, lyricsText:`
+` },
+
+"AtoNoUta": { lyricsShift:0, lyricsTimes:[15.99, 22.83, 29.81, 36.64, 42.71, 50.14, 57.10, 64.47, 84.90, 91.74, 98.67, 105.58, 109.10, 125.75, 133.62, 139.51, 146.80, 153.20, 158.78, 167.55, 174.35, 194.63, 202.15, 208.56, 216.18, 223.52, 226.95, 230.50, 237.26, 244.46], lyricsText:`
 君の家までの道を決して通らないように
 키미노 이에마데노 미치오 켓시테 토오라나이요-니
 네 집까지 가는 길을 결코 지나지 않도록
@@ -2147,9 +1015,9 @@ pic : jump
 [wave]ちゃんと言えばよかった
 챤토 이에바 요캇타
 제대로 말했다면 좋았을 텐데
-`, lyrics:[] },
-    { id:"UwatsuitaKimochi", jp:"浮ついた気持ち", ko:"들뜬 마음", rom:"Uwatsuita Kimochi", date:"2010.06.02", album:"あとのまつり", vtype:"",
-      youtubeId:"LA-tjA66HJc", lyricsShift:0, lyricsTimes:[31.74, 39.20, 45.42, 49.86, 59.04, 68.61, 77.22, 87.08, 95.65, 100.24, 126.32, 135.42, 144.40, 153.65, 163.20, 171.76, 181.67, 190.30, 194.84, 201.68, 220.89, 229.54, 239.44, 248.00, 252.67], lyricsTime:0, lyricsText:`
+` },
+
+"UwatsuitaKimochi": { lyricsShift:0, lyricsTimes:[31.74, 39.20, 45.42, 49.86, 59.04, 68.61, 77.22, 87.08, 95.65, 100.24, 126.32, 135.42, 144.40, 153.65, 163.20, 171.76, 181.67, 190.30, 194.84, 201.68, 220.89, 229.54, 239.44, 248.00, 252.67], lyricsText:`
 そうか僕の心はきっとあの時に死んでしまっていたんだ
 소-카 보쿠노 코코로와 킷토 아노 토키니 신데시맛테이탄다
 그런가, 내 마음은 분명 그 때 죽어버린 거야
@@ -2249,9 +1117,9 @@ pic : jump
 このキスが終わったら話そう
 코노 키스가 오왓타라 하나소-
 이 키스가 끝나면 이야기하자
-`, lyrics:[] },
-    { id:"KazeNoTsuyoiHi", jp:"風の強い日", ko:"바람이 강한 날", rom:"Kaze no Tsuyoi Hi", date:"2010.06.02", album:"あとのまつり", vtype:"live",
-      youtubeId:"2ckobm58bKE", lyricsShift:0, lyricsTimes:[16.74, 23.45, 30.79, 38.30, 46.76, 60.11, 73.16, 84.93, 97.75, 108.97, 116.09, 122.33, 136.54, 142.80, 149.91, 161.41, 174.19, 185.22, 192.50, 198.82, 231.71, 245.63, 251.18, 258.58, 271.33, 282.82, 289.52, 295.86, 311.77, 319.10, 326.76], lyricsTime:0, lyricsText:`
+` },
+
+"KazeNoTsuyoiHi": { lyricsShift:0, lyricsTimes:[16.74, 23.45, 30.79, 38.30, 46.76, 60.11, 73.16, 84.93, 97.75, 108.97, 116.09, 122.33, 136.54, 142.80, 149.91, 161.41, 174.19, 185.22, 192.50, 198.82, 231.71, 245.63, 251.18, 258.58, 271.33, 282.82, 289.52, 295.86, 311.77, 319.10, 326.76], lyricsText:`
 ケーキ屋の前を通りながら
 케-키야노 마에오 토오리나가라
 케이크 가게 앞을 지나가다가
@@ -2375,9 +1243,9 @@ pic : jump
 もう少しここにいるよ
 모- 스코시 코코니 이루요
 조금만 더 여기에 있을게
-`, lyrics:[] },
-    { id:"Tender", jp:"tender", ko:"tender", rom:"Tender", date:"2010.06.02", album:"あとのまつり", vtype:"",
-      youtubeId:"3h3WQNpGHA4", lyricsShift:0, lyricsTimes:[5.36, 15.65, 23.71, 33.94, 41.47, 50.53, 59.69, 68.09, 74.61, 84.90, 150.76, 159.68, 166.83, 178.00, 187.24, 195.49, 209.15], lyricsTime:0, lyricsText:`
+` },
+
+"Tender": { lyricsShift:0, lyricsTimes:[5.36, 15.65, 23.71, 33.94, 41.47, 50.53, 59.69, 68.09, 74.61, 84.90, 150.76, 159.68, 166.83, 178.00, 187.24, 195.49, 209.15], lyricsText:`
 ドアの閉まる音で世界が二つに割れた気がした
 도아노 시마루 오토데 세카이가 후타츠니 와레타 키가 시타
 문 닫히는 소리에 세상이 둘로 갈리는 느낌이 들었어
@@ -2452,9 +1320,9 @@ pic : jump
 手を伸ばしてる
 테오 노바시테루
 손을 뻗고 있어
-`, lyrics:[] },
-    { id:"SonoDressChottoMatta", jp:"そのドレスちょっと待った", ko:"그 드레스 잠깐 기다려", rom:"Sono Dress Chotto Matta", date:"2010.06.02", album:"あとのまつり", vtype:"live",
-      youtubeId:"pXMBm8545I0", lyricsShift:0, lyricsTimes:[7.00, 34.31, 39.32, 46.15, 52.66, 59.47, 63.72, 72.69, 74.63, 78.78, 85.62, 87.78, 92.00, 96.39, 116.54, 121.80, 128.49, 134.98, 142.04, 146.17, 150.56, 155.17, 158.41, 161.14, 168.15, 171.65, 174.34, 180.68, 184.10, 185.50, 198.11, 202.07, 205.02, 210.96, 213.57, 217.06, 223.93, 227.23, 230.33, 236.50], lyricsTime:0, lyricsText:`
+` },
+
+"SonoDressChottoMatta": { lyricsShift:0, lyricsTimes:[7.00, 34.31, 39.32, 46.15, 52.66, 59.47, 63.72, 72.69, 74.63, 78.78, 85.62, 87.78, 92.00, 96.39, 116.54, 121.80, 128.49, 134.98, 142.04, 146.17, 150.56, 155.17, 158.41, 161.14, 168.15, 171.65, 174.34, 180.68, 184.10, 185.50, 198.11, 202.07, 205.02, 210.96, 213.57, 217.06, 223.93, 227.23, 230.33, 236.50], lyricsText:`
 [clap]{{전주에 박수}}
 
 [clap]人づてに聞いた君の話
@@ -2637,9 +1505,9 @@ pic: jump
 오이와이노 코토바니 카에사세테 이타다키마스
 축하의 말을 이걸로 대신하겠습니다
 pic: jump
-`, lyrics:[] },
-    { id:"Omaesan", jp:"おまえさん", ko:"당신", rom:"Omaesan", date:"2010.06.02", album:"あとのまつり", vtype:"",
-      youtubeId:"kefJakXEh1g", lyricsShift:0, lyricsTimes:[39.45, 45.20, 51.17, 63.56, 68.96, 74.69, 83.97, 89.99, 95.95, 101.96, 111.33, 117.23, 123.22, 135.63, 140.94, 146.76, 154.71, 156.53, 167.78, 201.07, 207.08, 212.97, 219.01, 224.94, 230.97, 237.00, 242.96], lyricsTime:0, lyricsText:`
+` },
+
+"Omaesan": { lyricsShift:0, lyricsTimes:[39.45, 45.20, 51.17, 63.56, 68.96, 74.69, 83.97, 89.99, 95.95, 101.96, 111.33, 117.23, 123.22, 135.63, 140.94, 146.76, 154.71, 156.53, 167.78, 201.07, 207.08, 212.97, 219.01, 224.94, 230.97, 237.00, 242.96], lyricsText:`
 「疲れちゃった もうダメみたい」
 츠카레챳타 모- 다메미타이
 "지쳤어, 더는 안 될 거 같아"
@@ -2747,9 +1615,9 @@ pic: jump
 気付いたのがさっきなんだ 格好悪いのも承知さ
 키즈이타노가 삿키난다 칵코 와루이노모 쇼-치사
 방금 눈치 챈 거야 멋없다는 것도 잘 알아
-`, lyrics:[] },
-    { id:"HighSchoolGirl", jp:"ハイスクールガール", ko:"여고생", rom:"High School Girl", date:"2010.06.02", album:"あとのまつり", vtype:"lyric",
-      youtubeId:"LGl1RB7LmZk", lyricsShift:0, lyricsTimes:[4.15, 19.95, 31.66, 37.06, 44.92, 55.81, 59.30, 63.27, 71.28, 78.72, 87.95, 99.78, 105.01, 112.98, 123.47, 131.20, 139.32, 146.77, 156.05, 167.71, 172.88, 180.98, 211.19, 220.03, 221.96, 233.79, 238.94, 247.03, 255.09, 265.67, 270.93, 278.79], lyricsTime:0, lyricsText:`
+` },
+
+"HighSchoolGirl": { lyricsShift:0, lyricsTimes:[4.15, 19.95, 31.66, 37.06, 44.92, 55.81, 59.30, 63.27, 71.28, 78.72, 87.95, 99.78, 105.01, 112.98, 123.47, 131.20, 139.32, 146.77, 156.05, 167.71, 172.88, 180.98, 211.19, 220.03, 221.96, 233.79, 238.94, 247.03, 255.09, 265.67, 270.93, 278.79], lyricsText:`
 ああ明日になったら君は彼女に
 아아 아시타니 낫타라 키미가 카노죠니
 아, 내일이 되면 네가 여자친구가
@@ -2879,9 +1747,9 @@ pic: jump
 間違えて口が滑っちゃえばいいのになぁ
 마치가에테 쿠치가 스벳챠에바 이이노니나-
 실수로 말이 미끄러져 나오면 좋을 텐데
-`, lyrics:[] },
-    { id:"Life", jp:"Life", ko:"Life", rom:"Life", date:"2010.06.02", album:"あとのまつり", vtype:"",
-      youtubeId:"fjNh3_wwXeY", lyricsShift:0, lyricsTimes:[16.49, 24.52, 30.66, 37.75, 41.82, 48.36, 55.39, 76.48, 84.54, 108.46, 115.37], lyricsTime:0, lyricsText:`
+` },
+
+"Life": { lyricsShift:0, lyricsTimes:[16.49, 24.52, 30.66, 37.75, 41.82, 48.36, 55.39, 76.48, 84.54, 108.46, 115.37], lyricsText:`
 心のどこかで聞こえた懐かしい声は
 코코로노 도코카데 키코에타 나츠카시이 코에와
 마음의 어디선가 들려오는 그리운 목소리는
@@ -2925,9 +1793,9 @@ pic: jump
 あの場所のあの人からも見える大きな虹になる
 아노 바쇼노 아노 히토카라모 미에루 오오키나 니지니 나루
 그 곳에 있는 그 사람도 볼 수 있는 큰 무지개가 될 거야
-`, lyrics:[] },
-    { id:"Fallman", jp:"fallman", ko:"fallman", rom:"Fallman", date:"2010.06.02", album:"あとのまつり", vtype:"lyric",
-      youtubeId:"myOq5BdlJj4", lyricsShift:0, lyricsTimes:[0.26, 9.94, 29.35, 38.76, 47.78, 52.75, 57.30, 62.34, 67.56, 77.13, 86.16, 91.18, 95.70, 100.76, 144.37, 163.66, 172.77, 177.69, 182.18, 187.13, 191.66, 196.87], lyricsTime:0, lyricsText:`
+` },
+
+"Fallman": { lyricsShift:0, lyricsTimes:[0.26, 9.94, 29.35, 38.76, 47.78, 52.75, 57.30, 62.34, 67.56, 77.13, 86.16, 91.18, 95.70, 100.76, 144.37, 163.66, 172.77, 177.69, 182.18, 187.13, 191.66, 196.87], lyricsText:`
 電話に出ないそれだけで 全部終わらせるつもりでしょう
 덴와니 데나이 소레다케데 젠부 오와라세루 츠모리데쇼-
 전화를 받지 않는 것만으로 전부 끝내버릴 생각인 거지
@@ -3015,9 +1883,9 @@ pic: jump
 さよならって言われに走ってくのさ
 사요나랏테 이와레니 하싯테쿠노사
 작별이라는 말을 들으러 달려가는 거야
-`, lyrics:[] },
-    { id:"March", jp:"march", ko:"march", rom:"March", date:"2010.06.02", album:"あとのまつり", vtype:"lyric",
-      youtubeId:"pjf9LVO1OrI", lyricsShift:0, lyricsTimes:[5.39, 12.13, 16.58, 27.76, 34.88, 43.03, 50.07, 58.87, 66.43, 73.25, 89.08, 95.81, 100.32, 104.29, 110.96, 115.54, 126.86, 133.89, 137.71, 174.55, 190.14, 203.57, 210.23, 214.62, 218.64, 225.29, 229.86, 233.95, 240.70, 244.78, 249.30, 251.08, 252.44, 254.82, 256.14, 258.72, 260.58, 279.34, 286.43], lyricsTime:0, lyricsText:`
+` },
+
+"March": { lyricsShift:0, lyricsTimes:[5.39, 12.13, 16.58, 27.76, 34.88, 43.03, 50.07, 58.87, 66.43, 73.25, 89.08, 95.81, 100.32, 104.29, 110.96, 115.54, 126.86, 133.89, 137.71, 174.55, 190.14, 203.57, 210.23, 214.62, 218.64, 225.29, 229.86, 233.95, 240.70, 244.78, 249.30, 251.08, 252.44, 254.82, 256.14, 258.72, 260.58, 279.34, 286.43], lyricsText:`
 君の事想って今日はゆっくり眠れます
 키미노 코토 오못테 쿄-와 윳쿠리 네무레마스
 당신을 떠올리니 오늘은 천천히 잠들 수 있네요
@@ -3173,9 +2041,9 @@ pic: jump
 助手席の君にそっとつぶやいた
 죠슈세키노 키미니 솟토 츠부야이타
 조수석에 앉아있는 너에게 살며시 속삭였어
-`, lyrics:[] },
-    { id:"ItsukaWasureteShimattemo", jp:"いつか忘れてしまっても", ko:"언젠가 잊어버린다 해도", rom:"Itsuka Wasurete Shimattemo", date:"2010.06.02", album:"あとのまつり", vtype:"live",
-      youtubeId:"70yLUUe0Ffw", lyricsShift:0, lyricsTimes:[50.96, 54.94, 61.30, 66.89, 80.41, 85.00, 92.30, 99.54, 104.23, 108.75, 113.54, 116.57, 128.18, 132.31, 138.95, 144.20, 151.95, 156.22, 162.62, 167.91, 181.63, 186.17, 193.78, 198.62, 202.56, 232.28, 241.93, 248.43, 259.14, 263.21, 269.96, 275.70, 282.99, 287.30, 293.75, 299.39, 309.43, 315.39], lyricsTime:0, lyricsText:`
+` },
+
+"ItsukaWasureteShimattemo": { lyricsShift:0, lyricsTimes:[50.96, 54.94, 61.30, 66.89, 80.41, 85.00, 92.30, 99.54, 104.23, 108.75, 113.54, 116.57, 128.18, 132.31, 138.95, 144.20, 151.95, 156.22, 162.62, 167.91, 181.63, 186.17, 193.78, 198.62, 202.56, 232.28, 241.93, 248.43, 259.14, 263.21, 269.96, 275.70, 282.99, 287.30, 293.75, 299.39, 309.43, 315.39], lyricsText:`
 いつか忘れてしまっても
 이츠카 와스레테시맛테모
 언젠가 잊어버린다 해도
@@ -3327,9 +2195,9 @@ pic: jump
 忘れないで
 와스레나이데
 잊지 말아줘
-`, lyrics:[] },
-    { id:"Hanabira", jp:"はなびら", ko:"꽃잎", rom:"Hanabira", date:"2011.04.06", album:"スーパースター", vtype:"mv",
-      youtubeId:"RJUE8NNsD68", lyricsShift:0, lyricsTimes:[21.12, 25.55, 30.21, 34.22, 38.15, 46.74, 56.99, 63.61, 68.17, 71.78, 75.03, 81.70, 86.26, 89.69, 95.98, 99.91, 104.99, 108.90, 115.07, 123.71, 129.10, 133.89, 140.57, 145.17, 148.55, 152.02, 158.71, 163.26, 166.64, 186.31, 194.02, 199.25, 204.08, 210.63, 215.26, 218.70, 222.19, 228.96, 233.43, 236.91, 240.92], lyricsTime:0, lyricsText:`
+` },
+
+"Hanabira": { lyricsShift:0, lyricsTimes:[21.12, 25.55, 30.21, 34.22, 38.15, 46.74, 56.99, 63.61, 68.17, 71.78, 75.03, 81.70, 86.26, 89.69, 95.98, 99.91, 104.99, 108.90, 115.07, 123.71, 129.10, 133.89, 140.57, 145.17, 148.55, 152.02, 158.71, 163.26, 166.64, 186.31, 194.02, 199.25, 204.08, 210.63, 215.26, 218.70, 222.19, 228.96, 233.43, 236.91, 240.92], lyricsText:`
 桜の花が舞い落ちるこの景色を
 사쿠라노 하나가 마이오치루 코노 케시키오
 벚꽃잎이 흩날리는 이 풍경을
@@ -3493,9 +2361,9 @@ pic: jump
 君を離さない
 키미오 하나사나이
 너를 놓치지 않아
-`, lyrics:[] },
-    { id:"Hanataba", jp:"花束", ko:"꽃다발", rom:"Hanataba", date:"2011.06.22", album:"スーパースター", vtype:"mv",
-      youtubeId:"meZPD28Y7xE", lyricsShift:0, lyricsTimes:[27.11, 38.41, 44.50, 50.56, 62.42, 68.70, 74.32, 80.47, 86.92, 92.33, 101.13, 106.88, 113.25, 121.24, 125.24, 131.30, 137.57, 142.69, 148.78, 173.30, 179.13, 185.57, 191.46, 200.16, 205.91, 212.34, 218.12, 220.97, 224.51, 230.20, 236.58, 243.33, 247.79, 254.85, 266.46, 272.50], lyricsTime:0, lyricsText:`
+` },
+
+"Hanataba": { lyricsShift:0, lyricsTimes:[27.11, 38.41, 44.50, 50.56, 62.42, 68.70, 74.32, 80.47, 86.92, 92.33, 101.13, 106.88, 113.25, 121.24, 125.24, 131.30, 137.57, 142.69, 148.78, 173.30, 179.13, 185.57, 191.46, 200.16, 205.91, 212.34, 218.12, 220.97, 224.51, 230.20, 236.58, 243.33, 247.79, 254.85, 266.46, 272.50], lyricsText:`
 どう思う？これから2人でやっていけると思う？
 도- 오모-? 코레카라 후타리데 얏테 이케루토 오모-?
 어떻게 생각해? 앞으로 둘이서 잘 살 수 있을 거라 생각해?
@@ -3646,9 +2514,9 @@ pic: jump
 僕は君が好きだよ
 보쿠와 키미가 스키다요
 나는 너를 좋아해
-`, lyrics:[] },
-{ id:"Daijinakoto", jp:"だいじなこと", ko:"소중한 것", rom:"Daijina Koto", date:"2011.06.22", album:"花束 수록곡", vtype:"audio",
-      youtubeId:"GnIm3kkCYo4", lyricsShift:0, lyricsTimes:[21.32, 7.23, 14.54, 20.40, 27.52, 34.17, 40.91, 47.45, 54.15, 60.38, 67.33, 70.29, 73.79, 80.85, 86.97, 93.79, 100.39, 104.17, 120.92, 127.45, 134.13, 140.65, 142.29, 144.28, 150.87, 156.97, 160.61, 163.64, 167.27, 170.32, 174.03, 180.91, 186.96, 193.68, 197.27, 200.64, 207.49, 213.84, 220.49, 227.00, 230.63], lyricsTime:0, lyricsText:`
+` },
+
+"Daijinakoto": { lyricsShift:0, lyricsTimes:[21.32, 7.23, 14.54, 20.40, 27.52, 34.17, 40.91, 47.45, 54.15, 60.38, 67.33, 70.29, 73.79, 80.85, 86.97, 93.79, 100.39, 104.17, 120.92, 127.45, 134.13, 140.65, 142.29, 144.28, 150.87, 156.97, 160.61, 163.64, 167.27, 170.32, 174.03, 180.91, 186.96, 193.68, 197.27, 200.64, 207.49, 213.84, 220.49, 227.00, 230.63], lyricsText:`
 君が今までしてきた事を
 키미가 이마마데 시테키타 코토오
 네가 지금까지 해왔던 일을
@@ -3820,9 +2688,9 @@ pic: jump
 思い知りながら
 오모이시리나가라
 깨달으면서
-`, lyrics:[] },
-    { id:"OmoidasenakuNaruSonoHiMade", jp:"思い出せなくなるその日まで", ko:"떠올릴 수 없게 되는 그날까지", rom:"Omoidasenaku Naru Sono Hi Made", date:"2011.10.05", album:"スーパースター", vtype:"mv",
-      youtubeId:"EwLOwWrtULM", lyricsShift:0, lyricsTimes:[14.49, 21.24, 27.33, 34.28, 37.66, 40.97, 48.03, 53.71, 56.83, 59.45, 62.96, 66.14, 70.05, 75.83, 78.49, 82.95, 88.80, 91.97, 95.96, 101.88, 105.30, 109.05, 114.82, 118.22, 125.64, 131.81, 138.20, 141.47, 144.25, 146.20, 147.94, 149.48, 182.08, 187.95, 190.54, 195.08, 200.90, 204.01, 208.03, 213.90, 217.29, 220.94, 226.81, 230.20], lyricsTime:0, lyricsText:`
+` },
+
+"OmoidasenakuNaruSonoHiMade": { lyricsShift:0, lyricsTimes:[14.49, 21.24, 27.33, 34.28, 37.66, 40.97, 48.03, 53.71, 56.83, 59.45, 62.96, 66.14, 70.05, 75.83, 78.49, 82.95, 88.80, 91.97, 95.96, 101.88, 105.30, 109.05, 114.82, 118.22, 125.64, 131.81, 138.20, 141.47, 144.25, 146.20, 147.94, 149.48, 182.08, 187.95, 190.54, 195.08, 200.90, 204.01, 208.03, 213.90, 217.29, 220.94, 226.81, 230.20], lyricsText:`
 世界で1番大事な人が
 세카이데 이치방 다이지나 히토가
 세상에서 제일 소중한 사람이
@@ -3998,9 +2866,9 @@ pic: jump
 きっと私だけじゃないね
 킷토 와타시다케쟈나이네
 분명 나만 그런 게 아닐 거야
-`, lyrics:[] },
-    { id:"SuperstarNiNattara", jp:"スーパースターになったら", ko:"슈퍼스타가 된다면", rom:"Superstar ni Nattara", date:"2011.10.26", album:"スーパースター", vtype:"audio",
-      youtubeId:"T0jZGhaaYYk", lyricsShift:0, lyricsTimes:[0, 14.68, 17.75, 21.86, 25.00, 29.17, 32.33, 36.42, 39.46, 43.81, 50.34, 57.87, 61.31, 65.05, 68.72, 72.06, 75.44, 81.67, 102.04, 105.12, 109.20, 112.30, 114.13, 116.57, 119.64, 123.68, 126.83, 131.05, 137.65, 145.25, 148.58, 152.27, 155.89, 159.62, 162.76, 169.03, 189.64, 195.39, 197.29, 203.41, 206.76, 210.37, 214.09, 217.91, 220.85, 227.16, 230], lyricsTime:0, lyricsText:`
+` },
+
+"SuperstarNiNattara": { lyricsShift:0, lyricsTimes:[0, 14.68, 17.75, 21.86, 25.00, 29.17, 32.33, 36.42, 39.46, 43.81, 50.34, 57.87, 61.31, 65.05, 68.72, 72.06, 75.44, 81.67, 102.04, 105.12, 109.20, 112.30, 114.13, 116.57, 119.64, 123.68, 126.83, 131.05, 137.65, 145.25, 148.58, 152.27, 155.89, 159.62, 162.76, 169.03, 189.64, 195.39, 197.29, 203.41, 206.76, 210.37, 214.09, 217.91, 220.85, 227.16, 230], lyricsText:`
 [clap]{{전주에 박수}}
 
 [clap]このまま終わってしまうのは
@@ -4203,9 +3071,9 @@ pic : handup
 
 [clap]{{전주에 박수}}
 
-`, lyrics:[] },
-    { id:"AyashiiHikari", jp:"あやしいひかり", ko:"수상한 빛", rom:"Ayashii Hikari", date:"2011.10.26", album:"スーパースター", vtype:"audio",
-      youtubeId:"x3jYBCgfXKY", lyricsShift:0, lyricsTimes:[28.64, 31.71, 36.08, 38.70, 42.78, 46.54, 50.29, 52.94, 57.61, 63.47, 70.56, 74.31, 77.87, 84.72, 88.49, 92.22, 95.76, 101.80, 105.28, 109.00, 111.92, 115.71, 118.27, 120.97, 123.24, 125.42, 130.62, 136.39, 140.26, 143.33, 147.26, 150.74, 157.61, 161.37, 164.92, 168.49, 187.60, 193.25, 195.46, 203.95, 207.65, 211.14, 218.12, 221.82, 225.39, 229.00, 232.27], lyricsTime:0, lyricsText:`
+` },
+
+"AyashiiHikari": { lyricsShift:0, lyricsTimes:[28.64, 31.71, 36.08, 38.70, 42.78, 46.54, 50.29, 52.94, 57.61, 63.47, 70.56, 74.31, 77.87, 84.72, 88.49, 92.22, 95.76, 101.80, 105.28, 109.00, 111.92, 115.71, 118.27, 120.97, 123.24, 125.42, 130.62, 136.39, 140.26, 143.33, 147.26, 150.74, 157.61, 161.37, 164.92, 168.49, 187.60, 193.25, 195.46, 203.95, 207.65, 211.14, 218.12, 221.82, 225.39, 229.00, 232.27], lyricsText:`
 近くにいる時は
 치카쿠니 이루 토키와
 가까이 있을 때는
@@ -4406,9 +3274,9 @@ pic : handup
 思い描いて
 오모이에가이테
 마음속에 그리며
-`, lyrics:[] },
-    { id:"HantoumeiNingen", jp:"半透明人間", ko:"반투명 인간", rom:"Hantoumei Ningen", date:"2011.10.26", album:"スーパースター", vtype:"audio",
-      youtubeId:"h4jvj9T1aaA", lyricsShift:0, lyricsTimes:[1.29, 7.53, 14.63, 21.21, 28.20, 34.81, 41.52, 48.18, 55.01, 61.42, 68.36, 74.88, 82.76, 88.54, 96.09, 101.91, 108.68, 111.13, 114.98, 117.72, 122.07, 124.52, 128.79, 132.23, 138.45, 145.51, 152.15], lyricsTime:0, lyricsText:`
+` },
+
+"HantoumeiNingen": { lyricsShift:0, lyricsTimes:[1.29, 7.53, 14.63, 21.21, 28.20, 34.81, 41.52, 48.18, 55.01, 61.42, 68.36, 74.88, 82.76, 88.54, 96.09, 101.91, 108.68, 111.13, 114.98, 117.72, 122.07, 124.52, 128.79, 132.23, 138.45, 145.51, 152.15], lyricsText:`
 [clap]君の前から姿を消すって言ったのに
 키미노 마에카라 스가타오 케슷테 잇타노니
 네 앞에서 사라지겠다고 했는데
@@ -4516,9 +3384,9 @@ pic : handup
 [wave]ちゃんと消えられるはずなんだよ 
 챤토 키에라레루하즈난다요
 제대로 사라질 수 있을 거야
-`, lyrics:[] },
-    { id:"CheckNoOnePiece", jp:"チェックのワンピース", ko:"체크무늬 원피스", rom:"Check no One-piece", date:"2011.10.26", album:"スーパースター", vtype:"audio",
-      youtubeId:"2L1NB-fJdJk", lyricsShift:0, lyricsTimes:[12.22, 17.38, 24.38, 29.50, 36.50, 40.96, 48.73, 52.50, 59.66, 61.70, 66.62, 71.35, 78.35, 83.78, 85.80, 90.97, 95.20, 97.2, 100.50, 121.67, 126.86, 133.82, 138.71, 170.05, 174.00, 176.24, 182.38, 187.05, 192.99, 195.00, 200.42, 204.97, 206.90, 212.13, 217.38, 219.40, 224.85, 229.00, 230.83, 234.30], lyricsTime:0, lyricsText:`
+` },
+
+"CheckNoOnePiece": { lyricsShift:0, lyricsTimes:[12.22, 17.38, 24.38, 29.50, 36.50, 40.96, 48.73, 52.50, 59.66, 61.70, 66.62, 71.35, 78.35, 83.78, 85.80, 90.97, 95.20, 97.2, 100.50, 121.67, 126.86, 133.82, 138.71, 170.05, 174.00, 176.24, 182.38, 187.05, 192.99, 195.00, 200.42, 204.97, 206.90, 212.13, 217.38, 219.40, 224.85, 229.00, 230.83, 234.30], lyricsText:`
 夜の街を見下ろしながら
 요루노 마치오 미오로시나가라
 밤거리를 내려다보면서
@@ -4685,9 +3553,9 @@ pic : handup
 見つけるから
 미츠케루카라
 찾아낼테니까
-`, lyrics:[] },
-    { id:"MisterPerfect", jp:"ミスターパーフェクト", ko:"미스터 퍼펙트", rom:"Mister Perfect", date:"2011.10.26", album:"スーパースター", vtype:"audio",
-      youtubeId:"Abjq9Iv7klM", lyricsShift:0, lyricsTimes:[1.28, 8.00, 14.32, 19.44, 22.56, 27.26, 33.23, 45.21, 51.04, 56.96, 63.03, 68.72, 74.95, 80.55, 83.54, 86.62, 93.12, 99.11, 105.03, 109.62, 112.66, 117.16, 123.05, 129.13, 133.48, 136.71, 140.77, 146.50, 159.19, 165.00, 182.81, 188.96, 194.54, 197.92, 200.57, 203.94, 207.06, 213.07, 218.99, 223.55, 226.70, 231.06, 237.02, 243.05, 247.54, 250.61, 254.88, 260.53, 263.76], lyricsTime:0, lyricsText:`
+` },
+
+"MisterPerfect": { lyricsShift:0, lyricsTimes:[1.28, 8.00, 14.32, 19.44, 22.56, 27.26, 33.23, 45.21, 51.04, 56.96, 63.03, 68.72, 74.95, 80.55, 83.54, 86.62, 93.12, 99.11, 105.03, 109.62, 112.66, 117.16, 123.05, 129.13, 133.48, 136.71, 140.77, 146.50, 159.19, 165.00, 182.81, 188.96, 194.54, 197.92, 200.57, 203.94, 207.06, 213.07, 218.99, 223.55, 226.70, 231.06, 237.02, 243.05, 247.54, 250.61, 254.88, 260.53, 263.76], lyricsText:`
 ありがとうさようなら
 아리가토- 사요-나라
 고마워 잘가
@@ -4892,9 +3760,9 @@ pic : handup
 自分さえいないのに
 지분사에 이나이노니
 자기 자신마저 없는데
-`, lyrics:[] },
-    { id:"KoboreOchite", jp:"こぼれ落ちて", ko:"넘쳐 흘러내려", rom:"Kobore Ochite", date:"2011.10.26", album:"スーパースター", vtype:"audio",
-      youtubeId:"y6mr8X5C-ts", lyricsShift:0, lyricsTimes:[31.04, 35.14, 39.68, 43.81, 48.73, 52.62, 56.88, 63.70, 67.56, 70.31, 75.34, 77.91, 81.91, 84.92, 87.79, 92.75, 94.23, 98.04, 100.21, 125.09, 128.99, 133.36, 140.13, 143.98, 146.72, 151.77, 154.77, 158.15, 161.26, 164.12, 169.23, 170.64, 174.50, 177.01, 184.02, 187.92, 192.40, 196.07, 204.97, 207.73, 212.79, 215.37, 219.24, 222.44, 225.16, 230.27, 231.99, 235.48, 237.63], lyricsTime:0, lyricsText:`
+` },
+
+"KoboreOchite": { lyricsShift:0, lyricsTimes:[31.04, 35.14, 39.68, 43.81, 48.73, 52.62, 56.88, 63.70, 67.56, 70.31, 75.34, 77.91, 81.91, 84.92, 87.79, 92.75, 94.23, 98.04, 100.21, 125.09, 128.99, 133.36, 140.13, 143.98, 146.72, 151.77, 154.77, 158.15, 161.26, 164.12, 169.23, 170.64, 174.50, 177.01, 184.02, 187.92, 192.40, 196.07, 204.97, 207.73, 212.79, 215.37, 219.24, 222.44, 225.16, 230.27, 231.99, 235.48, 237.63], lyricsText:`
 意味のあるものを選び過ぎて
 이미노 아루 모노오 에라비스기테
 의미있는 걸 너무 많이 골라서
@@ -5090,9 +3958,9 @@ pic : handup
 どれだけもがいても
 도레다케 모가이테모
 아무리 발버둥쳐도
-`, lyrics:[] },
-    { id:"RitzParty", jp:"リッツパーティー", ko:"리츠 파티", rom:"Ritz Party", date:"2011.10.26", album:"スーパースター", vtype:"audio",
-      youtubeId:"3aiMcWEjmks", lyricsShift:0, lyricsTimes:[1.23, 4.94, 8.55, 17.13, 21.14, 24.54, 32.86, 37.11, 43.10, 49.24, 53.27, 56.82, 60.48, 65.21, 69.15, 73.38, 76.45, 97.27, 101.05, 105.00, 108.45, 115.10, 119.11, 123.32, 127.11, 131.36, 134.50, 137.04, 139.24, 143.08, 146.80, 150.47, 155.23, 159.16, 163.37, 169.02], lyricsTime:0, lyricsText:`
+` },
+
+"RitzParty": { lyricsShift:0, lyricsTimes:[1.23, 4.94, 8.55, 17.13, 21.14, 24.54, 32.86, 37.11, 43.10, 49.24, 53.27, 56.82, 60.48, 65.21, 69.15, 73.38, 76.45, 97.27, 101.05, 105.00, 108.45, 115.10, 119.11, 123.32, 127.11, 131.36, 134.50, 137.04, 139.24, 143.08, 146.80, 150.47, 155.23, 159.16, 163.37, 169.02], lyricsText:`
 なかなか会えない日々が
 나카나카 아에나이 히비가
 좀처럼 만나지 못하는 날들이
@@ -5246,9 +4114,9 @@ pic : handup
 ちゃんと言いに行こう
 챤토 이-니 이코-
 똑바로 말하러 가자
-`, lyrics:[] },
-    { id:"DenshaNoMadoKara", jp:"電車の窓から", ko:"전철 창문에서", rom:"Densha no Mado kara", date:"2011.10.26", album:"スーパースター", vtype:"audio",
-      youtubeId:"GV1EN8NgjHk", lyricsShift:0, lyricsTimes:[26.12, 32.31, 38.94, 45.21, 51.82, 58.17, 64.77, 71.22, 78.15, 83.13, 91.00, 96.03, 104.03, 109.07, 116.93, 122.04, 155.88, 162.18, 166.98, 169.02, 171.77, 175.34, 177.78, 185.09, 190.10, 198.02, 203.01, 210.98, 216.07, 223.99, 229.03, 235.58, 241.47, 248.50], lyricsTime:0, lyricsText:`
+` },
+
+"DenshaNoMadoKara": { lyricsShift:0, lyricsTimes:[26.12, 32.31, 38.94, 45.21, 51.82, 58.17, 64.77, 71.22, 78.15, 83.13, 91.00, 96.03, 104.03, 109.07, 116.93, 122.04, 155.88, 162.18, 166.98, 169.02, 171.77, 175.34, 177.78, 185.09, 190.10, 198.02, 203.01, 210.98, 216.07, 223.99, 229.03, 235.58, 241.47, 248.50], lyricsText:`
 生まれて育った街の景色を
 우마레테 소닷타 마치노 케시키오
 나고 자란 거리의 풍경을
@@ -5384,9 +4252,9 @@ pic : handup
 なぜだろう
 나제다로-
 왜일까
-`, lyrics:[] },
-    { id:"Shiawase", jp:"幸せ", ko:"행복", rom:"Shiawase", date:"2011.10.26", album:"スーパースター", vtype:"audio",
-      youtubeId:"1GaoCAc2N-A", lyricsShift:0, lyricsTimes:[26.27, 29.62, 32.75, 39.11, 46.19, 52.18, 58.68, 61.80, 65.24, 71.08, 76.80, 79.94, 90.30, 97.47, 102.58, 111.49, 117.15, 149.37, 152.75, 162.36, 165.75, 169.38, 175.47, 181.80, 188.45, 194.24, 199.94, 203.09, 213.62, 221.09, 225.78, 234.83, 240.34, 247.29, 250.48, 253.75, 259.64, 265.56, 272.84, 274.80, 277.55, 283.57, 288.28, 295.38, 300.35, 309.29, 314.86, 319.95, 322.86, 333.58, 340.63, 345.83, 354.73, 360.36], lyricsTime:0, lyricsText:`
+` },
+
+"Shiawase": { lyricsShift:0, lyricsTimes:[26.27, 29.62, 32.75, 39.11, 46.19, 52.18, 58.68, 61.80, 65.24, 71.08, 76.80, 79.94, 90.30, 97.47, 102.58, 111.49, 117.15, 149.37, 152.75, 162.36, 165.75, 169.38, 175.47, 181.80, 188.45, 194.24, 199.94, 203.09, 213.62, 221.09, 225.78, 234.83, 240.34, 247.29, 250.48, 253.75, 259.64, 265.56, 272.84, 274.80, 277.55, 283.57, 288.28, 295.38, 300.35, 309.29, 314.86, 319.95, 322.86, 333.58, 340.63, 345.83, 354.73, 360.36], lyricsText:`
 本当はもう分かってたの
 혼토-와 모- 와캇테타노
 사실은 이미 알고 있었어
@@ -5602,9 +4470,9 @@ pic : handup
 誰よりも幸せにしてあげて
 다레요리모 시아와세니 시테 아게테
 누구보다도 행복하게 해줘
-`, lyrics:[] },
-    { id:"Koi", jp:"恋", ko:"사랑", rom:"Koi", date:"2012.03.07", album:"blues", vtype:"mv",
-      youtubeId:"ZWdYxQz4UqE", lyricsShift:0, lyricsTimes:[24.91, 30.96, 33.93, 37.38, 43.64, 46.60, 49.34, 55.31, 61.96, 62.63, 68.55, 74.63, 75.31, 81.16, 84.53, 86.90, 94.36, 100.53, 106.87, 109.95, 113.19, 116.98, 118.83, 124.80, 128.88, 131.44, 132.15, 138.00, 144.03, 144.81, 150.62, 153.90, 156.26, 168.76, 175.67, 179.30, 183.59, 190.15, 196.19, 197.00, 202.82, 205.88, 208.69, 209.61, 215.41, 221.45, 222.29, 228.19, 231.25, 233.76], lyricsTime:0, lyricsText:`
+` },
+
+"Koi": { lyricsShift:0, lyricsTimes:[24.91, 30.96, 33.93, 37.38, 43.64, 46.60, 49.34, 55.31, 61.96, 62.63, 68.55, 74.63, 75.31, 81.16, 84.53, 86.90, 94.36, 100.53, 106.87, 109.95, 113.19, 116.98, 118.83, 124.80, 128.88, 131.44, 132.15, 138.00, 144.03, 144.81, 150.62, 153.90, 156.26, 168.76, 175.67, 179.30, 183.59, 190.15, 196.19, 197.00, 202.82, 205.88, 208.69, 209.61, 215.41, 221.45, 222.29, 228.19, 231.25, 233.76], lyricsText:`
 ぼんやりと君を眺めていたんだ
 본야리토 키미오 나가메테이탄다
 멍하니 너를 바라보고 있었어
@@ -5804,9 +4672,9 @@ pic : handup
 その手を
 소노 테오
 그 손을
-`, lyrics:[] },
-    { id:"Nichiyoubi", jp:"日曜日", ko:"일요일", rom:"Nichiyoubi", date:"2012.05.30", album:"blues", vtype:"mv",
-      youtubeId:"VPv5kfyIFkI", lyricsShift:0, lyricsTimes:[21.94, 26.50, 31.10, 35.97, 40.91, 45.60, 50.21, 54.83, 59.22, 68.85, 74.17, 80.80, 81.84, 84.26, 86.42, 91.25, 95.98, 100.49, 101.51, 105.28, 110.42, 114.99, 139.12, 142.85, 148.44, 154.82, 157.18, 163.65, 165.79, 167.96, 172.75, 177.55, 182.10, 183.04, 186.83, 191.97, 198.72], lyricsTime:0, lyricsText:`
+` },
+
+"Nichiyoubi": { lyricsShift:0, lyricsTimes:[21.94, 26.50, 31.10, 35.97, 40.91, 45.60, 50.21, 54.83, 59.22, 68.85, 74.17, 80.80, 81.84, 84.26, 86.42, 91.25, 95.98, 100.49, 101.51, 105.28, 110.42, 114.99, 139.12, 142.85, 148.44, 154.82, 157.18, 163.65, 165.79, 167.96, 172.75, 177.55, 182.10, 183.04, 186.83, 191.97, 198.72], lyricsText:`
 ねぇもうすぐお昼だよ
 네- 모- 스구 오히루다요
 야, 좀 있으면 점심이야
@@ -5954,9 +4822,9 @@ pic : handup
 後悔しないだろう
 코-카이 시나이다로-
 후회하진 않겠지
-`, lyrics:[] },
-    { id:"oneroom", jp:"one room", ko:"one room", rom:"One Room", date:"2012.05.30", album:"日曜日 수록곡", vtype:"audio",
-      youtubeId:"gR61iTaAkcU", lyricsShift:0, lyricsTimes:[27.29, 33.28, 39.75, 42.67, 46.67, 51.75, 58.06, 62.92, 66.51, 74.16, 80.27, 84.21, 87.19, 91.70, 94.90, 99.40, 104.04, 109.07, 111.80, 123.57, 129.57, 136.09, 142.99, 173.56, 179.76, 184.57, 188.15, 195.73, 201.78, 205.75, 208.80, 213.12, 221.00, 226.83, 231.08, 234.02, 238.63, 241.64, 246.29, 250.89, 255.88, 258.62], lyricsTime:0, lyricsText:`
+` },
+
+"oneroom": { lyricsShift:0, lyricsTimes:[27.29, 33.28, 39.75, 42.67, 46.67, 51.75, 58.06, 62.92, 66.51, 74.16, 80.27, 84.21, 87.19, 91.70, 94.90, 99.40, 104.04, 109.07, 111.80, 123.57, 129.57, 136.09, 142.99, 173.56, 179.76, 184.57, 188.15, 195.73, 201.78, 205.75, 208.80, 213.12, 221.00, 226.83, 231.08, 234.02, 238.63, 241.64, 246.29, 250.89, 255.88, 258.62], lyricsText:`
       青いカーテンにぶら下がって
 아오이 카-텐니 부라사갓테
 파란색 커튼에 매달려
@@ -6124,9 +4992,9 @@ pic : handup
 なにもかも
 나니모카모
 그 무엇도
-`, lyrics:[] },
-    { id:"Watagashi", jp:"わたがし", ko:"솜사탕", rom:"Watagashi", date:"2012.07.18", album:"blues", vtype:"mv",
-      youtubeId:"uy_BaRBJIzQ", lyricsShift:0, lyricsTimes:[11.61, 19.09, 23.18, 27.11, 34.48, 42.85, 50.41, 59.86, 63.77, 67.87, 75.22, 79.41, 84.06, 91.24, 95.60, 98.45, 102.43, 106.74, 114.18, 123.74, 127.71, 131.57, 139.07, 143.23, 147.89, 155.76, 160.62, 185.71, 189.56, 193.55, 200.91, 205.75, 209.91, 214.45, 216.68, 220.44, 224.54, 231.91, 236.16, 240.77, 247.70, 255.03, 259.13], lyricsTime:0, lyricsText:`
+` },
+
+"Watagashi": { lyricsShift:0, lyricsTimes:[11.61, 19.09, 23.18, 27.11, 34.48, 42.85, 50.41, 59.86, 63.77, 67.87, 75.22, 79.41, 84.06, 91.24, 95.60, 98.45, 102.43, 106.74, 114.18, 123.74, 127.71, 131.57, 139.07, 143.23, 147.89, 155.76, 160.62, 185.71, 189.56, 193.55, 200.91, 205.75, 209.91, 214.45, 216.68, 220.44, 224.54, 231.91, 236.16, 240.77, 247.70, 255.03, 259.13], lyricsText:`
 水色にはなびらの浴衣が この世で一番
 미즈이로니 하나비라노 유카타가 코노 요데 이치방
 수색 꽃무늬 유카타가 이 세상에서 제일
@@ -6298,9 +5166,9 @@ pic : handup
 楽しいねって
 타노시이넷테
 "즐겁네"라고
-`, lyrics:[] },
-    { id:"AoiHaru", jp:"青い春", ko:"푸른 봄", rom:"Aoi Haru", date:"2012.11.07", album:"blues", vtype:"audio",
-      youtubeId:"U3Q2yGN7Vz4", lyricsShift:0, lyricsTimes:[7.79, 14.79, 21.92, 29.28, 36.16, 37.65, 43.19, 48.08, 50.35, 53.84, 57.82, 63.87, 66.85, 73.61, 80.76, 88.38, 95.26, 96.78, 101.98, 107.05, 109.66, 112.94, 116.95, 122.98, 129.00, 140.44, 147.09, 154.32, 158.24, 162.38, 169.05, 170.63, 176.18, 180.75, 183.07, 186.68, 190.91, 196.56, 201.00], lyricsTime:0, lyricsText:`
+` },
+
+"AoiHaru": { lyricsShift:0, lyricsTimes:[7.79, 14.79, 21.92, 29.28, 36.16, 37.65, 43.19, 48.08, 50.35, 53.84, 57.82, 63.87, 66.85, 73.61, 80.76, 88.38, 95.26, 96.78, 101.98, 107.05, 109.66, 112.94, 116.95, 122.98, 129.00, 140.44, 147.09, 154.32, 158.24, 162.38, 169.05, 170.63, 176.18, 180.75, 183.07, 186.68, 190.91, 196.56, 201.00], lyricsText:`
 [clap]{{教えられたものだけじゃ　いまいち完成しないんだ}}
 {{오시에라레타 모노다케쟈 이마이치 칸세이시나인다}}
 {{배우는 것만으로는 조금 모자라게 완성되지 않아}}
@@ -6477,9 +5345,9 @@ pic: jump
 
 [clap]{{전주에 박수}}
 
-`, lyrics:[] },
-    { id:"TeNoNaruHouE", jp:"手の鳴る方へ", ko:"손뼉 소리가 나는 쪽으로", rom:"Te no Naru Hou e", date:"2012.11.21", album:"blues", vtype:"audio",
-      youtubeId:"AE4xtTArYQo", lyricsShift:0, lyricsTimes:[0.90, 9.05, 18.25, 29.75, 37.73, 48.53, 57.28, 67.80, 78.83, 87.23, 96.57, 108.19, 115.77, 126.85, 135.53, 146.24, 171.10, 179.96, 185.57, 189.71, 200.45, 209.11, 219.71], lyricsTime:0, lyricsText:`
+` },
+
+"TeNoNaruHouE": { lyricsShift:0, lyricsTimes:[0.90, 9.05, 18.25, 29.75, 37.73, 48.53, 57.28, 67.80, 78.83, 87.23, 96.57, 108.19, 115.77, 126.85, 135.53, 146.24, 171.10, 179.96, 185.57, 189.71, 200.45, 209.11, 219.71], lyricsText:`
 君の横にずっと　いたいんだけどなぁ
 키미노 요코니 즛토 이타인다케도나-
 네 옆에서 쭉 있고 싶었지만 말야
@@ -6571,9 +5439,9 @@ pic: jump
 塗りつぶすのさ　さあ手を握って
 누리츠부스노사 사- 테오 니깃테
 온통 물들이는 거야 자 손을 꽉 잡아줘
-`, lyrics:[] },
-    { id:"Ending", jp:"エンディング", ko:"엔딩", rom:"Ending", date:"2012.11.21", album:"blues", vtype:"mv",
-      youtubeId:"t3JZnGgxSWg", lyricsShift:0, lyricsTimes:[20.13, 24.76, 33.17, 45.32, 51.99, 56.53, 65.13, 72.98, 83.29, 93.30, 113.69, 126.56, 138.84, 145.30, 150.12, 158.23, 166.40, 176.65, 186.59, 193.53, 199.97, 206.31, 211.38, 219.56, 229.50, 239.61, 245.08, 255.66, 265.60, 271.98], lyricsTime:0, lyricsText:`
+` },
+
+"Ending": { lyricsShift:0, lyricsTimes:[20.13, 24.76, 33.17, 45.32, 51.99, 56.53, 65.13, 72.98, 83.29, 93.30, 113.69, 126.56, 138.84, 145.30, 150.12, 158.23, 166.40, 176.65, 186.59, 193.53, 199.97, 206.31, 211.38, 219.56, 229.50, 239.61, 245.08, 255.66, 265.60, 271.98], lyricsText:`
 二人でいるといつでも
 후타리데 이루토 이츠데모
 둘이서 있으면 항상
@@ -6693,9 +5561,9 @@ pic: jump
 君の代わりなど　僕はいらないのに
 키미노 카와리나도 보쿠와 이라나이노니
 널 대신할 사람따윈 나는 필요없는데
-`, lyrics:[] },
-    { id:"HeijitsuNoBlues", jp:"平日のブルース", ko:"평일의 블루스", rom:"Heijitsu no Blues", date:"2012.11.21", album:"blues", vtype:"audio",
-      youtubeId:"XDs4SNSAQZs", lyricsShift:0, lyricsTimes:[0, 15.13, 18.45, 21.87, 25.42, 28.94, 33.96, 35.93, 40.81, 42.81, 47.94, 51.18, 56.64, 59.94, 63.42, 67.23, 70.62, 74.02, 77.44, 81.90, 84.26, 95.55, 98.83, 102.45, 105.78, 110.17, 114.21, 118.78, 123.53, 126.16, 132.70, 140.22, 144.07, 150.69, 152.30, 157.62, 161.59, 165.04, 168.53, 172.33, 176.09, 179.19, 182.43, 186.94, 189.52], lyricsTime:0, lyricsText:`
+` },
+
+"HeijitsuNoBlues": { lyricsShift:0, lyricsTimes:[0, 15.13, 18.45, 21.87, 25.42, 28.94, 33.96, 35.93, 40.81, 42.81, 47.94, 51.18, 56.64, 59.94, 63.42, 67.23, 70.62, 74.02, 77.44, 81.90, 84.26, 95.55, 98.83, 102.45, 105.78, 110.17, 114.21, 118.78, 123.53, 126.16, 132.70, 140.22, 144.07, 150.69, 152.30, 157.62, 161.59, 165.04, 168.53, 172.33, 176.09, 179.19, 182.43, 186.94, 189.52], lyricsText:`
 [clap]{{전주에 박수}}
 
 [clap]流れてく毎日の中で
@@ -6873,9 +5741,9 @@ pic: jump
 [wave]僕が意味を与えられたら
 보쿠가 이미오 아타에라레타라
 내가 의미를 부여할 수 있다면
-`, lyrics:[] },
-    { id:"Egao", jp:"笑顔", ko:"미소", rom:"Egao", date:"2012.11.21", album:"blues", vtype:"audio",
-      youtubeId:"NboDML6QPyA", lyricsShift:0, lyricsTimes:[6.78, 12.33, 19.50, 25.06, 32.01, 38.29, 43.12, 51.03, 53.89, 61.10, 73.48, 86.51, 92.61, 98.96, 130.93, 137.32, 142.30, 150.13, 160.08, 172.47, 185.40, 191.57, 198.01, 233.68, 239.08, 246.32, 251.89], lyricsTime:0, lyricsText:`
+` },
+
+"Egao": { lyricsShift:0, lyricsTimes:[6.78, 12.33, 19.50, 25.06, 32.01, 38.29, 43.12, 51.03, 53.89, 61.10, 73.48, 86.51, 92.61, 98.96, 130.93, 137.32, 142.30, 150.13, 160.08, 172.47, 185.40, 191.57, 198.01, 233.68, 239.08, 246.32, 251.89], lyricsText:`
 君の声をいつでも
 키미노 코에오 이츠데모
 네 목소리를 언제나
@@ -6983,9 +5851,9 @@ pic: jump
 君は笑っているのだろう
 키미와 와랏테 이루노다로-
 넌 웃고 있는 거겠지
-`, lyrics:[] },
-    { id:"SasaeruHitoNoUta", jp:"ささえる人の歌", ko:"지지해주는 사람의 노래", rom:"Sasaeru Hito no Uta", date:"2012.11.21", album:"blues", vtype:"audio",
-      youtubeId:"4nPxHqHzGPI", lyricsShift:0, lyricsTimes:[19.80, 26.15, 32.45, 38.35, 44.35, 49.78, 53.82, 56.92, 65.48, 69.04, 75.10, 81.22, 87.63, 93.78, 96.97, 99.95, 105.89, 112.13, 116.87, 143.36, 147.95, 152.14, 155.16, 158.14, 163.80, 166.96, 173.87, 179.71, 185.98, 192.05, 198.21, 201.23, 204.21, 210.47, 216.79, 221.39], lyricsTime:0, lyricsText:`
+` },
+
+"SasaeruHitoNoUta": { lyricsShift:0, lyricsTimes:[19.80, 26.15, 32.45, 38.35, 44.35, 49.78, 53.82, 56.92, 65.48, 69.04, 75.10, 81.22, 87.63, 93.78, 96.97, 99.95, 105.89, 112.13, 116.87, 143.36, 147.95, 152.14, 155.16, 158.14, 163.80, 166.96, 173.87, 179.71, 185.98, 192.05, 198.21, 201.23, 204.21, 210.47, 216.79, 221.39], lyricsText:`
 元気で毎日暮らしてますか
 겡키데 마이니치 쿠라시테마스카
 매일 잘 지내고 계신가요?
@@ -7129,9 +5997,9 @@ pic: jump
 待っているから
 맛테 이루카라
 기다리고 있을 테니까
-`, lyrics:[] },
-    { id:"BirdSSorrow", jp:"bird's sorrow", ko:"bird's sorrow", rom:"Bird's Sorrow", date:"2012.11.21", album:"blues", vtype:"audio",
-      youtubeId:"kyWJig7aZuQ", lyricsShift:0, lyricsTimes:[0, 5.72, 10.10, 14.72, 19.13, 24.12, 28.69, 33.33, 35.21, 37.82, 43.12, 47.46, 52.03, 56.60, 61.13, 65.55, 70.23, 72.10, 74.70, 79.90, 82.05, 88.96, 97, 106.07, 110.49, 115.13, 119.63, 124.51, 128.90, 133.58, 135.50, 138.24, 142.87, 148], lyricsTime:0, lyricsText:`
+` },
+
+"BirdSSorrow": { lyricsShift:0, lyricsTimes:[0, 5.72, 10.10, 14.72, 19.13, 24.12, 28.69, 33.33, 35.21, 37.82, 43.12, 47.46, 52.03, 56.60, 61.13, 65.55, 70.23, 72.10, 74.70, 79.90, 82.05, 88.96, 97, 106.07, 110.49, 115.13, 119.63, 124.51, 128.90, 133.58, 135.50, 138.24, 142.87, 148], lyricsText:`
 [clap]{{전주에 박수}}
 
 [clap]誰かが言った この一週間は特別で
@@ -7261,9 +6129,9 @@ pic: jump
 나는 아무것도 하지 못한 채 그걸 바라보고 있어
 
 [clap]{{전주에 박수}}
-`, lyrics:[] },
-    { id:"JoenJoyuushou", jp:"助演女優症", ko:"조연 여배우증", rom:"Joen Joyuushou", date:"2012.11.21", album:"blues", vtype:"audio",
-      youtubeId:"wPMVb74M6Q4", lyricsShift:0, lyricsTimes:[31.43, 37.31, 43.07, 53.95, 65.07, 70.98, 76.45, 82.45, 88.12, 94.38, 101.08, 106.71, 112.41, 123.37, 134.43, 140.35, 145.90, 151.93, 157.52, 163.80, 170.50, 174.83, 181.81, 186.35, 191.91, 203.97, 209.45, 215.55, 221.06, 227.08, 232.61, 238.56, 244.18, 250.57], lyricsTime:0, lyricsText:`
+` },
+
+"JoenJoyuushou": { lyricsShift:0, lyricsTimes:[31.43, 37.31, 43.07, 53.95, 65.07, 70.98, 76.45, 82.45, 88.12, 94.38, 101.08, 106.71, 112.41, 123.37, 134.43, 140.35, 145.90, 151.93, 157.52, 163.80, 170.50, 174.83, 181.81, 186.35, 191.91, 203.97, 209.45, 215.55, 221.06, 227.08, 232.61, 238.56, 244.18, 250.57], lyricsText:`
 甘い声で誘い出して
 아마이 코에데 사소이다시테
 달콤한 목소리로 유혹해놓곤
@@ -7399,9 +6267,9 @@ pic: jump
 取って付けたような台詞で 惑わせて
 톳테 츠케타 요-나 세리후데 마도와세테
 갖다 붙인 듯한 대사로 유혹해줘
-`, lyrics:[] },
-    { id:"BokuGaImaDekiruKotoWo", jp:"僕が今できることを", ko:"내가 지금 할 수 있는 일을", rom:"Boku ga Ima Dekiru Koto wo", date:"2012.11.21", album:"blues", vtype:"audio",
-      youtubeId:"4o-V76O18i4", lyricsShift:0, lyricsTimes:[1.08, 7.68, 14.65, 21.64, 28.49, 41.94, 49.21, 58.69, 73.25, 80.03, 85.92, 100.54, 106.78, 144.24, 158.99, 165.54, 171.64, 186.29, 192.39, 199.25], lyricsTime:0, lyricsText:`
+` },
+
+"BokuGaImaDekiruKotoWo": { lyricsShift:0, lyricsTimes:[1.08, 7.68, 14.65, 21.64, 28.49, 41.94, 49.21, 58.69, 73.25, 80.03, 85.92, 100.54, 106.78, 144.24, 158.99, 165.54, 171.64, 186.29, 192.39, 199.25], lyricsText:`
 歩いてきた道は
 아루이테 키타 미치와
 걸어온 길은
@@ -7481,9 +6349,9 @@ pic: jump
 僕が今できることを
 보쿠가 이마 데키루 코토오
 내가 지금 할 수 있는 일을
-`, lyrics:[] },
-    { id:"TakaneNoHanakoSan", jp:"高嶺の花子さん", ko:"높은 산의 하나코상", rom:"Takane no Hanako-san", date:"2013.06.26", album:"ラブストーリー", vtype:"mv",
-      youtubeId:"SII-S-zCg-c", lyricsShift:0, lyricsTimes:[41.46, 55.47, 60.35, 68.16, 75.08, 78.77, 85.40, 89.64, 93.25, 99.22, 103.09, 107.85, 128.91, 134.23, 142.37, 147.21, 155.16, 161.98, 165.61, 169.67, 172.30, 176.63, 180.21, 186.21, 190.00, 194.90, 201.35, 207.05, 215.25, 220.25, 225.38, 227.92, 232.21, 235.83, 241.78, 246.21, 249.70, 255.82, 259.58, 264.59], lyricsTime:0, lyricsText:`
+` },
+
+"TakaneNoHanakoSan": { lyricsShift:0, lyricsTimes:[41.46, 55.47, 60.35, 68.16, 75.08, 78.77, 85.40, 89.64, 93.25, 99.22, 103.09, 107.85, 128.91, 134.23, 142.37, 147.21, 155.16, 161.98, 165.61, 169.67, 172.30, 176.63, 180.21, 186.21, 190.00, 194.90, 201.35, 207.05, 215.25, 220.25, 225.38, 227.92, 232.21, 235.83, 241.78, 246.21, 249.70, 255.82, 259.58, 264.59], lyricsText:`
 [clap]{{君から見た僕はきっと　ただの友達の友達}}
 키미카라 미타 보쿠와 킷토 타다노 토모다치노 토모다치
 네 시선으로 본 나는 분명 그저 친구의 친구
@@ -7668,9 +6536,9 @@ pic: jump
 보쿠노 모노니 나루와케나이카
 내 것이 될 리가 없으려나
 pic: jump
-`, lyrics:[] },
-    { id:"Fish", jp:"fish", ko:"fish", rom:"Fish", date:"2014.02.05", album:"ラブストーリー", vtype:"mv",
-      youtubeId:"129hKdV-aXM", lyricsShift:1.0, lyricsTimes:[29.54, 43.26, 69.61, 76.57, 89.98, 94.76, 101.05, 108.43, 114.75, 121.80, 123.29, 128.75, 134.99, 136.24, 140.99, 156.31, 169.87, 208.76, 214.57, 221.63, 228.06, 238.23, 239.73, 244.95, 251.61, 253.11, 258.01, 264.93, 266.63, 271.99, 278.69, 279.57, 283.85, 290.91], lyricsTime:0, lyricsText:`
+` },
+
+"Fish": { lyricsShift:1.0, lyricsTimes:[29.54, 43.26, 69.61, 76.57, 89.98, 94.76, 101.05, 108.43, 114.75, 121.80, 123.29, 128.75, 134.99, 136.24, 140.99, 156.31, 169.87, 208.76, 214.57, 221.63, 228.06, 238.23, 239.73, 244.95, 251.61, 253.11, 258.01, 264.93, 266.63, 271.99, 278.69, 279.57, 283.85, 290.91], lyricsText:`
 私のスカートが青く揺れている
 와타시노 스카-토가 아오쿠 유레테 이루
 내 스커트가 파랗게 흔들리고 있어
@@ -7806,9 +6674,9 @@ pic: jump
 あなたがここに帰って来ますように
 아나타가 코코니 카엣테 키마스요-니
 당신이 여기에 돌아오도록
-`, lyrics:[] },
-    { id:"TsunaidaTeKara", jp:"繋いだ手から", ko:"잡은 손으로부터", rom:"Tsunaida Te kara", date:"2014.03.19", album:"ラブストーリー", vtype:"mv",
-      youtubeId:"YKZ5KbClxp8", lyricsShift:-1.08, lyricsTimes:[28.74, 38.41, 47.55, 57.35, 66.53, 75.45, 84.63, 90.72, 98.72, 103.35, 109.65, 119.41, 132.34, 141.89, 151.24, 160.37, 169.25, 175.34, 185.19, 190.86, 200.95, 209.17, 215.51, 223.22, 228.23, 233.82, 243.87, 250.96], lyricsTime:0, lyricsText:`
+` },
+
+"TsunaidaTeKara": { lyricsShift:-1.08, lyricsTimes:[28.74, 38.41, 47.55, 57.35, 66.53, 75.45, 84.63, 90.72, 98.72, 103.35, 109.65, 119.41, 132.34, 141.89, 151.24, 160.37, 169.25, 175.34, 185.19, 190.86, 200.95, 209.17, 215.51, 223.22, 228.23, 233.82, 243.87, 250.96], lyricsText:`
 ここに僕がいて 横に君がいる人生なら
 코코니 보쿠가 이테 요코니 키미가 이루 진세이나라
 여기에 내가 있고, 곁에 네가 있는 인생이라면
@@ -7920,9 +6788,9 @@ pic: jump
 さっき見つかったからさ
 삿키 미츠캇타카라사
 방금 찾아냈으니까 말야
-`, lyrics:[] },
-    { id:"SeijaNoKoushin", jp:"聖者の行進", ko:"성자의 행진", rom:"Seija no Koushin", date:"2014.03.26", album:"ラブストーリー", vtype:"audio",
-      youtubeId:"tmKfUJgG32Q", lyricsShift:0, lyricsTimes:[0.00, 14.95, 18.60, 29.45, 36.70, 43.76, 47.84, 51.30, 58.39, 65.16, 68.60, 75.47, 81.00, 89.72, 97.32, 104.27, 108.31, 111.96, 118.84, 125.76, 130.42, 134.86, 149.87, 162.56, 170.45, 177.23, 181.52, 185.24, 191.80, 198.97, 202.33], lyricsTime:0, lyricsText:`
+` },
+
+"SeijaNoKoushin": { lyricsShift:0, lyricsTimes:[0.00, 14.95, 18.60, 29.45, 36.70, 43.76, 47.84, 51.30, 58.39, 65.16, 68.60, 75.47, 81.00, 89.72, 97.32, 104.27, 108.31, 111.96, 118.84, 125.76, 130.42, 134.86, 149.87, 162.56, 170.45, 177.23, 181.52, 185.24, 191.80, 198.97, 202.33], lyricsText:`
 [clap]{{전주에 박수}}
 
 [clap]背の高いビルを避けて
@@ -8044,9 +6912,9 @@ pic: jump
 [wave]歌って描いて息が止まるまで
 우탓테 에가이테 이키가 토마루마데
 노래하고 그리며 숨이 멎을 때까지
-`, lyrics:[] },
-    { id:"003", jp:"003", ko:"003", rom:"003", date:"2014.03.26", album:"ラブストーリー", vtype:"audio",
-      youtubeId:"G_ifvcsfAWI", lyricsShift:0, lyricsTimes:[13.38, 20.29, 23.87, 27.80, 34.15, 36.20, 41.75, 45.50, 47.85, 50.67, 55.49, 57.32, 61.80, 63.55, 76.55, 82.88, 87.40, 90.30, 92.43, 96.87, 98.49, 104.34, 107.92, 110.53, 113.24, 118.16, 119.91, 124.39, 126.18, 142.74, 145.40, 149.99, 156.82, 159.89, 166.72, 170.55, 173.11, 175.64, 180.87, 182.66, 187.02, 188.79], lyricsTime:0, lyricsText:`
+` },
+
+"003": { lyricsShift:0, lyricsTimes:[13.38, 20.29, 23.87, 27.80, 34.15, 36.20, 41.75, 45.50, 47.85, 50.67, 55.49, 57.32, 61.80, 63.55, 76.55, 82.88, 87.40, 90.30, 92.43, 96.87, 98.49, 104.34, 107.92, 110.53, 113.24, 118.16, 119.91, 124.39, 126.18, 142.74, 145.40, 149.99, 156.82, 159.89, 166.72, 170.55, 173.11, 175.64, 180.87, 182.66, 187.02, 188.79], lyricsText:`
 月の光も届かぬ部屋で
 츠키노 히카리모 토도카누 헤야데
 달빛도 닿지 않는 방에
@@ -8214,9 +7082,9 @@ pic: jump
 [wave]君の胸は打ち抜けない
 키미노 무네와 우치 누케나이
 너의 마음을 꿰뚫을 수 없어
-`, lyrics:[] },
-    { id:"HikariNoMachi", jp:"光の街", ko:"빛의 거리", rom:"Hikari no Machi", date:"2014.03.26", album:"ラブストーリー", vtype:"audio",
-      youtubeId:"RhgTqqxxqds", lyricsShift:0, lyricsTimes:[22.55, 30.27, 40.48, 48.44, 58.27, 67.77, 76.59, 81.23, 85.73, 94.28, 99.36, 103.32, 113.17, 120.82, 130.86, 138.90, 165.27, 176.23, 185.36, 189.96, 194.61, 202.99, 208.43, 212.12], lyricsTime:0, lyricsText:`
+` },
+
+"HikariNoMachi": { lyricsShift:0, lyricsTimes:[22.55, 30.27, 40.48, 48.44, 58.27, 67.77, 76.59, 81.23, 85.73, 94.28, 99.36, 103.32, 113.17, 120.82, 130.86, 138.90, 165.27, 176.23, 185.36, 189.96, 194.61, 202.99, 208.43, 212.12], lyricsText:`
 橋から見える川の流れは今日も穏やかで
 하시카라 미에루 카와노 나가레와 쿄-모 오다야카데
 다리에서 보이는 강의 물결은 오늘도 평온하고
@@ -8312,9 +7180,9 @@ pic: jump
 探し物を僕はもう見つけていたんだろう
 사가시모노오 보쿠와 모- 미츠케테 이탄다로-
 찾고 있던 걸 나는 이미 찾은 거겠지
-`, lyrics:[] },
-    { id:"Motto", jp:"MOTTO", ko:"MOTTO", rom:"Motto", date:"2014.03.26", album:"ラブストーリー", vtype:"audio",
-      youtubeId:"aYmpJYGxL8w", lyricsShift:0, lyricsTimes:[10.47, 14.81, 19.70, 20.92, 25.13, 38.75, 43.28, 49.30, 55.08, 59.78, 62.25, 64.84, 70.09, 72.64, 75.61, 80.39, 84.65, 89.30, 90.62, 94.94, 119.04, 144.84, 149.14, 153.80, 155.19, 159.75, 164.51, 165.93], lyricsTime:0, lyricsText:`
+` },
+
+"Motto": { lyricsShift:0, lyricsTimes:[10.47, 14.81, 19.70, 20.92, 25.13, 38.75, 43.28, 49.30, 55.08, 59.78, 62.25, 64.84, 70.09, 72.64, 75.61, 80.39, 84.65, 89.30, 90.62, 94.94, 119.04, 144.84, 149.14, 153.80, 155.19, 159.75, 164.51, 165.93], lyricsText:`
 [wave]もっともっと私を知って欲しいんだって
 못토 못토 와타시오 싯테 호시인닷테
 좀 더 좀 더 나를 알아달라고
@@ -8431,9 +7299,9 @@ pic: jump
 [wave]なら君に用は無いわ
 나라 키미니 요-와 나이와
 그렇담 너한텐 관심없어
-`, lyrics:[] },
-    { id:"KimiGaDoorWoShimetaAto", jp:"君がドアを閉めた後", ko:"네가 문을 닫은 뒤", rom:"Kimi ga Door wo Shimeta Ato", date:"2014.03.26", album:"ラブストーリー", vtype:"audio",
-      youtubeId:"ISP97Le6yN8", lyricsShift:0, lyricsTimes:[26.73, 33.08, 39.57, 45.95, 52.49, 59.13, 73.08, 79.46, 85.95, 92.33, 95.55, 120.84, 127.00, 133.66, 139.48, 149.21, 155.58, 162.25, 170.41, 175.23, 181.31, 188.17, 194.39, 197.79], lyricsTime:0, lyricsText:`
+` },
+
+"KimiGaDoorWoShimetaAto": { lyricsShift:0, lyricsTimes:[26.73, 33.08, 39.57, 45.95, 52.49, 59.13, 73.08, 79.46, 85.95, 92.33, 95.55, 120.84, 127.00, 133.66, 139.48, 149.21, 155.58, 162.25, 170.41, 175.23, 181.31, 188.17, 194.39, 197.79], lyricsText:`
 線路沿い家までの道を
 센로조이 이에마데노 미치오
 선로를 따라 집까지의 길을
@@ -8529,9 +7397,9 @@ pic: jump
 君がいればなあって思うんだよ
 키미가 이레바나앗테 오모운다요
 네가 있었으면 좋았을텐데 라고 생각했어
-`, lyrics:[] },
-    { id:"KowaiHanashi", jp:"こわいはなし", ko:"무서운 이야기", rom:"Kowai Hanashi", date:"2014.03.26", album:"ラブストーリー", vtype:"audio",
-      youtubeId:"CVOauFxtpks", lyricsShift:0, lyricsTimes:[16.12, 23.83, 30.88, 37.58, 42.45, 46.49, 50.53, 53.87, 58.06, 61.85, 66.13, 70.15, 81.94, 89.70, 96.46, 103.07, 108.01, 112.08, 116.45, 119.41, 123.93, 127.51, 132.17, 136.29, 170.09, 178.59, 181.92, 185.63, 190.08, 193.05, 197.34, 201.10, 205.49, 209.32], lyricsTime:0, lyricsText:`
+` },
+
+"KowaiHanashi": { lyricsShift:0, lyricsTimes:[16.12, 23.83, 30.88, 37.58, 42.45, 46.49, 50.53, 53.87, 58.06, 61.85, 66.13, 70.15, 81.94, 89.70, 96.46, 103.07, 108.01, 112.08, 116.45, 119.41, 123.93, 127.51, 132.17, 136.29, 170.09, 178.59, 181.92, 185.63, 190.08, 193.05, 197.34, 201.10, 205.49, 209.32], lyricsText:`
 悲しい事にきっと二人は
 카나시- 코토니 킷토 후타리와
 슬픈 사실을 분명 두 사람은
@@ -8667,9 +7535,9 @@ pic: jump
 じわりじわり二人をむしばんでいく
 지와리지와리 후타리오 무시반데 유쿠
 서서히 둘을 좀먹고 있어
-`, lyrics:[] },
-    { id:"NetanderthalJin", jp:"ネタンデルタール人", ko:"네탄데르탈인", rom:"Netanderthal-jin", date:"2014.03.26", album:"ラブストーリー", vtype:"audio",
-      youtubeId:"a8rWWGdg2pw", lyricsShift:0, lyricsTimes:[9.52, 18.72, 27.83, 32.44, 37.93, 41.99, 47.29, 51.90, 55.97, 59.46, 67.83, 77.14, 86.27, 90.89, 96.20, 100.14, 105.30, 109.98, 114.26, 117.67, 144.67, 153.93, 163.41, 168.23, 172.41, 178.22, 182.13, 186.95, 190.94, 204.67], lyricsTime:0, lyricsText:`
+` },
+
+"NetanderthalJin": { lyricsShift:0, lyricsTimes:[9.52, 18.72, 27.83, 32.44, 37.93, 41.99, 47.29, 51.90, 55.97, 59.46, 67.83, 77.14, 86.27, 90.89, 96.20, 100.14, 105.30, 109.98, 114.26, 117.67, 144.67, 153.93, 163.41, 168.23, 172.41, 178.22, 182.13, 186.95, 190.94, 204.67], lyricsText:`
 なんでいつもあいつばっかみんなに　褒められんだ？頭来んなぁ。
 난데 이츠모 아이츠밧카 민나니 호메라렌다? 아타마 쿤나-.
 왜 항상 저 놈만 모두에게 칭찬받는거야? 열받아.
@@ -8789,9 +7657,9 @@ pic: jump
 妬んでるだけの　時間を終わりにしよう
 네탄데루다케노 지칸오 오와리니 시요-
 질투할 뿐인 시간을 끝내자
-`, lyrics:[] },
-    { id:"HooWoNurasuAmeNoYouNi", jp:"頬を濡らす雨のように", ko:"뺨을 적시는 비처럼", rom:"Hoo wo Nurasu Ame no You ni", date:"2014.03.26", album:"ラブストーリー", vtype:"audio",
-      youtubeId:"K3NquIg_CIs", lyricsShift:0, lyricsTimes:[23.29, 36.75, 42.26, 45.68, 58.84, 65.92, 70.87, 77.86, 91.81, 105.28, 111.66, 114.24, 127.39, 134.42, 139.47, 146.41, 171.61, 187.30, 194.44, 199.48, 206.47, 210.22, 217.34, 222.33, 229.27], lyricsTime:0, lyricsText:`
+` },
+
+"HooWoNurasuAmeNoYouNi": { lyricsShift:0, lyricsTimes:[23.29, 36.75, 42.26, 45.68, 58.84, 65.92, 70.87, 77.86, 91.81, 105.28, 111.66, 114.24, 127.39, 134.42, 139.47, 146.41, 171.61, 187.30, 194.44, 199.48, 206.47, 210.22, 217.34, 222.33, 229.27], lyricsText:`
 走っても走っても前に　進まない夢にうなされて
 하싯테모 하싯테모 마에니 스스마나이 유메니 우나사레테
 달려도 달려도 제자리걸음인 꿈에 시달려
@@ -8891,9 +7759,9 @@ pic: jump
 僕を照らす君のように
 보쿠오 테라스 키미노 요-니
 나를 비추는 너처럼
-`, lyrics:[] },
-    { id:"SetagayaLoveStory", jp:"世田谷ラブストーリー", ko:"세타가야 러브 스토리", rom:"Setagaya Love Story", date:"2014.03.26", album:"ラブストーリー", vtype:"audio",
-      youtubeId:"JBn_NEsmOEM", lyricsShift:0, lyricsTimes:[0.86, 6.50, 12.93, 27.24, 33.14, 43.12, 46.97, 49.68, 56.10, 59.40, 62.64, 67.31, 74.67, 80.86, 87.67, 107.77, 114.63, 120.70, 126.93, 133.81, 139.40, 145.02, 154.63, 159.65, 163.34, 166.21, 172.96, 176.10, 179.18, 184.86, 189.4, 192.67, 198.45, 202.20, 205.88, 210.74, 214.70, 218.62], lyricsTime:0, lyricsText:`
+` },
+
+"SetagayaLoveStory": { lyricsShift:0, lyricsTimes:[0.86, 6.50, 12.93, 27.24, 33.14, 43.12, 46.97, 49.68, 56.10, 59.40, 62.64, 67.31, 74.67, 80.86, 87.67, 107.77, 114.63, 120.70, 126.93, 133.81, 139.40, 145.02, 154.63, 159.65, 163.34, 166.21, 172.96, 176.10, 179.18, 184.86, 189.4, 192.67, 198.45, 202.20, 205.88, 210.74, 214.70, 218.62], lyricsText:`
 旧道沿いの居酒屋を
 큐-도-조이노 이자카야오
 옛 길을 따라가면 있는 선술집을
@@ -9045,9 +7913,9 @@ pic: jump
 もうしないからさ
 모- 시나이카라사
 더는 하지 않을테니까
-`, lyrics:[] },
-    { id:"Heroine", jp:"ヒロイン", ko:"히로인", rom:"Heroine", date:"2015.01.21", album:"シャンデリア", vtype:"mv",
-      youtubeId:"VPZK72W4Xxw", lyricsShift:0, lyricsTimes:[17.47, 24.40, 29.99, 37.03, 42.36, 52.92, 55.43, 61.30, 67.51, 73.28, 78.40, 86.67, 93.66, 99.25, 106.35, 112.05, 122.11, 124.59, 130.42, 136.53, 142.41, 147.42, 152.67, 155.70, 159.28, 165.54, 171.10, 178.06, 188.02, 191.38, 197.49, 203.61, 209.56, 216.67, 222.68, 228.58, 234.40, 239.43], lyricsTime:0, lyricsText:`
+` },
+
+"Heroine": { lyricsShift:0, lyricsTimes:[17.47, 24.40, 29.99, 37.03, 42.36, 52.92, 55.43, 61.30, 67.51, 73.28, 78.40, 86.67, 93.66, 99.25, 106.35, 112.05, 122.11, 124.59, 130.42, 136.53, 142.41, 147.42, 152.67, 155.70, 159.28, 165.54, 171.10, 178.06, 188.02, 191.38, 197.49, 203.61, 209.56, 216.67, 222.68, 228.58, 234.40, 239.43], lyricsText:`
 君の毎日に　僕は似合わないかな
 키미노 마이니치니 보쿠와 니아와나이카나
 네 하루하루에 나는 어울리지 않는걸까
@@ -9211,9 +8079,9 @@ pic: jump
 全部君がいい
 젠부 키미가 이-
 전부 너였으면 해
-`, lyrics:[] },
-    { id:"Sister", jp:"SISTER", ko:"SISTER", rom:"Sister", date:"2015.05.27", album:"シャンデリア", vtype:"mv",
-      youtubeId:"WOHXFNzfehs", lyricsShift:0.7, lyricsTimes:[8, 21.56, 24.90, 29.49, 32.25, 39.59, 43.19, 47.35, 50.04, 54.54, 61.54, 69.04, 72.58, 78.44, 83.31, 84.47, 92.12, 96.2, 102.32, 105.84, 110.16, 112.96, 117.47, 120.80, 124.09, 131.68, 135.22, 141.12, 146.19, 147.38, 155.00, 160.30, 167.53, 174.66, 175.92, 183.85, 189.15, 192.78, 198.57, 203.36, 204.67, 212.46], lyricsTime:0, lyricsText:`
+` },
+
+"Sister": { lyricsShift:0.7, lyricsTimes:[8, 21.56, 24.90, 29.49, 32.25, 39.59, 43.19, 47.35, 50.04, 54.54, 61.54, 69.04, 72.58, 78.44, 83.31, 84.47, 92.12, 96.2, 102.32, 105.84, 110.16, 112.96, 117.47, 120.80, 124.09, 131.68, 135.22, 141.12, 146.19, 147.38, 155.00, 160.30, 167.53, 174.66, 175.92, 183.85, 189.15, 192.78, 198.57, 203.36, 204.67, 212.46], lyricsText:`
 [clap]전주에 박수
 
 無神経なタイミングで
@@ -9383,9 +8251,9 @@ pic: jump
 [wave]ああ　僕は知っているから
 아- 보쿠와 싯테 이루카라
 아아 나는 알고 있으니까
-`, lyrics:[] },
-    { id:"Tegami", jp:"手紙", ko:"편지", rom:"Tegami", date:"2015.08.12", album:"シャンデリア", vtype:"mv",
-      youtubeId:"woRV5VxJDkU", lyricsShift:38.6, lyricsTimes:[15.06, 21.22, 27.61, 34.25, 41.34, 47.38, 54.45, 61.09, 67.53, 73.88, 80.53, 87.28, 93.95, 100.53, 103.87, 131.77, 135.35, 138.76, 144.76, 148.46, 151.86, 160.12, 165.89, 172.03, 179.25, 185.94, 192.38, 199.03, 205.72, 212.44, 218.30, 221.88, 225.37, 228.52], lyricsTime:0, lyricsText:`
+` },
+
+"Tegami": { lyricsShift:38.6, lyricsTimes:[15.06, 21.22, 27.61, 34.25, 41.34, 47.38, 54.45, 61.09, 67.53, 73.88, 80.53, 87.28, 93.95, 100.53, 103.87, 131.77, 135.35, 138.76, 144.76, 148.46, 151.86, 160.12, 165.89, 172.03, 179.25, 185.94, 192.38, 199.03, 205.72, 212.44, 218.30, 221.88, 225.37, 228.52], lyricsText:`
 嬉しい事があった時に
 우레시- 코토가 앗타 토키니
 기쁜 일이 있었을 때에
@@ -9521,9 +8389,9 @@ pic: jump
 いつか歌にしよう
 이츠카 우타니 시요-
 언젠가 노래하자
-`, lyrics:[] },
-    { id:"ChristmasSong", jp:"クリスマスソング", ko:"크리스마스 송", rom:"Christmas Song", date:"2015.11.18", album:"シャンデリア", vtype:"mv",
-      youtubeId:"7zBeQezaz4U", lyricsShift:0.8, lyricsTimes:[36.73, 42.80, 48.96, 55.50, 61.67, 67.69, 73.84, 77.31, 80.52, 86.59, 93.12, 99.22, 102.30, 105.54, 111.56, 117.81, 122.83, 141.63, 147.26, 153.73, 159.06, 166.10, 172.49, 178.56, 181.80, 184.98, 191.09, 197.26, 201.75, 218.94, 221.80, 225.65, 235.64, 239.38, 242.34, 248.22, 254.77, 261.23, 264.12, 267.55, 273.57, 279.78, 284.59, 291.38, 295.42], lyricsTime:0, lyricsText:`
+` },
+
+"ChristmasSong": { lyricsShift:0.8, lyricsTimes:[36.73, 42.80, 48.96, 55.50, 61.67, 67.69, 73.84, 77.31, 80.52, 86.59, 93.12, 99.22, 102.30, 105.54, 111.56, 117.81, 122.83, 141.63, 147.26, 153.73, 159.06, 166.10, 172.49, 178.56, 181.80, 184.98, 191.09, 197.26, 201.75, 218.94, 221.80, 225.65, 235.64, 239.38, 242.34, 248.22, 254.77, 261.23, 264.12, 267.55, 273.57, 279.78, 284.59, 291.38, 295.42], lyricsText:`
 どこかで鐘が鳴って
 도코카데 카네가 낫테
 어디선가 종이 울리고
@@ -9716,9 +8584,9 @@ pic: jump
 君が好きだ
 키미가 스키다
 너를 좋아해
-`, lyrics:[] },
-    { id:"Siren", jp:"サイレン", ko:"사이렌", rom:"Siren", date:"2015.12.09", album:"シャンデリア", vtype:"mv",
-      youtubeId:"V_CTnqX37yw", lyricsShift:2, lyricsTimes:[14.25, 17.77, 21.67, 24.44, 28.47, 31.47, 35.48, 40.13, 56.43, 59.78, 63.56, 66.52, 70.37, 73.42, 77.36, 82.10, 99.97, 103.13, 106.66, 110.16, 113.51, 117.19, 142.33, 145.22, 149.27, 153.82, 156.23, 159.34, 163.24, 167.99], lyricsTime:0, lyricsText:`
+` },
+
+"Siren": { lyricsShift:2, lyricsTimes:[14.25, 17.77, 21.67, 24.44, 28.47, 31.47, 35.48, 40.13, 56.43, 59.78, 63.56, 66.52, 70.37, 73.42, 77.36, 82.10, 99.97, 103.13, 106.66, 110.16, 113.51, 117.19, 142.33, 145.22, 149.27, 153.82, 156.23, 159.34, 163.24, 167.99], lyricsText:`
 [clap]未来が見え無いなんて
 미라이가 미에나이난테
 미래가 보이지 않는다니
@@ -9838,9 +8706,9 @@ pic: jump
 [wave]行ってしまうんだね
 잇테 시마운다네
 떠나버렸구나
-`, lyrics:[] },
-    { id:"BokuWaKimiNoKotoGaSukiDakedoKimiWaBokuWoBetsuNiSukiJaNaiMitai", jp:"僕は君の事が好きだけど君は僕を別に好きじゃないみたい", ko:"나는 너를 좋아하는데 너는 나를 별로 좋아하지 않는 것 같아", rom:"Boku wa Kimi no Koto ga Suki dakedo Kimi wa Boku wo Betsu ni Suki ja Nai Mitai", date:"2015.12.09", album:"シャンデリア", vtype:"audio",
-      youtubeId:"2XdZIWXu9kM", lyricsShift:0, lyricsTimes:[23.82, 28.42, 33.68, 37.59, 41.90, 47.23, 51.56, 56.86, 63.89, 68.33, 73.48, 77.78, 80.86, 85.23, 87.53, 90.24, 104.77, 109.45, 114.49, 118.48, 122.63, 127.86, 132.11, 137.57, 144.48, 148.91, 154.18, 158.50, 161.65, 165.64, 168.35, 170.77, 196.17, 201.74, 206.07, 211.27, 218.28, 222.73, 227.83, 232.58, 235.46, 239.52, 241.97, 244.42, 249.06], lyricsTime:0, lyricsText:`
+` },
+
+"BokuWaKimiNoKotoGaSukiDakedoKimiWaBokuWoBetsuNiSukiJaNaiMitai": { lyricsShift:0, lyricsTimes:[23.82, 28.42, 33.68, 37.59, 41.90, 47.23, 51.56, 56.86, 63.89, 68.33, 73.48, 77.78, 80.86, 85.23, 87.53, 90.24, 104.77, 109.45, 114.49, 118.48, 122.63, 127.86, 132.11, 137.57, 144.48, 148.91, 154.18, 158.50, 161.65, 165.64, 168.35, 170.77, 196.17, 201.74, 206.07, 211.27, 218.28, 222.73, 227.83, 232.58, 235.46, 239.52, 241.97, 244.42, 249.06], lyricsText:`
 僕の世界は君を中心に
 보쿠노 세카이와 키미오 츄-신니
 내 세상은 너를 중심으로
@@ -10020,9 +8888,9 @@ pic: jump
 毎週言ってみようかな
 마이슈- 잇테 미요-카나
 매주 말해볼까
-`, lyrics:[] },
-    { id:"AwaToHitsuji", jp:"泡と羊", ko:"거품과 양", rom:"Awa to Hitsuji", date:"2015.12.09", album:"シャンデリア", vtype:"audio",
-      youtubeId:"O3wu44M9d_o", lyricsShift:0, lyricsTimes:[0, 23.82, 27.74, 33.68, 37.24, 41.38, 45.34, 50.64, 54.49, 59.19, 63.75, 68.34, 73.01, 77.63, 82.36, 86.95, 91.95, 99.50, 103.26, 109.30, 112.99, 116.96, 121.28, 126.37, 130.02, 134.72, 139.37, 144.06, 148.94, 154.36, 158.42, 163.56, 167.18, 173.26, 177.95, 182.63, 184.54, 187.30, 191.98, 196.44, 201.09, 206.03], lyricsTime:0, lyricsText:`
+` },
+
+"AwaToHitsuji": { lyricsShift:0, lyricsTimes:[0, 23.82, 27.74, 33.68, 37.24, 41.38, 45.34, 50.64, 54.49, 59.19, 63.75, 68.34, 73.01, 77.63, 82.36, 86.95, 91.95, 99.50, 103.26, 109.30, 112.99, 116.96, 121.28, 126.37, 130.02, 134.72, 139.37, 144.06, 148.94, 154.36, 158.42, 163.56, 167.18, 173.26, 177.95, 182.63, 184.54, 187.30, 191.98, 196.44, 201.09, 206.03], lyricsText:`
 [clap]{{전주에 박수}}
 
 [clap]なんでアラームが鳴らないんだ
@@ -10189,9 +9057,9 @@ pic: jump
 이토-시쿠 오모에타나라
 사랑스럽게 여길 수 있다면
 
-`, lyrics:[] },
-    { id:"MirrorBallToCinderella", jp:"ミラーボールとシンデレラ", ko:"미러볼과 신데렐라", rom:"Mirror Ball to Cinderella", date:"2015.12.09", album:"シャンデリア", vtype:"audio",
-      youtubeId:"wJKyoBQ_vY4", lyricsShift:0, lyricsTimes:[22.70, 25.38, 29.26, 37.18, 45.14, 48.48, 53.02, 56.25, 75.87, 78.11, 82.05, 90.05, 94.53, 98.28, 101.44, 105.89, 109.12, 113.84, 117.18, 120.35, 128.50, 130.43, 133.53, 138.08, 141.15, 146.55], lyricsTime:0, lyricsText:`
+` },
+
+"MirrorBallToCinderella": { lyricsShift:0, lyricsTimes:[22.70, 25.38, 29.26, 37.18, 45.14, 48.48, 53.02, 56.25, 75.87, 78.11, 82.05, 90.05, 94.53, 98.28, 101.44, 105.89, 109.12, 113.84, 117.18, 120.35, 128.50, 130.43, 133.53, 138.08, 141.15, 146.55], lyricsText:`
 愛してるなんて言われたって
 아이시테루 난테 이와레탓테
 사랑해 라는 말을 들어도
@@ -10295,9 +9163,9 @@ pic: jump
 [wave]綺麗ね
 키레이네
 아름다워
-`, lyrics:[] },
-    { id:"JoenJoyuushou2", jp:"助演女優症2", ko:"조연 여배우증 2", rom:"Joen Joyuushou 2", date:"2015.12.09", album:"シャンデリア", vtype:"audio",
-      youtubeId:"NTsvdtwu29M", lyricsShift:0, lyricsTimes:[0.66, 4.11, 7.15, 13.65, 16.24, 19.38, 25.14, 31.59, 37.22, 42.14, 45.48, 49.35, 55.33, 58.63, 61.78, 67.15, 76.75, 80.07, 83.02, 85.51, 86.91, 89.14, 95.26, 101.22, 106.12, 109.23, 112.91, 118.97, 122.32, 125.33, 127.93, 130.99, 134.45, 140.59, 143.74, 146.89, 151.17], lyricsTime:0, lyricsText:`
+` },
+
+"JoenJoyuushou2": { lyricsShift:0, lyricsTimes:[0.66, 4.11, 7.15, 13.65, 16.24, 19.38, 25.14, 31.59, 37.22, 42.14, 45.48, 49.35, 55.33, 58.63, 61.78, 67.15, 76.75, 80.07, 83.02, 85.51, 86.91, 89.14, 95.26, 101.22, 106.12, 109.23, 112.91, 118.97, 122.32, 125.33, 127.93, 130.99, 134.45, 140.59, 143.74, 146.89, 151.17], lyricsText:`
 最後のデートくらいはどんなに
 사이고노 데-토쿠라이와 돈나니
 마지막 데이트만큼은 아무리
@@ -10445,9 +9313,9 @@ pic: jump
 探すんでしょう
 사가슨데쇼-
 찾겠지
-`, lyrics:[] },
-    { id:"TokyoNoYuuyake", jp:"東京の夕焼け", ko:"도쿄의 저녁노을", rom:"Tokyo no Yuuyake", date:"2015.12.09", album:"シャンデリア", vtype:"audio",
-      youtubeId:"DzpTqNbrXLc", lyricsShift:0, lyricsTimes:[1.05, 7.89, 13.14, 20.27, 26.29, 31.37, 34.36, 39.55, 42.72, 50.84, 59.11, 67.31, 72.94, 85.16, 92.20, 97.22, 104.54, 126.02, 129.41, 133.92, 137.51, 157.95, 165.75, 173.90, 182.17, 187.80], lyricsTime:0, lyricsText:`
+` },
+
+"TokyoNoYuuyake": { lyricsShift:0, lyricsTimes:[1.05, 7.89, 13.14, 20.27, 26.29, 31.37, 34.36, 39.55, 42.72, 50.84, 59.11, 67.31, 72.94, 85.16, 92.20, 97.22, 104.54, 126.02, 129.41, 133.92, 137.51, 157.95, 165.75, 173.90, 182.17, 187.80], lyricsText:`
 さぁ 改札を出たらもうそこは夢の街
 사- 카이사츠오 데타라 모- 소코와 유메노 마치
 자, 개찰구를 나오면 그곳은 이미 꿈의 거리
@@ -10551,9 +9419,9 @@ pic: jump
 僕の中で光りますように
 보쿠노 나카데 히카리마스요-니
 내 안에서 빛나기를
-`, lyrics:[] },
-    { id:"Liar", jp:"Liar", ko:"Liar", rom:"Liar", date:"2015.12.09", album:"シャンデリア", vtype:"audio",
-      youtubeId:"pD-SWTxd6Co", lyricsShift:1.2, lyricsTimes:[0, 20.52, 24.44, 28.86, 32.87, 37.69, 42.18, 46.22, 55.12, 64.18, 70.48, 89.80, 93.70, 98.16, 102.23, 107.16, 111.52, 115.75, 124.65, 133.18, 139.67, 143.26, 146.67, 151.67, 155.02, 162.31, 171.05, 179.74, 188.38, 194.75, 197.09, 205.72, 212.08], lyricsTime:0, lyricsText:`
+` },
+
+"Liar": { lyricsShift:1.2, lyricsTimes:[0, 20.52, 24.44, 28.86, 32.87, 37.69, 42.18, 46.22, 55.12, 64.18, 70.48, 89.80, 93.70, 98.16, 102.23, 107.16, 111.52, 115.75, 124.65, 133.18, 139.67, 143.26, 146.67, 151.67, 155.02, 162.31, 171.05, 179.74, 188.38, 194.75, 197.09, 205.72, 212.08], lyricsText:`
 [clap]{{전주에 박수}}
 
 [clap]絡まる細い糸を
@@ -10683,9 +9551,9 @@ pic: jump
 [wave]鮮やかな毎日
 아자야카나 마이니치
 선명한 매일
-`, lyrics:[] },
-    { id:"ApplePie", jp:"アップルパイ", ko:"애플파이", rom:"Apple Pie", date:"2015.12.09", album:"シャンデリア", vtype:"audio",
-      youtubeId:"JTH5SNpxRJs", lyricsShift:0, lyricsTimes:[0.80, 4.74, 8.40, 11.00, 32.99, 36.70, 40.95, 44.50, 47.85, 51.65, 55.20, 57.40, 62.62, 67.43, 71.20, 74.93, 79.70, 87.22, 95.43, 99.28, 102.27, 106.45, 109.99, 114.20, 117.37, 122.05, 125.53, 129.55], lyricsTime:0, lyricsText:`
+` },
+
+"ApplePie": { lyricsShift:0, lyricsTimes:[0.80, 4.74, 8.40, 11.00, 32.99, 36.70, 40.95, 44.50, 47.85, 51.65, 55.20, 57.40, 62.62, 67.43, 71.20, 74.93, 79.70, 87.22, 95.43, 99.28, 102.27, 106.45, 109.99, 114.20, 117.37, 122.05, 125.53, 129.55], lyricsText:`
 [clap]甘酸っぱいってどんな味だっけ
 아마즛파잇테 돈나 아지닷케
 새콤달콤한 게 무슨 맛이더라
@@ -10797,9 +9665,9 @@ pic: jump
 [clap]大丈夫美味しいはず
 다이죠-부 오이시- 하즈
 괜찮아 맛있을거야
-`, lyrics:[] },
-    { id:"BokuNoNamaeWo", jp:"僕の名前を", ko:"나의 이름을", rom:"Boku no Namae wo", date:"2016.05.25", album:"싱글", vtype:"mv",
-      youtubeId:"CrjOCe5j91c", lyricsShift:0, lyricsTimes:[31.91, 38.04, 43.96, 49.30, 55.43, 62.80, 71.82, 82.79, 90.38, 95.85, 106.81, 114.49, 132.51, 138.43, 144.48, 149.86, 156.24, 162.12, 168.71, 173.55, 204.66, 215.59, 223.31, 228.73, 234.15, 239.66, 247.25, 253.09], lyricsTime:0, lyricsText:`
+` },
+
+"BokuNoNamaeWo": { lyricsShift:0, lyricsTimes:[31.91, 38.04, 43.96, 49.30, 55.43, 62.80, 71.82, 82.79, 90.38, 95.85, 106.81, 114.49, 132.51, 138.43, 144.48, 149.86, 156.24, 162.12, 168.71, 173.55, 204.66, 215.59, 223.31, 228.73, 234.15, 239.66, 247.25, 253.09], lyricsText:`
 最初から知ってたみたいに
 사이쇼카라 싯테타 미타이니
 처음부터 알고 있었던 거처럼
@@ -10911,9 +9779,9 @@ pic: jump
 これからずっと僕の全ては君のものだ
 코레카라 즛토 보쿠노 스베테와 키미노 모노다
 지금부터 쭉 나의 모든 것은 너의 것이야
-`, lyrics:[] },
-    { id:"KuroiNekoNoUta", jp:"黒い猫の歌", ko:"검은 고양이의 노래", rom:"Kuroi Neko no Uta", date:"2016.08.01", album:"디지털 싱글", vtype:"mv",
-      youtubeId:"PEKpy5_zx0s", lyricsShift:0, lyricsTimes:[32.37, 38.54, 45.63, 52.51, 60.77, 64.02, 68.53, 72.57, 97.85, 103.69, 111.28, 117.95, 126.17, 129.75, 133.84, 137.80, 144.23, 151.94, 157.45, 180.31, 184.27, 188.31, 192.57, 195.36, 198.78, 203.04, 207.16], lyricsTime:0, lyricsText:`
+` },
+
+"KuroiNekoNoUta": { lyricsShift:0, lyricsTimes:[32.37, 38.54, 45.63, 52.51, 60.77, 64.02, 68.53, 72.57, 97.85, 103.69, 111.28, 117.95, 126.17, 129.75, 133.84, 137.80, 144.23, 151.94, 157.45, 180.31, 184.27, 188.31, 192.57, 195.36, 198.78, 203.04, 207.16], lyricsText:`
 生まれたままじゃ生きてくのに不便で
 우마레타마마쟈 이키테쿠노니 후벤데
 태어난 그대로는 살아가기 불편해서
@@ -11021,9 +9889,9 @@ pic: jump
 混ぜて僕だけの色を
 마제테 보쿠다케노 이로오
 섞어서 나만의 색을
-`, lyrics:[] },
-    { id:"HappyEnd", jp:"ハッピーエンド", ko:"해피 엔드", rom:"Happy End", date:"2016.11.16", album:"싱글", vtype:"mv",
-      youtubeId:"T8y_RsF4TSw", lyricsShift:3.1, lyricsTimes:[20.25, 26.43, 32.78, 39.04, 45.09, 52.12, 56.84, 60.18, 64.95, 70.43, 75.53, 81.78, 85.05, 90.05, 94.87, 107.42, 113.71, 120.01, 126.34, 132.47, 139.32, 144.13, 147.23, 152.31, 156.97, 191.62, 197.93, 206.43, 209.78, 214.65, 219.99, 222.84, 225.19, 228.47, 233.48, 238.78, 244.00, 250.23, 253.17, 258.16, 263.16], lyricsTime:0, lyricsText:`
+` },
+
+"HappyEnd": { lyricsShift:3.1, lyricsTimes:[20.25, 26.43, 32.78, 39.04, 45.09, 52.12, 56.84, 60.18, 64.95, 70.43, 75.53, 81.78, 85.05, 90.05, 94.87, 107.42, 113.71, 120.01, 126.34, 132.47, 139.32, 144.13, 147.23, 152.31, 156.97, 191.62, 197.93, 206.43, 209.78, 214.65, 219.99, 222.84, 225.19, 228.47, 233.48, 238.78, 244.00, 250.23, 253.17, 258.16, 263.16], lyricsText:`
 さよならが喉の奥につっかえてしまって
 사요나라가 노도노 오쿠니 츳카에테 시맛테
 이젠 안녕이 목 깊숙히 걸려버려서
@@ -11200,9 +10068,9 @@ pic: jump
 なんてね　嘘だよ　さよなら
 난테네 우소다요 사요나라
 말도 안 되겠지 거짓말이야 이젠 안녕
-`, lyrics:[] },
-    { id:"KimiNoKoibitoNiNattara", jp:"君の恋人になったら", ko:"너의 연인이 된다면", rom:"Kimi no Koibito ni Nattara", date:"2016.11.16", album:"ハッピーエンド 수록곡", vtype:"audio",
-      youtubeId:"y035IcEPiIA", lyricsShift:0, lyricsTimes:[0, 13.72, 19.60, 27.35, 33.41, 40.27, 44.21, 51.36, 55.38, 62.29, 69.07, 72.00, 75.83, 78.82, 83.81, 89.98, 97.50, 103.45, 110.65, 114.45, 121.45, 125.68, 132.32, 135.33, 155.83, 162.08, 169.43, 179.52, 183.73, 190.88, 197.47, 200.55, 204.39, 207.33, 210.9], lyricsTime:0, lyricsText:`
+` },
+
+"KimiNoKoibitoNiNattara": { lyricsShift:0, lyricsTimes:[0, 13.72, 19.60, 27.35, 33.41, 40.27, 44.21, 51.36, 55.38, 62.29, 69.07, 72.00, 75.83, 78.82, 83.81, 89.98, 97.50, 103.45, 110.65, 114.45, 121.45, 125.68, 132.32, 135.33, 155.83, 162.08, 169.43, 179.52, 183.73, 190.88, 197.47, 200.55, 204.39, 207.33, 210.9], lyricsText:`
 [clap]{{전주에 박수}}
 
 [clap]{{もし僕が君の恋人になれた時は}}
@@ -11345,9 +10213,9 @@ pic : handup
 
 [clap]{{전주에 박수}}
 
-`, lyrics:[] },
-    { id:"Mabataki", jp:"瞬き", ko:"깜빡임", rom:"Mabataki", date:"2017.12.20", album:"MAGIC", vtype:"mv",
-      youtubeId:"h-KuoHHjGRs", lyricsShift:0, lyricsTimes:[2.79, 12.18, 17.89, 51.30, 57.35, 62.94, 75.41, 80.87, 90.05, 99.27, 105.06, 117.45, 128.50, 141.22, 147.10, 153.19, 159.41, 165.16, 170.67, 179.97, 189.40, 194.86, 207.29, 213.13, 218.93, 244.45, 253.50, 259.22, 271.90, 283.07, 295.34], lyricsTime:0, lyricsText:`
+` },
+
+"Mabataki": { lyricsShift:0, lyricsTimes:[2.79, 12.18, 17.89, 51.30, 57.35, 62.94, 75.41, 80.87, 90.05, 99.27, 105.06, 117.45, 128.50, 141.22, 147.10, 153.19, 159.41, 165.16, 170.67, 179.97, 189.40, 194.86, 207.29, 213.13, 218.93, 244.45, 253.50, 259.22, 271.90, 283.07, 295.34], lyricsText:`
 幸せとは 星が降る夜と眩しい朝が
 시아와세토와 호시가 후루 요루토 마부시이 아사가
 행복이라는 건, 별이 쏟아지는 밤과 눈부신 아침이
@@ -11471,9 +10339,9 @@ pic : handup
 目を開けても 目を閉じても
 메오 아케테모 메오 토지테모
 눈을 떠도, 눈을 감아도
-`, lyrics:[] },
-    { id:"DaiFuseikai", jp:"大不正解", ko:"대부정해", rom:"Dai Fuseikai", date:"2018.08.22", album:"MAGIC", vtype:"mv",
-      youtubeId:"yKIQv4sUTLA", lyricsShift:0, lyricsTimes:[13.47, 16.46, 19.90, 23.88, 26.68, 29.79, 33.31, 37.31, 40.87, 46.95, 54.27, 57.11, 60.90, 66.89, 70.39, 73.48, 77.03, 79.72, 82.73, 86.17, 90.20, 92.96, 96.01, 99.51, 103.45, 106, 120.27, 126.28, 133.26, 136.55, 139.64, 143.14, 159.14, 162.11, 165.67, 169.73, 172.42, 175.51, 178.98, 182.93, 186.02, 189.64, 192.5], lyricsTime:0, lyricsText:`
+` },
+
+"DaiFuseikai": { lyricsShift:0, lyricsTimes:[13.47, 16.46, 19.90, 23.88, 26.68, 29.79, 33.31, 37.31, 40.87, 46.95, 54.27, 57.11, 60.90, 66.89, 70.39, 73.48, 77.03, 79.72, 82.73, 86.17, 90.20, 92.96, 96.01, 99.51, 103.45, 106, 120.27, 126.28, 133.26, 136.55, 139.64, 143.14, 159.14, 162.11, 165.67, 169.73, 172.42, 175.51, 178.98, 182.93, 186.02, 189.64, 192.5], lyricsText:`
 [wave]僕等は完全無欠じゃ無い
 보쿠라와 칸젠무케츠쟈나이
 우리는 완전무결하지 않아
@@ -11656,9 +10524,9 @@ pic : handup
 
 [clap]{{전주에 박수}}
 
-`, lyrics:[] },
-    { id:"OldFashion", jp:"オールドファッション", ko:"올드 패션", rom:"Old Fashion", date:"2018.12.19", album:"MAGIC", vtype:"mv",
-      youtubeId:"l0B0js0wCK8", lyricsShift:0, lyricsTimes:[23.21, 29.67, 34.00, 40.45, 45.04, 49.55, 55.97, 61.37, 66.14, 68.78, 71.47, 75.28, 78.83, 81.93, 87.88, 90.66, 93.22, 99.17, 102.62, 108.06, 113.20, 119.68, 124.23, 128.56, 135.06, 140.51, 145.39, 150.42, 156.57, 159.92, 165.43, 183.24, 188.69, 192.59, 193.59, 196.26, 199.16, 205.24, 207.85, 210.64, 216.52, 219.87, 225.38], lyricsTime:0, lyricsText:`
+` },
+
+"OldFashion": { lyricsShift:0, lyricsTimes:[23.21, 29.67, 34.00, 40.45, 45.04, 49.55, 55.97, 61.37, 66.14, 68.78, 71.47, 75.28, 78.83, 81.93, 87.88, 90.66, 93.22, 99.17, 102.62, 108.06, 113.20, 119.68, 124.23, 128.56, 135.06, 140.51, 145.39, 150.42, 156.57, 159.92, 165.43, 183.24, 188.69, 192.59, 193.59, 196.26, 199.16, 205.24, 207.85, 210.64, 216.52, 219.87, 225.38], lyricsText:`
 よく晴れた空に 雪が降るような
 요쿠 하레타 소라니 유키가 후루요-나
 맑게 개인 하늘에 눈이 내리는 것처럼
@@ -11830,9 +10698,9 @@ pic : handup
 君には僕なんだ
 키미니와 보쿠난다
 너에게는 내가 그런 거야
-`, lyrics:[] },
-    { id:"HappyBirthday", jp:"HAPPY BIRTHDAY", ko:"HAPPY BIRTHDAY", rom:"Happy Birthday", date:"2019.02.27", album:"MAGIC", vtype:"mv",
-      youtubeId:"IsFs06cw-gY", lyricsShift:2.0, lyricsTimes:[27.82, 34.08, 37.88, 41.30, 48.30, 54.36, 57.23, 60.66, 64.32, 67.46, 73.95, 80.68, 87.17, 107.16, 112.97, 120.26, 127.12, 132.31, 137.85, 144.14, 150.78, 158.36, 165.79, 172.62, 179.48, 186.03, 189.08, 192.75, 199.03, 205.87, 212.17, 218.95], lyricsTime:0, lyricsText:`
+` },
+
+"HappyBirthday": { lyricsShift:2.0, lyricsTimes:[27.82, 34.08, 37.88, 41.30, 48.30, 54.36, 57.23, 60.66, 64.32, 67.46, 73.95, 80.68, 87.17, 107.16, 112.97, 120.26, 127.12, 132.31, 137.85, 144.14, 150.78, 158.36, 165.79, 172.62, 179.48, 186.03, 189.08, 192.75, 199.03, 205.87, 212.17, 218.95], lyricsText:`
 いつの間にやら日付は変わって
 이츠노 마니야라 히즈케와 카왓테
 어느샌가 날짜는 바뀌고
@@ -11960,9 +10828,9 @@ pic : handup
 ハッピーバースデー 片想いの俺
 합삐-바-스데- 카타오모이노 오레
 생일 축하해, 짝사랑 중인 나
-`, lyrics:[] },
-    { id:"Saishinbu", jp:"最深部", ko:"가장 깊은 곳", rom:"Saishinbu", date:"2019.03.27", album:"MAGIC", vtype:"audio",
-      youtubeId:"OwHTrIrGWV4", lyricsShift:0, lyricsTimes:[0.96, 3.80, 10.32, 14.65, 29.83, 32.82, 39.14, 43.40, 49.10, 53.31, 58.02, 63.03, 67.39, 82.68, 85.4, 91.97, 96.15, 101.80, 106.13, 110.84, 115.86, 120.29, 144.98, 148.30, 154.29, 158.76, 163.64, 168.49, 173.39, 182.93, 187.60], lyricsTime:0, lyricsText:`
+` },
+
+"Saishinbu": { lyricsShift:0, lyricsTimes:[0.96, 3.80, 10.32, 14.65, 29.83, 32.82, 39.14, 43.40, 49.10, 53.31, 58.02, 63.03, 67.39, 82.68, 85.4, 91.97, 96.15, 101.80, 106.13, 110.84, 115.86, 120.29, 144.98, 148.30, 154.29, 158.76, 163.64, 168.49, 173.39, 182.93, 187.60], lyricsText:`
 ここまでおいでよ
 코코마데 오이데요
 여기까지 와줘
@@ -12086,9 +10954,9 @@ pic : handup
 [wave]忘れただけだろう　帰る場所を
 와스레타 다케다로- 카에루 바쇼오
 잊어버렸을 뿐이겠지 돌아갈 곳을
-`, lyrics:[] },
-    { id:"SummerWonderland", jp:"サマーワンダーランド", ko:"서머 원더랜드", rom:"Summer Wonderland", date:"2019.03.27", album:"MAGIC", vtype:"audio",
-      youtubeId:"eQZRuAlGW6g", lyricsShift:0, lyricsTimes:[24.58, 28.49, 32.39, 36.37, 40.38, 44.70, 48.84, 53.54, 58.33, 61.46, 66.36, 86.01, 89.96, 94.15, 97.77, 101.87, 106.05, 110.31, 114.96, 119.74, 122.97, 127.83, 147.43, 151.62, 155.82, 162.52, 167.18, 170.47, 175.27, 178.31, 183.10, 186.50, 191.22], lyricsTime:0, lyricsText:`
+` },
+
+"SummerWonderland": { lyricsShift:0, lyricsTimes:[24.58, 28.49, 32.39, 36.37, 40.38, 44.70, 48.84, 53.54, 58.33, 61.46, 66.36, 86.01, 89.96, 94.15, 97.77, 101.87, 106.05, 110.31, 114.96, 119.74, 122.97, 127.83, 147.43, 151.62, 155.82, 162.52, 167.18, 170.47, 175.27, 178.31, 183.10, 186.50, 191.22], lyricsText:`
 始まってないけれど終わろうなんて気取ったって
 하지맛테 나이케레도 오와로- 난테 키돗탓테
 시작된 건 아니지만 끝내버리자 라고 허세부리며
@@ -12220,9 +11088,9 @@ pic : handup
 秋のせいにでもしよう
 아키노 세이니데모 시요-
 가을 탓이라도 하자
-`, lyrics:[] },
-    { id:"AkaruiYoruNi", jp:"あかるいよるに", ko:"밝은 밤에", rom:"Akarui Yoru ni", date:"2019.03.27", album:"MAGIC", vtype:"audio",
-      youtubeId:"RIOtMLiFMV4", lyricsShift:0, lyricsTimes:[1.18, 8.01, 16.27, 23.20, 32.35, 38.54, 46.55, 50.47, 54.07, 57.44, 61.77, 65.67, 69.38, 72.53, 81.13, 87.88, 97.06, 103.62, 107.17, 131.63, 139.56, 146.60, 152.77, 160.93, 164.56, 168.36, 171.51, 176.09, 179.83, 183.52, 186.77, 191.82, 195.13], lyricsTime:0, lyricsText:`
+` },
+
+"AkaruiYoruNi": { lyricsShift:0, lyricsTimes:[1.18, 8.01, 16.27, 23.20, 32.35, 38.54, 46.55, 50.47, 54.07, 57.44, 61.77, 65.67, 69.38, 72.53, 81.13, 87.88, 97.06, 103.62, 107.17, 131.63, 139.56, 146.60, 152.77, 160.93, 164.56, 168.36, 171.51, 176.09, 179.83, 183.52, 186.77, 191.82, 195.13], lyricsText:`
 雲が避けてアスファルト照らして
 쿠모가 요케테 아스화루토 테라시테
 구름을 피해서 아스팔트를 밝혀줘
@@ -12354,9 +11222,9 @@ pic : handup
 少しくらい仲良くなれたら
 스코시쿠라이 나카요쿠나레타라
 조금은 사이좋게 지낼 수 있다면
-`, lyrics:[] },
-    { id:"Artist", jp:"ARTIST", ko:"ARTIST", rom:"Artist", date:"2019.03.27", album:"MAGIC", vtype:"audio",
-      youtubeId:"BPqXF0MaODs", lyricsShift:0, lyricsTimes:[18.25, 21.23, 25.33, 28.98, 39.55, 42.85, 46.57, 50.32, 60.91, 68.11, 76.26, 96.92, 100.23, 104.11, 107.17, 113.02, 120.13, 127.38, 163.39, 170.24, 177.39, 184.57, 191.88], lyricsTime:0, lyricsText:`
+` },
+
+"Artist": { lyricsShift:0, lyricsTimes:[18.25, 21.23, 25.33, 28.98, 39.55, 42.85, 46.57, 50.32, 60.91, 68.11, 76.26, 96.92, 100.23, 104.11, 107.17, 113.02, 120.13, 127.38, 163.39, 170.24, 177.39, 184.57, 191.88], lyricsText:`
 上　見ながらトップギアで
 우에 미나가라 톳푸 기아데
 위 보면서 톱 기어로
@@ -12448,9 +11316,9 @@ ASSA! 흩뿌려서 닳은 감정에 솜을 채우며
 [wave]何に怯え何に魅せられ　僕らはまた旅をするのか
 나니니 오비에 나니니 미세라레 보쿠라와 마타 타비오 스루노카
 뭐에 겁먹고 뭐에 홀려서 우리들은 또 여행을 하는걸까
-`, lyrics:[] },
-    { id:"Loneliness", jp:"ロンリネス", ko:"론리니스", rom:"Loneliness", date:"2019.03.27", album:"MAGIC", vtype:"audio",
-      youtubeId:"DAs5E6J5G7A", lyricsShift:0, lyricsTimes:[17.33, 22.47, 39.56, 44.91, 51, 62.8, 67.31, 71.45, 76.40, 78.63, 101, 106.26, 123.58, 128.59, 134.82, 140.10, 146.8, 151.09, 155.06, 159.7, 162.16, 218.54, 223.40, 231.94, 236.02, 238.87, 243.11], lyricsTime:0, lyricsText:`
+` },
+
+"Loneliness": { lyricsShift:0, lyricsTimes:[17.33, 22.47, 39.56, 44.91, 51, 62.8, 67.31, 71.45, 76.40, 78.63, 101, 106.26, 123.58, 128.59, 134.82, 140.10, 146.8, 151.09, 155.06, 159.7, 162.16, 218.54, 223.40, 231.94, 236.02, 238.87, 243.11], lyricsText:`
 今日はお忙しい所ありがとうございます
 쿄-와 오이소가시이 토코로 아리가토-고자이마스
 오늘은 바쁘신 와중에 감사드립니다
@@ -12558,9 +11426,9 @@ ASSA! 흩뿌려서 닳은 감정에 솜을 채우며
 神様ぼくら偉いですか ああ褒めてくれますか
 카미사마 보쿠라 에라이데스카 아아 호메테 쿠레마스카
 신님, 저희 장하죠? 아, 칭찬해주시는 건가요?
-`, lyrics:[] },
-    { id:"AmeToBokuNoHanashi", jp:"雨と僕の話", ko:"비와 나의 이야기", rom:"Ame to Boku no Hanashi", date:"2019.03.27", album:"MAGIC", vtype:"audio",
-      youtubeId:"hswOG4nLmvc", lyricsShift:0, lyricsTimes:[13.34, 19.44, 26.32, 33.28, 39.18, 45.50, 58.84, 64.90, 71.57, 75.76, 80.87, 84.57, 90.93, 97.50, 103.83, 111.70, 117.12, 122.43, 155.54, 162.04, 168.41, 174.96, 181.38, 187.96, 194.29], lyricsTime:0, lyricsText:`
+` },
+
+"AmeToBokuNoHanashi": { lyricsShift:0, lyricsTimes:[13.34, 19.44, 26.32, 33.28, 39.18, 45.50, 58.84, 64.90, 71.57, 75.76, 80.87, 84.57, 90.93, 97.50, 103.83, 111.70, 117.12, 122.43, 155.54, 162.04, 168.41, 174.96, 181.38, 187.96, 194.29], lyricsText:`
 雨の交差点の奥に
 아메노 코-사텐노 오쿠니
 비 내리는 교차로 한 가운데에서
@@ -12660,9 +11528,9 @@ ASSA! 흩뿌려서 닳은 감정에 솜을 채우며
 終わったのさ　ああ　あるのは痛みだけ
 오왓타노사 아아 아루노와 이타미다케
 끝이 난 거야 아아 남은 건 아픔뿐
-`, lyrics:[] },
-    { id:"ExhibitionDeathMatch", jp:"エキシビジョンデスマッチ", ko:"엑시비전 데스매치", rom:"Exhibition Death Match", date:"2019.03.27", album:"MAGIC", vtype:"audio",
-      youtubeId:"YvQPLS1o7P0", lyricsShift:0, lyricsTimes:[12.16, 21.55, 30.99, 33.22, 38.56, 47.87, 52.25, 56.96, 69.00, 78.57, 95.63, 102.10, 110.17, 112.35, 117.62, 131.70, 136.05, 140.71, 145.47, 150.61, 155.06, 159.58, 164.49], lyricsTime:0, lyricsText:`
+` },
+
+"ExhibitionDeathMatch": { lyricsShift:0, lyricsTimes:[12.16, 21.55, 30.99, 33.22, 38.56, 47.87, 52.25, 56.96, 69.00, 78.57, 95.63, 102.10, 110.17, 112.35, 117.62, 131.70, 136.05, 140.71, 145.47, 150.61, 155.06, 159.58, 164.49], lyricsText:`
 才能のない奴はやめちまえ
 사이노-노 나이 야츠와 야메치마에
 재능없는 새끼는 때려쳐라
@@ -12754,9 +11622,9 @@ ASSA! 흩뿌려서 닳은 감정에 솜을 채우며
 戦う相手を間違えないでよ
 타타카우 아이테오 마치가에나이데요
 싸울 상대를 착각하지 마
-`, lyrics:[] },
-    { id:"MonauralFantasy", jp:"monaural fantasy", ko:"monaural fantasy", rom:"Monaural Fantasy", date:"2019.03.27", album:"MAGIC", vtype:"audio",
-      youtubeId:"CgpVsCWpR8M", lyricsShift:0, lyricsTimes:[0, 7.37, 12.02, 15.89, 20.23, 24.12, 32.48, 35.50, 39.60, 46.01, 50.12, 58.32, 62.80, 67.60, 71.86, 75.87, 80.54, 84.41, 92.37, 95.31, 99.52, 105.94, 110.04, 118.31, 123.05, 131.48, 134.33, 141.56, 144.55, 148.79, 155.32, 159.16, 167.47, 171.95], lyricsTime:0, lyricsText:`
+` },
+
+"MonauralFantasy": { lyricsShift:0, lyricsTimes:[0, 7.37, 12.02, 15.89, 20.23, 24.12, 32.48, 35.50, 39.60, 46.01, 50.12, 58.32, 62.80, 67.60, 71.86, 75.87, 80.54, 84.41, 92.37, 95.31, 99.52, 105.94, 110.04, 118.31, 123.05, 131.48, 134.33, 141.56, 144.55, 148.79, 155.32, 159.16, 167.47, 171.95], lyricsText:`
 [clap]{{전주에 박수}}
 
 [clap]あの夜に帰りたくて
@@ -12890,9 +11758,9 @@ ASSA! 흩뿌려서 닳은 감정에 솜을 채우며
 [clap]あぁまるで片目を瞑ったよう
 아- 마루데 카타메오 츠붓타요-
 아아 마치 한쪽 눈을 감은 듯
-`, lyrics:[] },
-    { id:"Emerald", jp:"エメラルド", ko:"에메랄드", rom:"Emerald", date:"2020.10.12", album:"ユーモア", vtype:"mv",
-      youtubeId:"8TNusrMIdIQ", lyricsShift:0, lyricsTimes:[0, 23.48, 26.78, 31.53, 39.16, 42.54, 46.34, 52.93, 57.02, 60.48, 69.74, 76.53, 84.21, 102.14, 105.15, 110.44, 117.16, 120.87, 124.25, 127.67, 133.88, 140.77, 148.31, 162, 170.29, 177.64, 186.85, 193.86, 201.83], lyricsTime:0, lyricsText:`
+` },
+
+"Emerald": { lyricsShift:0, lyricsTimes:[0, 23.48, 26.78, 31.53, 39.16, 42.54, 46.34, 52.93, 57.02, 60.48, 69.74, 76.53, 84.21, 102.14, 105.15, 110.44, 117.16, 120.87, 124.25, 127.67, 133.88, 140.77, 148.31, 162, 170.29, 177.64, 186.85, 193.86, 201.83], lyricsText:`
 [clap]{{전주에 박수}}
 
 [clap]撫でるよりも丁寧に
@@ -13004,9 +11872,9 @@ ASSA! 흩뿌려서 닳은 감정에 솜을 채우며
 [wave]苦しいのさ　今その指先で　とどめを刺してよ
 쿠루시-노사 이마 소노 유비사키데 토도메오 사시테요
 괴로운거야 지금 그 손끝으로 숨통을 끊어줘
-`, lyrics:[] },
-    { id:"Kaitou", jp:"怪盗", ko:"괴도", rom:"Kaitou", date:"2021.05.24", album:"ユーモア", vtype:"mv",
-      youtubeId:"1DPldNasDgY", lyricsShift:0, lyricsTimes:[21.90, 24.90, 29.86, 33.90, 36.87, 44.29, 51.18, 53.70, 56.14, 60.31, 63.52, 67.98, 70.60, 73.07, 77.33, 83.50, 97.89, 100.64, 105.86, 109.90, 112.49, 114.03, 117.91, 120.87, 122.62, 126.08, 138.56, 141.20, 143.64, 147.73, 150.90, 155.11, 157.80, 160.45, 164.54, 170.88, 176.22], lyricsTime:0, lyricsText:`
+` },
+
+"Kaitou": { lyricsShift:0, lyricsTimes:[21.90, 24.90, 29.86, 33.90, 36.87, 44.29, 51.18, 53.70, 56.14, 60.31, 63.52, 67.98, 70.60, 73.07, 77.33, 83.50, 97.89, 100.64, 105.86, 109.90, 112.49, 114.03, 117.91, 120.87, 122.62, 126.08, 138.56, 141.20, 143.64, 147.73, 150.90, 155.11, 157.80, 160.45, 164.54, 170.88, 176.22], lyricsText:`
 じゃあちょっと目を閉じて
 쟈- 춋토 메오 토지테
 자 잠깐 눈을 감고
@@ -13164,9 +12032,9 @@ ASSA! 흩뿌려서 닳은 감정에 솜을 채우며
 [wave]無い
 나이
 없어
-`, lyrics:[] },
-    { id:"Suiheisen", jp:"水平線", ko:"수평선", rom:"Suiheisen", date:"2021.08.13", album:"ユーモア", vtype:"mv",
-      youtubeId:"iqEr3P78fz8", lyricsShift:0, lyricsTimes:[33.99, 40.21, 47.13, 53.34, 60.35, 67.07, 73.53, 76.62, 80.20, 83.29, 86.75, 89.92, 96.18, 112.70, 119.08, 125.79, 132.22, 139.14, 145.73, 152.57, 155.70, 159.28, 162.29, 165.58, 168.79, 175.01, 198.41, 201.78, 205.29, 208.29, 212.42, 215.84, 219.09, 222.31, 225.56, 228.85, 234.99, 241.53], lyricsTime:0, lyricsText:`
+` },
+
+"Suiheisen": { lyricsShift:0, lyricsTimes:[33.99, 40.21, 47.13, 53.34, 60.35, 67.07, 73.53, 76.62, 80.20, 83.29, 86.75, 89.92, 96.18, 112.70, 119.08, 125.79, 132.22, 139.14, 145.73, 152.57, 155.70, 159.28, 162.29, 165.58, 168.79, 175.01, 198.41, 201.78, 205.29, 208.29, 212.42, 215.84, 219.09, 222.31, 225.56, 228.85, 234.99, 241.53], lyricsText:`
 出来るだけ嘘は無いように
 데키루다케 우소와 나이요-니
 되도록 거짓은 없도록
@@ -13328,9 +12196,9 @@ ASSA! 흩뿌려서 닳은 감정에 솜을 채우며
 あなたはそれを見るでしょう
 아나타와 소레오 미루데쇼-
 당신은 그걸 보겠지
-`, lyrics:[] },
-    { id:"Kiiro", jp:"黄色", ko:"노란색", rom:"Kiiro", date:"2021.09.29", album:"ユーモア", vtype:"mv",
-      youtubeId:"EMYa07zHC9w", lyricsShift:0, lyricsTimes:[1.04, 26.73, 31.61, 37.58, 43.00, 49.05, 54.51, 59.85, 65.94, 70.82, 77.03, 83.17, 88.46, 95.05, 99.60, 116.95, 122.21, 128.38, 133.22, 139.76, 144.69, 150.36, 156.62, 160.95, 167.38, 169.92, 173.97, 178.64, 184.06, 190.02, 196.95, 202.54, 205.70, 208.29, 212.30, 224.14, 229.10, 235.19, 241.57, 246.58, 251.29, 258.09, 263.72], lyricsTime:0, lyricsText:`
+` },
+
+"Kiiro": { lyricsShift:0, lyricsTimes:[1.04, 26.73, 31.61, 37.58, 43.00, 49.05, 54.51, 59.85, 65.94, 70.82, 77.03, 83.17, 88.46, 95.05, 99.60, 116.95, 122.21, 128.38, 133.22, 139.76, 144.69, 150.36, 156.62, 160.95, 167.38, 169.92, 173.97, 178.64, 184.06, 190.02, 196.95, 202.54, 205.70, 208.29, 212.30, 224.14, 229.10, 235.19, 241.57, 246.58, 251.29, 258.09, 263.72], lyricsText:`
 今は硝子の蓋を閉めて
 이마와 가라스노 후타오 시메테
 지금은 유리 뚜껑을 닫아줘
@@ -13502,9 +12370,9 @@ ASSA! 흩뿌려서 닳은 감정에 솜을 채우며
 今は硝子の蓋を閉めて
 이마와 가라스노 후타오 시메테
 지금은 유리 뚜껑을 닫아줘
-`, lyrics:[] },
-    { id:"VelvetNoUta", jp:"ベルベットの詩", ko:"벨벳의 시", rom:"Velvet no Uta", date:"2022.08.26", album:"ユーモア", vtype:"mv",
-      youtubeId:"kNH3eExqWFw", lyricsShift:2.8, lyricsTimes:[1.36, 4.26, 8.04, 10.81, 14.27, 17.51, 21.02, 23.84, 27.74, 30.71, 35.55, 38.58, 42.03, 44.76, 48.55, 49.69, 51.62, 55.06, 57.77, 64, 87.33, 90.30, 94.07, 96.55, 100.32, 103.20, 106.95, 109.51, 113.37, 116.71, 121.46, 124.58, 128.09, 130.67, 134.20, 135.53, 137.51, 141.01, 143.68, 166.80, 169.75, 173.35, 176.05, 181.35, 184.68, 188.02, 190.52, 194.33, 195.58, 197.53, 204.80, 210, 233.25, 236.29, 239.83, 242.37, 246.26, 249.05], lyricsTime:0, lyricsText:`
+` },
+
+"VelvetNoUta": { lyricsShift:2.8, lyricsTimes:[1.36, 4.26, 8.04, 10.81, 14.27, 17.51, 21.02, 23.84, 27.74, 30.71, 35.55, 38.58, 42.03, 44.76, 48.55, 49.69, 51.62, 55.06, 57.77, 64, 87.33, 90.30, 94.07, 96.55, 100.32, 103.20, 106.95, 109.51, 113.37, 116.71, 121.46, 124.58, 128.09, 130.67, 134.20, 135.53, 137.51, 141.01, 143.68, 166.80, 169.75, 173.35, 176.05, 181.35, 184.68, 188.02, 190.52, 194.33, 195.58, 197.53, 204.80, 210, 233.25, 236.29, 239.83, 242.37, 246.26, 249.05], lyricsText:`
 心が擦り切れて
 코코로가 스리키레테
 마음이 닳아 떨어져서
@@ -13779,9 +12647,9 @@ pic : side
 自分の声で歌おう
 지분노 코에데 우타오-
 내 목소리로 노래하자
-`, lyrics:[] },
-    { id:"ILoveYou", jp:"アイラブユー", ko:"아이 러브 유", rom:"I Love You", date:"2022.10.24", album:"ユーモア", vtype:"mv",
-      youtubeId:"_k0mJYct4UE", lyricsShift:0, lyricsTimes:[20.56, 25.53, 31.32, 34.83, 38.04, 44.71, 46.75, 50.68, 57.06, 62.56, 68.15, 74.99, 86.71, 91.63, 97.60, 104.15, 110.86, 113.60, 116.41, 122.96, 128.79, 134.47, 141.02, 157.99, 161.30, 164.54, 174.01, 175.97, 179.76, 186.06, 191.94, 197.20, 204.20, 210.25, 216.43], lyricsTime:0, lyricsText:`
+` },
+
+"ILoveYou": { lyricsShift:0, lyricsTimes:[20.56, 25.53, 31.32, 34.83, 38.04, 44.71, 46.75, 50.68, 57.06, 62.56, 68.15, 74.99, 86.71, 91.63, 97.60, 104.15, 110.86, 113.60, 116.41, 122.96, 128.79, 134.47, 141.02, 157.99, 161.30, 164.54, 174.01, 175.97, 179.76, 186.06, 191.94, 197.20, 204.20, 210.25, 216.43], lyricsText:`
 公園の落ち葉が舞って
 코-엔노 오치바가 맛테
 공원의 낙엽이 흩날리며
@@ -13921,9 +12789,9 @@ pic : side
 君に渡せたらいい
 키미니 와타세타라 이이
 너에게 건넬 수 있다면 좋을 텐데
-`, lyrics:[] },
-    { id:"HimitsuNoKiss", jp:"秘密のキス", ko:"비밀의 키스", rom:"Himitsu no Kiss", date:"2023.01.17", album:"ユーモア", vtype:"audio",
-      youtubeId:"YSPw1ONGjk4", lyricsShift:0, lyricsTimes:[0,31.50, 35.28, 41.38, 44.83, 49.94, 53.12, 55.51, 59.59, 63.01, 66.04, 67.98, 70.86, 75.12, 77.82, 80.79, 86.60, 90.30, 96.44, 100.16, 105.06, 108.20, 110.83, 114.88, 118.08, 121.06, 122.63, 125.93, 130.44, 132.87, 135.95, 160.09, 163.29, 165.94, 169.97, 173.11, 176.18, 178.08, 181.21, 185.47, 187.81, 190.86, 195.14, 197.56, 200.87, 205.07, 207.44, 210.48, 213.50], lyricsTime:0, lyricsText:`
+` },
+
+"HimitsuNoKiss": { lyricsShift:0, lyricsTimes:[0,31.50, 35.28, 41.38, 44.83, 49.94, 53.12, 55.51, 59.59, 63.01, 66.04, 67.98, 70.86, 75.12, 77.82, 80.79, 86.60, 90.30, 96.44, 100.16, 105.06, 108.20, 110.83, 114.88, 118.08, 121.06, 122.63, 125.93, 130.44, 132.87, 135.95, 160.09, 163.29, 165.94, 169.97, 173.11, 176.18, 178.08, 181.21, 185.47, 187.81, 190.86, 195.14, 197.56, 200.87, 205.07, 207.44, 210.48, 213.50], lyricsText:`
 [clap]{{전주에 박수}}
 
 [clap]太陽がいくつあったって
@@ -14117,9 +12985,9 @@ pic : side
 ありますように
 아리마스요-니
 이기를
-`, lyrics:[] },
-    { id:"GoldenHour", jp:"ゴールデンアワー", ko:"골든 아워", rom:"Golden Hour", date:"2023.01.17", album:"ユーモア", vtype:"audio",
-      youtubeId:"TN3egxXo4pE", lyricsShift:0, lyricsTimes:[0.79, 4.20, 7.54, 11.00, 14.52, 16.80, 19.35, 22.70, 29.28, 32.27, 36.33, 39.03, 41.93, 43.02, 46.40, 50.41, 53.14, 56.08, 58.75, 62.20, 65.73, 69.20, 72.73, 77.28, 80.80, 87.31, 90.43, 94.57, 97.36, 100.30, 115.02, 119.89, 123.28, 129.56, 132.54, 136.83, 139.54, 142.58, 143.85, 146.90, 150.99, 153.63, 156.46, 163.41], lyricsTime:0, lyricsText:`
+` },
+
+"GoldenHour": { lyricsShift:0, lyricsTimes:[0.79, 4.20, 7.54, 11.00, 14.52, 16.80, 19.35, 22.70, 29.28, 32.27, 36.33, 39.03, 41.93, 43.02, 46.40, 50.41, 53.14, 56.08, 58.75, 62.20, 65.73, 69.20, 72.73, 77.28, 80.80, 87.31, 90.43, 94.57, 97.36, 100.30, 115.02, 119.89, 123.28, 129.56, 132.54, 136.83, 139.54, 142.58, 143.85, 146.90, 150.99, 153.63, 156.46, 163.41], lyricsText:`
 [clap]いかした馬力の
 이카시타 바리키노
 그럴싸한 출력을 가진
@@ -14295,9 +13163,9 @@ pic : side
 [wave]違う色だよ
 치가우 이로다요
 다른 색일거야
-`, lyrics:[] },
-    { id:"SoineChanceWaTotsuzenNi", jp:"添い寝チャンスは突然に", ko:"같이 잘 기회는 갑자기", rom:"Soine Chance wa Totsuzen ni", date:"2023.01.17", album:"ユーモア", vtype:"audio",
-      youtubeId:"Y_vt1oZXgWA", lyricsShift:0, lyricsTimes:[18.41, 27.84, 36.48, 41.34, 47.77, 56.93, 61.54], lyricsTime:0, lyricsText:`
+` },
+
+"SoineChanceWaTotsuzenNi": { lyricsShift:0, lyricsTimes:[18.41, 27.84, 36.48, 41.34, 47.77, 56.93, 61.54], lyricsText:`
 [clap]もうすぐこの部屋で　金曜日が終わるでしょ
 모- 스구 코노 헤야데 킨요-비가 오와루데쇼
 이제 곧 이 방에서 금요일이 끝날 거에요
@@ -14325,9 +13193,9 @@ pic : side
 [clap]あなたのキスを待っている
 아나타노 키스오 맛테 이루
 당신의 키스를 기다리고 있어
-`, lyrics:[] },
-    { id:"SilentJourneyInTokyo", jp:"Silent Journey in Tokyo", ko:"Silent Journey in Tokyo", rom:"Silent Journey in Tokyo", date:"2023.01.17", album:"ユーモア", vtype:"audio",
-      youtubeId:"w7wingMtYfg", lyricsShift:0, lyricsTimes:[24.45, 29.43, 34.11, 40.22, 44.49, 48.97, 54.56, 55.95, 59.32, 61.55, 64.40, 65.78, 69.16, 73.49, 94.34, 99.18, 104.13, 110.25, 133.87, 138.42, 143.95, 148.96, 153.73, 158.58, 163.54, 165.20, 168.52, 170.65, 173.29, 174.86, 178.24, 182.53, 203.38, 208.45, 213.15, 219.18], lyricsTime:0, lyricsText:`
+` },
+
+"SilentJourneyInTokyo": { lyricsShift:0, lyricsTimes:[24.45, 29.43, 34.11, 40.22, 44.49, 48.97, 54.56, 55.95, 59.32, 61.55, 64.40, 65.78, 69.16, 73.49, 94.34, 99.18, 104.13, 110.25, 133.87, 138.42, 143.95, 148.96, 153.73, 158.58, 163.54, 165.20, 168.52, 170.65, 173.29, 174.86, 178.24, 182.53, 203.38, 208.45, 213.15, 219.18], lyricsText:`
 スマートフォンをどっかに投げ飛ばして
 스마-토혼오 돗카니 나게토바시테
 스마트폰을 어딘가에 휙 던져버리고
@@ -14471,9 +13339,9 @@ pic : side
 ひどく愛しい
 히도쿠 이토시-
 지독히 사랑스러워
-`, lyrics:[] },
-    { id:"AkaiHanabi", jp:"赤い花火", ko:"붉은 불꽃놀이", rom:"Akai Hanabi", date:"2023.01.17", album:"ユーモア", vtype:"audio",
-      youtubeId:"cje58xuPVOI", lyricsShift:0, lyricsTimes:[23.06, 27.39, 31.68, 39.00, 43.29, 47.66, 52.04, 57.19, 65.09, 69.84, 73.00, 75.46, 80.40, 83.07, 87.09, 94.44, 98.60, 102.91, 107.99, 110.01, 114.62, 118.80, 124.23, 132.75, 144.60, 149.43, 157.32, 162.35, 165.22, 167.96, 172.90, 175.59, 179.55], lyricsTime:0, lyricsText:`
+` },
+
+"AkaiHanabi": { lyricsShift:0, lyricsTimes:[23.06, 27.39, 31.68, 39.00, 43.29, 47.66, 52.04, 57.19, 65.09, 69.84, 73.00, 75.46, 80.40, 83.07, 87.09, 94.44, 98.60, 102.91, 107.99, 110.01, 114.62, 118.80, 124.23, 132.75, 144.60, 149.43, 157.32, 162.35, 165.22, 167.96, 172.90, 175.59, 179.55], lyricsText:`
 7時を回る前に
 시치지오 마와루 마에니
 7시가 되기 전에
@@ -14605,9 +13473,9 @@ pic : side
 誰が解いたの？
 다레가 토이타노?
 누가 풀은걸까?
-`, lyrics:[] },
-    { id:"HeroSuit", jp:"ヒーロースーツ", ko:"히어로 슈트", rom:"Hero Suit", date:"2023.01.17", album:"ユーモア", vtype:"audio",
-      youtubeId:"aiuGFjALz9k", lyricsShift:0, lyricsTimes:[0, 12.89, 17.67, 23.88, 29.25, 34.08, 39.52, 44.25, 49.76, 51.92, 55.05, 60.65, 65.83, 71.28, 73.54, 76.89, 82.13, 93.55, 98.58, 104.85, 110.23, 115.03, 120.39, 125.36, 130.55, 132.87, 136.02, 141.11, 146.82, 152.15, 154.37, 157.63, 162.93, 181.74, 187.52, 195.37, 200.73, 206.33, 211.83, 216.98, 222.15, 224.49, 227.74, 233.29, 238.57, 241.09, 244.58, 249.41, 254.63], lyricsTime:0, lyricsText:`
+` },
+
+"HeroSuit": { lyricsShift:0, lyricsTimes:[0, 12.89, 17.67, 23.88, 29.25, 34.08, 39.52, 44.25, 49.76, 51.92, 55.05, 60.65, 65.83, 71.28, 73.54, 76.89, 82.13, 93.55, 98.58, 104.85, 110.23, 115.03, 120.39, 125.36, 130.55, 132.87, 136.02, 141.11, 146.82, 152.15, 154.37, 157.63, 162.93, 181.74, 187.52, 195.37, 200.73, 206.33, 211.83, 216.98, 222.15, 224.49, 227.74, 233.29, 238.57, 241.09, 244.58, 249.41, 254.63], lyricsText:`
 [clap]{{전주에 박수}}
 
 [clap]戦隊モノだったら僕は何だろう
@@ -14801,9 +13669,9 @@ pic : side
 [wave]首の伸びたTシャツとデニムで蹴散らすぜ
 쿠비노 노비타 티샤츠토 데니무데 케치라스제
 목이 늘어난 티셔츠와 청바지로 무찔러버려
-`, lyrics:[] },
-    { id:"KaijuuNoSize", jp:"怪獣のサイズ", ko:"괴수의 사이즈", rom:"Kaijuu no Size", date:"2023.08.04", album:"디지털 싱글", vtype:"mv",
-      youtubeId:"pVVqODzyujA", lyricsShift:5.8, lyricsTimes:[11.17, 15.03, 17.90, 22.23, 26.40, 28.72, 31.53, 35.74, 40.04, 44.51, 48.86, 53.38, 57.96, 62.89, 67.28, 71.95, 76.68, 79.35, 81.72, 90.52, 94.38, 97.17, 101.24, 125.55, 129.84, 134.80, 140.66, 145.11, 149.97, 154.73, 159.08, 163.71, 168.34, 171.42, 173.71, 178.76], lyricsTime:0, lyricsText:`
+` },
+
+"KaijuuNoSize": { lyricsShift:5.8, lyricsTimes:[11.17, 15.03, 17.90, 22.23, 26.40, 28.72, 31.53, 35.74, 40.04, 44.51, 48.86, 53.38, 57.96, 62.89, 67.28, 71.95, 76.68, 79.35, 81.72, 90.52, 94.38, 97.17, 101.24, 125.55, 129.84, 134.80, 140.66, 145.11, 149.97, 154.73, 159.08, 163.71, 168.34, 171.42, 173.71, 178.76], lyricsText:`
 ああ そりゃまぁそうだな
 아아 소랴 마- 소-다나
 아, 그야 뭐, 그렇겠지
@@ -14947,9 +13815,9 @@ pic : side
 [wave]言えばよかった
 이에바 요캇타
 말할 걸 그랬어
-`, lyrics:[] },
-    { id:"FuyuToHaru", jp:"冬と春", ko:"겨울과 봄", rom:"Fuyu to Haru", date:"2024.01.24", album:"디지털 싱글", vtype:"mv",
-      youtubeId:"hu6y1ol9yUg", lyricsShift:0, lyricsTimes:[10.55, 16.85, 23.23, 29.36, 36.12, 38.58, 42.25, 44.96, 47.9, 52.55, 55.85, 60.73, 65.40, 68.65, 86.59, 92.63, 98.89, 105.11, 111.99, 114.36, 117.95, 121.29, 125.38, 129.96, 133.22, 138.01, 142.64, 145.65, 163.87, 166.71, 169.79, 173.47, 174.63, 175.80, 177.59, 182.85, 191.78, 196.36, 199.49, 204.41, 209.00, 212.25, 216.88, 221.56, 224.72, 231.15, 237.36], lyricsTime:0, lyricsText:`
+` },
+
+"FuyuToHaru": { lyricsShift:0, lyricsTimes:[10.55, 16.85, 23.23, 29.36, 36.12, 38.58, 42.25, 44.96, 47.9, 52.55, 55.85, 60.73, 65.40, 68.65, 86.59, 92.63, 98.89, 105.11, 111.99, 114.36, 117.95, 121.29, 125.38, 129.96, 133.22, 138.01, 142.64, 145.65, 163.87, 166.71, 169.79, 173.47, 174.63, 175.80, 177.59, 182.85, 191.78, 196.36, 199.49, 204.41, 209.00, 212.25, 216.88, 221.56, 224.72, 231.15, 237.36], lyricsText:`
 私を探していたのに
 와타시오 사가시테 이타노니
 날 찾고 있었는데
@@ -15143,9 +14011,9 @@ pic : side
 あなたがよかっただけの私
 아나타가 요캇타 다케노 와타시
 당신이 좋았을 뿐인 나
-`, lyrics:[] },
-    { id:"AtarashiiKoibitotachiNi", jp:"新しい恋人達に", ko:"새로운 연인들에게", rom:"Atarashii Koibitotachi ni", date:"2024.09.11", album:"싱글", vtype:"mv",
-      youtubeId:"euBPUj8CkbA", lyricsShift:0, lyricsTimes:[13.18, 19.39, 26.36, 31.24, 39.50, 42.60, 45.67, 49.30, 53.01, 58.73, 64.19, 66.23, 71.91, 78.91, 85.13, 92.09, 97.06, 105.23, 108.30, 111.44, 115.20, 118.87, 124.50, 129.96, 132.01, 137.47, 155.11, 158.10, 161.12, 164.91, 168.17, 184.10, 190.31, 195.57, 202.66, 208.38, 213.59, 215.88, 221.35, 229.06, 234.65, 240.24, 242.16, 247.71], lyricsTime:0, lyricsText:`
+` },
+
+"AtarashiiKoibitotachiNi": { lyricsShift:0, lyricsTimes:[13.18, 19.39, 26.36, 31.24, 39.50, 42.60, 45.67, 49.30, 53.01, 58.73, 64.19, 66.23, 71.91, 78.91, 85.13, 92.09, 97.06, 105.23, 108.30, 111.44, 115.20, 118.87, 124.50, 129.96, 132.01, 137.47, 155.11, 158.10, 161.12, 164.91, 168.17, 184.10, 190.31, 195.57, 202.66, 208.38, 213.59, 215.88, 221.35, 229.06, 234.65, 240.24, 242.16, 247.71], lyricsText:`
 光が閉じるように
 히카리가 토지루요-니
 빛이 닫히는 것처럼
@@ -15331,9 +14199,9 @@ pic : side
 それでも十分じゃないかと思う
 소레데모 쥬-분쟈나이카토 오모-
 그걸로 충분하지 않을까 생각해
-`, lyrics:[] },
-    { id:"Mapofparadise", jp:"楽園の地図", ko:"낙원의 지도", rom:"Rakuen no chizu", date:"2024.09.11", album:"싱글", vtype:"audio",
-      youtubeId:"3XnYdMkV9X8", lyricsShift:0, lyricsTimes:[0, 22.87, 25.86, 30.28, 33.29, 37.52, 40.62, 45.91, 52.45, 55.73, 60.18, 63.79, 67.50, 71.42, 74.54, 78.34, 82.73, 86.30, 90.89, 94.38, 98, 112.80, 115.73, 120.22, 123.12, 127.45, 130.44, 135.75, 142.46, 145.75, 150.07, 153.89, 157.50, 161.29, 165.86, 169.38, 187.67, 191.39, 197.14, 206.12, 210.08, 213.28, 217.03, 221.35, 225.02, 229.49, 232.98], lyricsTime:0, lyricsText:`
+` },
+
+"Mapofparadise": { lyricsShift:0, lyricsTimes:[0, 22.87, 25.86, 30.28, 33.29, 37.52, 40.62, 45.91, 52.45, 55.73, 60.18, 63.79, 67.50, 71.42, 74.54, 78.34, 82.73, 86.30, 90.89, 94.38, 98, 112.80, 115.73, 120.22, 123.12, 127.45, 130.44, 135.75, 142.46, 145.75, 150.07, 153.89, 157.50, 161.29, 165.86, 169.38, 187.67, 191.39, 197.14, 206.12, 210.08, 213.28, 217.03, 221.35, 225.02, 229.49, 232.98], lyricsText:`
 [clap]{{전주에 박수}}
 
 [clap]光虹色のサンダル
@@ -15517,9 +14385,9 @@ pic : side
 [clap]旅路の果てに 君のとなりに
 타비지노 하테니 키미노 토나리니
 긴 여행 끝에, 너의 곁에
-`, lyrics:[] },
-    { id:"Band", jp:"バンド", ko:"밴드 (크리프하이프 커버)", rom:"Band", date:"2024.08.28", album:"크리프하이프 트리뷰트 앨범",
-      youtubeId:"fIzMKEV9g-I", lyricsShift:0, lyricsTimes:[1.88, 9.16, 17.18, 24.54, 33.58, 40.74, 47.82, 54.87, 60.98, 74.45, 102.89, 108.84, 114.79, 120.89, 126.83, 132.91, 138.74, 144.48, 150.07, 162.09, 211.02, 218.42, 226.81, 234.69, 243.99, 251.30, 258.59, 266.60, 273.93, 285.75, 297.97, 309.92, 351.82, 355.42, 358.30, 361.34, 364.39, 367.22, 370.11, 373.31], lyricsTime:0, lyricsText:`
+` },
+
+"Band": { lyricsShift:0, lyricsTimes:[1.88, 9.16, 17.18, 24.54, 33.58, 40.74, 47.82, 54.87, 60.98, 74.45, 102.89, 108.84, 114.79, 120.89, 126.83, 132.91, 138.74, 144.48, 150.07, 162.09, 211.02, 218.42, 226.81, 234.69, 243.99, 251.30, 258.59, 266.60, 273.93, 285.75, 297.97, 309.92, 351.82, 355.42, 358.30, 361.34, 364.39, 367.22, 370.11, 373.31], lyricsText:`
 今から少し話をしよう
 이마카라 스코시 하나시오 시요-
 이제부터 조금 이야기를 해보자
@@ -15688,9 +14556,9 @@ pic : side
 付かず離れずでこれからも
 츠카즈 하나레즈데 코레카라모
 어중간하게 앞으로도
-`, lyrics:[] },
-    { id:"BlueAmber", jp:"ブルーアンバー", ko:"블루 앰버", rom:"Blue Amber", date:"2025.04.28", album:"디지털 싱글", vtype:"mv",
-      youtubeId:"ru6i9lo4zBE", lyricsShift:0, lyricsTimes:[15.28, 19.00, 23.02, 27.90, 31.00, 34.06, 40.04, 45.24, 52.30, 58.40, 64.29, 70.87, 76.70, 90.16, 93.10, 97.81, 102.64, 106.10, 110.72, 127.54, 130.50, 134.39, 140.36, 146.46, 152.71, 158.74, 164.65, 171.17, 177.22, 183.34, 188.88], lyricsTime:0, lyricsText:`
+` },
+
+"BlueAmber": { lyricsShift:0, lyricsTimes:[15.28, 19.00, 23.02, 27.90, 31.00, 34.06, 40.04, 45.24, 52.30, 58.40, 64.29, 70.87, 76.70, 90.16, 93.10, 97.81, 102.64, 106.10, 110.72, 127.54, 130.50, 134.39, 140.36, 146.46, 152.71, 158.74, 164.65, 171.17, 177.22, 183.34, 188.88], lyricsText:`
 抱きしめられた記憶から
 다키시메라레타 키오쿠카라
 안겼던 기억에서
@@ -15823,9 +14691,9 @@ pic : side
 ねぇ、綺麗よ
 네-, 키레이요
 저기, 예뻐
-`, lyrics:[] },
-    { id:"AruMiraiYoriAiWoKomete", jp:"ある未来より愛を込めて", ko:"어느 미래로부터 사랑을 담아", rom:"Aru Mirai yori Ai wo Komete", date:"2025.06.20", album:"디지털 싱글", vtype:"mv",
-      youtubeId:"IXHWPQv1JZY", lyricsShift:2.4, lyricsTimes:[6.35, 9.84, 13.10, 16.76, 20.01, 23.87, 26.83, 30.48, 33.21, 34.4, 40.65, 44.12, 47.21, 50.76, 54.46, 57.75, 60.71, 64.47, 67.12, 80.44, 81.83, 84.97, 88.29, 91.60, 94.11, 95.42, 98.42, 101.90, 106.39, 108.6, 122.36, 125.86, 128.84, 132.41, 136.18, 139.51, 142.32, 146.14, 148.84, 162.41, 175.85, 177.18, 180.23, 183.46, 186.85, 189.49, 190.82, 193.86, 197.07, 203.25], lyricsTime:0, lyricsText:`
+` },
+
+"AruMiraiYoriAiWoKomete": { lyricsShift:2.4, lyricsTimes:[6.35, 9.84, 13.10, 16.76, 20.01, 23.87, 26.83, 30.48, 33.21, 34.4, 40.65, 44.12, 47.21, 50.76, 54.46, 57.75, 60.71, 64.47, 67.12, 80.44, 81.83, 84.97, 88.29, 91.60, 94.11, 95.42, 98.42, 101.90, 106.39, 108.6, 122.36, 125.86, 128.84, 132.41, 136.18, 139.51, 142.32, 146.14, 148.84, 162.41, 175.85, 177.18, 180.23, 183.46, 186.85, 189.49, 190.82, 193.86, 197.07, 203.25], lyricsText:`
 教室の中じゃ
 쿄-시츠노 나카쟈
 교실 안에선
@@ -16027,9 +14895,9 @@ pic : side
 + 라라라 라라라 라 라 x 8
 
 
-`, lyrics:[] },
-    { id:"MakuGaAgaru", jp:"幕が上がる", ko:"막이 오르다", rom:"Maku ga Agaru", date:"2025.07.31", album:"디지털 싱글", vtype:"mv",
-      youtubeId:"KPsEHgIiLr0", lyricsShift:6.1, lyricsTimes:[5.70, 11.58, 17.97, 19.90, 24.12, 31.43, 33.22, 37.71, 42.59, 45.81, 52.73, 56.77, 58.80, 65.45, 68.00, 86.72, 94.72, 99.08, 105.19, 112.40, 115.33, 118.76, 123.46, 126.89, 133.72, 137.58, 139.50, 146.78, 182.56, 188.33, 194.63, 201.94, 207.97, 214.75, 218.59, 220.60, 227.68, 230.20, 234.23, 239.06, 244.60, 251.27, 257.78], lyricsTime:0, lyricsText:`
+` },
+
+"MakuGaAgaru": { lyricsShift:6.1, lyricsTimes:[5.70, 11.58, 17.97, 19.90, 24.12, 31.43, 33.22, 37.71, 42.59, 45.81, 52.73, 56.77, 58.80, 65.45, 68.00, 86.72, 94.72, 99.08, 105.19, 112.40, 115.33, 118.76, 123.46, 126.89, 133.72, 137.58, 139.50, 146.78, 182.56, 188.33, 194.63, 201.94, 207.97, 214.75, 218.59, 220.60, 227.68, 230.20, 234.23, 239.06, 244.60, 251.27, 257.78], lyricsText:`
 怖いけど
 코와이케도
 무섭지만
@@ -16215,9 +15083,9 @@ pic : side
 強くありたい
 츠요쿠 아리타이
 강하고 싶어
-`, lyrics:[] },
-    { id:"DoushitemoDoushitemo", jp:"どうしてもどうしても", ko:"어떻게 해도 어떻게 해도", rom:"Doushitemo Doushitemo", date:"2025.12.27", album:"디지털 싱글", vtype:"lyric",
-      youtubeId:"wl6V4GpVTj4", lyricsShift:0, lyricsTimes:[0.93, 4.66, 8.16, 11.91, 15.59, 19.04, 22.72, 26.17, 30.32, 37.54, 46.54, 49.83, 53.79, 56.99, 60.89, 64.56, 68.06, 71.63, 75.54, 82.74, 90.22, 93.77, 97.18, 100.70, 104.64, 107.60, 111.57, 114.66, 126.57, 130.07, 134.13, 136.11, 140.83, 148.10, 157.52, 160.93, 164.54, 167.84, 171.81, 174.76, 178.78, 181.86, 186.09, 189.27], lyricsTime:0, lyricsText:`
+` },
+
+"DoushitemoDoushitemo": { lyricsShift:0, lyricsTimes:[0.93, 4.66, 8.16, 11.91, 15.59, 19.04, 22.72, 26.17, 30.32, 37.54, 46.54, 49.83, 53.79, 56.99, 60.89, 64.56, 68.06, 71.63, 75.54, 82.74, 90.22, 93.77, 97.18, 100.70, 104.64, 107.60, 111.57, 114.66, 126.57, 130.07, 134.13, 136.11, 140.83, 148.10, 157.52, 160.93, 164.54, 167.84, 171.81, 174.76, 178.78, 181.86, 186.09, 189.27], lyricsText:`
 [clap]{{はじまりはもう思い出せない}}
 {{하지마리와 모- 오모이다세나이}}
 {{시작은 이젠 떠올릴 수 없어}}
@@ -16408,3345 +15276,5 @@ pic : handup
 [wave]この瞬間は僕の番だ
 코노 슌칸와 보쿠노 반다
 이 순간은 내 차례야
-`, lyrics:[] }
-  ];
-
-  /* ─────────────────────────────────────────────────────────────
-     ★ 짤방(응원 동작 사진) 등록표 — 바운디 사이트와 같은 방식
-       1) 사진 파일을  images/tips/  폴더에 넣는다 (gif·png·jpg·webp, 움짤은 mp4 로 바꾸면 훨씬 가벼움)
-       2) 아래에 "이름": { src, caption } 한 줄 등록
-       3) 가사의 그 소절 바로 아래 줄에   pic: 이름   이라고 적는다
-          → 그 가사가 나올 때만 사진이 떴다가, 다음 소절에서 사라짐
-       · 여러 소절에 같은 이름을 적으면 끊기지 않고 계속 보임
-       · 파일이 아직 없으면 조용히 넘어감 (화면 안 깨짐)
-     ───────────────────────────────────────────────────────────── */
-  const PICS = {
-    /* "이름":   { src: "./images/tips/파일이름.gif", caption: "사진 아래 설명" }, */
-    "wave-basic": { src: "./images/tips/wave-basic.gif", caption: "양손 머리 위로 · 좌우로 크게" },
-    "handup": { src: "./images/tips/handup.mp4", caption: "짝 짝짝 만세" },
-    "jump": { src: "./images/tips/jump.mp4", caption: "jump" },
-    "side": { src: "./images/tips/side.mp4", caption: "좌우로 흔들" },
-    "clap-basic": { src: "./images/tips/clap-basic.gif", caption: "머리 위에서 박수" },
-  };
-
-  /* ── 붙여 넣은 가사를 소절로 나눈다 ───────────────────────────
-     기본 (아이묭 사이트와 같음)
-       일본어
-       한글 발음
-       한국어 해석            ← 없어도 됨
-     · 한글이 없는 줄(일본어·영어) 다음 줄이 한글이면 → 일본어 / 발음 / (해석)
-     · 그 밖의 줄은 그 한 줄만 크게
-     · 빈 줄, ㅡㅡㅡ 같은 구분선은 건너뛴다
-
-     ★ 응원 구호 넣는 법 (바운디 사이트와 같은 표시)
-       어느 줄이든 글자처럼 적으면 그 자리에 움직이는 아이콘이 들어감
-         [wave]  손 흔들기        [clap]  박수
-         [jump]  점프             [spin]  머리 위로 팔 돌리기 ([turn] 도 됨)
-         [mic]   떼창 아이콘 ([chant] 도 됨)
-         [banzai] 짝 짝짝 만세 ([manse] 도 됨)
-         [sway]  한 손 들고 좌우로 흔들기 ([side] 도 됨)
-       색으로 구간 표시 (주로 한글 발음 줄에)
-         {떼창 구간}      → 주황 글씨 + 왼쪽에 떼창 표시
-         {{박수 구간}}    → 파랑 글씨
-       추가 줄 (소절 바로 아래에)
-         + 코러스 떼창     → 4번째 줄로, 뒤에 깔리는 떼창 (주황 기울임)
-         pic: 이름         → 짤방 (위 PICS 등록표 이름)
-     예)
-       [wave]君がいつも 歌う怪獣の歌
-       키미가 이츠모 {우타우 카이주우노 우타} [wave]
-       네가 언제나 부르는 괴수의 노래
-       + (Hey! Hey!)
-       pic: wave-basic
-     ───────────────────────────────────────────────────────────── */
-  const HANGUL = /[가-힣]/;
-  const CHEER_TOKEN = /[\[(](?:wave|clap|mic|chant|jump|spin|turn|banzai|manse|sway|side)[\])]/gi;
-  const PIC_ROW = /^pic\s*[:：]\s*(.+)$/i;
-  const BG_ROW  = /^[+＋]\s*/;
-  SONGS.forEach(sg => {
-    if (typeof sg.lyricsText !== "string" || !sg.lyricsText.trim()) return;
-    const rows = sg.lyricsText.split(/\r?\n/).map(t => t.trim())
-      .filter(t => t && !/^[-–—ㅡ_=~「」『』"'`\s]+$/.test(t));
-    const base = Number(sg.lyricsTime) || 0;
-    const shift = Number(sg.lyricsShift) || 0;
-    const preset = Array.isArray(sg.lyricsTimes) && sg.lyricsTimes.length ? sg.lyricsTimes : null;
-    let presetAt = 0, timed = false;
-    const out = [];
-    const special = (t)=> t !== undefined && (PIC_ROW.test(t) || BG_ROW.test(t));
-    // 시간 표시·응원 표시·구간 괄호를 걷어 낸 글자 (한글 판정용)
-    const bare = (t)=> String(t).replace(/^\[\d+(?:\.\d+)?\]\s*/, "").replace(CHEER_TOKEN, "").replace(/[{}]/g, "");
-    for (let i = 0; i < rows.length; ){
-      const row = rows[i];
-      const pm = row.match(PIC_ROW);
-      if (pm){ if (out.length) out[out.length - 1].pic = pm[1].trim(); i++; continue; }
-      if (BG_ROW.test(row)){
-        if (out.length){ const l = out[out.length - 1]; l.bg = (l.bg ? l.bg + " " : "") + row.replace(BG_ROW, ""); }
-        i++; continue;
-      }
-      let first = row, time = base;
-      const m = first.match(/^\[(\d+(?:\.\d+)?)\]\s*/);
-      if (m){ time = Number(m[1]); first = first.slice(m[0].length); timed = true; }
-      else if (preset && presetAt < preset.length){
-        const t = Number(preset[presetAt]);
-        if (isFinite(t)){ time = t; timed = true; }
-      }
-      if (preset) presetAt++;
-      time += shift;
-      const next = rows[i+1], third = rows[i+2];
-      if (!HANGUL.test(bare(row)) && next !== undefined && !special(next) && HANGUL.test(bare(next))){
-        const hasTr = third !== undefined && !special(third) && HANGUL.test(bare(third));
-        out.push({ time, jp:first, ko:next, tr: hasTr ? third : "" });
-        i += hasTr ? 3 : 2;
-      } else {
-        out.push({ time, jp:"", ko:first, tr:"" });
-        i += 1;
-      }
-    }
-    // [clap]·[manse] 가 붙은 소절은 일본어·발음·해석을 자동으로 박수색(파랑)으로
-    const CLAP_MARK = /[\[(](?:clap|banzai|manse)[\])]/i;
-    out.forEach(l => {
-      if (![l.jp, l.ko, l.tr].some(t => CLAP_MARK.test(t || ""))) return;
-      ["jp", "ko", "tr"].forEach(k => {
-        const t = l[k];
-        if (!t || /[{}]/.test(t)) return;          // 이미 {{ }} 나 { } 를 직접 적은 줄은 그대로
-        const lead = (t.match(/^(?:\s*[\[(](?:wave|clap|mic|chant|jump|spin|turn|banzai|manse|sway|side)[\])])*\s*/i) || [""])[0];
-        const body = t.slice(lead.length);
-        if (body.trim()) l[k] = lead + "{{" + body + "}}";
-      });
-    });
-    out.sort((a,b)=> a.time - b.time);
-    sg.lyrics = out;
-    if (!timed) sg.unsynced = true;
-  });
-
-
-</script>
-
-<script>
-/* ── 콘서트 셋리스트 ─────────────────────────────────────────────
-   LiveFans 등록 내용을 옮긴 것. 곡 이름은 일본어 원제 그대로 적는다.
-   · 곡 목록(SONGS)에 있는 곡은 누르면 곡(뮤비) 화면으로 간다
-   · 없는 곡(커플링·미발표곡·커버)은 이름만 보인다
-   · { t:"곡", note:"메모" } = 메모가 붙은 곡 / { enc:true } = 여기부터 앙코르
-   새 투어는 맨 앞에 한 덩어리 더 넣으면 된다. 방송(음악 방송) 출연은 넣지 않았다. */
-const CONCERT_SETLISTS = [
-  { year:2026, name:"back number \"Grateful Yesterdays Tour 2026\"", short:"Grateful Yesterdays", dates:"2026.05.02 ~ 09.27 · 스타디움 투어 + 서울·홍콩", basis:"서울 공연 (9/12·13 KINTEX) 순서 · 홍콩(9/26·27)도 같음 · 일본 스타디움 공연은 순서와 일부 곡이 달라요", id:1923345,
-    songs:["幕が上がる","高嶺の花子さん","クリスマスソング","青い春","SISTER","大不正解","花束","チェックのワンピース","ハッピーエンド","そのドレスちょっと待った","ベルベットの詩","MOTTO","ブルーアンバー","どうしてもどうしても","新しい恋人達に","怪盗","水平線","ヒロイン","スーパースターになったら",{ enc:true },"高嶺の花子さん"] },
-  { year:2024, name:"back number \"anti sleeps tour 2024\"", short:"anti sleeps", dates:"2024.08.03 ~ 12.22 · 대반 아레나 투어", basis:"마지막 공연 12/22 マリンメッセ福岡 순서 · back number 파트", id:1672201,
-    songs:["楽園の地図","ロンリネス","光の街","アイラブユー","HAPPY BIRTHDAY","高嶺の花子さん","水平線","最深部","大不正解","花束","ハッピーエンド","新しい恋人達に","怪盗","スーパースターになったら",{ t:"バンド", note:"クリープハイプ 커버" }] },
-  { year:2024, name:"back number fanclub tour \"one room party vol.7\"", short:"orp vol.7", dates:"2024.01.24 ~ 04.26 · 팬클럽 투어", basis:"마지막 공연 4/26 高松festhalle 순서", id:1603108,
-    songs:["おまえさん","女王の猿","冬と春","黒い猫の歌","ヒロイン","半透明人間","世田谷ラブストーリー","添い寝チャンスは突然に","高嶺の花子さん","アップルパイ","ベルベットの詩","怪獣のサイズ",{ enc:true },"青い春","one room","はじまりはじまり"] },
-  { year:2023, name:"back number \"in your humor tour 2023\"", short:"in your humor", dates:"2023.03.18 ~ 04.23 · 첫 5대 돔 투어", basis:"마지막 공연 4/23 福岡PayPayドーム 순서", id:1492435,
-    songs:["ヒーロースーツ","大不正解","クリスマスソング","秘密のキス","SISTER","青い春","エメラルド","ハッピーエンド","アイラブユー",{ t:"ヒロイン", note:"서브 스테이지" },{ t:"手紙", note:"서브 스테이지" },"Silent Journey in Tokyo","ゴールデンアワー","高嶺の花子さん","赤い花火","黄色","水平線","ベルベットの詩","スーパースターになったら",{ enc:true },"添い寝チャンスは突然に","花束","怪盗"] },
-  { year:2022, name:"back number \"SCENT OF HUMOR TOUR 2022\"", short:"SCENT OF HUMOR", dates:"2022.04.02 ~ 09.08 · 아레나 투어", basis:"마지막 공연 9/8 幕張メッセ 순서", id:1455257,
-    songs:["オールドファッション","HAPPY BIRTHDAY","サマーワンダーランド","怪盗","エメラルド","MOTTO","赤い花火","泡と羊","風の強い日","アップルパイ","恋","黄色","勝手にオリンピック","003","半透明人間","sympathy","瞬き","水平線","高嶺の花子さん","スーパースターになったら",{ enc:true },"僕の名前を","日曜日","そのドレスちょっと待った"] },
-  { year:2021, name:"back number TikTok LIVE&TALK", short:"TikTok LIVE", dates:"2021.09.26 · 온라인", id:1345193,
-    songs:["黄色","怪盗","水平線"] },
-  { year:2021, name:"back number fanclub tour \"one room party vol.6\"", short:"orp vol.6", dates:"2021.02.26 ~ 07.01 · 팬클럽 투어", basis:"마지막 공연 7/1 LINE CUBE SHIBUYA 순서", id:1281228,
-    songs:["君の代わり",{ t:"そのドレスちょっと待った", note:"파트 셔플" },{ t:"赤い花火", note:"신곡 (당시 미발표)" },"リッツパーティー","Jaguar","水平線","エメラルド","KNOCK","one room","ヒロイン"] },
-  { year:2020, name:"back number live film 2020 \"ASH\"", short:"ASH", dates:"2020.10.25 · 온라인 스트리밍 (밴드)", id:1264807,
-    songs:["黒い猫の歌",{ t:"エメラルド", note:"신곡 (당시 발매 전)" },"高嶺の花子さん","SISTER","わたがし","君がドアを閉めた後","MOTTO","瞬き","あかるいよるに","僕は君の事が好きだけど君は僕を別に好きじゃないみたい","ハッピーエンド","HAPPY BIRTHDAY","花束",{ t:"水平線", note:"라이브 첫 공개" },"青い春","大不正解"] },
-  { year:2020, name:"back number live film 2020 \"MAHOGANY\"", short:"MAHOGANY", dates:"2020.09.22 · 온라인 스트리밍 (어쿠스틱)", id:1264806,
-    songs:["だいじなこと","fish","光の街","花束","黒い猫の歌","SISTER","雨と僕の話","わたがし","オールドファッション","sympathy","大不正解","one room"] },
-  { year:2020, name:"back number fanclub tour 2020 \"one room party vol.5\"", short:"orp vol.5", dates:"2020.01.29 ~ 02.23 · 팬클럽 투어", basis:"마지막 공연 2/23 高松festhalle 순서", id:1185038,
-    songs:["こぼれ落ちて","アップルパイ","sympathy","あとのうた","魔女と僕","春を歌にして","HAPPY BIRTHDAY","ミラーボールとシンデレラ","クリスマスソング","僕は君の事が好きだけど君は僕を別に好きじゃないみたい","青い春","大不正解",{ enc:true },"そのドレスちょっと待った","one room","SISTER"] },
-  { year:2019, name:"back number \"NO MAGIC TOUR 2019\"", short:"NO MAGIC", dates:"2019.04.20 ~ 09.20 · 아레나 투어", basis:"마지막 공연 9/20 沖縄コンベンションセンター 순서", id:1045152,
-    songs:["オールドファッション","ロンリネス","泡と羊","MOTTO","サマーワンダーランド","大不正解","雨と僕の話","思い出せなくなるその日まで","ARTIST","エキシビジョンデスマッチ","003","SISTER","monaural fantasy","あかるいよるに","日曜日","電車の窓から","HAPPY BIRTHDAY","瞬き","最深部","高嶺の花子さん","スーパースターになったら",{ enc:true },"ハッピーエンド","手紙"] },
-  { year:2018, name:"back number dome tour 2018 \"stay with you\"", short:"stay with you", dates:"2018.07.29 ~ 10.28 · 첫 돔 투어", basis:"마지막 공연 10/28 京セラドーム大阪 순서", id:891825,
-    songs:["半透明人間","SISTER","チェックのワンピース","青い春","ARTIST","ゆめなのであれば","ハッピーエンド","エンディング","瞬き","海岸通り","西藤公園","重なり","クリスマスソング","ヒロイン","stay with me","大不正解","MOTTO","スーパースターになったら",{ enc:true },"ネタンデルタール人",{ t:"オールドファッション", note:"신곡 (당시 발매 전)" },"ささえる人の歌","高嶺の花子さん"] },
-  { year:2018, name:"back number fanclub tour \"one room party vol.4\"", short:"orp vol.4", dates:"2018.01.27 ~ 03.30 · 팬클럽 투어", basis:"마지막 공연 3/30 NIIGATA LOTS 순서", id:874155,
-    songs:["スーパースターになったら","ネタンデルタール人","僕の名前を","風の強い日","そのドレスちょっと待った","青い春","ARTIST","君の恋人になったら","tender","瞬き",{ t:"サヨナラバス", note:"ゆず 커버" },"高嶺の花子さん",{ enc:true },"海岸通り","one room","リッツパーティー"] },
-  { year:2017, name:"back number \"All Our Yesterdays Tour 2017\"", short:"All Our Yesterdays", dates:"2017.02.25 ~ 06.11 · 아레나 투어", basis:"마지막 공연 6/11 沖縄コンベンションセンター 순서", id:699812,
-    songs:["クリスマスソング","アップルパイ","そのドレスちょっと待った","003","花束","はなびら","fish","黒い猫の歌","高嶺の花子さん","MOTTO","SISTER","幸せ","助演女優症","恋","ハッピーエンド","君の恋人になったら","光の街","stay with me","繋いだ手から","青い春","スーパースターになったら",{ enc:true },{ t:"リッツパーティー", note:"1절만" },"世田谷ラブストーリー",{ t:"ヒロイン", note:"후렴만" },"日曜日","海岸通り"] },
-  { year:2017, name:"SPACE SHOWER TV \"LIVE with YOU\" ～back number～", short:"LIVE with YOU", dates:"2017.01.26 · BIGCAT (오사카) · 공개 라이브", id:731220,
-    songs:["SISTER","ハッピーエンド","青い春","ヒロイン","MOTTO","花束","003","高嶺の花子さん","スーパースターになったら",{ enc:true },"クリスマスソング","そのドレスちょっと待った"] },
-  { year:2016, name:"back number fanclub tour 2016 \"one room party vol.3\"", short:"orp vol.3", dates:"2016.09.29 ~ 10.28 · 팬클럽 투어", basis:"마지막 공연 10/28 札幌PENNY LANE 24 순서", id:640762,
-    songs:["おまえさん","SISTER","003","ひとくいにんげん","世田谷ラブストーリー","クリスマスソング","黒い猫の歌","花束","はじまりはじまり","ハッピーエンド","then","高嶺の花子さん",{ enc:true },"スーパースターになったら","one room","海岸通り"] },
-  { year:2016, name:"back number tour 2016 \"ミラーボールとシャンデリア\"", short:"ミラーボールとシャンデリア", dates:"2016.01.24 ~ 07.24 · 홀·아레나 투어", basis:"마지막 공연 7/24 ヤマダグリーンドーム前橋 (고향 군마) 순서", id:553420,
-    songs:["僕は君の事が好きだけど君は僕を別に好きじゃないみたい","泡と羊","いつか忘れてしまっても","わたがし","SISTER","Liar","青い春","思い出せなくなるその日まで","君がドアを閉めた後","サイレン","ミラーボールとシンデレラ","MOTTO","半透明人間","助演女優症2","東京の夕焼け","ヒロイン","クリスマスソング","僕の名前を","Hey!Brother!","高嶺の花子さん","スーパースターになったら",{ enc:true },"アップルパイ","手紙","そのドレスちょっと待った"] },
-  { year:2015, name:"back number LIVE \"THE PREVIEW\"", short:"THE PREVIEW", dates:"2015.12.14 · 16 · 포카리스웨트 이온워터 라이브", basis:"12/16 なんばHatch 순서", id:534267,
-    songs:["泡と羊","Liar","SISTER","アップルパイ","ヒロイン","クリスマスソング","花束","サイレン","青い春","スーパースターになったら","手紙","高嶺の花子さん"] },
-  { year:2015, name:"back number × SUNSTAR TONIC 한정 라이브", short:"SUNSTAR TONIC", dates:"2015.09.10 · 14 · 한정 라이브", basis:"9/14 BIGCAT 순서", id:493358,
-    songs:["SISTER","泡と羊","スーパースターになったら","高嶺の花子さん","花束","手紙","ヒロイン","MOTTO","青い春","003",{ enc:true },"海岸通り"] },
-  { year:2015, name:"アーバンライブツアー2015 supported by uP!!!", short:"アーバンライブ", dates:"2015.03.25 ~ 06.07 · 라이브하우스 투어", basis:"마지막 공연 6/7 幕張メッセ イベントホール 순서", id:436630,
-    songs:["SISTER","bird's sorrow","チェックのワンピース","そのドレスちょっと待った","アップルパイ","MOTTO","青い春","春を歌にして","エンディング","重なり","アーバンライフ","003","電車の窓から","世田谷ラブストーリー","stay with me","ヒロイン","あとのうた","海岸通り","スーパースターになったら",{ enc:true },"花束","泡と羊","高嶺の花子さん"] },
-  { year:2014, name:"back number fanclub tour \"one room party vol.2\"", short:"orp vol.2", dates:"2014.12.05 ~ 12.14 · 팬클럽 투어", basis:"마지막 공연 12/14 Kobe SLOPE 순서", id:364738,
-    songs:["はなびら","青い春","こわいはなし","海岸通り","電車の窓から","世田谷ラブストーリー","はじまりはじまり","そのドレスちょっと待った","繋いだ手から","リッツパーティー","003","スーパースターになったら",{ enc:true },"半透明人間","one room","高嶺の花子さん"] },
-  { year:2014, name:"love stories tour 2014 추가 공연 「大阪ラブストーリー2」", short:"大阪ラブストーリー2", dates:"2014.09.23 · 大阪城ホール · 추가 공연", id:295404,
-    songs:["ネタンデルタール人","海岸通り","半透明人間","MOTTO","繋いだ手から","幸せ","fish","光の街","わたがし","高嶺の花子さん","bird's sorrow","003","花束","君がドアを閉めた後","世田谷ラブストーリー","stay with me","聖者の行進","青い春","スーパースターになったら",{ enc:true },"日曜日","恋","そのドレスちょっと待った"] },
-  { year:2014, name:"love stories tour 2014 추가 공연 「横浜ラブストーリー2」", short:"横浜ラブストーリー2", dates:"2014.09.14 · 15 · 横浜アリーナ · 추가 공연", basis:"9/15 공연 순서", id:294787,
-    songs:["海岸通り","幸せ","ネタンデルタール人","高嶺の花子さん","繋いだ手から","光の街","fish","MOTTO","わたがし","半透明人間","bird's sorrow","003","花束","君がドアを閉めた後","世田谷ラブストーリー","stay with me","聖者の行進","青い春","スーパースターになったら",{ enc:true },"日曜日","恋","そのドレスちょっと待った"] },
-  { year:2014, name:"back number \"love stories tour 2014\"", short:"love stories", dates:"2014.05.14 ~ 07.25 · 홀 투어", basis:"마지막 공연 7/25 NHKホール 순서", id:208984,
-    songs:["bird's sorrow","繋いだ手から","半透明人間","MOTTO","光の街","わたがし","幸せ","stay with me","ネタンデルタール人","高嶺の花子さん","003","花束","君がドアを閉めた後","世田谷ラブストーリー","fish","聖者の行進","青い春","スーパースターになったら",{ enc:true },"頬を濡らす雨のように","恋","海岸通り"] },
-  { year:2013, name:"back number fanclub tour \"one room party vol.1\"", short:"orp vol.1", dates:"2013.10.04 ~ 10.10 · 첫 팬클럽 투어", basis:"마지막 공연 10/10 赤坂BLITZ 순서", id:189113,
-    songs:["はじまりはじまり","西藤公園","高嶺の花子さん","重なり","いつか忘れてしまっても","半透明人間","あとのうた","だいじなこと","花束","青い春","海岸通り","スーパースターになったら",{ enc:true },"Life","one room","そのドレスちょっと待った"] },
-  { year:2013, name:"back number live at 日本武道館 -stay with us-", short:"武道館", dates:"2013.09.07 · 日本武道館 · 첫 부도칸", id:160508,
-    songs:["日曜日","はなびら","平日のブルース","半透明人間","わたがし","思い出せなくなるその日まで","春を歌にして","こぼれ落ちて","bird's sorrow","そのドレスちょっと待った","高嶺の花子さん","恋","幸せ","風の強い日","stay with me","重なり","青い春","スーパースターになったら",{ enc:true },"リッツパーティー","ささえる人の歌","花束","海岸通り"] },
-  { year:2013, name:"back number \"back to the blues tour 2013\"", short:"back to the blues", dates:"2013.01.14 ~ 03.30 · 홀 투어", basis:"마지막 공연 3/30 渋谷公会堂 순서", id:118332,
-    songs:["stay with me","手の鳴る方へ","日曜日","海岸通り","リッツパーティー","bird's sorrow","エンディング","幸せ","半透明人間","平日のブルース","助演女優症","笑顔","one room","恋","青い春","スーパースターになったら",{ enc:true },"ささえる人の歌","花束","そのドレスちょっと待った"] },
-  { year:2012, name:"スペシャル・アコースティックライヴ【Premium Unplugged Vol.1】", short:"Unplugged", dates:"2012.12.13 · 20 · 어쿠스틱 라이브", basis:"12/20 なんばHatch 순서", id:136322,
-    songs:["だいじなこと","stay with me","one room","風の強い日","sympathy","日曜日","青い春","リッツパーティー","花束","チェックのワンピース","ささえる人の歌","エンディング",{ enc:true },"西藤公園","恋"] },
-  { year:2012, name:"back number 원맨 라이브 (Zepp DiverCity)", short:"Zepp DiverCity", dates:"2012.10.03 · Zepp DiverCity · 원맨 라이브", id:110467,
-    songs:["one room","重なり","幸せ","こぼれ落ちて","思い出せなくなるその日まで","わたがし","平日のブルース","半透明人間","海岸通り","日曜日","stay with me","花束","あとのうた","スーパースターになったら",{ enc:true },"青い春","そのドレスちょっと待った"] },
-  { year:2012, name:"恋は盲目ツアー2012", short:"恋は盲目", dates:"2012.03.16 ~ 04.30 · 라이브하우스 투어", basis:"마지막 공연 4/30 渋谷公会堂 순서", id:86845,
-    songs:["恋","こぼれ落ちて","風の強い日","春を歌にして","リッツパーティー","半透明人間","信者よ盲目であれ","ささえる人の歌","海岸通り","幸せ","思い出せなくなるその日まで","花束","はなびら","あとのうた","スーパースターになったら",{ enc:true },"日曜日","そのドレスちょっと待った"] },
-  { year:2011, name:"スーパーツアー2011", short:"スーパーツアー", dates:"2011.12.06 ~ 12.22 · 라이브하우스 투어", basis:"마지막 공연 12/22 福岡DRUM Be-1 순서", id:60083,
-    songs:["電車の窓から","リッツパーティー","海岸通り","半透明人間","stay with me","はじまりはじまり","チェックのワンピース","西藤公園","花束","こぼれ落ちて","幸せ","思い出せなくなるその日まで","あやしいひかり","スーパースターになったら",{ enc:true },"はなびら","そのドレスちょっと待った"] },
-  { year:2011, name:"ちゃんと言うよツアー2011", short:"ちゃんと言うよ", dates:"2011.05.08 ~ 05.22 · 라이브하우스 투어", basis:"마지막 공연 5/22 新栄CLUB ROCK'N ROLL 순서", id:426814,
-    songs:["西藤公園","重なり","こぼれ落ちて","海岸通り","春を歌にして","花束","stay with me","幸せ","KNOCK","あとのうた","いつか忘れてしまっても",{ enc:true },"march","そのドレスちょっと待った"] },
-  { year:2011, name:"「いつか忘れてしまってもいいKARAツアー2010-2011」 파이널", short:"KARAツアー", dates:"2011.01.23 · SHIBUYA O-WEST · 인디 시절 원맨 투어 파이널", id:41037,
-    songs:["march","stay with me","KNOCK","そのドレスちょっと待った","ハイスクールガール","fallman","春を歌にして","あとのうた","then","重なり","風の強い日","西藤公園","いつか忘れてしまっても","海岸通り",{ enc:true },"sympathy"] }
-];
-const CONCERT_FESTS = [
-  { year:2023, date:"2023.08.27", name:"SPACE SHOWER SWEET LOVE SHOWER 2023", venue:"LAKESIDE · 山中湖交流プラザきらら (山梨)", id:1544523,
-    songs:["ハッピーエンド","怪盗","SISTER","アイラブユー","水平線","クリスマスソング","高嶺の花子さん",{ enc:true },"怪獣のサイズ"] },
-  { year:2023, date:"2023.08.20", name:"MONSTER baSH 2023", venue:"空海 STAGE · 国営讃岐まんのう公園 (香川)", id:1534818,
-    songs:["水平線","世田谷ラブストーリー","怪獣のサイズ","怪盗","MOTTO","アイラブユー","高嶺の花子さん",{ enc:true },"SISTER"] },
-  { year:2023, date:"2023.08.11", name:"RISING SUN ROCK FESTIVAL 2023 in EZO", venue:"SUN STAGE · 石狩湾新港 (北海道)", id:1540405,
-    songs:["水平線","SISTER","エメラルド","クリスマスソング","怪盗","怪獣のサイズ","ハッピーエンド","MOTTO","アイラブユー","高嶺の花子さん",{ enc:true },"瞬き"] },
-  { year:2023, date:"2023.08.05", name:"ROCK IN JAPAN FESTIVAL 2023", venue:"LOTUS STAGE · 千葉市蘇我スポーツ公園 (千葉)", id:1560155,
-    songs:["水平線","大不正解","怪盗","ハッピーエンド","SISTER",{ t:"怪獣のサイズ", note:"라이브 첫 공개" },"世田谷ラブストーリー","クリスマスソング",{ t:"アイラブユー", note:"LIVE ver." },"高嶺の花子さん",{ enc:true },"MOTTO"] },
-  { year:2023, date:"2023.07.17", name:"ap bank fes '23 ～社会と暮らしと音楽と～ (2일차)", venue:"つま恋リゾート 彩の郷 (静岡)", id:1546169,
-    songs:["水平線","怪盗","高嶺の花子さん","SISTER","クリスマスソング","アイラブユー","瞬き"] },
-  { year:2023, date:"2023.07.16", name:"ap bank fes '23 ～社会と暮らしと音楽と～ (1일차)", venue:"つま恋リゾート 彩の郷 (静岡)", id:1546176,
-    songs:["怪盗","水平線","アイラブユー","世田谷ラブストーリー","ハッピーエンド","大不正解","高嶺の花子さん"] },
-  { year:2022, date:"2022.11.26", name:"SAITAMA ROCK FESTIVAL \"SAI\" 2022", venue:"さいたまスーパーアリーナ (埼玉)", id:1445091,
-    songs:["MOTTO","水平線","クリスマスソング","高嶺の花子さん","怪盗","アイラブユー"] },
-  { year:2021, date:"2021.07.18", name:"NUMBER SHOT 2021", venue:"山笠 STAGE · 福岡PayPayドーム (福岡)", id:1319049,
-    songs:["高嶺の花子さん","MOTTO","水平線","ハッピーエンド","怪盗","大不正解",{ enc:true },"スーパースターになったら"] },
-  { year:2018, date:"2018.08.19", name:"SUMMER SONIC 2018 (오사카)", venue:"OCEAN STAGE · 舞洲スポーツアイランド (大阪)", id:948907,
-    songs:["瞬き","高嶺の花子さん","クリスマスソング","青い春","ARTIST","MOTTO","SISTER","大不正解","スーパースターになったら"] },
-  { year:2018, date:"2018.08.18", name:"SUMMER SONIC 2018 (도쿄)", venue:"MARINE STAGE · ZOZOマリンスタジアム (千葉)", id:948906,
-    songs:["ARTIST","瞬き","MOTTO","クリスマスソング","高嶺の花子さん","青い春","SISTER","大不正解","スーパースターになったら"] },
-  { year:2018, date:"2018.06.23", name:"LUNATIC FEST. 2018", venue:"MOON STAGE · 幕張メッセ (千葉)", id:939946,
-    songs:["クリスマスソング","高嶺の花子さん","青い春","SISTER","瞬き","MOTTO"] },
-  { year:2018, date:"2018.05.19", name:"OSAKA METROPOLITAN ROCK FESTIVAL 2018", venue:"BAY FIELD · 海とのふれあい広場 (大阪)", id:901143,
-    songs:["僕の名前を","MOTTO","ARTIST","高嶺の花子さん","わたがし","瞬き","003","青い春",{ enc:true },"スーパースターになったら"] },
-  { year:2018, date:"2018.05.06", name:"JAPAN JAM 2018", venue:"SKY STAGE · 千葉市蘇我スポーツ公園 (千葉)", id:901318,
-    songs:["わたがし","僕の名前を","瞬き","ARTIST","MOTTO","高嶺の花子さん","003","青い春",{ enc:true },"スーパースターになったら"] },
-  { year:2017, date:"2017.12.30", name:"COUNTDOWN JAPAN 17/18", venue:"EARTH STAGE · 幕張メッセ (千葉)", id:870257,
-    songs:["泡と羊","瞬き","MOTTO",{ t:"シーグラス", note:"ストレイテナー 커버" },"青い春","ハッピーエンド","ヒロイン","SISTER","はなびら","003","高嶺の花子さん",{ enc:true },"スーパースターになったら"] },
-  { year:2017, date:"2017.12.28", name:"FM802 ROCK FESTIVAL RADIO CRAZY 2017", venue:"Z-STAGE · インテックス大阪 (大阪)", id:884052,
-    songs:["003","ハッピーエンド","日曜日","瞬き","SISTER","青い春","はなびら","MOTTO","高嶺の花子さん"] },
-  { year:2017, date:"2017.08.26", name:"音楽と髭達 2017 -NO BORDER-", venue:"HARD OFF ECOスタジアム新潟 (新潟)", id:807879,
-    songs:["青い春","ハッピーエンド","MOTTO","SISTER","わたがし","半透明人間","スーパースターになったら",{ enc:true },"クリスマスソング","高嶺の花子さん"] },
-  { year:2017, date:"2017.08.20", name:"MONSTER baSH 2017", venue:"空海 STAGE · 国営讃岐まんのう公園 (香川)", id:796061,
-    songs:["わたがし","MOTTO","半透明人間","青い春","SISTER","ハッピーエンド","スーパースターになったら",{ enc:true },"クリスマスソング","高嶺の花子さん"] },
-  { year:2017, date:"2017.08.12", name:"RISING SUN ROCK FESTIVAL 2017 in EZO", venue:"SUN STAGE · 石狩湾新港 (北海道)", id:813255,
-    songs:["青い春","SISTER","高嶺の花子さん","光の街","わたがし","MOTTO","ハッピーエンド","ヒロイン","半透明人間","スーパースターになったら"] },
-  { year:2017, date:"2017.08.05", name:"ROCK IN JAPAN FESTIVAL 2017", venue:"GRASS STAGE · 国営ひたち海浜公園 (茨城)", id:817417,
-    songs:["光の街","MOTTO","スーパースターになったら","半透明人間","高嶺の花子さん","ヒロイン","ハッピーエンド","SISTER","青い春","わたがし"] },
-  { year:2017, date:"2017.07.29", name:"OGA NAMAHAGE ROCK FESTIVAL VOL.8", venue:"男鹿市船川港 特設ステージ (秋田)", id:799104,
-    songs:["わたがし","青い春","半透明人間","高嶺の花子さん","クリスマスソング","SISTER","スーパースターになったら"] },
-  { year:2017, date:"2017.07.28", name:"Reborn-Art Festival × ap bank fes 2017", venue:"国営みちのく杜の湖畔公園 (宮城)", id:802372,
-    songs:["わたがし","高嶺の花子さん","半透明人間","青い春","SISTER","ハッピーエンド","スーパースターになったら"] },
-  { year:2017, date:"2017.07.22", name:"NUMBER SHOT 2017", venue:"山笠 STAGE · 国営海の中道海浜公園 (福岡)", id:804620,
-    songs:["わたがし","MOTTO","半透明人間","青い春","SISTER","ハッピーエンド","スーパースターになったら",{ enc:true },{ t:"サヨナラバス", note:"ゆず와 함께 · 커버" },"高嶺の花子さん"] },
-  { year:2017, date:"2017.02.04", name:"ALL LIVE NIPPON VOL.5 (オールナイトニッポン50周年)", venue:"国立代々木競技場 第一体育館 (東京)", id:725530,
-    songs:["花束","ヒロイン","青い春","003","MOTTO","ハッピーエンド","高嶺の花子さん","スーパースターになったら"] },
-  { year:2017, date:"2017.01.27", name:"Thanks Giving vol.8", venue:"なんばHatch (大阪)", id:726545,
-    songs:["花束","003","青い春","ヒロイン","ハッピーエンド","MOTTO","高嶺の花子さん","スーパースターになったら"] },
-  { year:2016, date:"2016.12.28", name:"COUNTDOWN JAPAN 16/17", venue:"EARTH STAGE · 幕張メッセ (千葉)", id:717619,
-    songs:["003","ハッピーエンド","ヒロイン","MOTTO","花束","青い春","高嶺の花子さん","スーパースターになったら",{ enc:true },"クリスマスソング","SISTER"] },
-  { year:2016, date:"2016.11.06", name:"バズリズムLIVE 2016", venue:"横浜アリーナ (神奈川)", id:705280,
-    songs:["SISTER","ハッピーエンド","クリスマスソング","高嶺の花子さん","花束","黒い猫の歌"] },
-  { year:2016, date:"2016.10.22", name:"テレビ朝日ドリームフェスティバル 2016", venue:"国立代々木競技場 第一体育館 (東京)", id:688800,
-    songs:["花束","ハッピーエンド","SISTER","高嶺の花子さん","黒い猫の歌","クリスマスソング"] },
-  { year:2016, date:"2016.01.30", name:"LIVE EXPO TOKYO 2016 ALL LIVE NIPPON VOL.4", venue:"国立代々木競技場 第一体育館 (東京)", id:570783,
-    songs:["クリスマスソング","ヒロイン","サイレン","青い春","高嶺の花子さん","SISTER"] },
-  { year:2015, date:"2015.12.30", name:"COUNTDOWN JAPAN 15/16", venue:"EARTH STAGE · 幕張メッセ (千葉)", id:558117,
-    songs:["花束","ヒロイン","クリスマスソング","サイレン","SISTER","青い春","高嶺の花子さん","スーパースターになったら"] },
-  { year:2015, date:"2015.12.28", name:"FM802 ROCK FESTIVAL RADIO CRAZY 2015", venue:"Z-STAGE · インテックス大阪 (大阪)", id:562361,
-    songs:["ヒロイン","サイレン","青い春","スーパースターになったら","SISTER","クリスマスソング",{ enc:true },"高嶺の花子さん"] },
-  { year:2015, date:"2015.11.22", name:"テレビ朝日ドリームフェスティバル 2015", venue:"国立代々木競技場 第一体育館 (東京)", id:533698,
-    songs:["スーパースターになったら","クリスマスソング","青い春","SISTER","花束","高嶺の花子さん"] },
-  { year:2015, date:"2015.08.23", name:"MONSTER baSH 2015", venue:"空海 · 国営讃岐まんのう公園 (香川)", id:458139,
-    songs:["SISTER","高嶺の花子さん","手紙","青い春","スーパースターになったら"] },
-  { year:2015, date:"2015.08.15", name:"RISING SUN ROCK FESTIVAL 2015 in EZO", venue:"SUN STAGE · 石狩湾新港 (北海道)", id:456877,
-    songs:["SISTER","泡と羊","スーパースターになったら","高嶺の花子さん","花束","手紙","ヒロイン","MOTTO","青い春","003"] },
-  { year:2015, date:"2015.08.09", name:"ROCK IN JAPAN FESTIVAL 2015", venue:"LAKE STAGE · 国営ひたち海浜公園 (茨城)", id:475759,
-    songs:["青い春","手紙","ヒロイン","MOTTO","SISTER","高嶺の花子さん","スーパースターになったら"] },
-  { year:2015, date:"2015.07.25", name:"NUMBER SHOT 2015", venue:"どんたくステージ · 国営海の中道海浜公園 (福岡)", id:459036,
-    songs:["SISTER","泡と羊","高嶺の花子さん","ヒロイン","手紙","MOTTO","青い春"] },
-  { year:2015, date:"2015.06.13", name:"大ナナイト vol.100", venue:"群馬音楽センター (群馬)", id:493348,
-    songs:["ヒロイン","SISTER","電車の窓から","青い春","そのドレスちょっと待った","MOTTO","海岸通り","スーパースターになったら",{ enc:true },"高嶺の花子さん"] },
-  { year:2015, date:"2015.02.07", name:"Synapples2.0 ～no border between sounds～", venue:"豊洲PIT (東京)", id:414009,
-    songs:["003","青い春","ヒロイン","高嶺の花子さん","スーパースターになったら"] },
-  { year:2015, date:"2015.02.06", name:"Golden Circle Vol.19", venue:"国立代々木競技場 第一体育館 (東京)", id:410034,
-    songs:[{ t:"高嶺の花子さん", note:"寺岡呼人와 함께" },{ t:"ヒロイン", note:"寺岡呼人와 함께" },{ t:"花束", note:"寺岡呼人와 함께" }] },
-  { year:2014, date:"2014.12.29", name:"COUNTDOWN JAPAN 14/15", venue:"EARTH STAGE · 幕張メッセ (千葉)", id:371146,
-    songs:["003","スーパースターになったら","高嶺の花子さん","青い春","ヒロイン","MOTTO"] },
-  { year:2014, date:"2014.12.27", name:"FM802 ROCK FESTIVAL RADIO CRAZY 2014", venue:"L-STAGE · インテックス大阪 (大阪)", id:381643,
-    songs:["ヒロイン","003","MOTTO","高嶺の花子さん","スーパースターになったら","青い春"] },
-  { year:2014, date:"2014.11.28", name:"オールナイトニッポンRadio Live 忘れられぬミュージック", venue:"横浜アリーナ (神奈川)", id:370966,
-    songs:["花束","青い春","高嶺の花子さん","スーパースターになったら"] },
-  { year:2014, date:"2014.11.09", name:"ミュージックドラゴン LIVE 2014", venue:"横浜アリーナ (神奈川)", id:375172,
-    songs:["花束","高嶺の花子さん","青い春","スーパースターになったら","MOTTO","stay with me"] },
-  { year:2014, date:"2014.11.04", name:"Great Studio Live at BUDOKAN", venue:"日本武道館 (東京)", id:305084,
-    songs:["恋","fish","風の強い日",{ t:"花束", note:"秦基博와 함께" }] },
-  { year:2014, date:"2014.10.18", name:"JFL presents LIVE FOR THE NEXT", venue:"Zepp Fukuoka (福岡)", id:364743,
-    songs:["繋いだ手から","003","MOTTO","青い春","stay with me","fish","聖者の行進","高嶺の花子さん","スーパースターになったら"] },
-  { year:2014, date:"2014.08.29", name:"SPACE SHOWER SWEET LOVE SHOWER 2014", venue:"Mt. FUJI STAGE · 山中湖交流プラザきらら (山梨)", id:307852,
-    songs:["003","bird's sorrow","青い春","高嶺の花子さん","MOTTO","繋いだ手から","スーパースターになったら"] },
-  { year:2014, date:"2014.08.24", name:"MONSTER baSH 2014", venue:"空海 · 国営讃岐まんのう公園 (香川)", id:304027,
-    songs:["MOTTO","青い春","003","高嶺の花子さん","スーパースターになったら"] },
-  { year:2014, date:"2014.08.09", name:"ROCK IN JAPAN FESTIVAL 2014", venue:"LAKE STAGE · 国営ひたち海浜公園 (茨城)", id:307802,
-    songs:["半透明人間","003","青い春","高嶺の花子さん","MOTTO","繋いだ手から","スーパースターになったら"] },
-  { year:2014, date:"2014.05.02", name:"I ROCKS stand by LACCO TOWER", venue:"群馬音楽センター (群馬)", id:289641,
-    songs:["花束","fish","青い春","stay with me","高嶺の花子さん","繋いだ手から","半透明人間","スーパースターになったら"] },
-  { year:2014, date:"2014.04.29", name:"REQUESTAGE 12", venue:"大阪城ホール (大阪)", id:246512,
-    songs:["fish","花束","青い春","高嶺の花子さん"] },
-  { year:2014, date:"2014.01.18", name:"LIVE EXPO TOKYO 2014 ALL LIVE NIPPON Vol.2", venue:"国立代々木競技場 第一体育館 (東京)", id:206078,
-    songs:["花束","青い春","fish","高嶺の花子さん"] },
-  { year:2013, date:"2013.12.31", name:"COUNTDOWN JAPAN 13/14", venue:"EARTH STAGE · 幕張メッセ (千葉)", id:195080,
-    songs:["高嶺の花子さん","fish","青い春","はなびら","こぼれ落ちて","花束","bird's sorrow","半透明人間","スーパースターになったら",{ enc:true },"海岸通り"] },
-  { year:2013, date:"2013.12.28", name:"FM802 ROCK FESTIVAL RADIO CRAZY 2013", venue:"インテックス大阪 (大阪)", id:198137,
-    songs:["スーパースターになったら","fish","半透明人間","高嶺の花子さん","花束","青い春"] },
-  { year:2013, date:"2013.12.26", name:"Challe Rock Festival 2013 (cross fm 20th)", venue:"Zepp Fukuoka (福岡)", id:427187,
-    songs:["はなびら","花束","fish","こぼれ落ちて","高嶺の花子さん","青い春","bird's sorrow","半透明人間","スーパースターになったら",{ enc:true },"海岸通り"] },
-  { year:2013, date:"2013.11.23", name:"Livejack Special III Stories", venue:"大阪市中央体育館 (大阪)", id:201233,
-    songs:["高嶺の花子さん","半透明人間","わたがし","青い春","スーパースターになったら"] },
-  { year:2013, date:"2013.11.09", name:"ミュージックドラゴン LIVE 2013", venue:"横浜アリーナ (神奈川)", id:200107,
-    songs:["スーパースターになったら","思い出せなくなるその日まで","青い春","高嶺の花子さん","花束","半透明人間"] },
-  { year:2013, date:"2013.08.31", name:"音楽と髭達 2013 -CARNIVAL-", venue:"国営越後丘陵公園 (新潟)", id:173498,
-    songs:["スーパースターになったら","stay with me","青い春","高嶺の花子さん","花束","半透明人間"] },
-  { year:2013, date:"2013.08.25", name:"MONSTER baSH 2013", venue:"空海 · 国営讃岐まんのう公園 (香川)", id:170733,
-    songs:["stay with me","花束","高嶺の花子さん","半透明人間","スーパースターになったら","青い春"] },
-  { year:2013, date:"2013.08.17", name:"RISING SUN ROCK FESTIVAL 2013 in EZO", venue:"EARTH TENT · 石狩湾新港 (北海道)", id:172794,
-    songs:["高嶺の花子さん","stay with me","半透明人間","わたがし","花束","平日のブルース","はなびら","青い春","スーパースターになったら"] },
-  { year:2013, date:"2013.08.03", name:"BONE TO RUN! YUMEBANCHI 2013", venue:"CONVEX岡山 (岡山)", id:184223,
-    songs:["花束","平日のブルース","高嶺の花子さん","半透明人間","はなびら","stay with me","青い春","スーパースターになったら"] },
-  { year:2013, date:"2013.08.02", name:"ROCK IN JAPAN FESTIVAL 2013", venue:"SOUND OF FOREST · 国営ひたち海浜公園 (茨城)", id:167367,
-    songs:["青い春","stay with me","はなびら","高嶺の花子さん","花束","半透明人間","スーパースターになったら",{ enc:true },"そのドレスちょっと待った"] },
-  { year:2013, date:"2013.07.28", name:"FM802 MEET THE WORLD BEAT 2013", venue:"万博記念公園 (大阪)", id:183107,
-    songs:["高嶺の花子さん","花束","青い春"] },
-  { year:2013, date:"2013.06.03", name:"音楽ノチカラ 2nd LIVE", venue:"Zepp Namba (大阪)", id:172382,
-    songs:["花束","高嶺の花子さん","半透明人間","青い春","平日のブルース","stay with me","スーパースターになったら"] },
-  { year:2013, date:"2013.05.17", name:"androp×back number 「back×drop」", venue:"Zepp Fukuoka (福岡)", id:169523,
-    songs:["スーパースターになったら","日曜日","平日のブルース","海岸通り","花束","こぼれ落ちて","stay with me","幸せ","青い春","半透明人間"] },
-  { year:2013, date:"2013.05.04", name:"Free Your Mind", venue:"Zepp Tokyo (東京)", id:161893,
-    songs:["花束","平日のブルース","海岸通り","半透明人間","こぼれ落ちて","stay with me","青い春","スーパースターになったら"] },
-  { year:2013, date:"2013.04.26", name:"U-EXPRESS LIVE / ROCKS VOL.1", venue:"Zepp Tokyo (東京)", id:164576,
-    songs:["平日のブルース","こぼれ落ちて","半透明人間","stay with me","花束","海岸通り","青い春","スーパースターになったら"] },
-  { year:2013, date:"2013.03.23", name:"ガリゲル音楽祭「おとあい2」", venue:"なんばHatch (大阪)", id:157625,
-    songs:["恋","スーパースターになったら","海岸通り","青い春","花束","平日のブルース"] },
-  { year:2013, date:"2013.02.17", name:"LIVE SDD 2013", venue:"大阪城ホール (大阪)", id:131492,
-    songs:["青い春","花束"] },
-  { year:2012, date:"2012.12.31", name:"COUNTDOWN JAPAN 12/13", venue:"幕張メッセ (千葉)", id:123247,
-    songs:["青い春","わたがし","エンディング","半透明人間","日曜日","海岸通り","スーパースターになったら"] },
-  { year:2012, date:"2012.12.04", name:"ツタロックスペシャルLIVE", venue:"SHIBUYA O-EAST (東京)", id:125566,
-    songs:["わたがし","スーパースターになったら","半透明人間","青い春","思い出せなくなるその日まで","日曜日"] },
-  { year:2012, date:"2012.10.08", name:"SIGMA FES 2012 in OKINAWA", venue:"西原マリンパーク (沖縄)", id:113462,
-    songs:["わたがし","青い春","半透明人間","スーパースターになったら","花束","思い出せなくなるその日まで"] },
-  { year:2012, date:"2012.08.26", name:"MONSTER baSH 2012", venue:"龍神 · 国営讃岐まんのう公園 (香川)", id:98716,
-    songs:["花束","半透明人間","わたがし","スーパースターになったら"] },
-  { year:2012, date:"2012.08.18", name:"SUMMER SONIC 2012 (오사카)", venue:"FLOWER STAGE · 舞洲 (大阪)", id:108487,
-    songs:["花束","半透明人間","わたがし","思い出せなくなるその日まで","スーパースターになったら"] },
-  { year:2012, date:"2012.08.03", name:"ROCK IN JAPAN FESTIVAL 2012", venue:"WING TENT · 国営ひたち海浜公園 (茨城)", id:94552,
-    songs:["花束","半透明人間","わたがし","思い出せなくなるその日まで","スーパースターになったら",{ enc:true },"そのドレスちょっと待った"] },
-  { year:2012, date:"2012.07.29", name:"HIGHER GROUND 2012", venue:"国営海の中道海浜公園 (福岡)", id:98589,
-    songs:["わたがし","花束","スーパースターになったら"] },
-  { year:2012, date:"2012.07.14", name:"LIVE FACTORY 2012", venue:"Zepp DiverCity (東京)", id:120798,
-    songs:["花束","半透明人間","わたがし","スーパースターになったら"] },
-  { year:2011, date:"2011.12.29", name:"COUNTDOWN JAPAN 11/12", venue:"幕張メッセ (千葉)", id:59431,
-    songs:["半透明人間","こぼれ落ちて","思い出せなくなるその日まで","花束","スーパースターになったら"] },
-  { year:2011, date:"2011.09.18", name:"HIGHER GROUND 2011", venue:"国営海の中道海浜公園 (福岡)", id:57546,
-    songs:["半透明人間","思い出せなくなるその日まで","はなびら","そのドレスちょっと待った","花束","こぼれ落ちて"] },
-  { year:2011, date:"2011.09.10", name:"TREASURE05X 2011 ～greatest pleasure～", venue:"DESERT STAGE · ラグーナ蒲郡 (愛知)", id:343906,
-    songs:["半透明人間","こぼれ落ちて","花束","そのドレスちょっと待った","思い出せなくなるその日まで"] },
-  { year:2011, date:"2011.08.20", name:"MONSTER baSH 2011", venue:"龍神 · 国営讃岐まんのう公園 (香川)", id:55056,
-    songs:["半透明人間","花束","そのドレスちょっと待った"] },
-  { year:2011, date:"2011.08.12", name:"RISING SUN ROCK FESTIVAL 2011 in EZO", venue:"GREEN OASIS · 石狩湾新港 (北海道)", id:54811,
-    songs:["はなびら","そのドレスちょっと待った","こぼれ落ちて","stay with me","半透明人間","花束"] },
-  { year:2011, date:"2011.07.24", name:"SETSTOCK'11", venue:"国営備北丘陵公園 (広島)", id:55045,
-    songs:["花束","stay with me","そのドレスちょっと待った"] },
-  { year:2011, date:"2011.07.13", name:"スペースシャワー列伝 第85巻 ～三面鏡の宴～", venue:"渋谷WWW (東京)", id:426832,
-    songs:["こぼれ落ちて","海岸通り","半透明人間","花束","そのドレスちょっと待った",{ enc:true },"stay with me"] },
-  { year:2011, date:"2011.03.21", name:"SANUKI ROCK COLOSSEUM 2011", venue:"高松 (香川)", id:626873,
-    songs:["春を歌にして","海岸通り","stay with me","そのドレスちょっと待った"] },
-  { year:2010, date:"2010.07.19", name:"もりもりたべ夜祭ツアー2010", venue:"SHIBUYA O-Crest (東京)", id:41041,
-    songs:["あとのうた","おまえさん","then","tender","そのドレスちょっと待った","風の強い日","重なり","春を歌にして","いつか忘れてしまっても","西藤公園","stay with me",{ enc:true },"march","海岸通り"] },
-  { year:2009, date:"2009.10.31", name:"MINAMI WHEEL 2009", venue:"心斎橋 QUATTRO (大阪)", id:578936,
-    songs:["重なり","春を歌にして","fish","西藤公園"] },
-  { year:2009, date:"2009.06.20", name:"WONDER GROUND TOUR 2009", venue:"八王子 RIPS (東京)", id:938194,
-    songs:["KNOCK","then","sympathy","海岸通り","西藤公園"] },
-  { year:2008, date:"2008.06.28", name:"湘南音祭 Vol.2", venue:"江の島 湘南港 特設野外ステージ (神奈川)", id:361774,
-    songs:["march","then","重なり"] }
-];
-</script>
-
-<script>
-/* ── 디스코그래피 · LP ──────────────────────────────────────────
-   출처: 나무위키 back number 문서 (앨범 트랙 순서), 공식 사이트·음반사 (LP)
-   · 곡 이름이 곡 목록(SONGS)에 있으면 누르면 곡 화면으로 간다
-   · 새 앨범은 ALBUMS 에, 새 싱글은 SINGLES 맨 아래에 한 줄 추가
-   · img: 유니버설 뮤직 공식 상품 이미지 코드 (content-jp.umgi.net/products/○○_extralarge.jpg) · 비워 두면 글자 표지 */
-const ALBUMS = [
-  { kind:"orig", jp:"あとのまつり", ko:"뒤늦은 후회 (축제가 끝난 뒤)", type:"1st Album · 인디", date:"2010.06.02", img:"", tracks:["stay with me", "あとのうた", "浮ついた気持ち", "風の強い日", "tender", "そのドレスちょっと待った", "おまえさん", "ハイスクールガール", "Life", "fallman", "march", "いつか忘れてしまっても"] },
-  { kind:"orig", jp:"スーパースター", ko:"슈퍼스타", type:"2nd Album · 메이저 첫 앨범", date:"2011.10.26", img:"um/umck-1405_tpg", tracks:["はなびら", "スーパースターになったら", "花束", "思い出せなくなるその日まで", "あやしいひかり", "半透明人間", "チェックのワンピース", "ミスターパーフェクト", "こぼれ落ちて", "リッツパーティー", "電車の窓から", "幸せ"] },
-  { kind:"orig", jp:"blues", ko:"blues", type:"3rd Album", date:"2012.11.21", img:"um/umck-1434_wUR", tracks:["青い春", "手の鳴る方へ", "わたがし", "エンディング", "日曜日", "平日のブルース", "笑顔", "ささえる人の歌", "bird's sorrow", "助演女優症", "僕が今できることを", "恋"] },
-  { kind:"orig", jp:"ラブストーリー", ko:"러브 스토리", type:"4th Album", date:"2014.03.26", img:"um/UMCK-1475_mYO", tracks:["聖者の行進", "繋いだ手から", "003", "fish", "光の街", "高嶺の花子さん", "MOTTO", "君がドアを閉めた後", "こわいはなし", "ネタンデルタール人", "頬を濡らす雨のように", "世田谷ラブストーリー"] },
-  { kind:"orig", jp:"シャンデリア", ko:"샹들리에", type:"5th Album", date:"2015.12.09", img:"um/UMCK-1528_krb", tracks:["SISTER", "サイレン", "ヒロイン", "僕は君の事が好きだけど君は僕を別に好きじゃないみたい", "泡と羊", "ミラーボールとシンデレラ", "クリスマスソング", "助演女優症2", "東京の夕焼け", "Liar", "アップルパイ", "手紙"] },
-  { kind:"orig", jp:"MAGIC", ko:"MAGIC", type:"6th Album", date:"2019.03.27", img:"um/UMCK-1616_jtO", tracks:["最深部", "サマーワンダーランド", "瞬き", "あかるいよるに", "ARTIST", "オールドファッション", "ロンリネス", "雨と僕の話", "エキシビジョンデスマッチ", "monaural fantasy", "HAPPY BIRTHDAY", "大不正解"] },
-  { kind:"orig", jp:"ユーモア", ko:"유머", type:"7th Album", date:"2023.01.17", img:"um/UMCK-7197_Ihd", tracks:["秘密のキス", "怪盗", "アイラブユー", "ゴールデンアワー", "黄色", "添い寝チャンスは突然に", "Silent Journey in Tokyo", "エメラルド", "ベルベットの詩", "赤い花火", "ヒーロースーツ", "水平線"] },
-  { kind:"other", jp:"逃した魚", ko:"놓친 물고기", type:"1st Mini Album · 인디", date:"2009.02.18", img:"", tracks:["重なり", "春を歌にして", "sympathy", "then", "海岸通り", "KNOCK", "西藤公園"] },
-  { kind:"other", jp:"アンコール", ko:"앙코르", type:"Best Album · 2CD", date:"2016.12.28", img:"um/UMCK-1560_tBE", discs:[16, 16],
-    tracks:["高嶺の花子さん", "花束", "ハッピーエンド", "クリスマスソング", "はなびら", "黒い猫の歌", "fish", "君がドアを閉めた後", "青い春", "光の街", "stay with me", "MOTTO", "恋", "世田谷ラブストーリー", "半透明人間", "日曜日",
-            "春を歌にして", "僕の名前を", "SISTER", "助演女優症", "繋いだ手から", "エンディング", "そのドレスちょっと待った", "わたがし", "電車の窓から", "ヒロイン", "幸せ", "アップルパイ", "003", "手紙", "思い出せなくなるその日まで", "スーパースターになったら"] }
-];
-const SINGLES = [
-  { jp:"はなびら", no:"1st Single", date:"2011.04.06", img:"um/umck-5319_eRc" },
-  { jp:"花束", no:"2nd Single", date:"2011.06.22", img:"um/umck-5331_iod", cw:["だいじなこと", "半透明人間"] },
-  { jp:"思い出せなくなるその日まで", no:"3rd Single", date:"2011.10.05", img:"um/umck-5346_LWW" },
-  { jp:"恋", no:"4th Single", date:"2012.03.07", img:"um/umck-5364_aJl" },
-  { jp:"日曜日", no:"5th Single", date:"2012.05.30", img:"um/umck-5383_Drd", cw:["one room", "アイアムノットイナフ"] },
-  { jp:"わたがし", no:"6th Single", date:"2012.07.18", img:"um/umck-5392_ziK" },
-  { jp:"青い春", no:"7th Single", date:"2012.11.07", img:"um/umck-5412_hmn" },
-  { jp:"高嶺の花子さん", no:"8th Single", date:"2013.06.26", img:"um/umck-5434_BYW" },
-  { jp:"fish", no:"9th Single", date:"2014.02.05", img:"um/UMCK-5458_pTq" },
-  { jp:"繋いだ手から", no:"10th Single", date:"2014.03.19", img:"um/UMCK-5461_wsV" },
-  { jp:"ヒロイン", no:"11th Single", date:"2015.01.21", img:"um/UMCK-5556_YFG" },
-  { jp:"SISTER", no:"12th Single", date:"2015.05.27", img:"um/UMCK-5572_lZU" },
-  { jp:"手紙", no:"13th Single", date:"2015.08.12", img:"um/UMCK-9763_nqp" },
-  { jp:"クリスマスソング", no:"14th Single", date:"2015.11.18", img:"um/UMCK-5585_UVP" },
-  { jp:"僕の名前を", no:"15th Single", date:"2016.05.25", img:"um/UMCK-5599_zCX" },
-  { jp:"黒い猫の歌", no:"1st Digital Single", date:"2016.08.01", img:"uk/UK1AS-00501_MmU" },
-  { jp:"ハッピーエンド", no:"16th Single", date:"2016.11.16", img:"um/UMCK-5616_joT" },
-  { jp:"瞬き", no:"17th Single", date:"2017.12.20", img:"um/UMCK-5643_RGT" },
-  { jp:"大不正解", no:"18th Single", date:"2018.08.22", img:"um/UMCK-5656_loZ" },
-  { jp:"オールドファッション", no:"19th Single", date:"2018.12.19", img:"um/UMCK-5664_bFt" },
-  { jp:"HAPPY BIRTHDAY", no:"20th Single", date:"2019.02.27", img:"um/UMCK-5668_Gws" },
-  { jp:"エメラルド", no:"2nd Digital Single", date:"2020.10.12", img:"" },
-  { jp:"怪盗", no:"3rd Digital Single", date:"2021.05.24", img:"" },
-  { jp:"水平線", no:"4th Digital Single", date:"2021.08.13", img:"" },
-  { jp:"黄色", no:"21st Single", date:"2021.09.29", img:"um/UMCK-5705_hph" },
-  { jp:"ベルベットの詩", no:"5th Digital Single", date:"2022.08.26", img:"uk/UK1AS-01780_Cdm" },
-  { jp:"アイラブユー", no:"6th Digital Single", date:"2022.10.24", img:"uk/UK1AS-01807_LrU" },
-  { jp:"怪獣のサイズ", no:"7th Digital Single", date:"2023.08.04", img:"uk/UK1AS-02176_NVe" },
-  { jp:"冬と春", no:"8th Digital Single", date:"2024.01.24", img:"" },
-  { jp:"新しい恋人達に", no:"22nd Single", date:"2024.09.11", img:"um/UMCK-5760_Omi" },
-  { jp:"ブルーアンバー", no:"9th Digital Single", date:"2025.04.28", img:"uk/UK1AS-03130_jFp" },
-  { jp:"ある未来より愛を込めて", no:"10th Digital Single", date:"2025.06.20", img:"uk/UK1AS-03226_KOg" },
-  { jp:"幕が上がる", no:"11th Digital Single", date:"2025.07.31", img:"uk/UK1AS-03227_kTp" },
-  { jp:"どうしてもどうしても", no:"12th Digital Single", date:"2025.12.27", img:"uk/UK1AS-03610_Soe" }
-];
-/* ============ 곡 정보 · 이야기 (곡 화면의 [곡 정보] 버튼) ============
-   발매일 · 수록 앨범 · 싱글 · 라이브 영상 수록 여부는 자동으로 채워져요.
-   직접 쓰고 싶은 내용만 아래에 곡 id(또는 일본어 제목)로 추가하면 됩니다.
-     "Hanataba": {                       // 곡 id  (index.html 의 SONGS 에서 id:"..." 값)
-       tieup:  "드라마 ○○ 주제가",          // 타이업 (없어도 됨)
-       credit: "작사·작곡 시미즈 이요리",     // 크레딧 (없어도 됨)
-       story: `
-         곡에 얽힌 이야기를 씁니다. 정보 글과 같은 방식이에요.
-         ## 소제목,  - 목록,  **굵게**,  ![사진](images/info/파일.jpg),  유튜브 주소 한 줄
-       `
-     },
-*/
-const SONG_INFO = {
+` },
 };
-/* 라이브 음원 (스트리밍 · 유튜브 공식 음원) — tracks: [곡 제목(일본어) 또는 "#SE 이름", 유튜브 영상 id] */
-const LIVE_ALBUMS = [
-  { jp:"\u201cGrateful Yesterdays Tour 2026\u201d Live at NISSAN STADIUM", ko:"그레이트풀 예스터데이즈 투어 2026 · 닛산 스타디움", type:"라이브 음원 · 디지털", date:"2026.10.03",
-    img:"https://i.ytimg.com/vi/uYGa3sRFosI/hqdefault.jpg", shot:"2026.06.14 닛산 스타디움 (요코하마) 2일차",
-    note:"back number 첫 라이브 음원 작품. 약 7만 명이 모인 닛산 스타디움 공연의 노래와 연주, 함성을 그대로 담았어요.",
-    list:"OLAK5uy_lpAborEPc8Bc5vCEhYJz1EpZM-PNy8H6I", link:"https://backnumber.lnk.to/tour2026_audio_streaming",
-    tracks:[ ["#La Entrada (SE)","9ikUn0V_eSU"], ["幕が上がる","uYGa3sRFosI"], ["スーパースターになったら","m-rl-a_axGA"], ["クリスマスソング","xqcGm5N_ios"],
-      ["青い春","djepiTN-g_0"], ["SISTER","gStHhkuvMes"], ["大不正解","dLh293Ytcb8"], ["花束","cUvs_XBWrtE"], ["チェックのワンピース","F736I-VKckw"],
-      ["ハッピーエンド","hiFsOJUupD4"], ["君の恋人になったら","KjZRacXMWpU"], ["ベルベットの詩","kfeZmhuqO9s"], ["MOTTO","MKcjD9bv1uY"], ["ブルーアンバー","ZZgv7PxoMqA"],
-      ["どうしてもどうしても","l86ExFvDSSk"], ["新しい恋人達に","u2n2JYpYeO0"], ["怪盗","ravrfjw7ftw"], ["水平線","jD2fdgEiH24"], ["ある未来より愛を込めて","ffx4vPnhX7c"], ["高嶺の花子さん","W5aJ6-gfDyA"] ] }
-];
-const VIDEOS = [
-  { jp:"\u201canti sleeps tour 2024\u201d at SAITAMA SUPER ARENA", ko:"안티 슬립스 투어 2024 · 사이타마 슈퍼 아레나", no:"5th Live", date:"2025.06.18",
-    img:"um/UMBK-1341_TlM", shot:"2024.10.27 사이타마 슈퍼 아레나",
-    note:"시미즈 이요리의 어쿠스틱 솔로 파트(Disc 1)와 밴드 본편(Disc 2)을 함께 담은 공연. 통상반에도 투어 다큐멘터리가 들어 있어요.",
-    eds:[ ["초회한정 BOX · Blu-ray","UMXK-9043","12,100엔"], ["초회한정 BOX · DVD","UMBK-9319","11,000엔"], ["통상반 · Blu-ray (2장)","UMXK-1125/6","7,700엔"], ["통상반 · DVD (3장)","UMBK-1341/3","6,600엔"] ],
-    extra:"초회 BOX: 다큐멘터리, 3D 케이스, 3단 재킷, 56P 포토북, 스트랩 패스, 메탈 키홀더, 새틴 스티커",
-    tracks:["#Disc 1 · 시미즈 이요리 솔로","恋","東京の夕焼け","助演女優症","君がドアを閉めた後","日曜日","ささえる人の歌","ベルベットの詩","チェックのワンピース",
-      "#Disc 2 · back number","高嶺の花子さん","大不正解","アイラブユー","光の街","HAPPY BIRTHDAY","楽園の地図","水平線","最深部","ロンリネス","花束","ハッピーエンド","新しい恋人達に","怪盗","スーパースターになったら","バンド"],
-    src:"https://backnumber.info/discography/detail/95/" },
-  { jp:"in your humor tour 2023 at 東京ドーム", ko:"인 유어 유머 투어 2023 · 도쿄돔", no:"4th Live", date:"2023.10.11",
-    img:"um/UMBK-9310_glH", shot:"2023.04.16 도쿄돔",
-    note:"밴드 첫 돔 투어의 도쿄돔 공연. 앨범 『ユーモア』 수록곡이 중심이에요.",
-    eds:[ ["초회한정반 · Blu-ray","UMXK-9032","8,250엔"], ["초회한정반 · DVD (2장)","UMBK-9310","7,150엔"], ["통상반 · Blu-ray","UMXK-1104","6,930엔"], ["통상반 · DVD","UMBK-1320","5,830엔"] ],
-    extra:"초회한정반: 다큐멘터리, 52P 포토북, 클리어 케이스",
-    tracks:["アイラブユー","大不正解","SISTER","秘密のキス","クリスマスソング","ハッピーエンド","エメラルド","青い春","ヒーロースーツ","ヒロイン","手紙","Silent Journey in Tokyo","ゴールデンアワー","高嶺の花子さん","赤い花火","黄色","水平線","ベルベットの詩","スーパースターになったら","添い寝チャンスは突然に","花束","怪盗"],
-    src:"https://backnumber.info/discography/detail/87/" },
-  { jp:"NO MAGIC TOUR 2019 at 大阪城ホール", ko:"노 매직 투어 2019 · 오사카성 홀", no:"3rd Live", date:"2020.03.25",
-    img:"", shot:"2019.08.24 오사카성 홀",
-    note:"앨범 『MAGIC』 투어의 오사카성 홀 공연. 2021년 12월부터 음원 사이트에서도 라이브 음원으로 들을 수 있어요.",
-    eds:[ ["초회한정반 · Blu-ray / DVD","",""], ["통상반 · Blu-ray / DVD","",""] ],
-    extra:"초회한정반: 투어 밀착 다큐멘터리, 52P 포토북",
-    tracks:["大不正解","ARTIST","MOTTO","泡と羊","サマーワンダーランド","オールドファッション","雨と僕の話","思い出せなくなるその日まで","ロンリネス","エキシビジョンデスマッチ","003","SISTER","monaural fantasy","あかるいよるに","日曜日","電車の窓から","HAPPY BIRTHDAY","瞬き","最深部","高嶺の花子さん","スーパースターになったら","#앙코르","ハッピーエンド","手紙"],
-    src:"https://www.thefirsttimes.jp/?p=60102" },
-  { jp:"All Our Yesterdays Tour 2017 at SAITAMA SUPER ARENA", ko:"올 아워 예스터데이즈 투어 2017 · 사이타마 슈퍼 아레나", no:"2nd Live", date:"2017.11.15",
-    img:"um/UMBK-1255_igk", shot:"2017.06.04 사이타마 슈퍼 아레나",
-    note:"베스트 앨범 『アンコール』 발매 후 30만 명을 모은 아레나 투어. 첫 Blu-ray 발매작이에요.",
-    eds:[ ["초회한정반 · Blu-ray","UMXK-9017","7,700엔"], ["초회한정반 · DVD (2장)","UMBK-9298","6,600엔"], ["통상반 · Blu-ray","UMXK-1051","6,380엔"], ["통상반 · DVD","UMBK-1255","5,280엔"] ],
-    extra:"초회한정반: 전 공연 밀착 다큐멘터리, 박스 케이스, 52P 포토북",
-    tracks:["はなびら","高嶺の花子さん","003","そのドレスちょっと待った","花束","クリスマスソング","fish","黒い猫の歌","アップルパイ","MOTTO","SISTER","幸せ","助演女優症","恋","ハッピーエンド","君の恋人になったら","光の街","stay with me","繋いだ手から","青い春","スーパースターになったら","#앙코르","世田谷ラブストーリー","日曜日","海岸通り"],
-    src:"https://ja.wikipedia.org/wiki/All_Our_Yesterdays_Tour_2017_at_SAITAMA_SUPER_ARENA" },
-  { jp:"\u201clove stories tour 2014\u301c横浜ラブストーリー2\u301c\u201d", ko:"러브 스토리즈 투어 2014 ~요코하마 러브 스토리 2~", no:"1st Live", date:"2015.02.25",
-    img:"um/UMBK-9287_xOQ", shot:"2014.09.15 요코하마 아레나",
-    note:"첫 라이브 영상 작품. DVD로만 나왔고 Blu-ray는 없어요.",
-    eds:[ ["초회한정반 · DVD (2장)","UMBK-9287","6,380엔"], ["통상반 · DVD","",""] ],
-    extra:"초회한정반: 투어 밀착 메이킹 영상, 박스 케이스, 52P 포토북, 스티커",
-    tracks:["高嶺の花子さん","MOTTO","半透明人間","海岸通り","繋いだ手から","光の街","fish","幸せ","わたがし","ネタンデルタール人","bird's sorrow","003","花束","君がドアを閉めた後","世田谷ラブストーリー","stay with me","聖者の行進","青い春","スーパースターになったら","#앙코르","日曜日","恋","そのドレスちょっと待った"],
-    src:"https://www.universal-music.co.jp/backnumber/products/umbk-9287/" }
-];
-/* 앨범 초회한정반에 특전으로 들어간 라이브 영상 (단독 발매 X) */
-const ALBUM_LIVES = [
-  { jp:"\u201cSCENT OF HUMOR TOUR 2022\u201d at 幕張メッセ", ko:"센트 오브 유머 투어 2022 · 마쿠하리 멧세", no:"『ユーモア』 초회한정반 A", date:"2023.01.17",
-    img:"um/UMCK-7197_Ihd", shot:"2022.09.08 마쿠하리 멧세 국제전시장 9·10·11홀 (투어 마지막 공연)",
-    note:"7th 앨범 『ユーモア』 초회한정반 A에만 들어 있는 아레나 투어 공연 전곡 영상이에요.",
-    eds:[ ["초회한정반 A · CD+Blu-ray","UMCK-7193","8,580엔"], ["초회한정반 A · CD+DVD","UMCK-7194","7,480엔"] ],
-    extra:"투어 다큐멘터리, 52P 투어 포토북 · 초회한정반 B는 MV 7곡",
-    tracks:["怪盗","泡と羊","アップルパイ","オールドファッション","エメラルド","MOTTO","赤い花火","HAPPY BIRTHDAY","風の強い日","サマーワンダーランド","恋","黄色","勝手にオリンピック","003","半透明人間","sympathy","瞬き","水平線","高嶺の花子さん","スーパースターになったら","#앙코르","僕の名前を","日曜日","そのドレスちょっと待った"],
-    src:"https://backnumber.info/discography/detail/83/" },
-  { jp:"dome tour 2018 \u201cstay with you\u201d at TOKYO DOME", ko:"돔 투어 2018 스테이 위드 유 · 도쿄돔", no:"『MAGIC』 초회한정반 A", date:"2019.03.27",
-    img:"um/UMCK-1616_jtO", shot:"2018.08.11 도쿄돔 (첫 돔 투어)",
-    note:"6th 앨범 『MAGIC』 초회한정반 A에 들어간 첫 돔 투어 도쿄돔 공연이에요.",
-    eds:[ ["초회한정반 A · CD+Blu-ray","UMCK-9991","8,580엔"], ["초회한정반 A · CD+DVD (2장)","UMCK-9990","7,480엔"] ],
-    extra:"돔 투어 메이킹 영상, 54P 포토북 · 초회한정반 B는 MV 5곡 + 런던 촬영 포토북",
-    tracks:["瞬き","SISTER","ARTIST","青い春","チェックのワンピース","エンディング","ハッピーエンド","ゆめなのであれば","半透明人間","海岸通り","西藤公園","重なり","クリスマスソング","ヒロイン","stay with me","大不正解","MOTTO","スーパースターになったら","#앙코르","ネタンデルタール人","ささえる人の歌","高嶺の花子さん"],
-    src:"https://backnumber.info/discography/detail/67/" },
-  { jp:"tour 2016 \u201cミラーボールとシャンデリア\u201d at 幕張メッセ", ko:"투어 2016 미러볼과 샹들리에 · 마쿠하리 멧세", no:"『アンコール』 초회한정반 A", date:"2016.12.28",
-    img:"um/UMCK-1560_tBE", shot:"2016.06.19 마쿠하리 멧세 국제전시장 9·10·11홀",
-    note:"베스트 앨범 『アンコール』 초회한정반 A에 들어간 투어 공연 전곡 영상이에요.",
-    eds:[ ["초회한정반 A · 2CD+Blu-ray","UMCK-9885","8,580엔"], ["초회한정반 A · 2CD+DVD","UMCK-9886","7,480엔"] ],
-    extra:"투어 메이킹 영상, 라이브 포토북, 삼면 BOX · 초회한정반 B는 MV 22곡 + 보너스 영상",
-    tracks:["Liar","泡と羊","青い春","SISTER","わたがし","僕は君の事が好きだけど君は僕を別に好きじゃないみたい","いつか忘れてしまっても","思い出せなくなるその日まで","君がドアを閉めた後","サイレン","ミラーボールとシンデレラ","MOTTO","半透明人間","助演女優症2","東京の夕焼け","ヒロイン","クリスマスソング","僕の名前を","Hey!Brother!","高嶺の花子さん","スーパースターになったら","#앙코르","アップルパイ","手紙","そのドレスちょっと待った"],
-    src:"https://backnumber.info/discography/detail/44/" },
-  { jp:"urban live tour 2015 at 幕張メッセイベントホール", ko:"어반 라이브 투어 2015 · 마쿠하리 멧세 이벤트홀", no:"『シャンデリア』 초회한정반 A", date:"2015.12.09",
-    img:"um/UMCK-1528_krb", shot:"2015.06.07 마쿠하리 멧세 이벤트홀 (투어 마지막 공연)",
-    note:"5th 앨범 『シャンデリア』 초회한정반 A에 들어간 라이브하우스 투어 마지막 공연이에요. DVD로만 나왔어요.",
-    eds:[ ["초회한정반 A · CD+DVD","UMCK-9785","6,380엔"] ],
-    extra:"투어 메이킹 영상 · 초회한정반 B는 MV 5곡 + 쇼트 필름 3편",
-    tracks:["MOTTO","bird's sorrow","青い春","アップルパイ","そのドレスちょっと待った","SISTER","チェックのワンピース","春を歌にして","エンディング","重なり","アーバンライフ","003","電車の窓から","世田谷ラブストーリー","stay with me","ヒロイン","あとのうた","海岸通り","スーパースターになったら","#앙코르","花束","泡と羊","高嶺の花子さん"],
-    src:"https://backnumber.info/discography/detail/36/" },
-  { jp:"live at 日本武道館 -stay with us-", ko:"라이브 앳 일본 부도칸 -스테이 위드 어스-", no:"『ラブストーリー』 초회한정반 A", date:"2014.03.26",
-    img:"um/UMCK-1475_mYO", shot:"2013.09.07 일본 부도칸 (첫 부도칸 공연)",
-    note:"4th 앨범 『ラブストーリー』 초회한정반 A에 들어간 첫 부도칸 공연 전곡 영상이에요. DVD로만 나왔어요.",
-    eds:[ ["초회한정반 A · CD+DVD","UMCK-9661","6,380엔"] ],
-    extra:"메이킹 영상 · 초회한정반 B는 MV + 스튜디오 퍼포먼스",
-    tracks:["半透明人間","こぼれ落ちて","そのドレスちょっと待った","日曜日","わたがし","思い出せなくなるその日まで","春を歌にして","はなびら","bird's sorrow","平日のブルース","高嶺の花子さん","恋","幸せ","風の強い日","stay with me","重なり","青い春","スーパースターになったら","#앙코르","リッツパーティー","ささえる人の歌","花束","海岸通り"],
-    src:"https://backnumber.info/discography/detail/27/" }
-];
-const LPS = [
-  { date:"2026.12.05", title:"오리지널 앨범 6작 아날로그 LP (레코드의 날 2026)", status:"발매 예정",
-    spec:"각 2LP · 180g 중량반 · 45회전 · 하프 스피드 마스터링 · 각 6,000엔(세금 별도)",
-    note:"『MAGIC』『ユーモア』는 첫 LP화. 나머지 4작은 2018년 LP가 품절된 뒤 재발매.",
-    items:[ ["スーパースター","","um/UMJK-9085_HIi"], ["blues","","um/UMJK-9087_HIi"], ["ラブストーリー","","um/UMJK-9089_pxj"], ["シャンデリア","","um/UMJK-9091_HIi"], ["MAGIC","첫 LP","um/UMCK-1616_jtO"], ["ユーモア","첫 LP","um/UMCK-7197_Ihd"] ],
-    src:"https://www.cdjournal.com/news/back-number/128934", buy:"https://backnumber.lnk.to/6lp_albums" },
-  { date:"2018.11.03", title:"메이저 오리지널 앨범 4작 아날로그 LP (레코드의 날 2018)", status:"품절",
-    spec:"각 2LP · 180g 중량반 · 하프 스피드 마스터링",
-    note:"메이저 데뷔 후 앨범 4작의 첫 LP. 현재는 품절이라 중고로만 구할 수 있어요.",
-    items:[ ["スーパースター","UMJK-9085/6","um/UMJK-9085_HIi"], ["blues","UMJK-9087/8","um/UMJK-9087_HIi"], ["ラブストーリー","UMJK-9089/90","um/UMJK-9089_pxj"], ["シャンデリア","UMJK-9091/2","um/UMJK-9091_HIi"] ],
-    src:"https://natalie.mu/music/news/294831" }
-];
-</script>
-
-<header class="top">
-  <div class="wrap">
-    <a class="logo" href="#/"><span class="dot"></span>back number</a>
-    <span class="badge-unofficial">비공식</span>
-    <span class="spacer"></span>
-    <button class="icon-btn refresh-btn" data-refresh aria-label="새로고침" title="새로고침 (최신 내용 불러오기)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg></button>
-    <button class="icon-btn" id="themeBtn" aria-label="화면 테마 바꾸기">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-    </button>
-  </div>
-</header>
-
-<main class="wrap" id="app"></main>
-
-<nav class="tabs" aria-label="메뉴">
-  <div class="wrap">
-    <a href="#/" data-r="">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>홈</a>
-    <a href="#/schedule" data-r="schedule">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>일정</a>
-    <a href="#/mv" data-r="mv">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor"/></svg>곡</a>
-    <a href="#/info" data-r="info">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.01"/></svg>정보</a>
-  </div>
-</nav>
-
-<script>
-/* ============ 도우미 ============ */
-const $ = s => document.querySelector(s);
-const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const WD = ["일","월","화","수","목","금","토"];
-const toDate = (s, endOfDay) => {
-  if (!s) return null;
-  if (s.includes("T")) return new Date(s + ":00+09:00");
-  return new Date(s + (endOfDay ? "T23:59:59+09:00" : "T00:00:00+09:00"));
-};
-const parts = s => { const [y,m,d] = s.slice(0,10).split("-").map(Number); return {y,m,d,w:WD[new Date(Date.UTC(y,m-1,d)).getUTCDay()]}; };
-const fmt = s => { const p = parts(s); return `${p.m}/${p.d}(${p.w})`; };
-const timeOf = s => s.includes("T") ? s.slice(11,16) : "";
-const TYPE = { live:["공연","t-live"], ticket:["티켓","t-ticket"], release:["발매","t-release"], media:["방송·스트리밍","t-media"], other:["기타","t-other"] };
-
-function evTitle(e){
-  if (e.title) return e.title;
-  if (e.tour) return DATA.tours[e.tour].title;
-  return "";
-}
-function status(e, now=new Date()){
-  if (e.tba) return "future";
-  const s = toDate(e.date), en = toDate(e.end || e.date, true);
-  if (now > en) return "past";
-  if (now >= s) return "now";
-  return "future";
-}
-function statusTag(e){
-  if (e.tba) return `<span class="tag t-check">날짜 미정</span>`;
-  const st = status(e);
-  if (e.soldout) return `<span class="tag t-done">품절</span>`;
-  if (e.type === "ticket"){
-    if (st === "now") return `<span class="tag t-open">접수 중</span>`;
-    if (st === "past") return `<span class="tag t-done">마감</span>`;
-    return "";
-  }
-  if (st === "past") return `<span class="tag t-done">종료</span>`;
-  return "";
-}
-function dateRange(e){
-  if (e.tba){ const p = parts(e.date); return `${p.y}년 ${p.m}월 예정`; }
-  let s = fmt(e.date);
-  const t = timeOf(e.date);
-  if (t) s += " " + t;
-  if (e.end){
-    const a = parts(e.date), b = parts(e.end);
-    s += a.m === b.m ? ` ~ ${b.d}(${b.w})` : ` ~ ${b.m}/${b.d}(${b.w})`;
-  }
-  return s;
-}
-function srcLink(url){ return url ? `<a class="src" href="${esc(url)}" target="_blank" rel="noopener">출처</a>` : ""; }
-
-function evRow(e){
-  const p = parts(e.date), [lbl, cls] = TYPE[e.type];
-  const place = [e.venue, e.city].filter(Boolean).join(" · ");
-  const tour = e.tour ? DATA.tours[e.tour] : null;
-  return `<div class="ev ${status(e)==="past"?"past":""}">
-    <div class="d">${e.tba ? `<b>?</b><span>${p.m}월</span>` : `<b>${p.d}</b><span>${p.m}월 ${p.w}</span>`}</div>
-    <div class="b">
-      <div><span class="tag ${cls}">${lbl}</span> ${statusTag(e)}</div>
-      <div class="ttl">${esc(evTitle(e))}</div>
-      <div class="info">${esc(dateRange(e))}${place ? " · " + esc(place) : ""}</div>
-      ${e.note ? `<div class="info">${esc(e.note)}</div>` : ""}
-      ${srcLink(e.src || (tour && tour.src))}
-    </div>
-  </div>`;
-}
-const sorted = () => [...DATA.events].sort((a,b) => toDate(a.date) - toDate(b.date));
-
-/* ============ 화면: 홈 (아이묭·바운디 사이트와 같은 구성) ============
-   제목 → NEXT LIVE → D-day 알약 → 공연 날짜 줄 → 메인 버튼 → 메뉴 카드 → 공유 */
-const DOW_EN = ["SUN","MON","TUE","WED","THU","FRI","SAT"];
-const pad = n => String(n).padStart(2, "0");
-const kstMs = (ymd, hm) => new Date(`${ymd}T${hm || "00:00"}:00+09:00`).getTime();
-const liveTitle = e => (e.short || e.title || (e.tour ? DATA.tours[e.tour].title : "")).replace(/^back number\s+/i, "");
-const liveSrc = e => e.src || (e.tour ? DATA.tours[e.tour].src : DATA.links.official);
-
-/* 공연(여러 날짜 포함)을 하루씩 풀어 놓는다 — 날짜 미정(tba)은 빼고 */
-function liveDays(){
-  const out = [];
-  sorted().filter(e => e.type === "live" && !e.tba).forEach((e, gi) => {
-    const first = e.date.slice(0, 10), time = e.date.includes("T") ? e.date.slice(11, 16) : "";
-    const last = (e.end || first).slice(0, 10);
-    for (let t = kstMs(first); t <= kstMs(last); t += 864e5){
-      const ymd = new Date(t + 9 * 36e5).toISOString().slice(0, 10);
-      out.push({ e, gi, ymd, time,
-        dayFrom: kstMs(ymd), dayTo: kstMs(ymd) + 864e5,
-        startMs: time ? kstMs(ymd, time) : null,
-        dow: new Date(kstMs(ymd) + 9 * 36e5).getUTCDay() });
-    }
-  });
-  return out;
-}
-function focusLiveDay(now){ return liveDays().find(x => now < x.dayTo) || null; }
-const nextTba = () => sorted().find(e => e.type === "live" && e.tba) || null;
-
-function viewHome(){
-  const L = DATA.links;
-  const now = Date.now();
-  const upcoming = [];
-  sorted().filter(e => e.type === "live" && (e.tba || toDate(e.end || e.date, true) >= new Date(now))).forEach(e => {
-    const g = e.tour && upcoming.find(u => u.tour === e.tour);
-    if (g){ g.end = e.end || e.date; g.count++; return; }
-    upcoming.push({ ...e, count: 1 });
-  });
-  upcoming.forEach(u => { if (u.tour && u.count > 1){ u.venue = `${u.count}곳`; u.city = ""; u.title = DATA.tours[u.tour].title; } });
-  const ico = {
-    cal:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>`,
-    list:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01"/></svg>`,
-    mv:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor"/></svg>`,
-    key:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="12" r="4"/><path d="M12 12h9M18 12v3M21 12v2"/></svg>`,
-    bag:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12l-1 13H7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>`
-  };
-  const info = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.01"/></svg>`;
-  const doc = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h10l4 4v12H5z"/><path d="M9 12h6M9 16h6"/></svg>`;
-  const disc = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.5"/></svg>`;
-  const GO = `<svg class="hb-go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg>`;
-  const menu = [
-    ["#/schedule", ico.cal, "라이브 일정", upcoming.length ? "다음 공연 " + (upcoming[0].tba ? dateRange(upcoming[0]) : fmt(upcoming[0].date)) : "발표된 공연 없음"],
-    ["#/setlist", ico.list, "셋리스트", "콘서트별 곡 순서"],
-    ["#/disco", disc, "앨범 · LP", "라이브 음원 · BD 포함"],
-    ["#/goods", ico.bag, "굿즈", "2011~ 아카이브"],
-    ["#/about", info, "소개", "멤버 · 연혁"],
-    ["#/info", doc, "정보", "원정 · 구매 가이드"]
-  ];
-  /* 메인 B (포스터형): 위(PC는 왼쪽) 큰 사진 + 제목 / 아래(PC는 오른쪽) 카운트다운 · 노래 · 메뉴 */
-  return `
-  <section class="homeB">
-    <button class="icon-btn hb-theme hb-refresh" data-refresh aria-label="새로고침" title="새로고침 (최신 내용 불러오기)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg></button>
-    <button class="icon-btn hb-theme" data-theme-btn aria-label="화면 테마 바꾸기">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-    </button>
-    <div class="hb-hero">
-      <div class="hb-title"><small>KOREAN FAN GUIDE · 비공식</small><h1>back<br>number</h1></div>
-    </div>
-    <div class="hb-sheet">
-      <div class="cd-pill hb-live" id="cd-pill">
-        <div class="hb-live-top">
-          <div class="hb-live-l"><small class="hb-kicker">NEXT LIVE</small><b class="next-cap" id="next-cap" data-short="1"></b></div>
-          <div class="hb-live-r"><span class="cd-dday" id="cd-dday">D-00</span><span class="cd-sep"></span><span class="cd-clock" id="cd-clock">00:00:00</span></div>
-        </div>
-        <div class="hb-tt" id="liveTT" hidden></div>
-      </div>
-      ${DATA.events.filter(e => e.home && !e.soldout && status(e) === "now").map(e => `
-      <a class="hb-notice" href="${esc(e.src || "#/schedule")}"${e.src ? ' target="_blank" rel="noopener"' : ""}>
-        <span class="hb-n-dot"></span>
-        <span class="hb-n-t"><b>${esc(e.home)}</b><small>${e.end ? `~ ${fmt(e.end)}${timeOf(e.end) ? " " + (timeOf(e.end) === "12:00" ? "정오" : timeOf(e.end)) : ""}까지` : ""}${e.note ? ` · ${esc(e.note.split(" · ")[0].replace(/^one room\s*/i, ""))}` : ""}</small></span>
-        <span class="hb-n-go">공지 ↗</span>
-      </a>`).join("")}
-      <a class="hb-song" href="#/mv"><svg class="hb-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg><span><b>back number 노래</b><small>${SONGS.length}곡 · 가사 · 응원법</small></span>${GO}</a>
-      <nav class="hb-rows" aria-label="메뉴">${menu.map(([h, ic, t, sub]) => `
-        <a href="${h}"><i class="hb-ico">${ic}</i><span><b>${t}</b><small>${esc(sub)}</small></span>${GO}</a>`).join("")}
-      </nav>
-      <div class="tile-links">
-        <a href="${L.official}" target="_blank" rel="noopener">공식사이트 ↗</a>
-        <a href="${L.youtube}" target="_blank" rel="noopener">YouTube ↗</a>
-        <a href="${L.x}" target="_blank" rel="noopener">X ↗</a>
-        <a href="${L.instagram}" target="_blank" rel="noopener">Instagram ↗</a>
-      </div>
-      <div class="home-foot">
-        <button class="share-btn" type="button" id="shareBtn">공유하기</button>
-        <button class="share-btn" type="button" id="installBtn"${IS_STANDALONE ? " hidden" : ""}>＋ 홈 화면에 바로가기</button>
-      </div>
-      <div class="install-guide" id="installGuide" hidden></div>
-      <div class="credits">back number · 비공식 팬 제작 가이드 · back number 및 소속사와 관계없어요</div>
-    </div>
-  </section>`;
-}
-
-let nextLiveKey = null;
-function paintNextLive(focus){
-  const box = $("#next-live") || document.createElement("div"), cap = $("#next-cap");   // 공연 정보 박스는 숨김 (다시 쓰려면 홈에 <div class="show-meta" id="next-live"></div> 추가)
-  const tba = focus ? null : nextTba();
-  const key = focus ? "g" + focus.gi : tba ? "tba" : "none";
-  if (key === nextLiveKey) return;
-  nextLiveKey = key;
-  if (focus){
-    cap.textContent = (cap.dataset.short ? "" : "NEXT LIVE · ") + liveTitle(focus.e);
-    const days = liveDays().filter(x => x.gi === focus.gi);
-    box.innerHTML = days.map(x => `
-      <a class="show-row" data-day="${x.ymd}" href="${liveSrc(x.e)}" target="_blank" rel="noopener">
-        <span class="show-day">${x.ymd.slice(5).replace("-", ".")}<span class="dow">${DOW_EN[x.dow]}</span></span>
-        <span class="show-time">${x.time || "TBA"}<span class="go">↗</span></span>
-      </a>`).join("")
-      + `<a class="show-venue" href="${liveSrc(focus.e)}" target="_blank" rel="noopener">${esc([focus.e.venue, focus.e.city].filter(Boolean).join(" · "))}</a>`;
-    return;
-  }
-  if (tba){
-    const p = parts(tba.date);
-    cap.textContent = (cap.dataset.short ? "" : "NEXT LIVE · ") + liveTitle(tba);
-    box.innerHTML = `
-      <a class="show-row" href="${liveSrc(tba)}" target="_blank" rel="noopener">
-        <span class="show-day">${p.y}.${pad(p.m)}<span class="dow">~</span></span>
-        <span class="show-time">날짜·장소 발표 전<span class="go">↗</span></span>
-      </a>
-      ${tba.note ? `<span class="show-note">${esc(tba.note)}</span>` : ""}`;
-    return;
-  }
-  box.innerHTML = ""; cap.textContent = "";
-}
-function setPill(dday, clock, mode){
-  const pill = $("#cd-pill"); if (!pill) return;
-  $("#cd-dday").textContent = dday;
-  $("#cd-clock").textContent = clock || "";
-  pill.classList.toggle("is-live", mode === "live");
-  pill.classList.toggle("is-end", mode === "end");
-  pill.classList.toggle("is-soon", mode === "soon");
-}
-let cdTimer = null;
-function startCountdown(){
-  clearInterval(cdTimer);
-  nextLiveKey = null;
-  const tick = () => {
-    if (!$("#cd-pill")){ clearInterval(cdTimer); return; }
-    const now = Date.now(), focus = focusLiveDay(now);
-    paintNextLive(focus);
-    document.querySelectorAll(".show-row[data-day]").forEach(r => {
-      const d = liveDays().find(x => x.ymd === r.dataset.day && x.gi === (focus && focus.gi));
-      r.classList.toggle("past", !!d && now >= d.dayTo);
-      r.classList.toggle("live", !!d && now >= d.dayFrom && now < d.dayTo);
-    });
-    if (!focus){
-      const t = nextTba();
-      if (t){ const p = parts(t.date); setPill(`${p.y}.${pad(p.m)}`, "COMING SOON", "soon"); }
-      else setPill("END", "", "end");
-      clearInterval(cdTimer); return;
-    }
-    if (focus.startMs !== null && now >= focus.startMs){ setPill("NOW", "ON AIR", "live"); return; }
-    if (focus.startMs === null && now >= focus.dayFrom){ setPill("D-DAY", "TODAY", "live"); return; }
-    const todayKst = kstMs(new Date(now + 9 * 36e5).toISOString().slice(0, 10));
-    const d = Math.round((focus.dayFrom - todayKst) / 864e5);
-    if (focus.startMs === null){ setPill(`D-${pad(d)}`, "TBA", "count"); return; }
-    const diff = focus.startMs - now;
-    const h = Math.floor(diff / 36e5) % 24, m = Math.floor(diff % 36e5 / 6e4), s = Math.floor(diff % 6e4 / 1e3);
-    setPill(`D-${pad(d)}`, `${pad(h)}:${pad(m)}:${pad(s)}`, "count");
-  };
-  tick(); cdTimer = setInterval(tick, 1000);
-}
-/* ── 홈 화면 바로가기 (앱처럼 설치) ── */
-const IS_STANDALONE = matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
-let installEvt = null;
-window.addEventListener("beforeinstallprompt", e => { e.preventDefault(); installEvt = e; });
-window.addEventListener("appinstalled", () => { installEvt = null; const b = $("#installBtn"); if (b) b.hidden = true; });
-function installGuideHtml(){
-  const ua = navigator.userAgent, ios = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
-  const steps = ios
-    ? ["Safari 아래쪽 <b>공유 버튼</b> (네모에 위쪽 화살표)을 눌러요", "목록에서 <b>홈 화면에 추가</b>를 골라요", "오른쪽 위 <b>추가</b>를 누르면 끝"]
-    : /SamsungBrowser/.test(ua)
-    ? ["아래쪽 <b>≡ 메뉴</b>를 눌러요", "<b>페이지 추가 → 홈 화면</b>을 골라요"]
-    : /Android/.test(ua)
-    ? ["오른쪽 위 <b>⋮ 메뉴</b>를 눌러요", "<b>홈 화면에 추가</b> (또는 <b>앱 설치</b>)를 골라요"]
-    : ["주소창 오른쪽 <b>설치 아이콘</b> 또는 <b>⋮ 메뉴 → 저장 및 공유 → 바로가기 만들기</b>를 눌러요"];
-  return `<b class="ig-title">홈 화면에 바로가기 만들기</b><ol>${steps.map(x => `<li>${x}</li>`).join("")}</ol><button class="ig-x" type="button" aria-label="닫기">닫기</button>`;
-}
-function bindHome(){
-  { const ib = $("#installBtn"), g = $("#installGuide");
-    if (ib) ib.onclick = async () => {
-      if (installEvt){                        // 안드로이드 크롬·PC 크롬/엣지: 바로 설치 창
-        installEvt.prompt();
-        try { const r = await installEvt.userChoice; if (r.outcome === "accepted") ib.hidden = true; } catch(e){}
-        installEvt = null; return;
-      }
-      g.innerHTML = installGuideHtml(); g.hidden = !g.hidden;            // 아이폰 등: 방법 안내
-      g.querySelector(".ig-x").onclick = () => { g.hidden = true; };
-      if (!g.hidden) g.scrollIntoView({ block:"center", behavior:"smooth" });
-    }; }
-  $("#shareBtn").onclick = async () => {
-    const data = { title: "back number", text: "백넘버 한국 팬을 위한 비공식 가이드", url: location.origin + location.pathname };
-    try {
-      if (navigator.share) await navigator.share(data);
-      else { await navigator.clipboard.writeText(data.url); $("#shareBtn").textContent = "주소를 복사했어요"; }
-    } catch(e){}
-  };
-  const tb = document.querySelector("[data-theme-btn]");
-  if (tb) tb.onclick = () => $("#themeBtn").click();
-}
-
-/* ============ 화면: 일정 ============ */
-const sched = { filter: "all", past: false };
-try { const v = JSON.parse(localStorage.getItem("bn-sched") || "null"); if (v) Object.assign(sched, v); } catch(e){}
-function viewSchedule(){
-  const f = [["all","전체"],["live","공연"],["ticket","티켓"],["release","발매"],["media","방송·스트리밍"]];
-  let list = sorted().filter(e => sched.filter === "all" || e.type === sched.filter || (sched.filter === "media" && e.type === "other"));
-  if (!sched.past) list = list.filter(e => status(e) !== "past");
-  let html = "", cur = "";
-  for (const e of list){
-    const p = parts(e.date), key = `${p.y}년 ${p.m}월`;
-    if (key !== cur){ if (cur) html += `</div>`; html += `<div class="month">${key}</div><div class="card">`; cur = key; }
-    html += evRow(e);
-  }
-  if (cur) html += `</div>`;
-  return `
-  <h1>일정</h1>
-  <p class="sub">시간은 모두 한국 시간이에요 (일본과 시차 없음). 원본: <a href="${DATA.links.schedule}" target="_blank" rel="noopener">공식 스케줄</a></p>
-  <div class="chips" role="group" aria-label="종류">
-    ${f.map(([k,l]) => `<button class="chip" data-f="${k}" aria-pressed="${sched.filter===k}">${l}</button>`).join("")}
-  </div>
-  <label class="toggle"><input type="checkbox" id="pastChk" ${sched.past?"checked":""}> 지난 일정도 보기</label>
-  ${html || `<div class="card muted">해당하는 일정이 없어요.</div>`}
-  ${footer()}`;
-}
-function bindSchedule(){
-  document.querySelectorAll(".chip").forEach(b => b.onclick = () => { sched.filter = b.dataset.f; saveSched(); render(); });
-  $("#pastChk").onchange = e => { sched.past = e.target.checked; saveSched(); render(); };
-}
-function saveSched(){ try { localStorage.setItem("bn-sched", JSON.stringify(sched)); } catch(e){} }
-
-/* ============ 화면: back number 소개 (#/about) ============
-   ✏️ 내용은 INFO 안만 고치면 됩니다 (출처: 나무위키 · 공식 사이트) */
-const INFO = {
-  intro: [
-    "일본 군마현 출신의 3인조 록 밴드. 2004년 보컬 시미즈 이요리를 중심으로 결성됐어요.",
-    "밴드 이름은 '지난 호 잡지'를 뜻하는 영어 back number에서 따왔어요. 전 여자친구에게 자신은 지난 호 잡지 같은 존재일 뿐이라는 생각에서 지었다고 해요.",
-    "공감 가는 짝사랑·이별 가사로 유명하고, 드라마·영화 주제가를 많이 불렀어요. 「クリスマスソング」「ヒロイン」「ハッピーエンド」로 '겨울에 어울리는 밴드'라는 이미지도 생겼어요."
-  ],
-  facts: [
-    ["결성", "2004년 · 군마현"],
-    ["인디 데뷔", "2009.02.18 · 미니 앨범 『逃した魚』"],
-    ["메이저 데뷔", "2011.04.06 · 싱글 「はなびら」"],
-    ["소속", "UNIVERSAL SIGMA (유니버설 뮤직)"],
-    ["팬클럽", "one room"]
-  ],
-  members: [
-    { ko:"시미즈 이요리", jp:"清水依与吏", en:"Iyori Shimizu", part:"보컬 · 기타", birth:"1984.07.09", from:"군마현 오타시", note:"작사·작곡 대부분 담당" },
-    { ko:"코지마 카즈야", jp:"小島和也", en:"Kazuya Kojima", part:"베이스 · 코러스", birth:"1984.05.16", from:"군마현 이세사키시", note:"2005년 정식 가입" },
-    { ko:"쿠리하라 히사시", jp:"栗原寿", en:"Hisashi Kurihara", part:"드럼", birth:"1985.07.24", from:"군마현 이세사키시", note:"2006년 합류" }
-  ],
-  /* 서포트 멤버: 투어마다 바뀌어요. 새 투어가 시작되면 now 를 바꾸고, 이전 멤버는 past 로 옮기세요 */
-  support: {
-    now: { tour:"Grateful Yesterdays Tour 2026", list:[
-      { ko:"하타미야 코타", jp:"幡宮航太", part:"키보드", note:"2026 투어부터 새로 합류" },
-      { ko:"후지타 유스케", jp:"フジタユウスケ", part:"어쿠스틱 기타 · 코러스", note:"2026 투어부터 새로 합류" },
-      { ko:"카키자와 히데요시", jp:"柿澤秀吉", part:"기타", note:"SCENT OF HUMOR TOUR 2022 이후 다시 참여" }
-    ] },
-    past: { tour:"live film 2020 \u201cASH\u201d ~ anti sleeps tour 2024", list:[
-      { ko:"무라타 아키라", jp:"村田昭", part:"키보드", note:"" },
-      { ko:"야자와 소타", jp:"矢澤壮太", part:"기타 · 코러스", note:"밴드 URCHIN FARM 보컬·기타" },
-      { ko:"후지타 아키라", jp:"藤田顕", part:"기타", note:"" }
-    ] }
-  },
-  history: [
-    ["2004", "군마현에서 결성"],
-    ["2009", "미니 앨범 『逃した魚』로 인디 데뷔"],
-    ["2011", "싱글 「はなびら」로 메이저 데뷔"],
-    ["2013", "첫 부도칸 공연 「stay with us」 · 첫 팬클럽 투어 one room party vol.1"],
-    ["2015", "「クリスマスソング」 밀리언 히트 · 5집 『シャンデリア』 오리콘 월간 1위"],
-    ["2016", "첫 베스트 앨범 『アンコール』"],
-    ["2018", "첫 돔 투어 「stay with you」 (나고야·도쿄·오사카)"],
-    ["2021", "BTS 일본어 곡 「Film out」 작곡·프로듀싱 (첫 타 아티스트 곡 제공)"],
-    ["2022", "NHK 홍백가합전 첫 출연 (「アイラブユー」「高嶺の花子さん」)"],
-    ["2023", "7집 『ユーモア』 · 첫 5대 돔 투어 「in your humor tour 2023」"],
-    ["2024", "게스트를 부르는 대반 아레나 투어 「anti sleeps tour 2024」"],
-    ["2026", "「Grateful Yesterdays Tour 2026」 · 9월 첫 내한 공연 (고양 KINTEX)"]
-  ],
-  fanclub: {
-    name: "one room",
-    desc: "공식 팬클럽. 이름은 같은 제목의 곡 「one room」에서 왔어요. 팬클럽 투어 「one room party」를 열어요.",
-    keys: [
-      ["GOLD KEY", "팬클럽 투어 one room party 추첨 신청 가능 (국내·해외 회원)"],
-      ["SILVER KEY", "one room party 신청은 안 돼요"]
-    ],
-    note: "가입 방법·회비는 공식 사이트에서 확인하세요."
-  },
-  links: [
-    ["공식 사이트", "https://backnumber.info/?lang=ko"],
-    ["YouTube", "https://www.youtube.com/c/backnumberchannel"],
-    ["X (스태프)", "https://x.com/backnumberstaff"],
-    ["X (이요리)", "https://x.com/iyotter_bn"],
-    ["X (카즈야)", "https://x.com/kojimakazuya"],
-    ["Instagram", "https://www.instagram.com/back_number_official/"],
-    ["TikTok", "https://www.tiktok.com/@back_number_official"],
-    ["온라인 스토어", "https://store.plusmember.jp/backnumberonlinestore/"]
-  ]
-};
-function viewAbout(){
-  const I = INFO;
-  return `
-  <h1>back number</h1>
-  <p class="sub">백 넘버 · バックナンバー</p>
-  <div class="card">${I.intro.map(p => `<p class="info-p">${esc(p)}</p>`).join("")}
-    <dl class="kv info-kv">${I.facts.map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("")}</dl>
-  </div>
-
-  <h2>멤버</h2>
-  <div class="member-grid">${I.members.map(m => `
-    <div class="card member">
-      <div class="m-part">${esc(m.part)}</div>
-      <div class="m-name">${esc(m.ko)}</div>
-      <div class="m-jp">${esc(m.jp)} · ${esc(m.en)}</div>
-      <div class="m-meta">${esc(m.birth)} · ${esc(m.from)}</div>
-      ${m.note ? `<div class="m-meta">${esc(m.note)}</div>` : ""}
-    </div>`).join("")}</div>
-
-  <h3 class="sup-h">서포트 멤버</h3>
-  <p class="small muted" style="margin:0 0 8px">라이브에서 세 멤버와 함께 무대에 서는 연주자들이에요. 투어마다 바뀔 수 있어요.</p>
-  ${[["지금", I.support.now], ["이전", I.support.past]].map(([k, g]) => `
-  <div class="card sup-card">
-    <div class="sup-tour"><span class="tag ${k === "지금" ? "t-release" : "t-done"}">${k}</span> ${esc(g.tour)}</div>
-    ${g.list.map(m => `<div class="sup-row"><span class="sup-part">${esc(m.part)}</span><span class="sup-name"><b>${esc(m.ko)}</b> <small>${esc(m.jp)}</small>${m.note ? `<small class="sup-note">${esc(m.note)}</small>` : ""}</span></div>`).join("")}
-  </div>`).join("")}
-
-  <h2>연혁</h2>
-  <div class="card timeline">${I.history.map(([y, t]) => `
-    <div class="tl-row"><span class="tl-y">${esc(y)}</span><span class="tl-t">${esc(t)}</span></div>`).join("")}</div>
-
-  <h2>팬클럽 ${esc(I.fanclub.name)}</h2>
-  <div class="card">
-    <p class="info-p">${esc(I.fanclub.desc)}</p>
-    <dl class="kv info-kv">${I.fanclub.keys.map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("")}</dl>
-    <p class="small muted" style="margin:10px 0 0">${esc(I.fanclub.note)}</p>
-  </div>
-
-  <h2>공식 링크</h2>
-  <div class="card glist">${I.links.map(([l, u]) => `<a href="${u}" target="_blank" rel="noopener">${esc(l)}<span>↗</span></a>`).join("")}</div>
-  <p class="src">※ 소개·멤버·연혁은 나무위키를 참고했어요. 서포트 멤버는 공식 라이브 리포트(THE FIRST TIMES · OTOTOY · rockin'on) 기준이에요.</p>
-  ${footer()}`;
-}
-
-
-/* ============ 화면: 정보 (#/info) ============
-   곡 목록처럼 "글 목록 → 글 화면(블로그)" 으로 운영하는 곳.
-   ✏️ 글 쓰는 법
-     1) 브라우저에서 index.html#/write 를 열면 글쓰기 화면이 나와요 (미리보기 + 사진 넣기).
-     2) 다 쓰고 [코드 복사] → 아래 INFO_POSTS 의 [ 바로 다음 줄에 붙여 넣기 (최신 글이 위).
-     3) 사진 파일은 글마다 images/info/글id/ 폴더에 넣기 (예: images/info/unext-guide/1.webp).
-
-   글 한 개 모양
-     {
-       id:    "fanclub-guide",          // 주소에 쓰임 → #/info/fanclub-guide  (영문·숫자·- 만)
-       title: "팬클럽 one room 가입 방법",
-       date:  "2026.10.01",
-       tag:   "팬클럽",                  // 목록 위 분류 버튼으로 자동 정리 (없어도 됨)
-       summary: "목록에 보이는 한 줄 설명", // 없어도 됨
-       cover: "images/info/표지.jpg",     // 목록 썸네일 (없으면 본문 첫 사진)
-       body: `
-         여기에 본문을 씁니다. 빈 줄로 문단을 나눕니다.
-
-         ## 소제목                       ← 줄 맨 앞 ## (작은 소제목은 ###)
-         - 점 목록                       ← - 로 시작
-         1. 순서 목록                    ← 1. 2. 3.
-         > 팁 상자                       ← > 로 시작 (>! 로 시작하면 '주의' 상자)
-         **굵게**   [링크 글자](https://...)
-         ![사진 설명](images/info/사진.jpg)   ← 사진 (설명은 사진 아래 작게 표시, 누르면 크게)
-         ![](images/info/a.jpg)              ← 사진 줄을 빈 줄 없이 연달아 쓰면
-         ![](images/info/b.jpg)                 나란히 2장씩 보여요
-         https://youtu.be/영상ID          ← 유튜브 주소만 한 줄에 쓰면 영상이 들어가요
-         ---                              ← 구분선
-       `
-     },
-*/
-const INFO_POSTS = [
-    {
-    id:"Ltk", title:"원정 콘서트 편의점 결제 하는 법", date:"2026.10.03", tag:"정보",
-    body:`
-    로치케 앱을 통하여 선행 신청 시 간혹 한국카드가 막히거나, 추첨당일 결제가 안되는 경우가 종종 있다. 
-    그래서 편의점 결제를 신청하여, 일본 로손 편의점에서 금액을 지불하는 편결로 진행하시는 분들이 상당히 많다. 
-
-    편결하는 방법은 매우 단순하나 일본을 가야하므로 구글에 편의점 결제만 대행 해주는 업체도 있을 정도이다. 
-
-    **편의점 결제 방법**
-    ![](images/info/Ltk/lt.webp)
-    일단 선행 당첨이 되면 확인 메일이 온다. 
-    loppi 라고 적힌곳 밑에 링크를 클릭하면 QR가 보이는 걸 확인
-
-    ![](images/info/Ltk/LT1.webp)
-
-    ![](images/info/Ltk/LT2.webp)
-
-
-    로손 편의점 방문, 보통 구석에보면 이런 빨간색 ATM 같은 기계가 있다.
-    화면 중간 QR 터치 후 하단부 QR 인식에 아까 메일로 온 QR을 인식 시켜주면 된다. 
-    ![](images/info/Ltk/lt3.webp)
-    그럼 이런 영수증이 나오는데, 이걸 들고 카운터로 가서 금액 지불하면 된다.  당연히 카드도 가능
-    교환하고 나면 영수증을 주는대 거기에 티켓 발급일도 보통 명시되어 있다.
-
-    전자티켓의 경우 발권일에 자동발권되고, 종이티켓같은 경우 발권일에 한번더 QR메일이 온다
-
-    위와 같은 방식으로 편의점 방문하여 QR인식 후 영수증 발급
-    카운터로 가면 종이티켓을 준다. 
-
-
-
-    `
-  },
-      {
-    id:"Ltk1", title:"원정 콘서트 가기위한 일본 전화번호 만들기", date:"2026.10.03", tag:"정보",
-    body:`
-    백넘버 콘서트는 치케프라나 로치케를 통하여 전자티켓을 발급 받는다.
-
-    이놈의 치케프라나 로치케는 일본전화로 인증을 한번 해야 사용가능
-
-    주의사항으로 로치케는 탈퇴 후 같은번호로 가입하는게 안된다. 
-
-    가입자체는 인증이 필요없지만 처음 접속 할때 인증이 필요하다. 
-
-    2027 원룸파티는 해외도 가능하다고 하니 기대해볼만 하다
-
-    아이폰 : 문자 발신     안드로이드 : 문자 수신 후 인증하여 시작
-
-    그래서 전자티켓 사용할려면 일본 번호로 인증이 필요한 상황
-
-    우리는 일본 놀러갈 때 미리 일본 유심 및 전화번호를 만들어서 준비해두면 좋다. 
-
-    1.[하나셀](https://www.hanacell.com/japan/)
-    ![](images/info/Ltk1/phone.webp)
-
-    ![](images/info/Ltk1/phone1.webp)
-    물리심을 선택하고 해당 폰기종 선택
-
-    ![](images/info/Ltk1/phone2.webp)
-    다음 눌러주고
-
-    일본 공항에서 직접 픽업
-    ![](images/info/Ltk1/phone3.webp)
-
-    ![](images/info/Ltk1/phone5.webp)
-
-    여권이랑 동일하게 입력해주자
-
-    택배로 배송
-    택배로 배송받아도 어차피 일본 들어가서 사용할 수 있다.
-    ![](images/info/Ltk1/phone4.webp)
-
-    주소랑 이름 잘입력하고 다음 눌러서 결제 진행
-
-    이렇게 진행하면 해당 이메일로 비밀번호  설정하라고 날라온다. 
-
-    유심받으면 해당 유심 설명서 같이 준다. 
-
-    ![](images/info/Ltk1/phone6.webp)
-    ![](images/info/Ltk1/phone7.webp)
-
-    [해당사이트](https://myaccount.hanacell.com) 접속하여 이메일 이랑 비번 치면 유심 정보가 나온다. 
-    거기에 유심카드에 있는 핀번호 및 정보 입력하면 개통 신청된다. 
-
-    신청완료 되면 이메일 오니 확인.
-
-    보통 시간좀 걸리니 기다리다보면 개통된다. 
-
-    문자나 전화 잘되는지 확인!
-
-    데이터는 꺼두고 사용 요금폭탄 나올수 있음
-
-    2.[사쿠라모바일](https://www.sakuramobile.jp/)
-
-    ![](images/info/Ltk1/phone8.webp)
-
-    ![](images/info/Ltk1/phone9.webp)
-
-
-    ![](images/info/Ltk1/phone10.webp)
-
-    ![](images/info/Ltk1/phone11.webp)
-
-    Voice data 확인 해주고 ESIM 되는폰이면 ESIM도 가능
-
-    ![](images/info/Ltk1/phone12.webp)
-
-    위쪽 이메일 이름이랑 생년월일 적어주고 스샷처럼 번호 유지
-
-    도착 예정일이랑 공항 후 Submit 누르면 된다. 
-
-    그럼 이메일로 확인 메일 날라온다. 
-
-    ![](images/info/Ltk1/phone13.webp)
-
-    위 버튼 누르면 여권 정보랑 비행기정보 도착공항 등 자세히 적어주고 결제 진행 하면 된다. 
-
-
-    **하나셀 vs 사쿠라모바일 비교**
-
-    | | 하나셀 | 사쿠라모바일 |
-    |---|---|---|
-    | 개통비 | $69 | 5,500엔 |
-    | 기본료 | 연 $12 (첫해 무료) | 월 2,980엔 |
-    | 안 쓰는 달 | 그대로 두면 됨 | 정지 신청 · 월 220엔 |
-    | 데이터 | 3GB | 5GB |
-    | 통신망 | SoftBank | docomo |
-    | 전화·문자 받기 | 무료 | 무료 |
-    | 한국에서 받기 | ✕ 안 됨 | ○ 됨 (로밍) |
-
-
-
-    유지비 측면에서는 하나셀이 편하고 좋다
-    사용하지 않는 달에도 정지 할 필요 없다. 
-
-
-
-
-
-
-    `
-  },
-    {
-    id:"back num album", title:"back number 앨범 구매 방법", date:"2026.10.03", tag:"앨범 구매",
-    body:`
-    앨범 및 블루레이를 구매하는데 있어, 여러가지 방법이 있어 공유 할려고 한다. 
-
-    크게는 우리나라에서 구매 대행해주는 사이트 이용하는것과, 일본 사이트 직구가 있다. 
-
-
-    **구매 대행사이트**
-
-    회원가입은 우리나라 사이트라 난이도가 낮고, 온라인 쇼핑하듯이 쇼핑하면 된다. 
-
-    1.[와라토모](https://waratomo.com/) 
-    ![](images/info/back-num-album/al1.webp)
-
-    2.[웁스시디](https://woopscd.net/index.html)
-    ![](images/info/back-num-album/al2.webp)
-
-
-    **해외 직구 사이트**
-
-    회원가입이 번거롭고 , 배대지 등록해야 되는경우도 있으며, 배송비가 많이든다. 
-    여러장 구매 하거나, 특전 및 할인 이벤트시 이용하면 좋다.
-
-    ![](images/info/back-num-album/al6.webp)
-    월쇼는 꼭 사용하지 않음으로 하자 비싸고 느리다. 
-
-
-
-    3.[아마존 재팬](https://www.amazon.co.jp/-/en/ref=nav_logo)
-    [아마존 재팬 회원가입 구글검색](https://buly.kr/9tDdntS)
-
-
-    ![](images/info/back-num-album/al3.webp)
-
-
-    4.[HMV](https://www.hmv.co.jp/en/)
-    일본 사이트중 해외 배송 해주는 곳 배송비가 비싼편이지만, 환원 이벤트등 잦은 이벤트가 많고 여러개 구매하였을때는 유리한 면이 있다. 
-    [HMV 회원가입 구글검색](https://buly.kr/4bkuNVE)
-
-    ![](images/info/back-num-album/al11.webp)
-    주소 입력 시 국제배송으로 바로 보낼수 있다. 
-    ![](images/info/back-num-album/al4.webp)
-    번역 기능을 이용해서 구매하면 편하게 구매할 수 있다. 
-
-    5.[타워레코드](https://tower.jp/)
-    [타워레코드 회원가입 구글검색](https://buly.kr/FsLP9qh)
-    일본 음악매장의 대명사이나, 가격이 창렬 긴테키링이나 그런것들도 구매가능 가끔 이벤트나 특전보고 구매하는 경우 있으나, 가격이 비싸 꺼려짐
-
-    ![](images/info/back-num-album/al5.webp)
-
-    **가격비교**
-    ユーモア(통상반) 기준
-
-    1. 와라토모
-    ![](images/info/back-num-album/al7.webp)
-    앨범 40,000원 배송비 3,500원 = 43,500원
-
-    2.웁스시디
-    ![](images/info/back-num-album/al8.webp)
-    앨범 37,600원 배송비 3,000원 = 40,600원
-
-    3.아마존 재팬에서는 매물이 잘없고 가격이 변동이 심해 제외
-
-    4.HMV
-    ![](images/info/back-num-album/al9.webp)
-    앨범 2760엔 해외 배송비 1550엔 = 4310엔
-    26.10.03기준 약 37,000원 정도
-
-    5.타워레코드
-    ![](images/info/back-num-album/al10.webp)
-    앨범 3300엔 일본내 배송비 220엔 배대지 
-    배대지 배송비 ㅈㅍㅌㅇㅁ 기준 990엔
-    총 4510엔 
-    26.10.03기준 약 38,500원 정도
-
-    *단순 앨범 하나를 비교한거라 다를수 있지만, 앨범 1~2장 구매하는거면 매물이 있는 가정하에 와라토모나 웁스를 추천
-
-    여러장 구매할 경우 HMV가 자체 해외배송도 진행하고 있고, 환원 이벤트도 많아 추천한다. 
-
-    각사이트 별로 특전구매하는 것 아닌 이상 위의 방법을 추천한다. 
-
-
-
-
-
-
-
-
-
-
-
-    `
-  },
-  
-
-  {
-    id:"unext-guide", title:"U-NEXT 가입 및 모바일 시청방법", date:"2026.10.02", tag:"정보",
-    summary:"10/3 닛산 스타디움 공연 생중계 · VPN 연결부터 가입, 폰으로 보기, 해지까지",
-    body:`
-    10/3 18시부터 Grateful Yesterdays Tour 2026 기념하여 닛산 스타디움 공연 배포 예정임
-    거기에 따른 U-NEXT 가입절차 및 모바일 시청 방법
-
-    ## 1. VPN 연결
-    U-NEXT 는 기본적으로 VPN 필요
-
-    ![](images/info/unext-guide/unext-01.webp)
-
-    나는 아이폰 유저로 위 vpn사용중이나 일본 연결 되는 vpn 아무거나 가능
-
-    ## 2. 가입
-    Vpn 연결 후 U-NEXT 사이트 접속
-
-    ![](images/info/unext-guide/unext-02.webp)
-    ![](images/info/unext-guide/unext-03.webp)
-
-    접속 후 해당화면에서 31일 무료 클릭하여 아이디 생성
-
-    ![](images/info/unext-guide/unext-04.webp)
-    ![](images/info/unext-guide/unext-05.webp)
-
-    카타카나는 구글에서 카타카나 변환 쳐서 변경한것으로 넣으면 됨
-    이메일주소가 로그인 아이디가 되고 비밀번호는 느낌표같은 특문은 안되니 제외하고 입력
-    전화번호는 일본 번호 아무거나 넣으면됨 나는 배대지 전화번호 넣음
-
-    ![](images/info/unext-guide/unext-06.webp)
-    ![](images/info/unext-guide/unext-07.webp)
-
-    카드번호 입력하고 다음 넘어가면 됨
-    안되는 카드도 있음
-
-    나같은경우 신한 체크카드 JCB로 1엔 결제
-    미리 엔화 환전해놓고 결제 하면 편함
-    원정콘 선행이나 일본 결제시 JCB가 편해서 하나 만드는거 추천
-
-    ![](images/info/unext-guide/unext-08.webp)
-
-    패밀리 연결할건지 묻는건데 필요없으니 넘어가면 된다
-
-    ![](images/info/unext-guide/unext-09.webp)
-
-    ## 3. 모바일로 보기
-    이제 크롬어플에서 유넥스트 접속하여 아까 만든 아이디로 로그인
-    Backnumber 검색해서 재생을 누르면 어플을 받으라고 한다
-
-    ![](images/info/unext-guide/unext-10.webp)
-
-    크롬 어플 우측상단 점3개 클릭
-
-    ![](images/info/unext-guide/unext-11.webp)
-    ![](images/info/unext-guide/unext-12.webp)
-
-    데스크톱 사이트로 보기하면 어플 다운없이 바로 시청 가능
-
-    ## 4. 해지
-    해지는 다음달 결제전에 해지하면 된다
-    해지 후 다른 이메일넣어서 다시 31일 무료 가능
-
-    일본 컨텐츠 다른것도 많으니 한번 가입해서 쓸만함
-    `
-  },
-    {
-    id:"buy", title:"back number 온라인스토어 구매방법(배대지)", date:"2026.10.02", tag:"정보",
-    body:`
-    back number 온라인 스토어는 글로벌 계정으로는 구매가 불가하다.
-
-    그래서 일본 계정을 만들어 주소를 배대지로 입력하여 구매가 가능하다. 
-
-    글로벌 원룸분들은 일계깡통계정으로 굿즈만 구매가 가능하다.
-
-    일계는 어차피 바로 구매가능하니 패스
-
-    1.온라인스토어 접속하여 우측 상단 Join 
-    [온라인 스토어](https://store.plusmember.jp/backnumberonlinestore/)
-
-    2.계정 생성
-      한글이름 카타카나 변환기로 본인이름 카타카나 변환
-    ![](images/info/buy/trans.webp)
-
-    ![](images/info/buy/join.webp)
-
-    ![](images/info/buy/join1.webp)
-
-    카타카나 적는란에 위아래 둘다 카타카나 동일하게 적으면 됨
-    주소는 배대지의 우편번호 입력하면 기본주소 입력 됨
-    나머지 세부주소만 배대지 주소 입력
-
-    전화번호는 한국번호 적어도 상관 없음
-
-    생년월일 및 비밀번호 적은 후 다음
-
-    ![](images/info/buy/join2.webp)
-
-    그럼 이런 완료 화면 나옴. 
-    회원 등록 완료 하면 메일로 이플러스 아이디 날라옴
-    ![](images/info/buy/login.webp)
-    날라온 이플러스 아이디로 로그인
-
-
-    3. 스토어 구매
-
-    ![](images/info/buy/buy.webp)
-    온라인 스토어의 oneroom 전용상품 말고 장바구니 넣어서 구입
-
-    ![](images/info/buy/buy2.webp)
-
-    배대지 주소 확인 하고 다음 
-
-    ![](images/info/buy/buy3.webp)
-
-    신용카드 결제 누르고 예정된 출석없음 체크후 다음 누르면 결제 화면으로 넘어간다. 
-    온라인 스토어에서 신용카드가 막히는게 아닌이상 결제가 진행되고 마이페이지에서 진행상태 확인 가능하다. 
-
-    `
-  },
-    {
-    id:"trade", title:"원정 콘서트 트레이드 방법(치케프라)", date:"2026.10.03", tag:"정보",
-    body:`
-    트레이드란 ? 
-
-    공연 주최자가 공식 티켓 리세일(정가 양도 및 재판매) 하는 서비스 임
-
-    보통 공연 시작 2주전부터 12:00부터 공연전날 까지 매일 트레이드 되는 방식 (공연마다 다를수 있음)
-
-    **한번 신청해놓으면 오늘 트레이드 실패하더라고 다음날 12시에 다시 자동으로 시도한다.**
-
-    한국번호로도 티켓을 구할수 있어 일본번호가 없는분들도 공연 관람 가능
-
-
-    **1. [치케프라 홈페이지](https://trade.tixplus.jp/) 접속**
-    웨일이나 크롬 페이지 번역기능 이용 추천
-    보통 팬클럽 선행 트레이드 진행 시 팬클럽 가입 되어 있어야 함
-    치케프라는 oneroom 팬클럽 가입 당시 이플러스 아이디로 로그인
-    ![](images/info/trade/TRLOG.webp)
-
-    ![](images/info/trade/serback.webp)
-    back number 검색시 이렇게 공연이 뜬다
-    현재는 공연 진행중이 아니므로 다른가수로 알아보자
-
-    **2.트레이드 목록 확인**
-    트레이드 가능한  공연이면 이렇게 날짜 및 트레이드 가능 항목이 뜬다
-    ![](images/info/trade/tr1.webp)
-
-    ![](images/info/trade/tr2.webp)
-
-
-    해당 날짜를 클릭해보면 티켓 종류가 보이고 트레이드 할 티켓을 지원하면 된다. 
-    FC 선행은 당연히 팬클럽 가입되어 있어야 한다. 
-
-    **3.트레이드 진행 및 결제**
-    지원을 누르면 설명이 길게 나오는데 쭉 읽어보고 진행하면 된다. 
-    ![](images/info/trade/tr3.webp)
-
-    ![](images/info/trade/tr4.webp)
-    티켓 수령 전화번호 꼭 확인할 것 
-
-    ![](images/info/trade/tr5.webp)
-
-    카드정보 넣고 다음 누르면 신청이 완료된다. 
-
-    트레이드가 되면 해당 카드로 결제가 진행되고 티켓항목에 티켓이 들어옴
-
-    체크카드 경우 잔액이 없으면 자동으로 팅겨지니 트레이드 할때는 잔액 신경 써주자
-
-    `
-  },
-];
-const INFO_IMG_DIR = "images/info/";
-/* ── 서버 글쓰기 (Cloudflare D1·R2) ─────────────────────────────
-   사이트에 /api 가 연결돼 있을 때만 켜진다. 없으면(내 컴퓨터·연결 전) 아무 일도 안 함.
-   · 글쓴이는 #/write 에서 비밀번호를 넣고 [사이트에 바로 올리기]
-   · 올라온 글은 index.html 의 INFO_POSTS 글과 섞여서 날짜순으로 보인다 */
-const SRV = { on:false, posts:[], key:"", me:null };
-try { SRV.key = localStorage.getItem("bn-wkey") || ""; } catch(e){}
-const IS_LOCAL = /^(file:|http:\/\/(localhost|127\.))/.test(location.href);
-function allPosts(){
-  return [...SRV.posts.map(p => ({ ...p, srv:true })), ...INFO_POSTS]
-    .map((p, i) => [p, i]).sort((a, b) => String(b[0].date || "").localeCompare(String(a[0].date || "")) || a[1] - b[1]).map(x => x[0]);
-}
-function srvFetch(path, opt = {}){
-  const headers = { ...(opt.headers || {}) };
-  if (SRV.key) headers["x-writer-key"] = SRV.key;
-  return fetch(path, { ...opt, headers, cache:"no-store" }).then(async r => {
-    let j = null; try { j = await r.json(); } catch(e){}
-    if (!r.ok || !j) throw new Error((j && j.error) || "서버에 연결하지 못했어요");
-    return j;
-  });
-}
-async function srvLoad(rerender){
-  if (!/^https?:$/.test(location.protocol)) return;   // 파일로 열었을 때는 서버 없음
-  try {
-    const list = await srvFetch("/api/posts");
-    if (!Array.isArray(list)) return;
-    SRV.on = true; SRV.posts = list;
-    if (SRV.key && !SRV.me){ try { SRV.me = await srvFetch("/api/me"); } catch(e){ SRV.me = null; } }
-    const r0 = location.hash.replace(/^#\/?/, "").split("/")[0];
-    if (rerender && (r0 === "info" || r0 === "write")) render();
-  } catch(e){}
-}
-const srvCanEdit = p => !!(p && p.srv && SRV.me && (SRV.me.admin || SRV.me.name === p.author));
-const infoState = { tag:"전체" };
-const POST_IMG_RE = /^!\[([^\]]*)\]\(([^)\s]+)\)$/;
-const POST_YT_RE = /^(?:https?:\/\/)?(?:www\.|m\.)?(?:youtube\.com\/(?:watch\?v=|shorts\/|live\/)|youtu\.be\/)([\w-]{11})\S*$/;
-function postExcerpt(p){
-  const lines = String(p.body || "").split("\n").map(l => l.trim())
-    .filter(l => l && !/^(!\[|#|---|https?:)/.test(l))
-    .map(l => l.replace(/^([-•>]!?|\d+[.)])\s*/, "").replace(/\*\*/g, "").replace(/\[([^\]]+)\]\([^)]*\)/g, "$1"));
-  return lines.join(" ").slice(0, 120);
-}
-function postFirstImg(p){
-  if (p.cover) return p.cover;
-  const m = String(p.body || "").match(/!\[[^\]]*\]\(([^)\s]+)\)/);
-  return m ? m[1] : "";
-}
-/* src: 본문 글, img: 사진 주소 바꾸기(글쓰기 미리보기용) */
-const FILE_ICON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>`;
-const FILE_EXTS = ".pdf,.srt,.vtt,.ass,.ssa,.smi,.sub,.lrc,.txt,.zip";
-const fileSize = n => n >= 1048576 ? (n / 1048576).toFixed(1) + "MB" : Math.max(1, Math.round(n / 1024)) + "KB";
-/* 홈 화면 앱(아이폰)에는 다운로드 기능이 없어서 미리보기만 뜬다 →
-   파일을 받아서 공유 창을 띄운다 ("파일에 저장"을 누르면 원래 이름 그대로 저장) */
-const fileDl = { ready:null };
-document.addEventListener("click", async e => {
-  const a = e.target.closest("a.file-dl"); if (!a) return;
-  const isApp = matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
-  if (!isApp) return;                                                  // 일반 브라우저는 그냥 다운로드
-  e.preventDefault();
-  if (!navigator.canShare || !window.File) return void window.open(a.getAttribute("href"), "_blank");
-  const url = a.getAttribute("href");
-  const share = f => navigator.share({ files:[f] }).catch(err => { if (err && err.name === "NotAllowedError"){ fileDl.ready = { url, f }; copyToast("한 번 더 누르면 저장 창이 떠요"); } });
-  if (fileDl.ready && fileDl.ready.url === url){ const f = fileDl.ready.f; fileDl.ready = null; return share(f); }
-  try {
-    a.classList.add("busy"); copyToast("파일 받는 중…");
-    const r = await fetch(url, { cache:"no-store" }); if (!r.ok) throw new Error();
-    const cd = r.headers.get("content-disposition") || "";
-    let name = (cd.match(/filename\*=UTF-8''([^;]+)/i) || [])[1];
-    name = name ? decodeURIComponent(name) : ((cd.match(/filename="([^"]+)"/i) || [])[1] || decodeURIComponent(url.split("?")[0].split("/").pop()));
-    const f = new File([await r.blob()], name, { type:"application/octet-stream" });
-    a.classList.remove("busy");
-    if (!navigator.canShare({ files:[f] })) return void window.open(url, "_blank");
-    share(f);
-  } catch(err){ a.classList.remove("busy"); window.open(url, "_blank"); }
-});
-function infoBody(src, img = u => u){
-  const inline = t => esc(t)
-    .replace(/\[([^\]]+)\]\(((?:\/file\/|files\/)[^)\s]+)\)/g, (m, t2, u) => {   // 📎 첨부 파일 → 다운로드 버튼
-      const ext = (u.match(/\.([a-z0-9]+)$/i) || [])[1] || "";
-      return `<a class="file-dl" href="${u}${u.startsWith("/file/") ? "?dl=2" : ""}" download target="_blank" rel="noopener"><span class="fd-ic">${FILE_ICON}</span><span class="fd-t">${t2.replace(/^📎\s*/, "")}</span><span class="fd-x">${ext.toUpperCase()}${ext ? " · " : ""}받기</span></a>`; })
-    .replace(/\[([^\]]+)\]\((https?:[^)\s]+|#[^)\s]*)\)/g, (m, t2, u) => `<a href="${u}"${u.startsWith("#") ? "" : ' target="_blank" rel="noopener"'}>${t2}</a>`)
-    .replace(/\*\*([^*]+)\*\*/g, "<b>$1</b>");
-  const fig = l => { const [, alt, u] = l.match(POST_IMG_RE);
-    return `<figure class="post-img"><img src="${esc(img(u))}" alt="${esc(alt)}" loading="lazy" onerror="this.parentNode.classList.add('noimg');this.remove()">${alt ? `<figcaption>${inline(alt)}</figcaption>` : ""}</figure>`; };
-  const kind = l => POST_IMG_RE.test(l) ? "img" : POST_YT_RE.test(l) ? "yt" : /^\|.*\|$/.test(l) ? "tbl" : /^#{2,3}\s/.test(l) ? "h"
-    : /^[-•]\s/.test(l) ? "ul" : /^\d+[.)]\s/.test(l) ? "ol" : /^>/.test(l) ? "q" : /^-{3,}$/.test(l) ? "hr" : "p";
-  const out = [];
-  String(src || "").replace(/\r/g, "").split(/\n\s*\n/).forEach(block => {
-    const lines = block.split("\n").map(x => x.trim()).filter(Boolean);
-    let i = 0;
-    while (i < lines.length){
-      const k = kind(lines[i]); let j = i + 1;
-      if (!["h", "hr", "yt"].includes(k)) while (j < lines.length && kind(lines[j]) === k) j++;
-      const g = lines.slice(i, j);
-      if (k === "img") out.push(g.length > 1 ? `<div class="post-gallery" style="--n:${Math.min(g.length, 4)}">${g.map(fig).join("")}</div>` : fig(g[0]));
-      else if (k === "yt") out.push(`<div class="post-yt"><iframe src="https://www.youtube.com/embed/${lines[i].match(POST_YT_RE)[1]}" title="YouTube" allowfullscreen loading="lazy"></iframe></div>`);
-      else if (k === "h") out.push(/^###/.test(g[0]) ? `<h3>${inline(g[0].replace(/^###\s+/, ""))}</h3>` : `<h2>${inline(g[0].replace(/^##\s+/, ""))}</h2>`);
-      else if (k === "ul") out.push(`<ul class="post-list">${g.map(l => `<li>${inline(l.replace(/^[-•]\s+/, ""))}</li>`).join("")}</ul>`);
-      else if (k === "ol") out.push(`<ol class="post-list" start="${parseInt(g[0])}">${g.map(l => `<li>${inline(l.replace(/^\d+[.)]\s+/, ""))}</li>`).join("")}</ol>`);
-      else if (k === "q"){ const warn = /^>!/.test(g[0]);
-        out.push(`<div class="note ${warn ? "warn" : "tip"}">${g.map(l => inline(l.replace(/^>!?\s?/, ""))).join("<br>")}</div>`); }
-      else if (k === "hr") out.push(`<hr class="post-hr">`);
-      else if (k === "tbl"){                     // | 표 | 칸 |  — 첫 줄은 제목 줄, |---| 줄은 건너뜀
-        const rows = g.filter(l => !/^\|[\s:|-]+\|$/.test(l)).map(l => l.slice(1, -1).split("|").map(c => c.trim()));
-        const [hd, ...bd] = rows;
-        out.push(`<div class="post-table-wrap"><table class="post-table"><thead><tr>${hd.map(c => `<th>${inline(c)}</th>`).join("")}</tr></thead><tbody>${bd.map(r => `<tr>${r.map((c, ci) => ci ? `<td>${inline(c)}</td>` : `<th scope="row">${inline(c)}</th>`).join("")}</tr>`).join("")}</tbody></table></div>`);
-      }
-      else out.push(`<p>${g.map(inline).join("<br>")}</p>`);
-      i = j;
-    }
-  });
-  return out.join("");
-}
-function postMeta(p){ return [p.tag ? `<span class="post-tag">${esc(p.tag)}</span>` : "", p.date ? `<span>${esc(p.date)}</span>` : "", p.author ? `<span>✍️ ${esc(p.author)}</span>` : ""].join(""); }
-function viewInfo(id){
-  const POSTS = allPosts();
-  if (id){
-    const i = POSTS.findIndex(x => x.id === decodeURIComponent(id));
-    const p = POSTS[i];
-    if (!p) return `<a class="back pill" href="#/info"><span class="ar">‹</span> 정보 목록</a><p class="sub" style="margin-top:20px">글을 찾을 수 없어요.</p>${footer()}`;
-    const newer = POSTS[i - 1], older = POSTS[i + 1];
-    const nav = (q, label) => q ? `<a class="post-nav-item" href="#/info/${encodeURIComponent(q.id)}"><small>${label}</small><b>${esc(q.title)}</b></a>` : `<span></span>`;
-    return `
-      <div class="post-top"><a class="back pill" href="#/info"><span class="ar">‹</span> 정보 목록</a>${(IS_LOCAL && !p.srv) || srvCanEdit(p) ? `<a class="back" href="#/write/${encodeURIComponent(p.id)}">✏️ 이 글 수정</a>` : ""}</div>
-      <header class="post-head">
-        <div class="post-meta">${postMeta(p)}</div>
-        <h1 class="post-title">${esc(p.title)}</h1>
-        ${p.summary ? `<p class="sub" style="margin:0">${esc(p.summary)}</p>` : ""}
-      </header>
-      <article class="card post-body">${infoBody(p.body)}</article>
-      <nav class="post-nav">${nav(older, "‹ 이전 글")}${nav(newer, "다음 글 ›")}</nav>
-      ${footer()}`;
-  }
-  const tags = ["전체", ...new Set(POSTS.map(p => p.tag).filter(Boolean))];
-  if (!tags.includes(infoState.tag)) infoState.tag = "전체";
-  const list = POSTS.filter(p => infoState.tag === "전체" || p.tag === infoState.tag);
-  const local = IS_LOCAL || !!SRV.me;
-  return `
-  <div class="info-top"><h1>정보</h1>${local ? `<a class="btn" href="#/write">✏️ 글쓰기</a>` : ""}</div>
-  <p class="sub">back number 관련 정보 모음 · ${POSTS.length}개의 글</p>
-  ${tags.length > 2 ? `<div class="chips">${tags.map(t => `<button class="chip" data-tag="${esc(t)}" aria-pressed="${infoState.tag === t}">${esc(t)}</button>`).join("")}</div>` : ""}
-  ${list.length ? `<div class="post-list-cards">${list.map(p => `
-    <a class="post-card" href="#/info/${encodeURIComponent(p.id)}">
-      <span class="pc-text">
-        <span class="pc-meta"><span class="post-tag">${esc(p.tag || "정보")}</span><span>${esc(p.date || "")}</span>${p.author ? `<span>✍️ ${esc(p.author)}</span>` : ""}</span>
-        <b class="pc-title">${esc(p.title)}</b>
-        <small class="pc-sum">${esc(p.summary || postExcerpt(p))}</small>
-      </span>
-      ${p.cover ? `<img class="pc-cover" src="${esc(p.cover)}" alt="" loading="lazy" onerror="this.remove()">` : ""}
-      <span class="pc-go">›</span>
-    </a>`).join("")}</div>`
-  : `<div class="card info-empty">아직 올라온 정보가 없어요.<br><span class="small muted">곧 하나씩 채울 예정이에요.</span></div>`}
-  ${footer()}`;
-}
-function bindPostZoom(){
-  document.querySelectorAll(".post-body img").forEach(im => im.onclick = () => {
-    const z = document.createElement("div");
-    z.className = "post-zoom"; z.innerHTML = `<img src="${im.src}" alt="">`;
-    z.onclick = () => z.remove();
-    document.body.appendChild(z);
-  });
-}
-function bindInfo(){
-  document.querySelectorAll("[data-tag]").forEach(b => b.onclick = () => { infoState.tag = b.dataset.tag; render(); });
-  bindPostZoom();
-}
-
-/* ============ 화면: 글쓰기 (#/write) ============
-   미리보기를 보며 글을 쓰고, [코드 복사] 로 INFO_POSTS 에 붙여 넣을 덩어리를 만든다.
-   쓰던 글은 이 브라우저에 자동 저장된다. 사진은 고르면 미리보기에만 보이고,
-   실제 사이트에 보이려면 같은 이름으로 폴더의 images/info/ 에 넣어야 한다. */
-const writeS = { urls:{} };
-function writeLoad(){ try { return JSON.parse(localStorage.getItem("bn-draft") || "null") || {}; } catch(e){ return {}; } }
-function dedentBody(b){
-  const L = String(b || "").replace(/\r/g, "").split("\n");
-  while (L.length && !L[0].trim()) L.shift();
-  while (L.length && !L[L.length - 1].trim()) L.pop();
-  const ind = Math.min(...L.filter(l => l.trim()).map(l => l.match(/^[ \t]*/)[0].length), 99);
-  return L.map(l => l.slice(Math.min(ind, l.match(/^[ \t]*/)[0].length)).replace(/[ \t]+$/, "")).join("\n");
-}
-function viewWrite(arg){
-  const POSTS = allPosts();
-  if (arg){   // #/write/글id → 기존 글 불러와서 수정
-    const p = POSTS.find(x => x.id === decodeURIComponent(arg));
-    const cur = writeLoad();
-    if (p && cur.edit !== p.id){
-      const d0 = { title:p.title || "", date:p.date || "", tag:p.tag || "", summary:p.summary || "", id:p.id, body:dedentBody(p.body), cover:p.cover || "", edit:p.id, srv:!!p.srv };
-      try { localStorage.setItem("bn-draft", JSON.stringify(d0)); } catch(e){}
-    }
-  }
-  const d = writeLoad(), today = new Date();
-  const editing = d.edit && POSTS.some(x => x.id === d.edit) ? d.edit : "";
-  const edPost = editing ? POSTS.find(x => x.id === editing) : null;
-  const online = !!SRV.me;   // 비밀번호 확인된 글쓴이 → 서버에 바로 올리기
-  const ymd = `${today.getFullYear()}.${pad2(today.getMonth() + 1)}.${pad2(today.getDate())}`;
-  const f = (k, label, ph, v = "") => `<label class="w-field"><span>${label}</span><input id="w_${k}" value="${esc(d[k] ?? v)}" placeholder="${esc(ph)}"></label>`;
-  return `
-  <a class="back" href="#/info">‹ 정보 목록</a>
-  <h1>${editing ? "글 수정" : "글쓰기"}</h1>
-  ${SRV.on ? `<div class="card w-srv">${SRV.me
-    ? `<span>✅ <b>${esc(SRV.me.name)}</b> 님으로 글쓰기${SRV.me.admin ? " (관리자)" : ""} · 사진은 고르면 바로 서버에 올라가요</span><button class="btn" id="w_logout">로그아웃</button>`
-    : `<label class="w-key"><span>글쓴이 비밀번호</span><input id="w_key" type="password" autocomplete="current-password" placeholder="받은 비밀번호"></label><button class="btn primary" id="w_login">확인</button>`}</div>` : ""}
-  <div class="w-pick">
-    <select id="w_pick" aria-label="기존 글 수정">
-      <option value="">${editing ? "✏️ 다른 글 수정하기 / 새 글" : "✏️ 기존 글 불러와서 수정하기"}</option>
-      ${POSTS.filter(x => online ? srvCanEdit(x) : !x.srv).map(x => `<option value="${esc(x.id)}"${x.id === editing ? " selected" : ""}>${esc(x.date || "")} · ${esc(x.title)}${x.author ? " · " + esc(x.author) : ""}</option>`).join("")}
-    </select>
-    ${editing ? `<a class="btn" href="#/info/${encodeURIComponent(editing)}">원래 글 보기</a>` : ""}
-  </div>
-  <p class="sub">${online ? (editing ? `<b>「${esc(edPost.title)}」 수정 중</b> · 다 고치면 맨 아래 [수정 저장]` : `다 쓰면 맨 아래 [사이트에 바로 올리기] 를 누르세요. 쓰던 글은 이 브라우저에 자동 저장돼요.`) : editing
-    ? `<b>「${esc(edPost.title)}」 수정 중</b> · 다 고치면 맨 아래 [코드 복사] → index.html 에서 <code>id:"${esc(editing)}"</code> 로 시작하는 글 덩어리 <b>전체</b>를 붙여 넣은 코드로 바꾸기.`
-    : `쓰는 글은 이 브라우저에 자동 저장돼요. 다 쓰면 맨 아래 [코드 복사] → index.html 의 <code>INFO_POSTS = [</code> 바로 아래에 붙여 넣기.`}</p>
-  <div class="write-grid">
-    <div class="card write-form">
-      ${f("title", "제목", "예) 팬클럽 one room 가입 방법")}
-      <div class="w-row">${f("date", "날짜", "2026.10.01", ymd)}${f("tag", "분류", "예) 팬클럽 · 티켓 · 굿즈")}</div>
-      ${f("summary", "한 줄 설명 (목록에 보임)", "없어도 돼요")}
-      ${f("id", "주소 이름 (영문·숫자·-)", "비우면 날짜로 자동")}
-      <div class="w-tools">
-        <button class="btn" data-ins="## ">소제목</button>
-        <button class="btn" data-ins="- ">점 목록</button>
-        <button class="btn" data-ins="1. ">번호</button>
-        <button class="btn" data-wrap="**">굵게</button>
-        <button class="btn" data-ins="> ">팁 상자</button>
-        <button class="btn" data-ins="[링크 글자](https://)">링크</button>
-        <label class="btn primary">📷 사진 넣기<input id="w_files" type="file" accept="image/*" multiple hidden></label>
-        <label class="btn" title="PDF · 자막(srt, vtt, ass, smi) · txt · zip / 한 파일 10MB까지">📎 파일 넣기<input id="w_attach" type="file" accept="${FILE_EXTS}" multiple hidden></label>
-      </div>
-      <textarea id="w_body" rows="16" placeholder="본문을 쓰세요. 빈 줄로 문단을 나눠요.&#10;캡처한 사진은 여기에 바로 붙여넣기(Ctrl+V)·끌어다 놓기도 돼요.&#10;&#10;사진은 [📷 사진 넣기] 로 고르면 커서 자리에 들어가요.&#10;사진 여러 장을 한 번에 고르면 나란히 2장씩 보여요.">${esc(d.body || "")}</textarea>
-      <div class="w-thumbs" id="w_thumbs"></div>
-      <p class="small muted" id="w_imgs" style="margin:6px 0 0"></p>
-    </div>
-    <div class="write-preview">
-      <div class="small muted" style="margin:0 0 6px">미리보기</div>
-      <div id="w_prev"></div>
-    </div>
-  </div>
-  ${online ? `<div class="card write-out w-pub">
-    <div class="w-tools">
-      ${editing && edPost && edPost.srv ? `<button class="btn primary" id="w_save">💾 수정 저장</button><button class="btn" id="w_del">🗑 이 글 삭제</button>` : `<button class="btn primary" id="w_post">🚀 사이트에 바로 올리기</button>`}
-      <button class="btn" id="w_clear2">${editing ? "새 글 쓰기" : "새 글 (지우기)"}</button>
-    </div>
-  </div>` : ""}
-  <div class="card write-out"${online ? " hidden" : ""}>
-    <div class="small muted" style="margin-bottom:6px">아래 코드를 복사해서 붙여 넣으세요</div>
-    <textarea id="w_code" rows="8" readonly></textarea>
-    <div class="w-tools" style="margin-top:8px">
-      <button class="btn primary" id="w_copy">코드 복사</button>
-      <button class="btn" id="w_clear">${editing ? "수정 그만하고 새 글 쓰기" : "새 글 (지우기)"}</button>
-    </div>
-  </div>
-  <div class="copy-toast" id="copyToast" aria-live="polite"></div>`;
-}
-function bindWrite(){
-  const g = k => $("#w_" + k), keys = ["title", "date", "tag", "summary", "id", "body"];
-  const saved = writeLoad();
-  const val = () => ({ ...Object.fromEntries(keys.map(k => [k, g(k).value])), edit:saved.edit || "", cover:saved.cover || "" });
-  const q = s => JSON.stringify(s);
-  const postFolder = () => { const v = val(); const f = v.id.trim().replace(/[^\w-]+/g, "-").replace(/^-|-$/g, ""); return f || "post-" + v.date.replace(/\D/g, ""); };
-  const update = () => {
-    const v = val();
-    try { localStorage.setItem("bn-draft", JSON.stringify(v)); } catch(e){}
-    const id = (v.id.trim() || "post-" + v.date.replace(/\D/g, "")).replace(/[^\w-]/g, "-");
-    const p = { title:v.title || "(제목 없음)", tag:v.tag, date:v.date, summary:v.summary };
-    $("#w_prev").innerHTML = `
-      <header class="post-head"><div class="post-meta">${postMeta(p)}</div><h1 class="post-title">${esc(p.title)}</h1>
-      ${p.summary ? `<p class="sub" style="margin:0">${esc(p.summary)}</p>` : ""}</header>
-      <article class="card post-body">${infoBody(v.body, u => writeS.urls[u] || u) || `<p class="muted">본문이 여기에 보여요.</p>`}</article>`;
-    bindPostZoom();
-    const body = v.body.replace(/\\/g, "\\\\").replace(/`/g, "\\`").replace(/\$\{/g, "\\${").split("\n").map(l => l ? "    " + l : "").join("\n");
-    g("code").value = `  {
-    id:${q(id)}, title:${q(v.title)}, date:${q(v.date)}, tag:${q(v.tag)},${v.summary ? `\n    summary:${q(v.summary)},` : ""}${v.cover ? `\n    cover:${q(v.cover)},` : ""}
-    body:\`
-${body}
-    \`
-  },`;
-    const imgs = [...v.body.matchAll(/!\[[^\]]*\]\(([^)\s]+)\)/g)].map(m => m[1]);
-    $("#w_thumbs").innerHTML = [...v.body.matchAll(/!\[[^\]]*\]\(([^)\s]+)\)/g)].map((m, k) => `
-      <button type="button" class="wt" data-at="${m.index}" data-len="${m[0].length}" title="${esc(m[1])}">
-        <img src="${esc(writeS.urls[m[1]] || m[1])}" alt="" loading="lazy" onerror="this.parentNode.classList.add('bad')"><span class="wt-n">${k + 1}</span><span class="wt-x" title="이 사진 빼기">✕</span>
-      </button>`).join("");
-    const folders = [...new Set(imgs.map(u => u.replace(/\/[^/]*$/, "/")))];
-    $("#w_imgs").innerHTML = SRV.me ? (imgs.length ? `사진 ${imgs.length}장 · 서버에 올라가 있어요` : "") : imgs.length
-      ? `사진 ${imgs.length}장 → <b>${folders.map(esc).join(", ")}</b> 폴더에 넣을 파일: ${[...new Set(imgs.map(u => u.split("/").pop()))].map(esc).join(", ")}`
-      : `사진은 <b>${esc(INFO_IMG_DIR + postFolder())}/</b> 폴더에 넣으면 돼요 (주소 이름 = 폴더 이름)`;
-  };
-  keys.forEach(k => g(k).addEventListener("input", update));
-  const ta = g("body");
-  const insert = (text, wrap) => {
-    const a = ta.selectionStart, b = ta.selectionEnd, t = ta.value;
-    let s;
-    if (wrap) s = wrap + (t.slice(a, b) || "글자") + wrap;
-    else { const bol = a === 0 || t[a - 1] === "\n"; s = (bol ? "" : "\n") + text; }
-    ta.value = t.slice(0, a) + s + t.slice(b);
-    ta.focus(); ta.selectionStart = ta.selectionEnd = a + s.length;
-    update();
-  };
-  document.querySelectorAll("[data-ins]").forEach(b => b.onclick = () => insert(b.dataset.ins));
-  document.querySelectorAll("[data-wrap]").forEach(b => b.onclick = () => insert("", b.dataset.wrap));
-  /* 사진 넣기: [📷 사진 넣기] · 캡처 붙여넣기(Ctrl+V) · 끌어다 놓기 모두 여기로 */
-  const addImages = async files => {
-    files = files.filter(f => f && /^image\//.test(f.type)); if (!files.length) return;
-    if (SRV.on && !SRV.me){                    // 사이트에서 쓰는데 아직 비밀번호 확인 전 → 사진이 서버에 안 올라가므로 막는다
-      alert("사진을 넣기 전에 맨 위에서 글쓴이 비밀번호를 넣고 [확인]을 눌러 주세요.");
-      $("#w_key")?.focus(); return;
-    }
-    const at = ta.selectionStart;               // 올리는 동안 커서가 움직여도 원래 자리에 넣는다
-    let lines = [];
-    if (SRV.me){                               // 서버 글쓰기: 사진을 바로 올리고 주소를 넣는다
-      copyToast(`사진 ${files.length}장 올리는 중…`);
-      for (const fl of files){
-        try { const r = await srvFetch("/api/upload", { method:"POST", headers:{ "content-type": fl.type }, body: fl }); writeS.urls[r.url] = URL.createObjectURL(fl); lines.push(`![](${r.url})`); }
-        catch(err){ alert(`${fl.name || "사진"}: ${err.message}`); }
-      }
-      if (!lines.length) return;
-      copyToast(`사진 ${lines.length}장을 넣었어요`);
-    } else {
-      lines = files.map((fl, k) => {
-        // 캡처 붙여넣기는 이름이 모두 image.png 라서 겹치지 않게 새 이름
-        const nm = (!fl.name || /^image\.(png|jpe?g|gif|webp)$/i.test(fl.name)) ? `capture-${Date.now().toString(36)}${k}.${(fl.type.split("/")[1] || "png").replace("jpeg", "jpg")}` : fl.name;
-        const path = INFO_IMG_DIR + postFolder() + "/" + nm; writeS.urls[path] = URL.createObjectURL(fl); return `![](${path})`;
-      });
-    }
-    ta.focus(); ta.selectionStart = ta.selectionEnd = Math.min(at, ta.value.length);
-    const t = ta.value, a = ta.selectionStart;
-    const before = a === 0 ? "" : t[a - 1] === "\n" ? (t[a - 2] === "\n" ? "" : "\n") : "\n\n";
-    insert(before.replace(/^\n/, "") + lines.join("\n") + "\n\n");
-  };
-  g("files").onchange = e => { const f = [...e.target.files]; e.target.value = ""; addImages(f); };
-  /* 파일 넣기 (PDF · 자막 등): 서버에 올리고 [📎 이름](/file/…) 줄을 넣는다 → 글에서는 다운로드 버튼 */
-  const addFiles = async files => {
-    const okExt = FILE_EXTS.split(",");
-    files = files.filter(f => f && okExt.includes((f.name.match(/\.[^.]+$/) || [""])[0].toLowerCase()));
-    if (!files.length) return alert("올릴 수 있는 파일: PDF · 자막(srt, vtt, ass, ssa, smi, sub, lrc) · txt · zip");
-    const big = files.filter(f => f.size > 10 * 1048576);
-    if (big.length) return alert(`10MB가 넘는 파일은 올릴 수 없어요:\n${big.map(f => f.name).join("\n")}`);
-    const at = ta.selectionStart, lines = [];
-    if (SRV.on && !SRV.me){ alert("파일을 넣기 전에 맨 위에서 글쓴이 비밀번호를 넣고 [확인]을 눌러 주세요."); $("#w_key")?.focus(); return; }
-    if (SRV.me){
-      copyToast(`파일 ${files.length}개 올리는 중…`);
-      for (const fl of files){
-        try { const r = await srvFetch("/api/file?name=" + encodeURIComponent(fl.name), { method:"POST", headers:{ "content-type": fl.type || "application/octet-stream" }, body: fl });
-          lines.push(`[📎 ${r.name.replace(/[\[\]]/g, "")} (${fileSize(r.size)})](${r.url})`); }
-        catch(err){ alert(`${fl.name}: ${err.message}`); }
-      }
-      if (!lines.length) return;
-      copyToast(`파일 ${lines.length}개를 넣었어요`);
-    } else {                                  // 내 컴퓨터에서 쓸 때: files/ 폴더에 직접 넣는 방식
-      files.forEach(fl => lines.push(`[📎 ${fl.name.replace(/[\[\]]/g, "")} (${fileSize(fl.size)})](files/${fl.name})`));
-      alert(`이 파일을 backnumber 폴더 안 files 폴더에 넣고 같이 올려 주세요:\n${files.map(f => f.name).join("\n")}`);
-    }
-    ta.focus(); ta.selectionStart = ta.selectionEnd = Math.min(at, ta.value.length);
-    const t = ta.value, a = ta.selectionStart;
-    const before = a === 0 ? "" : t[a - 1] === "\n" ? (t[a - 2] === "\n" ? "" : "\n") : "\n\n";
-    insert(before.replace(/^\n/, "") + lines.join("\n") + "\n\n");
-  };
-  g("attach").onchange = e => { const f = [...e.target.files]; e.target.value = ""; addFiles(f); };
-  ta.addEventListener("paste", e => {
-    const f = [...(e.clipboardData?.files || [])].filter(x => /^image\//.test(x.type));
-    if (!f.length) return;                    // 글자 붙여넣기는 그대로
-    e.preventDefault(); addImages(f);
-  });
-  ta.addEventListener("dragover", e => { if ([...(e.dataTransfer?.types || [])].includes("Files")){ e.preventDefault(); ta.classList.add("drop"); } });
-  ta.addEventListener("dragleave", () => ta.classList.remove("drop"));
-  ta.addEventListener("drop", e => {
-    const f = [...(e.dataTransfer?.files || [])]; ta.classList.remove("drop");
-    if (!f.length) return;
-    e.preventDefault();
-    const im = f.filter(x => /^image\//.test(x.type)), other = f.filter(x => !/^image\//.test(x.type));
-    if (im.length) addImages(im);
-    if (other.length) addFiles(other);
-  });
-  /* 본문 칸 아래 사진 미리보기 줄: 누르면 그 사진 줄로 이동, ✕ 로 빼기 */
-  $("#w_thumbs").addEventListener("click", e => {
-    const th = e.target.closest("[data-at]"); if (!th) return;
-    const at = +th.dataset.at, len = +th.dataset.len;
-    if (e.target.closest(".wt-x")){
-      const t = ta.value; let end = at + len; if (t[end] === "\n") end++;
-      ta.value = (t.slice(0, at) + t.slice(end)).replace(/\n{3,}/g, "\n\n"); update(); return;
-    }
-    ta.focus(); ta.selectionStart = at; ta.selectionEnd = at + len;
-    const lh = parseFloat(getComputedStyle(ta).lineHeight) || 20;
-    ta.scrollTop = Math.max(0, (ta.value.slice(0, at).split("\n").length - 3) * lh);
-  });
-  $("#w_copy").onclick = () => copyToClipboard(g("code").value).then(() => copyToast("코드를 복사했어요"));
-  $("#w_clear").onclick = () => { if (!confirm(saved.edit ? "수정하던 내용을 버리고 새 글을 쓸까요?" : "쓰던 글을 지우고 새로 쓸까요?")) return;
-    try { localStorage.removeItem("bn-draft"); } catch(e){}
-    if (location.hash !== "#/write") location.hash = "#/write"; else render(); };
-  /* 서버 글쓰기: 로그인 · 올리기 · 수정 · 삭제 */
-  if ($("#w_login")) $("#w_login").onclick = async () => {
-    const k = $("#w_key").value.trim(); if (!k) return;
-    SRV.key = k;
-    try { SRV.me = await srvFetch("/api/me"); try { localStorage.setItem("bn-wkey", k); } catch(e){} render(); }
-    catch(err){ SRV.key = ""; SRV.me = null; alert(err.message); }
-  };
-  if ($("#w_key")) $("#w_key").onkeydown = e => { if (e.key === "Enter") $("#w_login").click(); };
-  if ($("#w_logout")) $("#w_logout").onclick = () => { SRV.key = ""; SRV.me = null; try { localStorage.removeItem("bn-wkey"); } catch(e){} render(); };
-  const payload = () => { const v = val(); return { title:v.title, date:v.date, tag:v.tag, summary:v.summary, id:v.id, body:v.body, cover:v.cover }; };
-  const done = async (id, msg) => {
-    try { localStorage.removeItem("bn-draft"); } catch(e){}
-    try { SRV.posts = await srvFetch("/api/posts"); } catch(e){}
-    alert(msg); location.hash = id ? "#/info/" + encodeURIComponent(id) : "#/info";
-  };
-  const missingImgs = async () => {          // 본문 사진 중 열리지 않는 것 (서버에 안 올라간 사진)
-    const urls = [...new Set([...val().body.matchAll(/!\[[^\]]*\]\(([^)\s]+)\)/g)].map(m => m[1]))];
-    const bad = [];
-    for (const u of urls){
-      if (/^\/img\//.test(u) && writeS.urls[u]) continue;    // 방금 이 화면에서 서버에 올린 사진 → 확인할 필요 없음
-      try { const r = await fetch(u, { method:"HEAD", cache:"no-store" }); if (!r.ok || !/^image\//.test(r.headers.get("content-type") || "")) bad.push(u); }
-      catch(e){ bad.push(u); }
-    }
-    return bad;
-  };
-  const photoOk = async () => {
-    const bad = await missingImgs(); if (!bad.length) return true;
-    return confirm(`사진 ${bad.length}장이 서버에 올라가 있지 않아 '사진 준비 중'으로 보여요.\n본문에서 그 줄을 지우고 [📷 사진 넣기]로 다시 넣는 걸 추천해요.\n\n${bad.join("\n")}\n\n그래도 이대로 올릴까요?`);
-  };
-  const busy = (b, on) => { if (b){ b.disabled = on; b.style.opacity = on ? .6 : 1; } };
-  if ($("#w_post")) $("#w_post").onclick = async e => {
-    const btn = e.currentTarget;
-    if (!val().title.trim()) return alert("제목을 써 주세요");
-    if (!(await photoOk())) return;
-    if (!confirm("이 글을 사이트에 올릴까요?")) return;
-    busy(btn, true);
-    try { const r = await srvFetch("/api/posts", { method:"POST", headers:{ "content-type":"application/json" }, body: JSON.stringify(payload()) }); await done(r.id, "올렸어요!"); }
-    catch(err){ alert(err.message); busy(btn, false); }
-  };
-  if ($("#w_save")) $("#w_save").onclick = async e => {
-    const btn = e.currentTarget;
-    if (!(await photoOk())) return;
-    busy(btn, true);
-    try { const r = await srvFetch("/api/posts/" + encodeURIComponent(saved.edit), { method:"PUT", headers:{ "content-type":"application/json" }, body: JSON.stringify(payload()) }); await done(r.id, "저장했어요!"); }
-    catch(err){ alert(err.message); busy(btn, false); }
-  };
-  if ($("#w_del")) $("#w_del").onclick = async e => {
-    const btn = e.currentTarget;
-    if (!confirm("이 글을 사이트에서 지울까요? 되돌릴 수 없어요.")) return;
-    busy(btn, true);
-    try { await srvFetch("/api/posts/" + encodeURIComponent(saved.edit), { method:"DELETE" }); await done("", "지웠어요"); }
-    catch(err){ alert(err.message); busy(btn, false); }
-  };
-  if ($("#w_clear2")) $("#w_clear2").onclick = () => $("#w_clear").click();
-  $("#w_pick").onchange = e => {
-    const id = e.target.value;
-    if (!id){ try { localStorage.removeItem("bn-draft"); } catch(e){} location.hash = "#/write"; if (location.hash === "#/write") render(); return; }
-    const cur = writeLoad();
-    if (cur.body && cur.edit !== id && !confirm("지금 쓰던 내용 대신 이 글을 불러올까요?")){ e.target.value = cur.edit || ""; return; }
-    try { localStorage.removeItem("bn-draft"); } catch(e){}
-    location.hash = "#/write/" + encodeURIComponent(id);
-  };
-  update();
-}
-
-srvLoad(true);
-
-/* ============ 화면: 뮤비 (곡 목록 · 곡 화면) ============ */
-const mv = { from:null, query:"", order:"new", auto:true, player:null, ready:false, timer:null, active:-1, song:null };
-const MV_ORDERS = ["new","old","name","namer","chant","chantr"];
-const MV_LABEL = { new:"발매일 최신순", old:"발매일 오래된순", name:"가나다순", namer:"가나다 역순", chant:"떼창 많은순", chantr:"떼창 적은순" };
-try { const v = JSON.parse(localStorage.getItem("bn-mv") || "null"); if (v){ mv.order = v.order || mv.order; } } catch(e){}
-function mvSave(){ try { localStorage.setItem("bn-mv", JSON.stringify({ order:mv.order, auto:mv.auto })); } catch(e){} }
-
-/* ── 재생 목록 (바운디 사이트처럼) ───────────────────────────────
-   셋리스트에서 곡을 누르면 그 셋리스트 순서, 앨범·싱글에서 누르면 그 목록 순서로
-   이전/다음 곡과 '영상이 끝나면 다음 곡'이 이어진다. 곡 목록에서 들어오면 곡 목록 순서. */
-mv.queue = null;                            // { ids:[곡id...], pos:지금 몇 번째, label:"셋리스트" }
-function mvSetQueue(anchor, label){
-  const box = anchor.closest(".set-list, .disco-tracks, .cover-grid, #csetList") || anchor.parentElement;
-  const links = [...box.querySelectorAll('a[href^="#/mv/"]')];
-  const ids = links.map(a => decodeURIComponent(a.getAttribute("href").slice(5)));
-  const pos = links.indexOf(anchor);
-  mv.queue = ids.length > 1 && pos >= 0 ? { ids, pos, label } : null;
-}
-/* 지금 곡 기준으로 delta 만큼 떨어진 곡. skipNoVideo 면 영상 없는 곡은 건너뛴다 */
-function mvNeighbor(delta, skipNoVideo){
-  const q = mv.queue;
-  if (q){
-    if (q.ids[q.pos] !== mv.song.id){ const i = q.ids.indexOf(mv.song.id); if (i >= 0) q.pos = i; else mv.queue = null; }
-  }
-  if (mv.queue){
-    const n = q.ids.length;
-    for (let k = 1; k <= n; k++){
-      const pos = (q.pos + delta * k + n * k) % n;
-      const s = SONGS.find(x => x.id === q.ids[pos]);
-      if (s && (!skipNoVideo || s.youtubeId)) return { song:s, pos };
-    }
-    return null;
-  }
-  const list = mvSorted(), i = list.findIndex(s => s.id === mv.song.id), n = list.length;
-  for (let k = 1; k <= n; k++){
-    const s = list[(i + delta * k + n * k) % n];
-    if (!skipNoVideo || s.youtubeId) return { song:s, pos:-1 };
-  }
-  return null;
-}
-
-/* ── 소리 기억하기 ── 플레이어에서 맞춘 볼륨·음소거를 기억해 다음 곡·다음 방문에도 그대로 */
-const mvVol = { v:100, m:false };
-try { const v = JSON.parse(localStorage.getItem("bn-vol") || "null"); if (v){ mvVol.v = Number(v.v) || 100; } } catch(e){}   // 새로고침하면 소리는 항상 켜진 상태로 시작 (볼륨 크기만 기억)
-function mvVolApply(){
-  if (!mv.player || !mv.ready) return;
-  mv.volHold = Date.now() + 2500;           // 적용 직후엔 플레이어가 예전 값(100)을 돌려줄 수 있어 잠깐 저장 안 함
-  try { mv.player.setVolume(mvVol.v); if (mv.autoMuted) return; mvVol.m ? mv.player.mute() : mv.player.unMute(); } catch(e){}
-}
-function mvVolWatch(){
-  clearInterval(mv.volTimer);
-  mv.volTimer = setInterval(() => {
-    if (!mv.player || !mv.ready || Date.now() < (mv.volHold || 0)) return;
-    if (mv.autoMuted){                       // 자동재생용 음소거 중: 유튜브 화면에서 직접 소리를 켜면 버튼 숨김
-      try { if (!mv.player.isMuted()){ mv.autoMuted = false; const b = $("#unmuteBtn"); if (b){ b.hidden = true; b.classList.remove("hint"); b.lastChild.textContent = "탭해서 소리 켜기"; } mv.volHold = Date.now() + 1500; } } catch(e){}
-      return;
-    }
-    try {
-      const v = mv.player.getVolume(), m = !!mv.player.isMuted();
-      const nv = (typeof v === "number" && v > 0) ? v : mvVol.v;   // 0 은 음소거로 취급
-      if (nv !== mvVol.v || m !== mvVol.m){
-        mvVol.v = nv; mvVol.m = m;
-        try { localStorage.setItem("bn-vol", JSON.stringify(mvVol)); } catch(e){}
-      }
-    } catch(e){}
-  }, 800);
-}
-
-const mvSquash = s => String(s).toLowerCase().replace(/[\s'’·・、。,.!?！？-]/g, "");
-function mvSorted(){
-  const list = SONGS.slice();
-  const byNew = (a,b) => a.date === b.date ? a.ko.localeCompare(b.ko,"ko") : (a.date < b.date ? 1 : -1);
-  const ch = s => songMarks(s).chant || 0;
-  if (mv.order === "name") list.sort((a,b) => a.ko.localeCompare(b.ko, "ko"));
-  else if (mv.order === "namer"){ const hg = x => /^[가-힣]/.test(x.ko) ? 0 : 1;   // 한글 제목 먼저(하→가), 영어 제목은 뒤로
-    list.sort((a,b) => hg(a) - hg(b) || b.ko.localeCompare(a.ko, "ko")); }
-  else if (mv.order === "chant") list.sort((a,b) => ch(b) - ch(a) || byNew(a,b));
-  else if (mv.order === "chantr") list.sort((a,b) => ch(a) - ch(b) || byNew(a,b));
-  else if (mv.order === "old") list.sort((a,b) => a.date === b.date ? a.ko.localeCompare(b.ko,"ko") : (a.date > b.date ? 1 : -1));
-  else list.sort((a,b) => a.date === b.date ? a.ko.localeCompare(b.ko,"ko") : (a.date < b.date ? 1 : -1));
-  return list;
-}
-function mvMatch(s){
-  if (mv.favOnly && !FAV.has(s.id)) return false;
-  if (!mv.query) return true;
-  const q = mvSquash(mv.query);
-  return mvTitleHit(s, q) || !!mvLyricHit(s, q);
-}
-/* ============ 응원 구호 · 짤방 (바운디 사이트와 같은 방식) ============
-   가사 쓰는 법은 위쪽 SONGS 설명(★ 응원 구호 넣는 법)을 보세요. */
-const useSvg = id => `<svg viewBox="0 0 24 24" aria-hidden="true"><use href="#${id}"/></svg>`;
-const INLINE_ICONS = {
-  wave: `<span class="ico ico-wave" title="손 흔들기">${useSvg("i-wave")}</span>`,
-  clap: `<span class="ico ico-clap" title="박수"><span class="hand l">${useSvg("i-hand")}</span><span class="hand r">${useSvg("i-hand")}</span><span class="spark">${useSvg("i-spark")}</span></span>`,
-  mic:  `<span class="ico ico-mic" title="떼창">${useSvg("i-mic")}</span>`,
-  jump: `<span class="ico ico-jump" title="점프">${useSvg("i-jump")}<span class="ground"></span></span>`,
-  spin: `<span class="ico ico-spin" title="머리 위로 팔 돌리기"><svg class="body" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-cheer"/></svg><svg class="arm" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-cheer-arm"/></svg></span>`
-};
-INLINE_ICONS.turn = INLINE_ICONS.spin;
-INLINE_ICONS.chant = INLINE_ICONS.mic;
-INLINE_ICONS.banzai = `<span class="ico ico-banzai" title="짝 짝짝 만세"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">`
-  + `<circle cx="12" cy="7" r="2.4"/><path d="M6.8 23v-3a5.2 5.2 0 0 1 10.4 0v3"/>`
-  + `<g class="bz-clap"><g class="bz-h l"><path d="M7.6 17.2L10 13.6"/><circle cx="10.8" cy="12.6" r="1.35" fill="currentColor"/></g>`
-  + `<g class="bz-h r"><path d="M16.4 17.2L14 13.6"/><circle cx="13.2" cy="12.6" r="1.35" fill="currentColor"/></g>`
-  + `<g class="bz-sp1" stroke-width="1.7"><path d="M9 10.2l-1.1-1.1"/><path d="M15 10.2l1.1-1.1"/></g></g>`
-  + `<g class="bz-up"><path d="M7.6 17.2L4.8 6.2"/><circle cx="4.4" cy="4.7" r="1.35" fill="currentColor"/>`
-  + `<path d="M16.4 17.2L19.2 6.2"/><circle cx="19.6" cy="4.7" r="1.35" fill="currentColor"/>`
-  + `<g class="bz-sp2" stroke-width="1.7"><path d="M12 1.2v1.6"/><path d="M8.4 2.3l.8 1"/><path d="M15.6 2.3l-.8 1"/></g></g></svg></span>`;
-INLINE_ICONS.manse = INLINE_ICONS.banzai;
-INLINE_ICONS.sway = `<span class="ico ico-sway" title="한 손 들고 좌우로"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">`
-  + `<g class="sw-body"><circle cx="11.4" cy="10" r="2.6" fill="currentColor" stroke="none"/><path d="M5.9 23.2v-2.4a5.5 5.5 0 0 1 11 0v2.4"/></g>`
-  + `<g class="sw-arm"><path d="M15.4 17.4V5.2"/><circle cx="15.4" cy="3.9" r="1.6" fill="currentColor" stroke="none"/></g></svg></span>`;
-INLINE_ICONS.side = INLINE_ICONS.sway;
-const ICON_TOKEN_RE = /[\[(](wave|clap|mic|chant|jump|spin|turn|banzai|manse|sway|side)[\])]/gi;
-const hasIconToken = (str, name) => typeof str === "string" && new RegExp(`[\\[(]${name}[\\])]`, "i").test(str);
-
-/* 가사 글자를 안전하게 바꾸면서  {떼창}  {{박수}}  [wave] 같은 표시를 살린다 */
-function cheerText(str){
-  if (str === undefined || str === null || str === "") return "";
-  return esc(String(str))
-    .replace(/\{\{([\s\S]*?)\}\}/g, '<span class="seg-clap">$1</span>')
-    .replace(/\{([^{}]*)\}/g, '<span class="seg-chant">$1</span>')
-    .replace(ICON_TOKEN_RE, (m, k) => INLINE_ICONS[k.toLowerCase()] || m);
-}
-/* 이 소절이 떼창인지 — 곡 목록 배지와 왼쪽 표시가 같은 기준을 쓴다 */
-const CHANT_SEG = /\{(?!\{)[^{}]+\}/;
-function lineIsChant(l){
-  if (!l) return false;
-  if (l.bg) return true;
-  return [l.jp, l.ko, l.tr].some(t => typeof t === "string" &&
-    (CHANT_SEG.test(t.replace(/\{\{[\s\S]*?\}\}/g, "")) || hasIconToken(t, "mic") || hasIconToken(t, "chant")));
-}
-const songMarksCache = new Map();
-function songMarks(song){
-  if (songMarksCache.has(song.id)) return songMarksCache.get(song.id);
-  const m = { chant:0, clap:false, wave:false, jump:false, spin:false, banzai:false, sway:false };
-  (song.lyrics || []).forEach(l => {
-    [l.jp, l.ko, l.tr, l.bg].forEach(t => {
-      if (typeof t !== "string") return;
-      if (hasIconToken(t, "wave")) m.wave = true;
-      if (hasIconToken(t, "clap") || /\{\{[\s\S]*?\}\}/.test(t)) m.clap = true;
-      if (hasIconToken(t, "jump")) m.jump = true;
-      if (hasIconToken(t, "spin") || hasIconToken(t, "turn")) m.spin = true;
-      if (hasIconToken(t, "banzai") || hasIconToken(t, "manse")) m.banzai = true;
-      if (hasIconToken(t, "sway") || hasIconToken(t, "side")) m.sway = true;
-    });
-    if (lineIsChant(l)) m.chant++;
-  });
-  songMarksCache.set(song.id, m);
-  return m;
-}
-/* 곡 목록 오른쪽 배지 (흔한 박수·손 흔들기는 좁은 화면에서 숨김) */
-function songMarksHtml(song){
-  const m = songMarks(song);
-  let h = "";
-  if (m.chant) h += `<span class="song-mark chant" title="떼창 ${m.chant}줄">${useSvg("i-mic")}<b>${m.chant}</b></span>`;
-  if (m.clap)  h += `<span class="song-mark dot clap common" title="박수">${useSvg("i-hand")}</span>`;
-  if (m.wave)  h += `<span class="song-mark dot wave common" title="손 흔들기">${useSvg("i-wave")}</span>`;
-  if (m.jump)  h += `<span class="song-mark dot jump" title="점프">${useSvg("i-jump")}</span>`;
-  if (m.spin)  h += `<span class="song-mark dot spin" title="팔 돌리기">${useSvg("i-cheer")}</span>`;
-  if (m.banzai) h += `<span class="song-mark dot clap banzai" title="짝 짝짝 만세"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="6.2" r="2.3"/><path d="M12 10.2v5.6M12 15.8l-3.2 5M12 15.8l3.2 5M12 11.6 6.2 4.4M12 11.6l5.8-7.2"/></svg></span>`;   // 박수와 구분: 두 팔 번쩍
-  if (m.sway && !m.wave) h += `<span class="song-mark dot wave" title="한 손 좌우로">${useSvg("i-wave")}</span>`;
-  return h ? `<span class="song-marks">${h}</span>` : "";
-}
-/* 곡 화면 영상 아래 — 이 곡에 나오는 응원만 알려 준다 */
-function cheerLegend(m){
-  const parts = [];
-  if (m.chant) parts.push(`<span>${INLINE_ICONS.mic} 떼창 <b>${m.chant}</b>줄</span>`);
-  if (m.clap)  parts.push(`<span>${INLINE_ICONS.clap} 박수</span>`);
-  if (m.wave)  parts.push(`<span>${INLINE_ICONS.wave} 손 흔들기</span>`);
-  if (m.jump)  parts.push(`<span>${INLINE_ICONS.jump} 점프</span>`);
-  if (m.spin)  parts.push(`<span>${INLINE_ICONS.spin} 팔 돌리기</span>`);
-  if (m.banzai) parts.push(`<span>${INLINE_ICONS.banzai} 짝 짝짝 만세</span>`);
-  if (m.sway)  parts.push(`<span>${INLINE_ICONS.sway} 한 손 좌우로</span>`);
-  return parts.length ? `<div class="cheer-legend">${parts.join("")}</div>` : "";
-}
-
-/* ── 짤방 ── 지금 가사 줄에 pic 이 있으면 띄우고, 없으면 내린다 */
-let currentPicKey = null;
-const picBroken = new Set();
-function picVideoSrc(src){   // mp4 로 적어도, 같은 이름의 webm 이 있으면 지원하는 브라우저에선 webm 사용
-  if (!/\.mp4$/i.test(src)) return src;
-  const v = document.createElement("video");
-  return v.canPlayType('video/mp4; codecs="avc1.42E01E"') ? src : src.replace(/\.mp4$/i, ".webm");
-}
-function resolvePic(id){
-  if (!id || typeof id !== "string") return null;
-  const e = PICS[id];
-  const src = e ? e.src : (/[\/.]/.test(id) ? id : null);   // 등록 안 하고 경로를 직접 적어도 됨
-  if (!src || picBroken.has(src)) return null;
-  return { key:id, src, caption:(e && e.caption) || "" };
-}
-function hideTipPic(){
-  const box = $("#tipPic"); if (box) box.classList.remove("show", "big");
-  currentPicKey = null;
-}
-/* 휴대폰·PC → 영상 옆/아래, 단축모드(영상 숨김) → 가사 위 가운데 */
-function placeTipPic(){
-  const box = $("#tipPic"); if (!box) return;
-  // 휴대폰: 가사 칸 왼쪽 아래 (영상·버튼·지금 부르는 가사를 가리지 않게)
-  // PC: 영상 아래 빈 공간 (단축모드일 때는 가사 화면 왼쪽 아래)
-  const wide = window.matchMedia("(min-width:900px)").matches;
-  const land = window.matchMedia("(orientation:landscape) and (max-height:540px)").matches;
-  const below = wide && !mv.venue;
-  const top = !wide && !land;                // 휴대폰 세로: '셋리스트' 줄 바로 아래
-  const mode = below ? "at-below" : top ? "at-top" : "at-lyrics";
-  const host = below ? document.querySelector(".song-fixed-top") : document.querySelector(".song-body");
-  box.classList.remove("at-video", "at-lyrics", "at-side", "big");
-  box.classList.add(mode);
-  if (host && box.parentElement !== host) host.appendChild(box);
-  tipPicTop();
-}
-/* 휴대폰 세로: 짤방을 '셋리스트 · 단축모드 · AUTO SCROLL' 줄 바로 아래에 붙인다 */
-function tipPicTop(){
-  const box = $("#tipPic"); if (!box || !box.classList.contains("at-top")) return;
-  const row = document.querySelector(".song-ctlrow"), body = document.querySelector(".song-body");
-  if (!row || !body) return;
-  box.style.top = Math.max(0, Math.round(row.getBoundingClientRect().bottom - body.getBoundingClientRect().top + 6)) + "px";
-}
-window.addEventListener("resize", () => { if ($("#tipPic")) placeTipPic(); });
-function updateTipPic(song, idx){
-  const line = idx >= 0 ? (song.lyrics || [])[idx] : null;
-  const pic = line ? resolvePic(line.pic) : null;
-  if (!pic) return hideTipPic();
-  if (pic.key === currentPicKey) return;
-  const box = $("#tipPic"), img = $("#tipPicImg"), vid = $("#tipPicVid"), cap = $("#tipPicCap");
-  if (!box || !img) return;
-  const isVid = /\.(mp4|webm)$/i.test(pic.src);
-  img.hidden = isVid; if (vid) vid.hidden = !isVid;
-  if (isVid && vid){
-    vid.onerror = () => { picBroken.add(pic.src); hideTipPic(); };
-    const vs = picVideoSrc(pic.src);
-    if (vid.getAttribute("src") !== vs) vid.setAttribute("src", vs);
-    vid.play?.().catch(() => {});
-  } else {
-    if (vid){ vid.pause?.(); }
-    img.onerror = () => { picBroken.add(img.getAttribute("src")); hideTipPic(); };
-    img.alt = pic.caption || "응원 동작";
-    if (img.getAttribute("src") !== pic.src) img.setAttribute("src", pic.src);
-  }
-  cap.textContent = pic.caption || "";
-  box.classList.remove("big"); tipPicTop(); box.classList.add("show");
-  currentPicKey = pic.key;
-}
-window.matchMedia("(min-width:900px)").addEventListener("change", () => { if ($("#tipPic")) placeTipPic(); });
-function preloadSongPics(song){
-  const seen = new Set();
-  (song.lyrics || []).forEach(l => {
-    const p = resolvePic(l.pic);
-    if (!p || seen.has(p.src)) return;
-    seen.add(p.src);
-    if (/\.(mp4|webm)$/i.test(p.src)){      // 동영상 짤: 작아서 미리 받아 둠 (없으면 표시 안 함)
-      const v = document.createElement("video"); v.preload = "auto"; v.muted = true;
-      v.onerror = () => picBroken.add(p.src); v.src = picVideoSrc(p.src); return;
-    }
-    const im = new Image(); im.onerror = () => picBroken.add(p.src); im.src = p.src;
-  });
-}
-
-function mvBadge(s){
-  if (s.vtype === "mv") return `<span class="tag t-live">MV</span>`;
-  if (s.vtype === "lyric") return `<span class="tag t-lyric">가사영상</span>`;
-  if (s.vtype === "live") return `<span class="tag t-livevid">라이브 영상</span>`;
-  if (s.youtubeId) return `<span class="tag t-release">음원</span>`;
-  return `<span class="tag t-done">없음</span>`;
-}
-/* ── 즐겨찾기 ♥ (이 기기에만 저장) ── */
-const FAV = new Set((() => { try { return JSON.parse(localStorage.getItem("bn-fav") || "[]"); } catch(e){ return []; } })());
-function favSave(){ try { localStorage.setItem("bn-fav", JSON.stringify([...FAV])); } catch(e){} }
-function favToggle(id){ FAV.has(id) ? FAV.delete(id) : FAV.add(id); favSave(); return FAV.has(id); }
-/* ── 가사 구절 검색 ── */
-const lyClean = t => String(t || "").replace(/\[[^\]]*\]/g, "").replace(/[{}]/g, "");
-function mvTitleHit(s, q){ return mvSquash(s.ko).includes(q) || mvSquash(s.jp).includes(q) || mvSquash(s.rom).includes(q) || mvSquash(s.album).includes(q); }
-function mvLyricHit(s, q){
-  if (q.length < 2) return null;
-  for (const l of (s.lyrics || [])){
-    for (const k of ["jp", "ko", "tr"]){ const t = lyClean(l[k]); if (t && mvSquash(t).includes(q)) return l; }
-  }
-  return null;
-}
-/* ── 이 곡을 부른 공연 (셋리스트에서 자동) ── */
-function songLiveRecord(song){
-  const out = [];
-  const scan = (list, kind) => list.forEach(c => {
-    let n = 0, enc = false;
-    (c.songs || []).forEach(x => {
-      if (x && x.enc){ enc = true; return; }
-      n++;
-      const t = typeof x === "string" ? x : x && x.t;
-      if (!t || setFind(t) !== song) return;
-      const pos = enc ? "앙코르" : n + "번째";
-      const hit = out.find(o => o.c === c);
-      if (hit) hit.pos.push(pos); else out.push({ c, kind, pos:[pos] });
-    });
-  });
-  scan(CONCERT_SETLISTS, "tour"); scan(CONCERT_FESTS, "fest");
-  return out;
-}
-function mvRows(){
-  const items = mvSorted().filter(mvMatch);
-  const q = mvSquash(mv.query || "");
-  const raw = String(mv.query || "").trim();
-  // 검색어가 들어간 부분을 강조 (그대로 들어 있을 때만)
-  const mark = t => { const e = esc(t); if (!raw) return e; const k = esc(raw); const i = e.toLowerCase().indexOf(k.toLowerCase()); return i < 0 ? e : e.slice(0, i) + `<mark>${e.slice(i, i + k.length)}</mark>` + e.slice(i + k.length); };
-  const row = (s, l) => `
-        <a class="mvrow" href="#/mv/${encodeURIComponent(s.id)}">
-          <span class="t"><b>${l ? esc(s.ko) : mark(s.ko)}</b><small>${l ? esc(s.jp) : mark(s.jp)} <span class="alb">· ${esc(s.album)}</span></small>${l
-            ? (() => {                          // 검색어가 들어 있는 줄(일본어·발음·번역)을 앞에 보여 줌
-                const f = [lyClean(l.jp), lyClean(l.ko), lyClean(l.tr)].filter(Boolean);
-                const hit = f.find(t => mvSquash(t).includes(q)) || f[0] || "";
-                const other = f.find(t => t !== hit && t === lyClean(l.jp)) || "";
-                return `<small class="ly-hit"><span class="ly-tag">가사</span>${mark(hit)}${other ? ` <span class="ly-tr">· ${esc(other)}</span>` : ""}</small>`;
-              })() : ""}</span>
-          <span class="side"><span class="side-top">${songMarksHtml(s)}${mvBadge(s)}</span><small>${esc(s.date)}</small></span>
-          <button class="row-fav${FAV.has(s.id) ? " on" : ""}" data-fav="${esc(s.id)}" aria-pressed="${FAV.has(s.id)}" aria-label="즐겨찾기">${FAV.has(s.id) ? I_HEART_ON : I_HEART}</button>
-        </a>`;
-  if (!q){
-    $("#mvMeta").textContent = mv.favOnly ? `♥ 즐겨찾기 ${items.length}곡` : `전체 ${SONGS.length}곡`;
-    $("#mvList").innerHTML = items.length ? `<div class="card mvlist">${items.map(s => row(s)).join("")}</div>`
-      : `<div class="card muted" style="text-align:center">${mv.favOnly ? "아직 즐겨찾기한 곡이 없어요 · 곡 옆 ♡를 눌러 보세요" : "찾는 곡이 없어요"}</div>`;
-    return;
-  }
-  // 검색: 제목으로 찾은 곡 / 가사에서 찾은 곡을 나눠서 보여 준다
-  const byTitle = items.filter(s => mvTitleHit(s, q));
-  const byLyric = items.filter(s => !mvTitleHit(s, q)).map(s => [s, mvLyricHit(s, q)]).filter(x => x[1]);
-  $("#mvMeta").textContent = `제목 ${byTitle.length}곡 · 가사 ${byLyric.length}곡`;
-  $("#mvList").innerHTML = (byTitle.length || byLyric.length)
-    ? (byTitle.length ? `<div class="mv-group"><span class="mv-gtag t">제목</span> 제목·앨범에서 찾은 곡 ${byTitle.length}</div><div class="card mvlist">${byTitle.map(s => row(s)).join("")}</div>` : "")
-    + (byLyric.length ? `<div class="mv-group"><span class="mv-gtag l">가사</span> 가사에서 찾은 곡 ${byLyric.length}</div><div class="card mvlist">${byLyric.map(([s, l]) => row(s, l)).join("")}</div>` : "")
-    : `<div class="card muted" style="text-align:center">찾는 곡이 없어요</div>`;
-}
-
-function viewMv(id){
-  if (id){
-    const song = SONGS.find(s => s.id === decodeURIComponent(id));
-    if (song) return viewMvSong(song);
-  }
-  return `
-  <h1>back number 노래</h1>
-  <p class="sub">정규·미니 앨범과 싱글 전곡 · 뮤직비디오와 공식 음원으로 연결돼요.</p>
-  <a class="card setlink" href="#/setlist"><b>콘서트 셋리스트</b><small>원맨·팬클럽 투어 · 페스 · 이벤트에서 부른 곡 순서</small><span>›</span></a>
-  <a class="card setlink" href="#/disco"><b>앨범 · 라이브 · LP</b><small>정규·미니·베스트 앨범 수록곡 · 싱글 · 라이브 BD · 아날로그 레코드</small><span>›</span></a>
-  <div class="mvtools">
-    <label class="mvsearch">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
-      <input id="mvQ" type="search" placeholder="곡 제목·앨범·가사 한 구절로 검색" value="${esc(mv.query)}">
-    </label>
-    <div class="mvsort-wrap">
-      <button class="btn mvsort-btn" id="mvSort" aria-haspopup="listbox" aria-expanded="false"><span id="mvSortLabel">${mv.favOnly ? "♥ " : ""}${MV_LABEL[mv.order] || MV_LABEL.new}</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
-      <div class="mvsort-menu" id="mvSortMenu" role="listbox" hidden>
-        ${[["발매일", "new", "old"], ["가나다", "name", "namer"], ["떼창", "chant", "chantr"]].map(([g, a, b]) => `
-        <div class="mvsort-group"><small>${g}</small>${[a, b].map(k => `<button role="option" data-o="${k}" aria-selected="${mv.order === k}">${MV_LABEL[k]}</button>`).join("")}</div>`).join("")}
-        <div class="mvsort-group"><small>보기</small><button role="option" data-v="all" aria-selected="${!mv.favOnly}">전체 곡</button><button role="option" data-v="fav" aria-selected="${!!mv.favOnly}">♥ 즐겨찾기만</button></div>
-      </div>
-    </div>
-    <button class="btn mvshuffle" id="mvShuffle" title="지금 목록에서 랜덤 재생" aria-label="랜덤 재생"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5M4 20 21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg></button>
-  </div>
-  <div class="mvmeta small muted"><span id="mvMeta"></span><span>MV ${SONGS.filter(s => s.vtype === "mv" || s.vtype === "lyric" || s.vtype === "live").length} · 음원 ${SONGS.filter(s => s.vtype === "audio").length}</span></div>
-  <div id="mvList"></div>
-  ${footer()}`;
-}
-
-/* ============ 곡 화면 (바운디 곡 화면과 같은 구성 · 응원 기능 없음) ============
-   위: ← · 이전 / 곡 제목(누르면 곡 목록) / 다음 · 테마
-   가운데: 영상 → 안내 한 줄 → 가사 (PC에서는 영상 왼쪽 / 가사 오른쪽)
-   오른쪽 아래: 재생(단축모드일 때만) · 단축모드 · AUTO SCROLL */
-const I_LEFT  = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>`;
-const I_RIGHT = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>`;
-const I_CARET = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>`;
-const I_PLAY  = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>`;
-const I_PAUSE = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>`;
-const I_HEART    = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 20.5s-7.5-4.6-9.2-9.4C1.6 7.6 3.9 4.5 7.2 4.5c2 0 3.6 1.1 4.8 2.8 1.2-1.7 2.8-2.8 4.8-2.8 3.3 0 5.6 3.1 4.4 6.6-1.7 4.8-9.2 9.4-9.2 9.4z"/></svg>`;
-const I_HEART_ON = I_HEART.replace('fill="none"', 'fill="currentColor"');
-const I_MOON  = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>`;
-try { mv.venue = localStorage.getItem("mv-venue") === "1"; } catch(e){ mv.venue = false; }
-
-function viewMvSong(song){
-  const lines = song.lyrics || [];
-  const marks = songMarks(song), hasMarks = marks.chant > 0;
-  const hasVideo = !!song.youtubeId;
-  return `
-  <div class="song-page${mv.venue ? " venue" : ""}" id="songPage">
-    <div class="song-topbar">
-      <button class="back-btn" id="songBack" aria-label="${esc(mv.from ? mv.from.label : "곡 목록")}으로">←</button>
-      <nav class="song-nav" aria-label="곡 이동">
-        <button class="song-nav-btn" id="prevSong" aria-label="이전 곡">${I_LEFT}</button>
-        <button class="song-picker-btn" id="pickerBtn" aria-expanded="false" aria-haspopup="dialog" title="곡 목록 열기">
-          <span class="song-picker-title">${esc(song.ko)}</span>
-          <span class="song-picker-caret">${I_CARET}</span>
-        </button>
-        <button class="song-nav-btn" id="nextSong" aria-label="다음 곡">${I_RIGHT}</button>
-      </nav>
-      <button class="song-nav-btn fav-top${FAV.has(song.id) ? " on" : ""}" id="favBtn" aria-pressed="${FAV.has(song.id)}" aria-label="즐겨찾기" title="즐겨찾기">${FAV.has(song.id) ? I_HEART_ON : I_HEART}</button>
-      <button class="song-nav-btn" id="songTheme" aria-label="화면 테마 바꾸기">${I_MOON}</button>
-    </div>
-
-    <div class="song-body">
-      <div class="song-fixed-top">
-        <div class="video-wrap">
-          <div class="video-frame">
-            <div id="yt"></div>
-            <button class="unmute-btn" id="unmuteBtn" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M17 9l5 6M22 9l-5 6"/></svg>탭해서 소리 켜기</button>
-            ${hasVideo ? "" : `<div class="video-status">공식 유튜브에 없는 곡이에요</div>`}
-          </div>
-          <div class="video-sub">
-            <span>${esc(song.jp)} · ${esc(song.album)} · ${esc(song.date)}</span>
-            <button class="lyric-copy-btn song-info-btn${songInfoOf(song).story ? " has" : ""}" id="songInfoBtn" aria-haspopup="dialog">곡 정보</button>
-            ${lines.length ? `<button class="lyric-copy-btn" id="lyricCopyBtn" aria-haspopup="true">가사 복사</button>` : ""}
-            ${hasVideo ? `<a class="watch-on-yt" href="https://www.youtube.com/watch?v=${esc(song.youtubeId)}" target="_blank" rel="noopener">${song.vtype === "audio" ? "유튜브 공식 음원" : "유튜브에서 보기"} ↗</a>` : ""}
-          </div>
-        </div>
-        <div class="lyrics-note"><span class="dot">●</span> ${lines.length && !song.unsynced
-          ? "가사를 탭하면 해당 위치로 영상이 이동해요. 영상 재생 상태에 따라 가사 하이라이트가 동기화됩니다."
-          : lines.length ? `이 곡은 가사 시간이 아직 없어서 영상과 따라가지 않아요. ${hasVideo ? `<a href="#/sync/${encodeURIComponent(song.id)}">싱크 맞추기 ›</a>` : ""}` : "가사는 준비 중이에요."}</div>
-        <div class="song-ctlrow">
-          ${mv.queue && mv.queue.ids.includes(song.id) ? `<div class="queue-note">▶ <b>${esc(mv.queue.label)}</b><span class="qn-long"> 순서로 이어서 재생</span> · ${(mv.queue.ids[mv.queue.pos] === song.id ? mv.queue.pos : mv.queue.ids.indexOf(song.id)) + 1} / ${mv.queue.ids.length}</div>` : `<span class="queue-note empty"></span>`}
-          <div class="song-ctl" id="songCtl">
-            <button class="venue-toggle${mv.venue ? " active" : ""}" id="venueBtn" aria-label="단축모드 켜기/끄기" aria-pressed="${mv.venue}">
-              <span class="venue-label">단축모드</span>
-              <span class="venue-switch"><span class="venue-knob"></span></span>
-            </button>
-            <button class="autoscroll-toggle${mv.auto ? " active" : ""}" id="autoBtn" aria-label="자동 스크롤 켜기/끄기" aria-pressed="${mv.auto}">
-              <span class="autoscroll-label">AUTO SCROLL</span>
-              <span class="autoscroll-switch"><span class="autoscroll-knob"></span></span>
-            </button>
-          </div>
-        </div>
-        ${cheerLegend(marks)}
-        <div class="tip-pic" id="tipPic" aria-live="polite">
-          <figure class="tip-pic-card" id="tipPicCard" title="탭하면 크게 보여요"><img id="tipPicImg" alt="" decoding="async"><video id="tipPicVid" muted loop playsinline autoplay preload="auto" hidden></video><figcaption class="tip-pic-cap" id="tipPicCap"></figcaption></figure>
-        </div>
-      </div>
-
-      <div class="lyrics-scroll" id="lyricsScroll">
-        <ul class="lyrics-list" id="lyricsList">
-          ${lines.length ? lines.map((l, k) => `
-            <li><button class="lyric-line" data-i="${k}" data-t="${l.time}">
-              ${hasMarks ? `<span class="lyric-icons">${lineIsChant(l) ? `<span class="lyric-type-icon chant" title="떼창">${INLINE_ICONS.mic}</span>` : ""}</span>` : ""}
-              <span class="lyric-body">
-                <span class="lyric-jp">${cheerText(l.jp)}</span>
-                <span class="lyric-ko">${cheerText(typeof l.ko === "string" ? l.ko : "")}</span>
-                <span class="lyric-tr">${cheerText(l.tr)}</span>
-                ${l.bg ? `<span class="lyric-bg">${cheerText(l.bg)}</span>` : ""}
-              </span>
-            </button></li>`).join("")
-            : `<li class="nolyrics">가사 준비 중</li>`}
-        </ul>
-      </div>
-    </div>
-
-    <div class="player-controls">
-      <button class="play-toggle" id="playToggle" aria-label="재생 / 일시정지">${I_PLAY}</button>
-    </div>
-
-    <div class="copy-menu" id="copyMenu" hidden>
-      <div class="copy-menu-card" role="menu" aria-label="가사 복사">
-        <b>가사 복사</b>
-        <button role="menuitem" data-copy="all">전체 (일본어 · 발음 · 해석)</button>
-        <button role="menuitem" data-copy="jp">일본어만</button>
-        <button role="menuitem" data-copy="ko">한글 발음만</button>
-        <button role="menuitem" data-copy="tr">해석만</button>
-        <button class="copy-cancel" data-copy="">닫기</button>
-      </div>
-    </div>
-    <div class="copy-menu info-sheet" id="infoSheet" hidden>
-      <div class="copy-menu-card info-card" role="dialog" aria-modal="true" aria-label="곡 정보">${songInfoHtml(song)}</div>
-    </div>
-    <div class="copy-toast" id="copyToast" aria-live="polite"></div>
-    <div class="song-sheet" id="songSheet" aria-hidden="true" inert>
-      <div class="song-sheet-backdrop" data-close></div>
-      <div class="song-sheet-panel" role="dialog" aria-modal="true" aria-label="곡 선택">
-        <span class="song-sheet-grip"></span>
-        <div class="song-sheet-head">
-          <span class="song-sheet-title">곡 선택</span>
-          <span class="song-sheet-count" id="sheetCount">${SONGS.length}곡</span>
-          <button class="sheet-mode" id="sheetMode" hidden></button>
-          <button class="song-sheet-close" data-close aria-label="닫기">✕</button>
-        </div>
-        <div class="sheet-search"><input id="sheetQ" type="search" autocomplete="off" placeholder="곡 제목 검색 (한국어·일본어·로마자)"></div>
-        <ul class="song-sheet-list" id="sheetList"></ul>
-      </div>
-    </div>
-  </div>`;
-}
-
-function mvGo(delta, skipNoVideo){
-  const nb = mvNeighbor(delta, skipNoVideo);
-  if (!nb) return;
-  if (mv.queue && nb.pos >= 0) mv.queue.pos = nb.pos;
-  mv.autoplay = true;
-  if (nb.song.id === mv.song.id){ try { mv.player.seekTo(0, true); mv.player.playVideo(); } catch(e){} return; }
-  location.hash = "#/mv/" + encodeURIComponent(nb.song.id);
-}
-function paintSheet(){
-  const q = mvSquash($("#sheetQ").value || "");
-  const qu = mv.queue && mv.queue.ids.includes(mv.song.id) ? mv.queue : null;
-  const useQ = qu && !mv.sheetAll;
-  const base = useQ ? qu.ids.map(id => SONGS.find(x => x.id === id)).filter(Boolean) : mvSorted();
-  $("#sheetCount").textContent = useQ ? `${qu.label} 순서 · ${base.length}곡` : `${SONGS.length}곡`;
-  const mb = $("#sheetMode"); mb.hidden = !qu;
-  if (qu) mb.textContent = useQ ? "전체 곡 보기" : `${qu.label}만 보기`;
-  const items = base.filter(s => !q || mvSquash(s.ko).includes(q) || mvSquash(s.jp).includes(q) || mvSquash(s.rom).includes(q));
-  $("#sheetList").innerHTML = items.length ? items.map(s => `
-    <li><button class="song-sheet-item${s.id === mv.song.id ? " current" : ""}" data-id="${esc(s.id)}">
-      ${useQ ? `<span class="sheet-no">${base.indexOf(s) + 1}</span>` : ""}<span class="song-sheet-name">${esc(s.ko)}<small>${esc(s.jp)}</small></span>
-      <span class="sheet-side">${songMarksHtml(s)}${s.id === mv.song.id ? `<span class="song-sheet-now">재생 중</span>` : mvBadge(s)}</span>
-    </button></li>`).join("") : `<li class="sheet-empty">찾는 곡이 없어요</li>`;
-}
-function openSheet(open){
-  const sh = $("#songSheet"); if (!sh) return;
-  sh.classList.toggle("open", open); sh.inert = !open; sh.setAttribute("aria-hidden", !open);
-  $("#pickerBtn").setAttribute("aria-expanded", open);
-  if (open){
-    mv.sheetAll = false;
-    paintSheet();
-    const cur = sh.querySelector(".current"); if (cur) cur.scrollIntoView({ block:"center" });
-  }
-}
-function applyVenue(){
-  const page = $("#songPage"); if (!page) return;
-  page.classList.toggle("venue", mv.venue);
-  $("#venueBtn").classList.toggle("active", mv.venue);
-  $("#venueBtn").setAttribute("aria-pressed", mv.venue);
-  mv.active = -1;                           // 글자 크기가 바뀌므로 현재 줄로 다시 맞춘다
-  placeTipPic();
-}
-function updatePlayBtn(){
-  const b = $("#playToggle"); if (!b || !mv.player || !mv.ready) return;
-  let st = -1; try { st = mv.player.getPlayerState(); } catch(e){}
-  const playing = st === 1 || st === 3;
-  b.classList.toggle("playing", playing);
-  b.innerHTML = playing ? I_PAUSE : I_PLAY;
-}
-
-/* ── 가사 복사 ── 응원 표시([wave] {떼창} 등)는 빼고 글자만 */
-function lyricPlain(t){
-  return String(t || "").replace(/[\[(](?:wave|clap|mic|chant|jump|spin|turn|banzai|manse|sway|side)[\])]/gi, "").replace(/[{}]/g, "").replace(/[ \u3000]{2,}/g, " ").trim();
-}
-function lyricCopyText(song, mode){
-  const head = `${song.jp} / ${song.ko} - back number`;
-  // 응원 안내만 있는 줄(예: [clap]{{전주에 박수}})은 가사가 아니므로 뺀다
-  const lines = (song.lyrics || []).filter(l => l.jp || !/[\[{(]/.test(l.ko || ""));
-  let body;
-  if (mode === "all") body = lines.map(l => [l.jp, l.ko, l.tr, l.bg ? `(${l.bg})` : ""].map(lyricPlain).filter(Boolean).join("\n")).join("\n\n");
-  else body = lines.map(l => lyricPlain(l[mode])).filter(Boolean).join("\n");
-  return head + "\n\n" + body + "\n";
-}
-async function copyToClipboard(text){
-  try { await navigator.clipboard.writeText(text); return true; } catch(e){}
-  try {
-    const ta = document.createElement("textarea");
-    ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0";
-    document.body.appendChild(ta); ta.select(); const ok = document.execCommand("copy"); ta.remove(); return ok;
-  } catch(e){ return false; }
-}
-function copyToast(msg){
-  let t = $("#copyToast");
-  if (!t){ t = document.createElement("div"); t.className = "copy-toast"; t.id = "copyToast"; t.setAttribute("aria-live", "polite"); document.body.appendChild(t); }
-  t.textContent = msg; t.classList.add("show");
-  clearTimeout(copyToast.timer); copyToast.timer = setTimeout(() => t.classList.remove("show"), 1800);
-}
-function songInfoOf(song){ return SONG_INFO[song.id] || SONG_INFO[song.jp] || {}; }
-function songInfoHtml(song){
-  const info = songInfoOf(song), is = t => setFind(t) === song;
-  const albums = ALBUMS.filter(a => a.tracks.some(is));
-  const singles = SINGLES.filter(x => is(x.jp));
-  const cws = SINGLES.filter(x => (x.cw || []).some(is));
-  const videos = (typeof VIDEOS !== "undefined" ? VIDEOS : []).concat(typeof ALBUM_LIVES !== "undefined" ? ALBUM_LIVES : []).filter(v => v.tracks.some(is));
-  const liveAud = LIVE_ALBUMS.map(a => [a, a.tracks.find(([t]) => is(t))]).filter(x => x[1]);
-  const row = (k, v) => v ? `<div class="si-row"><span>${k}</span><div>${v}</div></div>` : "";
-  const alb = albums.map(a => { const p = albumPos(a, a.tracks.findIndex(is)); return `${esc(a.jp)}${a.ko && a.ko !== a.jp ? ` <small>${esc(a.ko)}</small>` : ""} <small>· ${esc(a.date)} · ${p.disc ? `DISC ${p.disc} ` : ""}${p.n}번 트랙</small>`; }).join("<br>");
-  return `
-    <div class="si-head">
-      <div><b class="si-ko">${esc(song.ko)}</b><small class="si-jp">${esc(song.jp)}${song.rom ? ` · ${esc(song.rom)}` : ""}</small></div>
-      <button class="si-x" data-close aria-label="닫기">✕</button>
-    </div>
-    <div class="si-body">
-      <div class="si-table">
-        ${row("발매", esc(song.date || ""))}
-        ${row("싱글", singles.map(x => `${esc(x.no)} <small>· ${esc(x.date)}</small>`).join("<br>"))}
-        ${row("싱글 수록", cws.map(x => { const t = setFind(x.jp); return `${esc(x.jp)}${t && t.ko !== x.jp ? ` <small>${esc(t.ko)}</small>` : ""} <small>· ${esc(x.no)} ${x.cw.findIndex(is) + 2}번 트랙 · ${esc(x.date)}</small>`; }).join("<br>"))}
-        ${row("수록", alb || (cws.length ? "" : esc(song.album || "")))}
-        ${row("타이업", esc(info.tieup || ""))}
-        ${row("크레딧", esc(info.credit || ""))}
-        ${row("라이브 영상", videos.map(v => `${esc(v.jp)} <small>· ${/초회/.test(v.no) ? esc(v.no) + " · " : ""}${esc(v.date)}</small>`).join("<br>"))}
-        ${(() => {
-          const rec = songLiveRecord(song); if (!rec.length) return "";
-          const tours = rec.filter(r => r.kind === "tour").length, fests = rec.length - tours;
-          const head = `<b>${[tours ? `투어 ${tours}회` : "", fests ? `페스·이벤트 ${fests}회` : ""].filter(Boolean).join(" · ")}</b>`;
-          const lines = rec.slice(0, 8).map(r => `${esc(String(r.c.year || ""))} ${esc(r.c.short || r.c.name)} <small>· ${r.pos.join(" · ")}</small>`);
-          return row("라이브 기록", `${head}<br>${lines.join("<br>")}${rec.length > 8 ? `<br><small>외 ${rec.length - 8}개 공연</small>` : ""}<br><small>※ 사이트에 등록된 셋리스트 기준</small>`);
-        })()}
-        ${row("라이브 음원", liveAud.map(([a, t]) => `<a href="https://www.youtube.com/watch?v=${t[1]}" target="_blank" rel="noopener">${esc(a.jp)} ↗</a> <small>· ${esc(a.date)}</small>`).join("<br>"))}
-      </div>
-      ${info.story ? `<div class="post-body si-story">${infoBody(info.story)}</div>`
-        : `<p class="small muted si-empty">이 곡의 이야기는 아직 준비 중이에요.</p>`}
-    </div>`;
-}
-/* 새로고침: 앱으로 설치해서 주소창이 없어도 최신 내용으로 다시 불러온다 */
-async function siteRefresh(btn){
-  if (btn) btn.classList.add("spin");
-  try { const r = navigator.serviceWorker && await navigator.serviceWorker.getRegistration(); if (r) await r.update(); } catch(e){}
-  try { if (window.caches) for (const k of await caches.keys()) await caches.delete(k); } catch(e){}
-  location.reload();
-}
-document.addEventListener("click", e => { const b = e.target.closest("[data-refresh]"); if (b) siteRefresh(b); });
-function bindSongInfo(){
-  const btn = $("#songInfoBtn"), sh = $("#infoSheet"); if (!btn || !sh) return;
-  btn.onclick = () => { sh.hidden = false; sh.querySelector(".si-body").scrollTop = 0; };
-  sh.onclick = e => { if (e.target === sh || e.target.closest("[data-close]")) sh.hidden = true; };
-  sh.querySelectorAll(".si-story img").forEach(im => im.onclick = () => {
-    const z = document.createElement("div"); z.className = "post-zoom"; z.innerHTML = `<img src="${im.src}" alt="">`;
-    z.onclick = () => z.remove(); document.body.appendChild(z); });
-}
-function bindLyricCopy(song){
-  const btn = $("#lyricCopyBtn"), menu = $("#copyMenu"); if (!btn || !menu) return;
-  btn.onclick = () => { menu.hidden = false; };
-  menu.onclick = async e => {
-    const b = e.target.closest("[data-copy]");
-    if (!b && e.target !== menu) return;
-    menu.hidden = true;
-    const mode = b ? b.dataset.copy : "";
-    if (!mode) return;
-    const ok = await copyToClipboard(lyricCopyText(song, mode));
-    copyToast(ok ? "가사를 복사했어요" : "복사하지 못했어요");
-  };
-}
-
-function bindMv(id){
-  const song = id ? SONGS.find(s => s.id === decodeURIComponent(id)) : null;
-  if (!song){
-    mv.from = null; mv.queue = null;
-    mvRows();
-    $("#mvQ").addEventListener("input", e => { mv.query = e.target.value; mvRows(); });
-    const sb = $("#mvSort"), sm = $("#mvSortMenu");
-    const openSort = o => { sm.hidden = !o; sb.setAttribute("aria-expanded", o); };
-    sb.onclick = e => { e.stopPropagation(); openSort(sm.hidden); };
-    sm.onclick = e => {
-      e.stopPropagation();
-      const v = e.target.closest("[data-v]");
-      if (v){
-        mv.favOnly = v.dataset.v === "fav";
-        sm.querySelectorAll("[data-v]").forEach(x => x.setAttribute("aria-selected", x === v));
-        $("#mvSortLabel").textContent = (mv.favOnly ? "♥ " : "") + MV_LABEL[mv.order];
-        openSort(false); mvRows(); return;
-      }
-      const o = e.target.closest("[data-o]"); if (!o) return;
-      mv.order = o.dataset.o; mvSave();
-      $("#mvSortLabel").textContent = (mv.favOnly ? "♥ " : "") + MV_LABEL[mv.order];
-      sm.querySelectorAll("[data-o]").forEach(x => x.setAttribute("aria-selected", x === o));
-      openSort(false); mvRows();
-    };
-    if (mv.sortClose) document.removeEventListener("click", mv.sortClose);
-    mv.sortClose = () => { const m = $("#mvSortMenu"); if (m && !m.hidden) openSort(false); };
-    document.addEventListener("click", mv.sortClose);
-    $("#mvList").addEventListener("click", e => {
-      const f = e.target.closest(".row-fav");
-      if (f){                                   // 목록에서 바로 ♥ (곡으로 넘어가지 않음)
-        e.preventDefault(); e.stopPropagation();
-        const on = favToggle(f.dataset.fav);
-        if (mv.favOnly && !on) return mvRows();
-        f.classList.toggle("on", on); f.setAttribute("aria-pressed", on); f.innerHTML = on ? I_HEART_ON : I_HEART;
-        return;
-      }
-      if (e.target.closest(".mvrow")) mv.listY = window.scrollY;
-    });
-    { const tools = document.querySelector(".mvtools");
-      const onScroll = () => { if (!tools.isConnected){ window.removeEventListener("scroll", onScroll); return; }
-        tools.classList.toggle("stuck", tools.getBoundingClientRect().top <= 56); };
-      window.addEventListener("scroll", onScroll, { passive:true }); onScroll(); }
-    $("#mvShuffle").onclick = () => {            // 지금 보이는 목록(검색·즐겨찾기 반영)을 섞어서 연속 재생
-      const ids = mvSorted().filter(mvMatch).filter(x => x.youtubeId).map(x => x.id);
-      if (!ids.length) return;
-      for (let i = ids.length - 1; i > 0; i--){ const j = Math.floor(Math.random() * (i + 1)); [ids[i], ids[j]] = [ids[j], ids[i]]; }
-      mv.listY = window.scrollY;
-      mv.from = { hash:"#/mv", label:"곡 목록", y: window.scrollY };
-      mv.queue = ids.length > 1 ? { ids, pos:0, label:"랜덤" } : null;
-      mv.autoplay = true;
-      location.hash = "#/mv/" + encodeURIComponent(ids[0]);
-    };
-    return;
-  }
-  mv.song = song; mv.active = -1;
-  document.body.classList.add("is-song");
-
-  $("#songBack").onclick = () => {
-    if (mv.from){ pendingScroll = mv.from.y; location.hash = mv.from.hash; }
-    else { pendingScroll = mv.listY || 0; location.hash = "#/mv"; }
-  };
-  { const fb = $("#favBtn");
-    if (fb) fb.onclick = () => { const on = favToggle(song.id); fb.classList.toggle("on", on); fb.setAttribute("aria-pressed", on); fb.innerHTML = on ? I_HEART_ON : I_HEART; copyToast(on ? "즐겨찾기에 넣었어요" : "즐겨찾기에서 뺐어요"); }; }
-  $("#prevSong").onclick = () => mvGo(-1);
-  $("#nextSong").onclick = () => mvGo(1);
-  { const p = mvNeighbor(-1), n = mvNeighbor(1);
-    if (p) $("#prevSong").title = "이전 곡: " + p.song.ko;
-    if (n) $("#nextSong").title = "다음 곡: " + n.song.ko; }
-  { const ub = $("#unmuteBtn");
-    if (ub) ub.onclick = () => {
-      if (ub.classList.contains("hint")) return;
-      mv.autoMuted = false; ub.hidden = true;
-      try { mv.player.unMute(); mv.player.setVolume(mvVol.v); if (mvVol.m) mvVol.m = false; mv.player.playVideo(); } catch(e){}
-      mv.volHold = Date.now() + 1500;
-      // 아이폰은 바깥 버튼으로 소리를 못 켜는 경우가 있어 확인 → 안 됐으면 영상 안을 직접 탭하라고 안내
-      setTimeout(() => {
-        if (!mv.player || !mv.ready) return;
-        let muted = false, st = -1;
-        try { muted = mv.player.isMuted(); st = mv.player.getPlayerState(); } catch(e){}
-        if (!muted && (st === 1 || st === 3)) return;
-        mv.autoMuted = true;
-        try { mv.player.mute(); mv.player.playVideo(); } catch(e){}
-        ub.classList.add("hint"); ub.hidden = false;
-        ub.lastChild.textContent = "영상 안의 🔇 아이콘을 눌러 소리를 켜 주세요 (한 번만 하면 다음 곡부터 계속 켜져요)";
-      }, 900);
-    }; }
-  $("#songTheme").onclick = () => $("#themeBtn").click();
-  $("#pickerBtn").onclick = () => openSheet(!$("#songSheet").classList.contains("open"));
-  $("#songSheet").addEventListener("click", e => {
-    if (e.target.closest("[data-close]")) return openSheet(false);
-    if (e.target.closest("#sheetMode")){ mv.sheetAll = !mv.sheetAll; paintSheet(); const c = $("#sheetList .current"); if (c) c.scrollIntoView({ block:"center" }); return; }
-    const it = e.target.closest(".song-sheet-item");
-    if (it){ openSheet(false); if (it.dataset.id !== song.id){ mv.autoplay = true; location.hash = "#/mv/" + encodeURIComponent(it.dataset.id); } }
-  });
-  $("#sheetQ").addEventListener("input", paintSheet);
-
-  $("#venueBtn").onclick = () => { mv.venue = !mv.venue; try { localStorage.setItem("mv-venue", mv.venue ? "1" : ""); } catch(e){} applyVenue(); setTimeout(padLyrics, 50); };
-  $("#autoBtn").onclick = e => { mv.auto = !mv.auto; e.currentTarget.classList.toggle("active", mv.auto); e.currentTarget.setAttribute("aria-pressed", mv.auto); mvSave(); if (mv.auto) mv.active = -1; };
-  $("#playToggle").onclick = () => {
-    if (!mv.player || !mv.ready) return;
-    let st = -1; try { st = mv.player.getPlayerState(); } catch(e){}
-    try { (st === 1 || st === 3) ? mv.player.pauseVideo() : mv.player.playVideo(); } catch(e){}
-  };
-  $("#lyricsList").addEventListener("click", e => {
-    const b = e.target.closest(".lyric-line"); if (!b) return;
-    const t = Number(b.dataset.t);
-    if (mv.player && mv.ready && song.youtubeId && !song.unsynced && isFinite(t)){
-      try { mv.player.seekTo(Math.max(0, t - 0.15), true); mv.player.playVideo(); } catch(e){}
-    }
-  });
-  mv.keys = e => {
-    if (!$("#songPage")) return;
-    if (e.target.matches("input")) return;
-    if (e.key === "Escape") openSheet(false);
-    else if (e.key === "ArrowLeft") mvGo(-1);
-    else if (e.key === "ArrowRight") mvGo(1);
-  };
-  document.addEventListener("keydown", mv.keys);
-  bindLyricCopy(song);
-  bindSongInfo();
-  padLyrics(); setTimeout(padLyrics, 300);
-  placeTipPic();
-  $("#tipPicCard").onclick = () => $("#tipPic").classList.toggle("big");
-  preloadSongPics(song);
-  mvMount(song);
-}
-
-/* 유튜브 — 뮤비 화면을 처음 열 때만 불러와요 */
-function mvLoadApi(){
-  if (window.YT && window.YT.Player) return;
-  if (document.getElementById("ytApi")) return;
-  const s = document.createElement("script");
-  s.id = "ytApi"; s.src = "https://www.youtube.com/iframe_api";
-  document.head.appendChild(s);
-}
-function mvMount(song){
-  if (!song.youtubeId) return;
-  mvLoadApi();
-  if (!window.YT || !window.YT.Player){ setTimeout(() => { if (mv.song === song && $("#yt")) mvMount(song); }, 300); return; }
-  mv.autoplay = false;
-  if (mv.keepPlayer && mv.player && mv.ready){   // 곡 → 곡: 플레이어를 새로 만들지 않고 영상만 바꿈 (아이폰에서 소리 유지)
-    mv.keepPlayer = false; mv.volPlayed = false;
-    try { mv.player.loadVideoById(song.youtubeId); } catch(e){}
-    mvTick(song); updatePlayBtn();
-    setTimeout(() => {
-      if (mv.song !== song || !mv.player) return;
-      let st = -1; try { st = mv.player.getPlayerState(); } catch(e){}
-      if (st === 1 || st === 3) return;
-      mv.autoMuted = true;
-      try { mv.player.mute(); mv.player.playVideo(); } catch(e){}
-      const b = $("#unmuteBtn"); if (b) b.hidden = false;
-    }, 1500);
-    return;
-  }
-  mv.keepPlayer = false;
-  const auto = 1;                            // 곡에 들어가면 항상 바로 재생
-  mv.volPlayed = false; mv.ready = false; mv.autoMuted = false;
-  mv.player = new YT.Player("yt", {
-    videoId: song.youtubeId,
-    playerVars: { rel:0, playsinline:1, modestbranding:1, autoplay:auto },
-    events: {
-      onReady: () => {
-        mv.ready = true; mvVolApply(); mvVolWatch();
-        if (auto){
-          try { mv.player.playVideo(); } catch(e){}
-          // 모바일은 소리 있는 자동재생을 막아서 → 안 되면 음소거로 재생하고 '소리 켜기' 버튼을 띄운다
-          setTimeout(() => {
-            if (mv.song !== song || !mv.player || !mv.ready) return;
-            let st = -1; try { st = mv.player.getPlayerState(); } catch(e){}
-            if (st === 1 || st === 3) return;
-            mv.autoMuted = true;
-            try { mv.player.mute(); mv.player.playVideo(); } catch(e){}
-            const b = $("#unmuteBtn"); if (b) b.hidden = false;
-          }, 1200);
-        }
-        mvTick(song); updatePlayBtn();
-      },
-      onStateChange: e => {
-        const sg = mv.song; if (!sg) return;    // 플레이어를 곡끼리 같이 쓰므로 지금 곡 기준
-        if (e.data === 1 && !mv.volPlayed){ mv.volPlayed = true; mvVolApply(); }   // 재생 시작 때 한 번 더 맞춰줌
-        mvTick(sg); updatePlayBtn();
-        if (e.data === 0) mvGo(1, true);   // 영상이 끝나면 다음 곡 (마지막이면 처음으로)
-      }
-    }
-  });
-}
-/* 가사 하이라이트 · 자동 스크롤 (가사 칸 안에서만 움직인다) */
-function mvTick(song){
-  clearInterval(mv.timer);
-  if (song.unsynced || !(song.lyrics || []).length) return;
-  mv.timer = setInterval(() => {
-    if (!mv.player || !mv.ready) return;
-    let t = 0;
-    try { t = mv.player.getCurrentTime(); } catch(e){ return; }
-    const lines = song.lyrics;
-    let idx = -1;
-    for (let i = 0; i < lines.length; i++){ if (t + 0.25 >= lines[i].time) idx = i; else break; }
-    if (idx === mv.active) return;
-    mv.active = idx;
-    updateTipPic(song, idx);
-    const nodes = document.querySelectorAll("#lyricsList .lyric-line");
-    nodes.forEach((el, i) => el.classList.toggle("active", i === idx));
-    const box = $("#lyricsScroll");
-    if (mv.auto && idx >= 0 && nodes[idx] && box){
-      const top = nodes[idx].offsetTop - box.clientHeight * 0.38 + nodes[idx].offsetHeight / 2;
-      box.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
-    }
-  }, 120);
-}
-/* 첫 가사도 자동 스크롤 위치(가운데쯤)에 오도록 목록 위쪽에 여백 */
-function padLyrics(){
-  const box = $("#lyricsScroll"), list = $("#lyricsList"), first = list && list.querySelector(".lyric-line");
-  if (!box || !first) return;
-  const pad = Math.max(8, Math.round(box.clientHeight * 0.38 - first.offsetHeight / 2 - first.offsetTop + parseFloat(list.style.paddingTop || 8)));
-  list.style.paddingTop = pad + "px";
-}
-window.addEventListener("resize", () => { if ($("#lyricsList")) padLyrics(); });
-function mvSoftCleanup(){                    // 곡 → 곡 이동: 플레이어는 남기고 나머지만 정리
-  clearInterval(mv.timer); mv.timer = null;
-  hideTipPic();
-  if (mv.keys){ document.removeEventListener("keydown", mv.keys); mv.keys = null; }
-}
-/* 새 화면 HTML을 넣되, keepSel 요소(영상 칸)는 그대로 두고 주변만 바꾼다 — iframe을 옮기면 다시 로드되므로 */
-function morphKeep(root, html, keepSel){
-  const keep = root.querySelector(keepSel); if (!keep) return false;
-  const tpl = document.createElement("div"); tpl.innerHTML = html;
-  const nk = tpl.querySelector(keepSel); if (!nk) return false;
-  const depth = (el, top) => { let d = 0; while (el && el !== top){ el = el.parentNode; d++; } return el === top ? d : -1; };
-  if (depth(keep, root) !== depth(nk, tpl)) return false;
-  let o = keep, n = nk;
-  while (o !== root){
-    const op = o.parentNode, np = n.parentNode;
-    const nKids = [...np.childNodes], ni = nKids.indexOf(n);
-    [...op.childNodes].forEach(c => { if (c !== o) op.removeChild(c); });
-    nKids.slice(0, ni).forEach(c => op.insertBefore(c, o));
-    nKids.slice(ni + 1).forEach(c => op.appendChild(c));
-    if (op !== root){
-      [...op.attributes].forEach(a => op.removeAttribute(a.name));
-      [...np.attributes].forEach(a => op.setAttribute(a.name, a.value));
-    }
-    o = op; n = np;
-  }
-  return true;
-}
-function mvCleanup(){
-  clearInterval(mv.timer); mv.timer = null;
-  clearInterval(mv.volTimer); mv.volTimer = null;
-  hideTipPic();
-  if (mv.player){ try { mv.player.destroy(); } catch(e){} }
-  if (mv.keys){ document.removeEventListener("keydown", mv.keys); mv.keys = null; }
-  document.body.classList.remove("is-song");
-  mv.player = null; mv.ready = false; mv.song = null;
-}
-
-/* ============ 화면: 콘서트 셋리스트 ============
-   위에서 원맨 투어 / 페스·이벤트를 고르고, 연도 → 공연을 고르면 아래에 곡 순서가 나온다.
-   · 곡 목록에 있는 곡 → 누르면 곡(뮤비) 화면 ('‹ 셋리스트'로 보던 자리에 돌아옴)
-   · 없는 곡 → 이름만 */
-const SET_ALIAS = {};
-const setKey = s => String(s).toLowerCase().replace(/[\s～〜~!！、,・.]/g, "");
-const SONG_BY_KEY = {};
-SONGS.forEach(s => { SONG_BY_KEY[setKey(s.jp)] = s; });
-function setFind(title){ return SONG_BY_KEY[setKey(SET_ALIAS[title] || title)] || null; }
-
-const cset = { kind:"tour", tour:0, fest:0, openYear:null, openMonth:0 };
-function csetItems(){ return cset.kind === "fest" ? CONCERT_FESTS : CONCERT_SETLISTS; }
-function csetIndex(){ return cset.kind === "fest" ? cset.fest : cset.tour; }
-function csetCurrent(){ const l = csetItems(); return l[csetIndex()] || l[0]; }
-const pad2 = n => String(n).padStart(2, "0");
-
-function csetRow(name, num, note){
-  const s = setFind(name);
-  const inner = `
-    <span class="set-num">${num}</span>
-    <span class="set-title${s ? "" : " none"}"><b>${esc(s ? s.ko : name)}</b><small>${esc(s ? s.jp : "")}${note ? `${s ? " · " : ""}<em>${esc(note)}</em>` : ""}</small></span>
-    <span class="set-go">${s ? "›" : ""}</span>`;
-  return s
-    ? `<a class="set-row" href="#/mv/${encodeURIComponent(s.id)}">${inner}</a>`
-    : `<div class="set-row off">${inner}</div>`;
-}
-
-function viewSetlist(){
-  return `
-  <h1>콘서트 셋리스트</h1>
-  <div class="cset-kinds" role="group" aria-label="종류 고르기">
-    <button class="cset-kind" type="button" data-kind="tour">원맨 · 팬클럽 투어 <small>${CONCERT_SETLISTS.length}</small></button>
-    <button class="cset-kind" type="button" data-kind="fest">페스 · 이벤트 <small>${CONCERT_FESTS.length}</small></button>
-  </div>
-  <div class="cset-years" id="csetPicker" role="group" aria-label="공연 고르기"></div>
-
-  <div class="cset-head">
-    <h2 id="csetTitle"></h2>
-    <p id="csetDesc"></p>
-  </div>
-  <div class="cset-meta"><span id="csetCount"></span><span id="csetYear"></span></div>
-  <div class="card set-list" id="csetList"></div>
-
-  <p class="src">※ 팬이 정리한 비공식 셋리스트예요. LiveFans에 등록된 내용을 옮겼어요.<br>※ 원맨 투어·팬클럽 투어는 한 투어당 한 공연 기준이에요. 음악 방송 출연은 넣지 않았어요.<br>※ 곡 목록에 없는 곡(커플링·미발표곡·커버)은 이름만 보여요.</p>
-  ${footer()}`;
-}
-
-function paintConcert(){
-  const t = csetCurrent(), list = $("#csetList");
-  let n = 0, have = 0;
-  list.innerHTML = t.songs.map(item => {
-    if (item && item.enc) return `<div class="set-enc">ENCORE</div>`;
-    n++;
-    const name = typeof item === "string" ? item : item.t;
-    if (setFind(name)) have++;
-    return csetRow(name, pad2(n), item.note || "");
-  }).join("");
-  const src = t.src || (t.id ? `https://www.livefans.jp/events/${t.id}` : "");
-  $("#csetTitle").textContent = t.name;
-  $("#csetDesc").innerHTML =
-    esc(t.dates || `${t.date} · ${t.venue}`) +
-    (t.basis ? `<br><span class="muted">${esc(t.basis)}</span>` : "") +
-    `<br>› 가 있는 곡은 누르면 뮤비·음원으로 넘어가요` +
-    (src ? `<br><a href="${src}" target="_blank" rel="noopener">${src.includes("livefans") ? "LiveFans" : "나무위키"}에서 원본 보기 ↗</a>` : "");
-  $("#csetCount").textContent = `총 ${n}곡 · 연결 ${have}곡`;
-  $("#csetYear").textContent = String(t.year);
-}
-
-function paintPicker(){
-  const box = $("#csetPicker");
-  const list = csetItems(), idx = csetIndex();
-  const years = [...new Set(list.map(it => it.year))];
-  document.querySelectorAll(".cset-kind").forEach(k => {
-    const on = k.dataset.kind === cset.kind;
-    k.classList.toggle("active", on); k.setAttribute("aria-pressed", on);
-  });
-  const open = years.includes(cset.openYear) ? cset.openYear : (list[idx] && list[idx].year);
-  let rows = list.map((it, i) => ({ it, i })).filter(o => o.it.year === open);
-
-  let monthRow = "";
-  if (cset.kind === "fest"){
-    const months = [...new Set(rows.map(o => Number(o.it.date.slice(5, 7))))].sort((a,b) => a - b);
-    if (!months.includes(cset.openMonth)) cset.openMonth = 0;
-    monthRow = months.length < 2 ? "" : `
-      <div class="cset-mons" role="group" aria-label="달 고르기">
-        <button class="cset-mon${cset.openMonth === 0 ? " active" : ""}" type="button" data-month="0">전체 ${rows.length}</button>
-        ${months.map(m => `<button class="cset-mon${cset.openMonth === m ? " active" : ""}" type="button" data-month="${m}">${m}월</button>`).join("")}
-      </div>`;
-    if (cset.openMonth) rows = rows.filter(o => Number(o.it.date.slice(5, 7)) === cset.openMonth);
-  }
-
-  box.innerHTML = `
-    <div class="cset-yrs" role="group" aria-label="연도 고르기">
-      ${years.map(y => `<button class="cset-yr${y === open ? " active" : ""}" type="button" data-year="${y}" aria-pressed="${y === open}">${String(y).slice(2)}</button>`).join("")}
-    </div>
-    ${monthRow}
-    <div class="cset-panel${cset.kind === "fest" ? " scroll" : ""}">
-      ${cset.kind === "tour"
-        ? `<div class="cset-tabs">${rows.map(o => `<button class="cset-tab${o.i === idx ? " active" : ""}" type="button" data-pick="${o.i}"><b>${esc(o.it.short)}</b></button>`).join("")}</div>`
-        : `<ul class="cset-fests">${rows.map(o => `
-            <li><button class="cset-fest${o.i === idx ? " active" : ""}" type="button" data-pick="${o.i}">
-              <span class="cset-fest-date">${esc(o.it.date.slice(5))}</span>
-              <span class="cset-fest-name">${esc(o.it.name)}<small>${esc(o.it.venue)}</small></span>
-            </button></li>`).join("")}</ul>`}
-    </div>`;
-
-  box.querySelectorAll(".cset-mon").forEach(b => b.onclick = () => { cset.openMonth = Number(b.dataset.month); paintPicker(); });
-  box.querySelectorAll(".cset-yr").forEach(b => b.onclick = () => { cset.openYear = Number(b.dataset.year); cset.openMonth = 0; paintPicker(); });
-  box.querySelectorAll("[data-pick]").forEach(b => b.onclick = () => {
-    if (cset.kind === "fest") cset.fest = Number(b.dataset.pick); else cset.tour = Number(b.dataset.pick);
-    cset.openYear = open; paintPicker(); paintConcert();
-  });
-}
-
-function bindSetlist(){
-  document.querySelectorAll(".cset-kind").forEach(b => b.onclick = () => {
-    if (cset.kind === b.dataset.kind) return;
-    cset.kind = b.dataset.kind; cset.openYear = null; cset.openMonth = 0;
-    paintPicker(); paintConcert();
-  });
-  paintPicker(); paintConcert();
-  $("#csetList").addEventListener("click", e => {
-    const a = e.target.closest("a.set-row");
-    if (a){ mv.from = { hash:"#/setlist", label:"셋리스트", y: window.scrollY }; mvSetQueue(a, "셋리스트"); }
-  });
-}
-
-
-
-/* ============ 화면: 앨범 · LP (#/disco) ============ */
-const disco = { tab:"album" };
-const ALBUM_KO = {}; ALBUMS.forEach(a => { ALBUM_KO[a.jp] = a.ko; });
-const jacket = code => !code ? "" : /^https?:/.test(code) ? code : `https://content-jp.umgi.net/products/${code}_extralarge.jpg`;
-function cover(code, label, cls = ""){
-  return code
-    ? `<span class="cover ${cls}"><img src="${jacket(code)}" alt="${esc(label)} 재킷" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('noimg');this.remove()"><i>${esc(label)}</i></span>`
-    : `<span class="cover noimg ${cls}"><i>${esc(label)}</i></span>`;
-}
-function discoTrack(jp, n){
-  const s = setFind(jp);
-  const inner = `<span class="set-num">${pad2(n)}</span>
-    <span class="set-title${s ? "" : " none"}"><b>${esc(s ? s.ko : jp)}</b><small>${esc(s ? s.jp : "")}</small></span>
-    <span class="set-go">${s ? "›" : ""}</span>`;
-  return s ? `<a class="set-row" href="#/mv/${encodeURIComponent(s.id)}">${inner}</a>` : `<div class="set-row off">${inner}</div>`;
-}
-/* 여러 장(2CD 등)짜리 앨범: i번째 곡 → { disc, n } */
-function albumPos(a, i){
-  if (!a.discs) return { disc:0, n:i + 1 };
-  let d = 0, base = 0;
-  while (d < a.discs.length - 1 && i >= base + a.discs[d]){ base += a.discs[d]; d++; }
-  return { disc:d + 1, n:i - base + 1 };
-}
-function discoAlbum(a){
-  const singles = a.tracks.filter(t => SINGLES.some(s => s.jp === t)).length;
-  return `<details class="acc disco-alb">
-    <summary>${cover(a.img, a.jp, "sm")}<span class="disco-sum"><b>${esc(a.jp)}</b><small>${esc(a.ko)}</small><small>${esc(a.type)} · ${esc(a.date)}</small></span></summary>
-    <div class="in">${a.tracks.length
-      ? `<p class="small muted" style="margin:0 0 6px">${a.discs ? `${a.discs.length}CD · ` : ""}${a.tracks.length}곡${singles ? ` · 싱글 ${singles}곡 수록` : ""}</p><div class="set-list disco-tracks">${a.tracks.map((t, i) => { const p = albumPos(a, i); return (a.discs && p.n === 1 ? `<div class="vid-sec">DISC ${p.disc}</div>` : "") + discoTrack(t, p.n); }).join("")}</div>`
-      : `<p class="small muted" style="margin:0">데뷔부터 「ハッピーエンド」까지 싱글과 인기곡을 모은 첫 베스트 앨범 (2CD). 수록곡은 정리해서 채울 예정이에요.</p>`}</div>
-  </details>`;
-}
-function discoLive(a, ai){
-  const rows = a.tracks.map(([t, yt], i) => {
-    const se = t.startsWith("#"), s = se ? null : setFind(t);
-    const name = se ? t.slice(1) : (s ? s.ko : t);
-    return `<div class="set-row live-row">
-      <span class="set-num">${pad2(i + 1)}</span>
-      ${s ? `<a class="live-title" href="#/mv/${encodeURIComponent(s.id)}" title="가사·응원법 보기"><b>${esc(name)}</b><small>${esc(s.jp)} ›</small></a>`
-          : `<span class="live-title"><b>${esc(name)}</b><small>${se ? "오프닝 SE" : ""}</small></span>`}
-      <button class="live-play" data-la="${ai}" data-i="${i}" aria-label="${esc(name)} 라이브 음원 듣기"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>라이브</button>
-    </div>`;
-  }).join("");
-  return `<details class="acc disco-alb live-alb">
-    <summary>${cover(a.img, a.jp, "sm")}<span class="disco-sum"><b>${esc(a.jp)}</b><small>${esc(a.ko)}</small><small>${esc(a.type)} · ${esc(a.date)}</small></span></summary>
-    <div class="in">
-      <p class="small" style="margin:0 0 4px"><b>수록 공연</b> ${esc(a.shot)}</p>
-      <p class="small muted" style="margin:0 0 10px">${esc(a.note)}</p>
-      <div class="live-player" id="livePlayer${ai}" hidden></div>
-      <p class="small muted" style="margin:0 0 6px">${a.tracks.length}트랙 · <b>라이브</b>를 누르면 공식 유튜브 음원이 재생돼요 · 곡 제목을 누르면 가사 화면으로 가요</p>
-      <div class="set-list disco-tracks">${rows}</div>
-      <div class="lp-links"><a class="btn primary" href="https://www.youtube.com/playlist?list=${a.list}" target="_blank" rel="noopener">유튜브에서 전곡 ↗</a><a class="btn" href="${a.link}" target="_blank" rel="noopener">스트리밍 ↗</a></div>
-    </div>
-  </details>`;
-}
-function discoVideo(v){
-  let n = 0;
-  const rows = v.tracks.map(t => t.startsWith("#") ? `<div class="vid-sec">${esc(t.slice(1))}</div>` : discoTrack(t, ++n)).join("");
-  return `<details class="acc disco-alb vid-alb">
-    <summary>${cover(v.img, v.jp, "sm")}<span class="disco-sum"><b>${esc(v.jp)}</b><small>${esc(v.ko)}</small><small>${esc(v.no)} · ${esc(v.date)} 발매</small></span></summary>
-    <div class="in">
-      <p class="small" style="margin:0 0 4px"><b>수록 공연</b> ${esc(v.shot)}</p>
-      <p class="small muted" style="margin:0 0 8px">${esc(v.note)}</p>
-      <div class="vid-eds">${v.eds.map(([k, c, p]) => `<div><span>${esc(k)}</span><small>${esc([c, p].filter(Boolean).join(" · "))}</small></div>`).join("")}</div>
-      <p class="small muted" style="margin:6px 0 10px">${esc(v.extra)}</p>
-      <p class="small muted" style="margin:0 0 6px">${n}곡 수록</p>
-      <div class="set-list disco-tracks">${rows}</div>
-      <div class="lp-links">${srcLink(v.src)}</div>
-    </div>
-  </details>`;
-}
-function viewDisco(){
-  const T = [["album","앨범"],["single","싱글"],["video","라이브 BD"],["lp","LP"]];
-  let body = "";
-  if (disco.tab === "album"){
-    body = `<h2>라이브 음원</h2>${LIVE_ALBUMS.map(discoLive).join("")}
-      <h2>정규 앨범</h2>${ALBUMS.filter(a => a.kind === "orig").slice().reverse().map(discoAlbum).join("")}
-      <h2>미니 · 베스트</h2>${ALBUMS.filter(a => a.kind !== "orig").slice().reverse().map(discoAlbum).join("")}`;
-  } else if (disco.tab === "single"){
-    body = `<p class="sub" style="margin-top:14px">CD 싱글 22장 · 디지털 싱글 12곡 (최신순) · 누르면 뮤비로 가요</p>
-      <div class="cover-grid">${SINGLES.slice().reverse().map(x => {
-        const s = setFind(x.jp), dig = /Digital/.test(x.no);
-        const inner = `${cover(x.img, x.jp)}
-          <span class="cg-no${dig ? " dig" : ""}">${esc(x.no)}</span>
-          <b>${esc(s ? s.ko : x.jp)}</b><small>${esc(x.jp)}</small><small>${esc(x.date)}</small>`;
-        return s ? `<a class="cg-item" href="#/mv/${encodeURIComponent(s.id)}">${inner}</a>` : `<div class="cg-item">${inner}</div>`;
-      }).join("")}</div>`;
-  } else if (disco.tab === "video"){
-    body = `<p class="sub" style="margin-top:14px">라이브 Blu-ray · DVD ${VIDEOS.length}작 (최신순) · 누르면 수록곡이 펼쳐져요</p>
-      ${VIDEOS.map(discoVideo).join("")}
-      <h2 style="margin-top:26px">앨범 초회한정반 라이브 영상</h2>
-      <p class="sub" style="margin-top:4px">앨범 초회한정반 A에 특전으로 들어간 공연 ${ALBUM_LIVES.length}편 · 단독 발매는 안 됐어요</p>
-      ${ALBUM_LIVES.map(discoVideo).join("")}
-      <div class="note tip">2020년 온라인 라이브 필름 『MAHOGANY』『ASH』는 스트리밍 공개작이라 실물 영상 작품으로는 나오지 않았어요.</div>`;
-  } else {
-    body = LPS.map(l => `
-      <div class="card lp-card">
-        <div class="lp-head"><span class="tag ${l.status === "품절" ? "t-done" : "t-release"}">${esc(l.status)}</span> <b>${esc(l.date)}</b></div>
-        <div class="lp-title">${esc(l.title)}</div>
-        <div class="small muted">${esc(l.spec)}</div>
-        <div class="cover-grid lp-grid">${l.items.map(([jp, memo, img]) => `
-          <div class="cg-item">${cover(img, jp)}<b>${esc(jp)}</b><small>${esc(ALBUM_KO[jp] || "")}</small>${memo ? `<span class="lp-memo">${esc(memo)}</span>` : ""}</div>`).join("")}</div>
-        <p class="small" style="margin:10px 0 6px">${esc(l.note)}</p>
-        <div class="lp-links">${l.buy ? `<a class="btn primary" href="${l.buy}" target="_blank" rel="noopener">구매처 보기 ↗</a>` : ""}${srcLink(l.src)}</div>
-      </div>`).join("") + `<div class="note tip">해외 배송이 안 되는 곳이 많아요. 일본 내 주소가 없으면 배송대행·구매대행을 이용하세요.</div>`;
-  }
-  return `
-  <h1>앨범 · 라이브 · LP</h1>
-  <p class="sub">정규·미니·베스트 앨범, 싱글, 라이브 영상, 아날로그 레코드 정리</p>
-  <div class="seg" role="tablist">${T.map(([k, l]) => `<button role="tab" data-t="${k}" aria-selected="${disco.tab === k}">${l}</button>`).join("")}</div>
-  ${body}
-  <p class="src">※ 트랙 순서는 나무위키 기준이에요. › 가 있는 곡은 누르면 뮤비·음원으로 넘어가요.<br>※ 재킷 이미지는 유니버설 뮤직 공식 상품 이미지예요 (통상반 기준). 인디 시절 앨범과 일부 디지털 싱글은 이미지가 없어 글자로 표시해요.</p>
-  ${footer()}`;
-}
-function bindDisco(){
-  document.querySelectorAll(".seg button").forEach(b => b.onclick = () => { disco.tab = b.dataset.t; render(); });
-  document.querySelectorAll("a.live-title").forEach(a => a.addEventListener("click", () => { mv.from = { hash:"#/disco", label:"앨범", y: window.scrollY }; mv.queue = null; }));
-  document.querySelectorAll(".live-play").forEach(b => b.onclick = () => {
-    const a = LIVE_ALBUMS[+b.dataset.la], i = +b.dataset.i, box = $("#livePlayer" + b.dataset.la);
-    box.hidden = false;
-    box.innerHTML = `<div class="video-frame"><iframe src="https://www.youtube.com/embed/${a.tracks[i][1]}?list=${a.list}&index=${i + 1}&autoplay=1&rel=0&playsinline=1" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen title="라이브 음원"></iframe></div>`;
-    document.querySelectorAll(".live-play.on").forEach(x => x.classList.remove("on")); b.classList.add("on");
-    box.scrollIntoView({ block:"nearest", behavior:"smooth" });
-  });
-  document.querySelectorAll("#app a.set-row, #app a.cg-item").forEach(a => a.addEventListener("click", () => {
-    mv.from = { hash:"#/disco", label:"앨범", y: window.scrollY };
-    const alb = a.closest("details.disco-alb");
-    mvSetQueue(a, alb ? alb.querySelector(".disco-sum b").textContent : "싱글");
-  }));
-}
-
-/* ============ 가사 싱크 맞추기 도구 (#/sync/곡id) ============
-   영상을 틀어 놓고 각 소절이 시작될 때 버튼(또는 스페이스바)을 누르면
-   lyricsTimes 숫자가 만들어진다. 다 누른 뒤 '복사'해서 index.html 에 붙여 넣으면 끝. */
-const syncS = { song:null, times:[], player:null, ready:false, timer:null };
-function viewSync(id){
-  const song = SONGS.find(s => s.id === decodeURIComponent(id || ""));
-  if (!song) return `<p class="sub" style="margin-top:20px">곡을 찾을 수 없어요.</p>`;
-  const lines = song.lyrics || [];
-  return `
-  <div class="sync-page">
-    <div class="sync-top">
-      <a class="back" href="#/mv/${encodeURIComponent(song.id)}">‹ ${esc(song.ko)}</a>
-      <h1 style="margin:6px 0 2px">싱크 맞추기</h1>
-      <p class="sub">영상을 재생하고, 강조된 줄이 <b>불리기 시작할 때</b> 아래 버튼(PC는 스페이스바)을 누르세요.</p>
-      <div class="video-frame"><div id="syncYt"></div></div>
-      <div class="sync-btns">
-        <button class="btn" id="syncUndo">↶ 한 줄 취소</button>
-        <button class="btn primary sync-tap" id="syncTap">지금 이 줄 시작!</button>
-      </div>
-      <div class="sync-state small muted" id="syncState"></div>
-    </div>
-    ${lines.length ? `<ol class="sync-list" id="syncList">${lines.map((l, i) => `
-      <li data-i="${i}"><span class="sync-t">--</span><span class="sync-l"><b>${esc(typeof l.ko === "string" ? l.ko : "")}</b><small>${esc(l.jp)}</small></span></li>`).join("")}</ol>
-      <div class="card sync-out">
-        <div class="small muted">다 누르면 아래 한 줄을 복사해서, index.html 의 이 곡 칸 <code>lyricsShift:0, lyricsTimes:[],</code> 부분에 바꿔 붙여 넣으세요.</div>
-        <textarea id="syncOut" readonly rows="3"></textarea>
-        <button class="btn" id="syncCopy">복사</button>
-      </div>`
-      : `<div class="card small">이 곡은 아직 가사가 없어요. 먼저 index.html 의 이 곡 칸 <b>lyricsText</b> 에 가사를 넣어 주세요.</div>`}
-  </div>`;
-}
-function syncPaint(){
-  const n = syncS.times.length, lines = syncS.song.lyrics || [];
-  document.querySelectorAll("#syncList li").forEach((li, i) => {
-    li.classList.toggle("done", i < n); li.classList.toggle("next", i === n);
-    li.querySelector(".sync-t").textContent = i < n ? syncS.times[i].toFixed(2) : "--";
-  });
-  const nx = document.querySelector("#syncList li.next");
-  if (nx) nx.scrollIntoView({ block:"center", behavior:"smooth" });
-  $("#syncState").textContent = n >= lines.length ? `완료! ${lines.length}줄 모두 찍었어요.` : `${n} / ${lines.length}줄`;
-  $("#syncOut").value = `lyricsShift:0, lyricsTimes:[${syncS.times.map(t => t.toFixed(2)).join(", ")}],`;
-  $("#syncTap").disabled = n >= lines.length;
-}
-function syncMark(){
-  if (!syncS.player || !syncS.ready) return;
-  const lines = syncS.song.lyrics || [];
-  if (syncS.times.length >= lines.length) return;
-  let t = 0; try { t = syncS.player.getCurrentTime(); } catch(e){ return; }
-  syncS.times.push(Math.max(0, t - 0.15));      // 누르는 반응 시간만큼 살짝 앞당김
-  syncPaint();
-}
-function bindSync(id){
-  const song = SONGS.find(s => s.id === decodeURIComponent(id || ""));
-  if (!song || !(song.lyrics || []).length) return;
-  syncS.song = song; syncS.times = []; syncS.ready = false;
-  $("#syncTap").onclick = syncMark;
-  $("#syncUndo").onclick = () => { syncS.times.pop(); syncPaint(); };
-  $("#syncCopy").onclick = async () => {
-    try { await navigator.clipboard.writeText($("#syncOut").value); $("#syncCopy").textContent = "복사했어요"; }
-    catch(e){ $("#syncOut").select(); }
-  };
-  syncS.keys = e => { if (e.code === "Space" && $("#syncTap")){ e.preventDefault(); syncMark(); } };
-  document.addEventListener("keydown", syncS.keys);
-  syncPaint();
-  const mount = () => {
-    if (!$("#syncYt")) return;
-    if (!window.YT || !window.YT.Player){ mvLoadApi(); setTimeout(mount, 300); return; }
-    syncS.player = new YT.Player("syncYt", { videoId: song.youtubeId, playerVars:{ rel:0, playsinline:1 },
-      events:{ onReady: () => { syncS.ready = true; } } });
-  };
-  if (song.youtubeId) mount();
-}
-function syncCleanup(){
-  if (syncS.player){ try { syncS.player.destroy(); } catch(e){} }
-  if (syncS.keys){ document.removeEventListener("keydown", syncS.keys); syncS.keys = null; }
-  syncS.player = null; syncS.ready = false;
-}
-
-
-function footer(){
-  return `<footer>
-    이 사이트는 팬이 만든 <b>비공식</b> 안내 페이지로, back number 및 소속사와 관계가 없어요.<br>
-    정보는 바뀔 수 있으니 신청·구매 전에 꼭 <a href="${DATA.links.official}" target="_blank" rel="noopener">공식 사이트</a>에서 확인하세요.<br>
-    마지막 확인 ${DATA.lastChecked}
-  </footer>`;
-}
-
-/* ============ 라우터 ============ */
-/* ============ 화면: 굿즈 아카이브 (#/goods) ============
-   데이터는 goods.js (처음 들어올 때만 불러와서 메인 페이지는 가벼움) */
-const goodsS = { kind:"all", cat:"all", q:"", loading:false };
-const GOODS_KIND = [["all","전체"],["tour","투어 · 공연"],["fc","one room 팬클럽"],["season","시즌 굿즈"]];
-const GOODS_CAT = [["all","전체"],["tee","티셔츠"],["wear","후드 · 아우터"],["towel","타월"],["bandana","반다나"],["cap","모자"],["bag","가방 · 파우치"],["key","키홀더"],["band","러버밴드"],["acc","액세서리"],["case","폰케이스"],["etc","기타"]];
-function goodsCat(n){
-  if (/iPhone|スマホ/i.test(n)) return "case";
-  if (/バンダナ/.test(n)) return "bandana";
-  if (/キャップ|帽子|ハット/.test(n)) return "cap";
-  if (/パーカー|フーディ|ジャケット|ブルゾン|スウェット|ニット|プルオーバー|ルームウエア|ポンチョ/.test(n)) return "wear";
-  if (/Tシャツ|Ｔシャツ|T-shirt|ロンT|ちびT|キッズT|サッカーシャツ|(手描き|カオス|ハンバーガー|zombies)\s?T\b/i.test(n)) return "tee";
-  if (/タオル|towel|ブランケット/i.test(n)) return "towel";
-  if (/ラバーバンド|リストバンド|クリアバンド|くるくるバンド|2連/.test(n)) return "band";
-  if (/キーホルダー|キーリング|キーケース|ストラップホルダー|カラビナ/.test(n)) return "key";
-  if (/バッグ|トート|サコッシュ|ポーチ|バックパック|コインケース|マルチケース/.test(n)) return "bag";
-  if (/ネックレス|ピアス|イヤリング|シュシュ|ヘアゴム|ヘアバンド|ミサンガ|ブレスレット|ソックス|サンダル|シューズ|スヌード|コンチョ|リストウォッチ/.test(n)) return "acc";
-  return "etc";
-}
-function loadGoods(){
-  if (window.GOODS || goodsS.loading) return;
-  goodsS.loading = true;
-  const sc = document.createElement("script");
-  sc.src = "goods.js?v=1";
-  sc.onload = () => { goodsS.loading = false; if (location.hash.startsWith("#/goods")) render(); };
-  sc.onerror = () => { goodsS.loading = false; const b = $("#goodsBody"); if (b) b.innerHTML = `<div class="card small">굿즈 목록을 불러오지 못했어요. goods.js 파일이 폴더에 있는지 확인해 주세요.</div>`; };
-  document.head.appendChild(sc);
-}
-function goodsCatCounts(){
-  const G = window.GOODS, c = { all:0 }; if (!G) return c;
-  const q = goodsS.q.trim().toLowerCase();
-  G.sets.forEach(st => { if (goodsS.kind !== "all" && st.k !== goodsS.kind) return;
-    st.i.forEach(it => { if (q && !it[0].toLowerCase().includes(q) && !st.t.toLowerCase().includes(q)) return;
-      const k = goodsCat(it[0]); c[k] = (c[k] || 0) + 1; c.all++; }); });
-  return c;
-}
-function goodsCatChips(){
-  const c = goodsCatCounts();
-  return GOODS_CAT.filter(([k]) => k === "all" || c[k] || goodsS.cat === k).map(([k, l]) =>
-    `<button class="chip gd-cchip" data-c="${k}" aria-pressed="${goodsS.cat === k}">${l}<span>${c[k] || 0}</span></button>`).join("");
-}
-function goodsItems(){
-  const G = window.GOODS; if (!G) return [];
-  const q = goodsS.q.trim().toLowerCase();
-  return G.sets.filter(st => goodsS.kind === "all" || st.k === goodsS.kind).map(st => ({
-    st, items: st.i.filter(it => (goodsS.cat === "all" || goodsCat(it[0]) === goodsS.cat) && (!q || it[0].toLowerCase().includes(q) || st.t.toLowerCase().includes(q)))
-  })).filter(x => x.items.length);
-}
-function goodsList(){
-  const G = window.GOODS; if (!G) return `<div class="card small muted" style="text-align:center">굿즈 목록을 불러오는 중…</div>`;
-  const list = goodsItems(), total = list.reduce((a, x) => a + x.items.length, 0), open = goodsS.q || goodsS.cat !== "all";
-  const KL = { tour:"투어 · 공연", fc:"one room", season:"시즌" };
-  return `<p class="small muted gd-count">${list.length}개 공연·시즌 · 굿즈 ${total}개</p>` + (list.length ? list.map((x, n) => `
-    <details class="acc gd-set"${open || n === 0 ? " open" : ""}>
-      <summary><span class="gd-year">${esc(x.st.y)}</span><span class="gd-sum"><b>${esc(x.st.t)}</b><small><span class="gd-kind k-${x.st.k}">${KL[x.st.k] || ""}</span>${esc(x.st.d)} · ${x.items.length}개</small></span></summary>
-      <div class="in"><div class="gd-grid">${x.items.map(([nm, pr, im]) => `
-        <figure class="gd-item"><span class="gd-img"><img src="${esc(G.base + x.st.b + im)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.classList.add('none');this.remove()"></span>
-          <figcaption><span class="gd-name">${esc(nm)}</span>${pr ? `<span class="gd-price">￥${esc(pr)}</span>` : ""}</figcaption></figure>`).join("")}</div></div>
-    </details>`).join("") : `<div class="card small muted" style="text-align:center">조건에 맞는 굿즈가 없어요.</div>`);
-}
-function viewGoods(){
-  loadGoods();
-  return `
-  <h1>굿즈 아카이브</h1>
-  <p class="sub">2011년부터 지금까지 공연·투어별 공식 굿즈 모음 · 가격은 발매 당시 기준 (엔)</p>
-  <p class="gd-note">ⓘ 공식 사이트 굿즈 아카이브를 기준으로 정리했어요. 실물 사진이 없는 굿즈는 공식 일러스트·디자인 이미지로 대신 보여줘요.</p>
-  <div class="chips" id="gdKind">${GOODS_KIND.map(([k, l]) => `<button class="chip" data-k="${k}" aria-pressed="${goodsS.kind === k}">${l}</button>`).join("")}</div>
-  <label class="mvsearch gd-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
-    <input id="gdQ" type="search" placeholder="굿즈 이름 검색" value="${esc(goodsS.q)}"></label>
-  <div class="gd-cats" id="gdCat">${window.GOODS ? goodsCatChips() : ""}</div>
-  <div id="goodsBody">${goodsList()}</div>
-  <p class="src">※ 공식 사이트 <a href="https://backnumber.info/feature/goods" target="_blank" rel="noopener">goods 아카이브</a>를 정리했어요. 사진도 공식 사이트 이미지예요. 2018년처럼 공식 기록이 없는 해는 빠져 있어요.<br>※ 지금 살 수 있는 굿즈는 <a href="https://store.plusmember.jp/backnumberonlinestore/" target="_blank" rel="noopener">공식 온라인 스토어</a>에서 확인하세요.</p>
-  ${footer()}`;
-}
-function bindGoods(){
-  const body = $("#goodsBody");
-  const re = () => { const box = $("#gdCat"), sl = box.scrollLeft;
-    body.innerHTML = goodsList(); box.innerHTML = goodsCatChips(); box.scrollLeft = sl; bindCat(); bindGoodsZoom();
-    box.querySelector('[aria-pressed="true"]')?.scrollIntoView({ inline:"nearest", block:"nearest" }); };
-  const bindCat = () => document.querySelectorAll("#gdCat [data-c]").forEach(b => b.onclick = () => { goodsS.cat = b.dataset.c; re(); });
-  bindCat();
-  document.querySelectorAll("#gdKind [data-k]").forEach(b => b.onclick = () => {
-    goodsS.kind = b.dataset.k;
-    if (goodsS.cat !== "all" && !goodsCatCounts()[goodsS.cat]) goodsS.cat = "all";   // 그 분류에 없는 종류면 전체로
-    document.querySelectorAll("#gdKind [data-k]").forEach(x => x.setAttribute("aria-pressed", x === b));
-    re();
-  });
-  let t; $("#gdQ").addEventListener("input", e => { goodsS.q = e.target.value; clearTimeout(t); t = setTimeout(re, 200); });
-  bindGoodsZoom();
-}
-function bindGoodsZoom(){
-  document.querySelectorAll(".gd-img img").forEach(im => im.onclick = () => {
-    const z = document.createElement("div"); z.className = "post-zoom";
-    const cap = im.closest(".gd-item").querySelector("figcaption").innerText.replace(/\n/g, " · ");
-    z.innerHTML = `<figure style="margin:0;text-align:center"><img src="${im.src}" alt="" referrerpolicy="no-referrer"><figcaption style="color:#fff;margin-top:10px;font-size:14px">${esc(cap)}</figcaption></figure>`;
-    z.onclick = () => z.remove(); document.body.appendChild(z);
-  });
-}
-
-/* ============ 페이지 배경 이미지 ============
-   images/bg/ 에 사진을 넣고 아래 표에 적으면 그 화면 뒤에 깔린다.
-   라이트 모드는 밝은 막, 다크 모드는 어두운 막이 자동으로 덮여서 글자가 잘 보인다 (--veil).
-   다크 전용 사진을 따로 쓰려면 ["밝은.jpg","어두운.jpg"] 처럼 두 개를 적는다. */
-const PAGE_BG = {
-  // 사진 여러 장을 적으면 every 초마다 스르륵 바뀌어요 (들어올 때마다 시작 사진은 랜덤)
-  // pos 는 화면이 좁을 때(휴대폰) 사진의 어느 부분을 보여줄지: "가로% 세로%"
-  home:  null,                                              // 메인은 위쪽 큰 사진(.hb-hero)을 따로 씀 → images/bg/home.webp
-  // mv:    { src: "images/bg/home1.webp", pos: "52% 60%" },  ← 사진 지워서 꺼둠 (다시 쓰려면 앞의 // 지우기)   // 곡 목록 (곡 재생 화면은 배경 없음)
-  // info:  { src: "images/bg/home2.webp", pos: "50% 30%" },  ← 사진 지워서 꺼둠 (다시 쓰려면 앞의 // 지우기)   // 정보 (목록 · 글)
-  // about: { src: "images/bg/home3.webp", pos: "68% 55%" },  ← 사진 지워서 꺼둠 (다시 쓰려면 앞의 // 지우기)   // back number 소개
-  // 여러 장을 번갈아 쓰고 싶으면: home: { every: 8, slides: ["images/bg/a.jpg", "images/bg/b.jpg"] },
-  // schedule: "images/bg/schedule.jpg",   // 한 장만 쓸 때는 이렇게
-  // setlist:  "images/bg/setlist.jpg",
-  // disco:    "images/bg/disco.jpg",
-  // all:      "images/bg/all.jpg",   // 위에 없는 화면 전부에 쓰는 기본 배경
-};
-function isDark(){
-  const t = document.documentElement.dataset.theme;
-  return t ? t === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
-}
-const bgS = { key:null, slides:[], idx:0, timer:null, every:8 };
-function bgCfg(v){
-  if (!v) return null;
-  if (typeof v === "string") v = { slides:[v] };
-  else if (Array.isArray(v)) v = { slides:v };
-  else if (v.src) v = { slides:[v] };
-  const slides = (v.slides || []).map(x => typeof x === "string" ? { src:x } : x).filter(x => x && x.src);
-  return slides.length ? { slides, every: v.every || 8 } : null;
-}
-function bgShow(i){
-  const box = $("#pageBg"), sl = bgS.slides[i]; if (!box || !sl) return;
-  const d = document.createElement("div");
-  d.className = "bgl";
-  d.style.backgroundImage = `url("${sl.src}")`;
-  if (sl.pos) d.style.backgroundPosition = sl.pos;
-  d.style.setProperty("--kb", (bgS.every + 4) + "s");
-  box.appendChild(d);
-  void d.offsetWidth;                // 바로 다음 프레임에 페이드 시작
-  d.classList.add("on");
-  const old = [...box.querySelectorAll(".bgl")].filter(x => x !== d);
-  old.forEach(x => x.classList.remove("on"));
-  old.forEach(x => x.style.opacity = "0");
-  setTimeout(() => old.forEach(x => x.remove()), 2200);
-  bgS.idx = i;
-  document.body.classList.add("has-bg");
-}
-function applyPageBg(){
-  const [r0, arg] = location.hash.replace(/^#\/?/, "").split("/");
-  const r = r0 === "mv" && arg ? "song" : (r0 || "home");   // 곡 화면은 "song"
-  document.getElementById("pageBg")?.setAttribute("data-k", r);
-  const cfg = bgCfg(PAGE_BG[r] ?? PAGE_BG.all);
-  const key = cfg ? cfg.slides.map(x => x.src).join("|") : "";
-  if (key === bgS.key) return;       // 같은 배경이면 그대로 (슬라이드 계속)
-  clearInterval(bgS.timer); bgS.timer = null; bgS.key = key; bgS.slides = [];
-  const box = $("#pageBg"); if (box) box.innerHTML = "";
-  document.body.classList.remove("has-bg");
-  if (!cfg) return;
-  bgS.every = cfg.every;
-  // 들어올 때마다 다른 사진부터: 슬라이드 순서를 랜덤 위치에서 시작
-  const n = cfg.slides.length;
-  if (n > 1){ const k = Math.floor(Math.random() * n); cfg.slides = cfg.slides.slice(k).concat(cfg.slides.slice(0, k)); }
-  const myKey = key, ok = [];
-  let started = false;
-  cfg.slides.forEach(sl => {
-    const im = new Image();
-    im.onload = () => {
-      if (bgS.key !== myKey) return;
-      ok.push(sl); bgS.slides = cfg.slides.filter(x => ok.includes(x));
-      if (!started && sl === cfg.slides[0] || !started && ok.length === cfg.slides.length){ started = true; bgShow(bgS.slides.indexOf(sl)); }
-      if (!bgS.timer && cfg.slides.length > 1) bgS.timer = setInterval(() => {
-        if (document.hidden || bgS.slides.length < 2) return;
-        bgShow((bgS.idx + 1) % bgS.slides.length);
-      }, cfg.every * 1000);
-    };
-    im.src = sl.src;
-  });
-}
-
-const ROUTES = { "":viewHome, schedule:viewSchedule, mv:viewMv, setlist:viewSetlist, disco:viewDisco, info:viewInfo, about:viewAbout, sync:viewSync, write:viewWrite, goods:viewGoods };
-function render(){
-  const [r, arg] = location.hash.replace(/^#\/?/, "").split("/");
-  const view = ROUTES[r] || viewHome;
-  const nextSong = view === viewMv && arg ? SONGS.find(s => s.id === decodeURIComponent(arg)) : null;
-  const songToSong = !!(nextSong && nextSong.youtubeId && mv.song && mv.song.youtubeId && mv.player && mv.ready && $("#songPage .video-frame iframe"));
-  syncCleanup();
-  if (songToSong){
-    mvSoftCleanup();
-    const html = view(arg);
-    if (morphKeep($("#app"), html, ".video-frame")) mv.keepPlayer = true;
-    else { mvCleanup(); $("#app").innerHTML = html; }
-  } else {
-    mvCleanup();
-    $("#app").innerHTML = view(arg);
-  }
-  const tab = r === "about" ? "" : (r === "setlist" || r === "disco" || r === "sync") ? "mv" : r === "write" ? "info" : (ROUTES[r] ? r : "");
-  document.querySelectorAll("nav.tabs a").forEach(a => {
-    if (a.dataset.r === tab) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
-  });
-  document.body.classList.toggle("is-home", view === viewHome);
-  applyPageBg();
-  document.body.classList.toggle("is-post", (view === viewInfo && !!arg) || view === viewWrite);
-  if (view === viewHome){ mv.auto = true; mvVol.m = false; }   // 메인 화면에 오거나 새로고침하면 자동 스크롤·소리 다시 켜짐 (곡끼리 넘어갈 땐 유지)
-  if (view === viewHome){ startCountdown(); bindHome(); } else clearInterval(cdTimer);
-  if (view === viewSchedule) bindSchedule();
-  if (view === viewMv) bindMv(arg);
-  if (view === viewSetlist) bindSetlist(arg);
-  if (view === viewDisco) bindDisco();
-  if (view === viewInfo) bindInfo();
-  if (view === viewSync) bindSync(arg);
-  if (view === viewWrite) bindWrite();
-  if (view === viewGoods) bindGoods();
-}
-let pendingScroll = null;
-window.addEventListener("hashchange", () => { render(); window.scrollTo(0, pendingScroll ?? 0); pendingScroll = null; });
-
-/* ============ 테마 ============ */
-(function(){
-  const root = document.documentElement;
-  try { const t = localStorage.getItem("bn-theme"); if (t) root.dataset.theme = t; } catch(e){}
-  $("#themeBtn").onclick = () => {
-    const dark = root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
-    root.dataset.theme = dark ? "light" : "dark";
-    try { localStorage.setItem("bn-theme", root.dataset.theme); } catch(e){}
-    applyPageBg();
-  };
-})();
-render();
-
-/* ============ 오프라인(PWA) ============ */
-if ("serviceWorker" in navigator && location.protocol === "https:") {
-  navigator.serviceWorker.register("sw.js").catch(() => {});
-}
-</script>
-</body>
-</html>
