@@ -512,7 +512,7 @@ body.is-song header.top,body.is-song nav.tabs{display:none}
 .song-sheet{position:fixed;inset:0;z-index:60;opacity:0;pointer-events:none;transition:opacity .25s}
 .song-sheet.open{opacity:1;pointer-events:auto}
 .song-sheet-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.45)}
-.song-sheet-panel{position:absolute;left:0;right:0;bottom:0;max-height:78svh;display:flex;flex-direction:column;background:var(--surface);border-radius:18px 18px 0 0;padding:8px 0 env(safe-area-inset-bottom);transform:translateY(100%);transition:transform .28s ease;max-width:640px;margin:0 auto}
+.song-sheet-panel{position:absolute;left:0;right:0;bottom:0;max-height:min(78svh,calc(100% - 10px));display:flex;flex-direction:column;background:var(--surface);border-radius:18px 18px 0 0;padding:8px 0 env(safe-area-inset-bottom);transform:translateY(100%);transition:transform .28s ease;max-width:640px;margin:0 auto}
 .song-sheet.open .song-sheet-panel{transform:translateY(0)}
 .song-sheet-grip{display:block;width:40px;height:4px;border-radius:999px;background:var(--line);margin:4px auto 8px}
 .song-sheet-head{display:flex;align-items:center;gap:8px;padding:0 16px 8px}
@@ -523,7 +523,7 @@ body.is-song header.top,body.is-song nav.tabs{display:none}
 .song-sheet-count{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .song-sheet-close{width:30px;height:30px;border:1px solid var(--line);border-radius:50%;background:none;color:var(--ink);cursor:pointer}
 .sheet-search{padding:0 16px 8px}
-.sheet-search input{width:100%;padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:inherit;font-size:14px}
+.sheet-search input{width:100%;padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:inherit;font-size:16px}
 .song-sheet-list{list-style:none;margin:0;padding:0 8px 12px;overflow-y:auto}
 .song-sheet-item{width:100%;display:flex;align-items:center;gap:10px;padding:10px;border:0;border-radius:10px;background:none;color:var(--ink);font:inherit;text-align:left;cursor:pointer}
 .song-sheet-item:hover{background:var(--surface2)}
@@ -3922,10 +3922,19 @@ function paintSheet(){
       <span class="sheet-side">${songMarksHtml(s)}${s.id === mv.song.id ? `<span class="song-sheet-now">재생 중</span>` : mvBadge(s)}</span>
     </button></li>`).join("") : `<li class="sheet-empty">찾는 곡이 없어요</li>`;
 }
+/* 휴대폰 키보드가 올라오면 곡 선택 창을 '보이는 화면' 크기에 맞춰서 키보드 위로 올린다 */
+function fitSheet(){
+  const sh = $("#songSheet"), vv = window.visualViewport;
+  if (!sh || !vv) return;
+  if (!sh.classList.contains("open")){ sh.style.top = sh.style.height = sh.style.bottom = ""; return; }
+  sh.style.top = vv.offsetTop + "px"; sh.style.height = vv.height + "px"; sh.style.bottom = "auto";
+}
+if (window.visualViewport){ visualViewport.addEventListener("resize", fitSheet); visualViewport.addEventListener("scroll", fitSheet); }
 function openSheet(open){
   const sh = $("#songSheet"); if (!sh) return;
   sh.classList.toggle("open", open); sh.inert = !open; sh.setAttribute("aria-hidden", !open);
   $("#pickerBtn").setAttribute("aria-expanded", open);
+  fitSheet();
   if (open){
     mv.sheetAll = false;
     paintSheet();
@@ -4137,6 +4146,7 @@ function bindMv(id){
     if (it){ openSheet(false); if (it.dataset.id !== song.id){ mv.autoplay = true; location.hash = "#/mv/" + encodeURIComponent(it.dataset.id); } }
   });
   $("#sheetQ").addEventListener("input", paintSheet);
+  $("#sheetQ").addEventListener("focus", () => { setTimeout(fitSheet, 50); setTimeout(fitSheet, 350); });
 
   $("#venueBtn").onclick = () => { mv.venue = !mv.venue; try { localStorage.setItem("mv-venue", mv.venue ? "1" : ""); } catch(e){} applyVenue(); setTimeout(padLyrics, 50); };
   $("#autoBtn").onclick = e => { mv.auto = !mv.auto; e.currentTarget.classList.toggle("active", mv.auto); e.currentTarget.setAttribute("aria-pressed", mv.auto); mvSave(); if (mv.auto) mv.active = -1; };
