@@ -4427,9 +4427,10 @@ function paintPicker(){
 /* ── 많이 부른 곡 순위: 사이트에 등록된 셋리스트(투어·페스)를 곡별로 센다 ── */
 /* 유튜브 조회수: 사이트에 연결된 영상(곡 화면에서 재생되는 영상) 기준
    · YT_VIEWS = 직접 확인한 숫자 (날짜는 YT_VIEWS_DATE)
+   · back number 공식 채널(back number · BackNumberVEVO · back number - Topic · UNIVERSAL MUSIC JAPAN) 영상만 순위에 넣고, 팬 업로드는 빼요
    · 서버에 YT_API_KEY(유튜브 Data API 키)를 넣으면 /api/views 로 최신 숫자를 받아와서 덮어써요 (6시간마다 갱신) */
 const YT_VIEWS_DATE = "2026-10-10";
-const YT_VIEWS = {"t_doFJyNsBA":75432,"r8nCMwiohyo":357600,"TkMWqEO6KmY":49624,"0BIDBlDHOJM":73200,"QzmPXUSW63M":74838,"0yXS-HJxpOY":203660,"ks3J1sG4cTg":72972,"PnOGRYznF14":50951,"LA-tjA66HJc":177541,"ZG-sOUE07SA":13865,"2ckobm58bKE":1085131,"3h3WQNpGHA4":930394,"fjNh3_wwXeY":91109,"LGl1RB7LmZk":3251,"pXMBm8545I0":80950,"kefJakXEh1g":1201361,"70yLUUe0Ffw":128535,"RJUE8NNsD68":9295407,"pjf9LVO1OrI":5445,"GnIm3kkCYo4":3971773,"myOq5BdlJj4":1403,"meZPD28Y7xE":66596134,"EwLOwWrtULM":16174304,"T0jZGhaaYYk":9572451,"2L1NB-fJdJk":22706135,"x3jYBCgfXKY":873286,"3aiMcWEjmks":8725379,"1GaoCAc2N-A":12815172,"GV1EN8NgjHk":4632561,"Abjq9Iv7klM":854602,"y6mr8X5C-ts":142937,"h4jvj9T1aaA":1299392,"AE4xtTArYQo":1163530,"XDs4SNSAQZs":145994,"ZWdYxQz4UqE":38847499,"U3Q2yGN7Vz4":10197946,"gR61iTaAkcU":2691330,"VPv5kfyIFkI":14916283,"t3JZnGgxSWg":9724254,"uy_BaRBJIzQ":35375851,"YKZ5KbClxp8":14945605,"wPMVb74M6Q4":305329,"129hKdV-aXM":13738123,"SII-S-zCg-c":179006396,"kyWJig7aZuQ":1180528,"4o-V76O18i4":667791,"NboDML6QPyA":1160746,"4nPxHqHzGPI":6005370,"a8rWWGdg2pw":940179,"tmKfUJgG32Q":2841878,"aYmpJYGxL8w":3262206,"G_ifvcsfAWI":846006,"ISP97Le6yN8":2435696,"CVOauFxtpks":1277984,"RhgTqqxxqds":4469525,"K3NquIg_CIs":3998736,"JBn_NEsmOEM":9748933,"7zBeQezaz4U":165608679,"V_CTnqX37yw":2687317,"WOHXFNzfehs":12832349,"O3wu44M9d_o":300847,"woRV5VxJDkU":15479698,"VPZK72W4Xxw":78768145,"2XdZIWXu9kM":18343763,"NTsvdtwu29M":1718160,"DzpTqNbrXLc":1838349,"pD-SWTxd6Co":982779,"PEKpy5_zx0s":2342009,"CrjOCe5j91c":11351360,"JTH5SNpxRJs":3748289,"wJKyoBQ_vY4":3219266,"T8y_RsF4TSw":162893474,"eQZRuAlGW6g":2949482,"h-KuoHHjGRs":54401658,"y035IcEPiIA":35216124,"RIOtMLiFMV4":2731970,"l0B0js0wCK8":49347811,"IsFs06cw-gY":75066196,"yKIQv4sUTLA":19471773,"OwHTrIrGWV4":1256827,"BPqXF0MaODs":7018537,"iqEr3P78fz8":318548660,"YvQPLS1o7P0":344078,"hswOG4nLmvc":8828760,"CgpVsCWpR8M":842211,"DAs5E6J5G7A":499411,"1DPldNasDgY":56718886,"8TNusrMIdIQ":21072773,"TN3egxXo4pE":2583312,"YSPw1ONGjk4":7299571,"Y_vt1oZXgWA":1686056,"w7wingMtYfg":2610812,"cje58xuPVOI":6161055,"EMYa07zHC9w":37754804,"kNH3eExqWFw":21258179,"_k0mJYct4UE":53120738,"pVVqODzyujA":4659998,"ru6i9lo4zBE":45717185,"aiuGFjALz9k":3175855,"3XnYdMkV9X8":1762804,"euBPUj8CkbA":17378572,"IXHWPQv1JZY":2969005,"hu6y1ol9yUg":20930045,"fIzMKEV9g-I":1222480,"KPsEHgIiLr0":6983156,"wl6V4GpVTj4":8099307};
+const YT_VIEWS = {"t_doFJyNsBA":75432,"r8nCMwiohyo":357600,"TkMWqEO6KmY":49624,"0BIDBlDHOJM":73200,"QzmPXUSW63M":74838,"0yXS-HJxpOY":203660,"PnOGRYznF14":50951,"RJUE8NNsD68":9295407,"GnIm3kkCYo4":3971773,"meZPD28Y7xE":66596134,"EwLOwWrtULM":16174304,"T0jZGhaaYYk":9572451,"2L1NB-fJdJk":22706135,"x3jYBCgfXKY":873286,"3aiMcWEjmks":8725379,"1GaoCAc2N-A":12815172,"GV1EN8NgjHk":4632561,"Abjq9Iv7klM":854602,"y6mr8X5C-ts":142937,"h4jvj9T1aaA":1299392,"AE4xtTArYQo":1163530,"XDs4SNSAQZs":145994,"ZWdYxQz4UqE":38847499,"U3Q2yGN7Vz4":10197946,"gR61iTaAkcU":2691330,"VPv5kfyIFkI":14916283,"t3JZnGgxSWg":9724254,"uy_BaRBJIzQ":35375851,"YKZ5KbClxp8":14945605,"wPMVb74M6Q4":305329,"129hKdV-aXM":13738123,"SII-S-zCg-c":179006396,"kyWJig7aZuQ":1180528,"4o-V76O18i4":667791,"NboDML6QPyA":1160746,"4nPxHqHzGPI":6005370,"a8rWWGdg2pw":940179,"tmKfUJgG32Q":2841878,"aYmpJYGxL8w":3262206,"G_ifvcsfAWI":846006,"ISP97Le6yN8":2435696,"CVOauFxtpks":1277984,"RhgTqqxxqds":4469525,"K3NquIg_CIs":3998736,"JBn_NEsmOEM":9748933,"7zBeQezaz4U":165608679,"V_CTnqX37yw":2687317,"WOHXFNzfehs":12832349,"O3wu44M9d_o":300847,"woRV5VxJDkU":15479698,"VPZK72W4Xxw":78768145,"2XdZIWXu9kM":18343763,"NTsvdtwu29M":1718160,"DzpTqNbrXLc":1838349,"pD-SWTxd6Co":982779,"PEKpy5_zx0s":2342009,"CrjOCe5j91c":11351360,"JTH5SNpxRJs":3748289,"wJKyoBQ_vY4":3219266,"T8y_RsF4TSw":162893474,"eQZRuAlGW6g":2949482,"h-KuoHHjGRs":54401658,"y035IcEPiIA":35216124,"RIOtMLiFMV4":2731970,"l0B0js0wCK8":49347811,"IsFs06cw-gY":75066196,"yKIQv4sUTLA":19471773,"OwHTrIrGWV4":1256827,"BPqXF0MaODs":7018537,"iqEr3P78fz8":318548660,"YvQPLS1o7P0":344078,"hswOG4nLmvc":8828760,"CgpVsCWpR8M":842211,"DAs5E6J5G7A":499411,"1DPldNasDgY":56718886,"8TNusrMIdIQ":21072773,"TN3egxXo4pE":2583312,"YSPw1ONGjk4":7299571,"Y_vt1oZXgWA":1686056,"w7wingMtYfg":2610812,"cje58xuPVOI":6161055,"EMYa07zHC9w":37754804,"kNH3eExqWFw":21258179,"_k0mJYct4UE":53120738,"pVVqODzyujA":4659998,"ru6i9lo4zBE":45717185,"aiuGFjALz9k":3175855,"3XnYdMkV9X8":1762804,"euBPUj8CkbA":17378572,"IXHWPQv1JZY":2969005,"hu6y1ol9yUg":20930045,"fIzMKEV9g-I":1222480,"KPsEHgIiLr0":6983156,"wl6V4GpVTj4":8099307};
 const ytLive = { data:null, at:"", tried:false };
 async function ytLoadLive(){
   if (ytLive.tried) return; ytLive.tried = true;
@@ -4441,13 +4442,15 @@ async function ytLoadLive(){
       const r = await fetch("/api/views?ids=" + ids.slice(i, i + 50).join(","), { cache:"no-store" });
       if (!r.ok) return;
       const j = await r.json(); if (!j || !j.views) return;
-      Object.assign(got, j.views); at = j.at || at;
+      Object.keys(j.views).forEach(id => { const ch = j.ch && j.ch[id]; if (ch ? YT_OFFICIAL.test(ch) : YT_VIEWS[id] != null) got[id] = j.views[id]; });
+      at = j.at || at;
     }
     ytLive.data = got; ytLive.at = at;
     if (cset.kind === "rank" && rankS.mode === "yt" && $("#csetRank")) paintRank();
   } catch(e){}
 }
-const ytViews = id => (ytLive.data && ytLive.data[id] != null) ? ytLive.data[id] : (YT_VIEWS[id] ?? null);
+const YT_OFFICIAL = /^(back number|back number - Topic|BackNumberVEVO|UNIVERSAL MUSIC JAPAN)$/;
+const ytViews = id => ytLive.data ? (ytLive.data[id] ?? null) : (YT_VIEWS[id] ?? null);
 function fmtViews(n){
   if (n >= 1e8){ const e = Math.floor(n / 1e8), m = Math.round((n % 1e8) / 1e4); return `${e}억${m ? " " + m.toLocaleString() + "만" : ""}`; }
   if (n >= 1e4) return `${Math.round(n / 1e4).toLocaleString()}만`;
@@ -4459,7 +4462,7 @@ function paintYtRank(){
   const tag = { mv:"MV", audio:"음원", lyric:"가사 영상" };
   const when = ytLive.data ? `실시간 · ${ytLive.at ? new Date(ytLive.at).toLocaleString("ko-KR", { month:"numeric", day:"numeric", hour:"numeric", minute:"2-digit" }) + " 기준" : "최근 6시간 안"}` : `${YT_VIEWS_DATE.replace(/-/g, ".")} 기준`;
   return `
-    <p class="rank-note">곡 화면에서 재생되는 <b>유튜브 영상의 조회수</b> 순위예요 · <b>${when}</b><br>MV·공식 음원·팬 업로드 등 곡마다 연결된 영상이 달라서, 곡 인기와 꼭 같지는 않아요.</p>
+    <p class="rank-note">곡 화면에서 재생되는 <b>유튜브 영상의 조회수</b> 순위예요 · <b>${when}</b><br><b>back number 공식 채널</b> 영상(MV·공식 음원)만 넣었고, 팬 업로드 영상이 연결된 곡은 빠져 있어요.</p>
     <div class="card set-list rank-list">${list.map((x, i) => `
       <a class="rank-row${i < 3 ? " top" : ""}" href="#/mv/${encodeURIComponent(x.s.id)}">
         <span class="rank-n">${i + 1}</span>
