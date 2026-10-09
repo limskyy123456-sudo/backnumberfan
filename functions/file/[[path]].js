@@ -12,3 +12,9 @@ export async function onRequestGet({ env, params }){
   h.set("x-content-type-options", "nosniff");
   return new Response(obj.body, { headers: h });
 }
+// HEAD /file/files/… → 있는지만 확인
+export async function onRequestHead({ env, params }){
+  const key = (params.path || []).join("/");
+  const obj = key.startsWith("files/") ? await env.BUCKET.head(key) : null;
+  return new Response(null, { status: obj ? 200 : 404, headers: obj ? { "content-type": "application/octet-stream" } : {} });
+}
