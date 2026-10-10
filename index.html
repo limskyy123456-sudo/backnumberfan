@@ -1020,8 +1020,10 @@ body.is-song header.top,body.is-song nav.tabs{display:none}
 .fd-ic svg{width:17px;height:17px}
 .fd-t{flex:1;min-width:0;overflow-wrap:anywhere;font-size:14px}
 .fd-x{flex:none;font-size:11.5px;font-weight:800;color:var(--accent)}
-.post-zoom{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.86);display:grid;place-items:center;padding:16px;cursor:zoom-out}
-.post-zoom img{max-width:100%;max-height:100%;border-radius:8px}
+.post-zoom{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.86);display:flex;flex-direction:column;align-items:center;padding:16px;cursor:zoom-out;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+.post-zoom>img,.post-zoom>figure{margin:auto 0;flex-shrink:0}
+.post-zoom img{display:block;max-width:min(100%,1100px);height:auto;border-radius:8px}
+.post-zoom figure img{margin:0 auto;max-height:calc(100svh - 80px);width:auto}
 .info-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
 .post-top{display:flex;justify-content:space-between;align-items:center;margin-top:14px}
 .post-top .back{margin-top:0}
@@ -3008,12 +3010,19 @@ function viewInfo(id){
   : `<div class="card info-empty">아직 올라온 정보가 없어요.<br><span class="small muted">곧 하나씩 채울 예정이에요.</span></div>`}
   ${footer()}`;
 }
+/* 사진 크게 보기: 세로로 긴 사진은 휠·드래그로 스크롤, 클릭이나 Esc 로 닫기 */
+function openZoom(z){
+  z.tabIndex = -1;
+  const close = () => { z.remove(); document.removeEventListener("keydown", key); };
+  const key = e => { if (e.key === "Escape") close(); };
+  z.onclick = close; document.addEventListener("keydown", key);
+  document.body.appendChild(z); z.focus({ preventScroll:true });
+}
 function bindPostZoom(){
   document.querySelectorAll(".post-body img").forEach(im => im.onclick = () => {
     const z = document.createElement("div");
     z.className = "post-zoom"; z.innerHTML = `<img src="${im.src}" alt="">`;
-    z.onclick = () => z.remove();
-    document.body.appendChild(z);
+    openZoom(z);
   });
 }
 function bindInfo(){
@@ -4053,7 +4062,7 @@ function bindSongInfo(){
   sh.onclick = e => { if (e.target === sh || e.target.closest("[data-close]")) sh.hidden = true; };
   sh.querySelectorAll(".si-story img").forEach(im => im.onclick = () => {
     const z = document.createElement("div"); z.className = "post-zoom"; z.innerHTML = `<img src="${im.src}" alt="">`;
-    z.onclick = () => z.remove(); document.body.appendChild(z); });
+    openZoom(z); });
 }
 function bindLyricCopy(song){
   const btn = $("#lyricCopyBtn"), menu = $("#copyMenu"); if (!btn || !menu) return;
@@ -4862,7 +4871,7 @@ function bindGoodsZoom(){
     const z = document.createElement("div"); z.className = "post-zoom";
     const cap = im.closest(".gd-item").querySelector("figcaption").innerText.replace(/\n/g, " · ");
     z.innerHTML = `<figure style="margin:0;text-align:center"><img src="${im.src}" alt="" referrerpolicy="no-referrer"><figcaption style="color:#fff;margin-top:10px;font-size:14px">${esc(cap)}</figcaption></figure>`;
-    z.onclick = () => z.remove(); document.body.appendChild(z);
+    openZoom(z);
   });
 }
 
