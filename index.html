@@ -3259,6 +3259,23 @@ ${body}
   document.querySelectorAll("[data-ins]").forEach(b => b.onclick = () => insert(b.dataset.ins));
   document.querySelectorAll("[data-wrap]").forEach(b => b.onclick = () => insert("", b.dataset.wrap));
   /* 사진 넣기: [📷 사진 넣기] · 캡처 붙여넣기(Ctrl+V) · 끌어다 놓기 모두 여기로 */
+  /* 올리기 전에 사진 줄이기: 긴 변 1600px(세로로 긴 캡처는 가로 1080px) · webp(안 되는 폰은 jpg)
+     gif(움짤)는 그대로, 줄인 게 원본보다 크면 원본 그대로 */
+  const shrinkImage = async fl => {
+    if (!/^image\/(jpeg|png|webp|avif)$/.test(fl.type)) return fl;
+    try {
+      let img; try { img = await createImageBitmap(fl, { imageOrientation:"from-image" }); } catch(e){ img = await createImageBitmap(fl); }
+      const w = img.width, h = img.height;
+      const k = Math.min(1, h / w > 1.8 ? 1080 / w : 1600 / Math.max(w, h));
+      if (k === 1 && fl.size < 300 * 1024){ img.close?.(); return fl; }
+      const c = document.createElement("canvas"); c.width = Math.round(w * k); c.height = Math.round(h * k);
+      const g = c.getContext("2d"); g.imageSmoothingQuality = "high"; g.drawImage(img, 0, 0, c.width, c.height); img.close?.();
+      const enc = (t, q) => new Promise(r => c.toBlob(r, t, q));
+      let b = await enc("image/webp", 0.82);
+      if (!b || b.type !== "image/webp") b = await enc("image/jpeg", 0.85);
+      return (b && b.size < fl.size) ? b : fl;
+    } catch(e){ return fl; }
+  };
   const addImages = async files => {
     files = files.filter(f => f && /^image\//.test(f.type)); if (!files.length) return;
     if (SRV.on && !SRV.me){                    // 사이트에서 쓰는데 아직 비밀번호 확인 전 → 사진이 서버에 안 올라가므로 막는다
@@ -3269,9 +3286,10 @@ ${body}
     let lines = [];
     if (SRV.me){                               // 서버 글쓰기: 사진을 바로 올리고 주소를 넣는다
       copyToast(`사진 ${files.length}장 올리는 중…`);
-      for (const fl of files){
+      for (const f0 of files){
+        const fl = await shrinkImage(f0);
         try { const r = await srvFetch("/api/upload", { method:"POST", headers:{ "content-type": fl.type }, body: fl }); writeS.urls[r.url] = URL.createObjectURL(fl); lines.push(`![](${r.url})`); }
-        catch(err){ alert(`${fl.name || "사진"}: ${err.message}`); }
+        catch(err){ alert(`${f0.name || "사진"}: ${err.message}`); }
       }
       if (!lines.length) return;
       copyToast(`사진 ${lines.length}장을 넣었어요`);
