@@ -654,6 +654,20 @@ body.is-song header.top,body.is-song nav.tabs{display:none}
 .lp-title{font-weight:800;font-size:16px;margin-bottom:2px}
 .lp-grid{margin-top:12px}
 .lp-memo{display:inline-block;margin-top:3px;font-size:10.5px;font-weight:700;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:0 6px;font-variant-numeric:tabular-nums}
+.lp-stores{margin:4px 0 10px;border:1px solid var(--line);border-radius:12px;padding:8px 12px 10px;background:var(--surface)}
+.lp-stores>summary{cursor:pointer;font-weight:800;font-size:14px;padding:2px 0}
+.lps-grp{margin-top:8px}
+.lps-h{font-size:12px;font-weight:800;color:var(--muted);margin-bottom:2px}
+.lps-row{padding:7px 0;border-top:1px dashed var(--line)}
+.lps-grp .lps-row:first-of-type{border-top:0}
+.lps-name{display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:14px}
+.lps-name a{font-weight:800;color:var(--accent);text-decoration:none}
+.lps-st{font-size:11px;font-weight:700;border-radius:999px;padding:1px 7px;background:color-mix(in srgb,var(--accent) 12%,transparent);color:var(--accent)}
+.lps-st.out{background:color-mix(in srgb,#888 16%,transparent);color:var(--muted)}
+.lps-items{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.lps-items a{font-size:12.5px;font-weight:700;padding:4px 10px;border-radius:999px;border:1px solid var(--line);color:inherit;text-decoration:none;background:var(--bg)}
+.lps-items a:hover{border-color:var(--accent);color:var(--accent)}
+.lps-foot{margin:8px 0 0;font-size:11.5px;color:var(--muted)}
 .lp-links{display:flex;align-items:center;gap:12px;margin-top:8px}
 .vid-eds{display:grid;gap:4px;border:1px solid var(--line);border-radius:10px;padding:8px 10px}
 .vid-eds div{display:flex;justify-content:space-between;gap:10px;font-size:12.5px}
@@ -1918,6 +1932,20 @@ const ALBUM_LIVES = [
     extra:"투어 다큐멘터리, 52P 투어 포토북 · 초회한정반 B는 MV 7곡",
     tracks:["怪盗","泡と羊","アップルパイ","オールドファッション","エメラルド","MOTTO","赤い花火","HAPPY BIRTHDAY","風の強い日","サマーワンダーランド","恋","黄色","勝手にオリンピック","003","半透明人間","sympathy","瞬き","水平線","高嶺の花子さん","スーパースターになったら","#앙코르","僕の名前を","日曜日","そのドレスちょっと待った"],
     src:"https://backnumber.info/discography/detail/83/" },
+  { jp:"back number live film 2020 \u201cASH\u201d", ko:"라이브 필름 2020 · 애쉬", no:"싱글 『黄色』 초회한정반", date:"2021.09.29",
+    img:"um/UMCK-5705_hph", shot:"2020.10.25 온라인 라이브 (스트리밍 공연)",
+    note:"코로나로 공연을 못 하던 2020년에 스트리밍으로 연 라이브 필름이에요. 21st 싱글 『黄色』 초회한정반 DISC 2에 공연 전곡과 메이킹이 들어 있어요.",
+    eds:[ ["초회한정반 · CD+Blu-ray","UMCK-7137","7,700엔"], ["초회한정반 · CD+DVD","UMCK-7138","6,600엔"] ],
+    extra:"메이킹 영상 · 54P 포토북 · 삼방면 BOX 톨케이스 사양 · 팬클럽 한정반에도 함께 수록",
+    tracks:["SISTER","瞬き","僕は君の事が好きだけど君は僕を別に好きじゃないみたい","黒い猫の歌","わたがし","君がドアを閉めた後","MOTTO","エメラルド","あかるいよるに","高嶺の花子さん","ハッピーエンド","HAPPY BIRTHDAY","花束","水平線","青い春","大不正解"],
+    src:"https://natalie.mu/music/news/439538" },
+  { jp:"back number live film 2020 \u201cMAHOGANY\u201d", ko:"라이브 필름 2020 · 마호가니", no:"싱글 『黄色』 팬클럽 한정반 (one room limited edition)", date:"2021.09.29",
+    img:"um/UMCK-5705_hph", shot:"2020.09.22 팬클럽 회원 한정 온라인 라이브",
+    note:"팬클럽 one room 회원에게만 스트리밍한 라이브 필름이에요. 『黄色』 팬클럽 한정반에만 들어 있어서 팬클럽에서만 살 수 있었어요. ASH도 같이 들어 있어요.",
+    eds:[ ["팬클럽 한정반 · CD+2Blu-ray","PDCS-5932","11,000엔"], ["팬클럽 한정반 · CD+2DVD","PDCS-5933","9,900엔"] ],
+    extra:"MAHOGANY·ASH 두 공연 + 각 메이킹 · 168P 포토북 · 7인치 BOX 케이스",
+    tracks:["オールドファッション","fish","黒い猫の歌","花束","光の街","わたがし","雨と僕の話","SISTER","だいじなこと","sympathy","大不正解","one room"],
+    src:"https://backnumber.info/discography/detail/77/" },
   { jp:"dome tour 2018 \u201cstay with you\u201d at TOKYO DOME", ko:"돔 투어 2018 스테이 위드 유 · 도쿄돔", no:"『MAGIC』 초회한정반 A", date:"2019.03.27",
     img:"um/UMCK-1616_jtO", shot:"2018.08.11 도쿄돔 (첫 돔 투어)",
     note:"6th 앨범 『MAGIC』 초회한정반 A에 들어간 첫 돔 투어 도쿄돔 공연이에요.",
@@ -1952,7 +1980,16 @@ const LPS = [
     spec:"각 2LP · 180g 중량반 · 45회전 · 하프 스피드 마스터링 · 각 6,000엔(세금 별도)",
     note:"『MAGIC』『ユーモア』는 첫 LP화. 나머지 4작은 2018년 LP가 품절된 뒤 재발매.",
     items:[ ["スーパースター","","um/UMJK-9085_HIi"], ["blues","","um/UMJK-9087_HIi"], ["ラブストーリー","","um/UMJK-9089_pxj"], ["シャンデリア","","um/UMJK-9091_HIi"], ["MAGIC","첫 LP","um/UMCK-1616_jtO"], ["ユーモア","첫 LP","um/UMCK-7197_Ihd"] ],
-    src:"https://www.cdjournal.com/news/back-number/128934", buy:"https://backnumber.lnk.to/6lp_albums" },
+
+    stores:[   // ✏️ 구매처: 링크 순서는 위 items 순서(슈퍼스타·blues·러브스토리·샹들리에·MAGIC·유머)와 같아요 / 상태 문구는 st 에
+      { kr:false, name:"공식 (세븐넷 · 라쿠텐)", url:"https://backnumber.lnk.to/6lp_albums" },
+      { kr:false, name:"HMV", st:"10.12 기준 유머 · 러브스토리만 예약 가능", links:["https://www.hmv.co.jp/artist_back-number_000000000410594/item_%E3%82%B9%E3%83%BC%E3%83%91%E3%83%BC%E3%82%B9%E3%82%BF%E3%83%BC-%E3%80%902026-%E3%83%AC%E3%82%B3%E3%83%BC%E3%83%89%E3%81%AE%E6%97%A5-%E9%99%90%E5%AE%9A%E7%9B%A4%E3%80%91-45%E5%9B%9E%E8%BB%A2-2%E6%9E%9A%E7%B5%84-180%E3%82%B0%E3%83%A9%E3%83%A0%E9%87%8D%E9%87%8F%E7%9B%A4%E3%83%AC%E3%82%B3%E3%83%BC%E3%83%89_17197093", "https://www.hmv.co.jp/artist_back-number_000000000410594/item_blues-%E3%80%902026-%E3%83%AC%E3%82%B3%E3%83%BC%E3%83%89%E3%81%AE%E6%97%A5-%E9%99%90%E5%AE%9A%E7%9B%A4%E3%80%91-45%E5%9B%9E%E8%BB%A2-2%E6%9E%9A%E7%B5%84-180%E3%82%B0%E3%83%A9%E3%83%A0%E9%87%8D%E9%87%8F%E7%9B%A4%E3%83%AC%E3%82%B3%E3%83%BC%E3%83%89_17197094", "https://www.hmv.co.jp/artist_back-number_000000000410594/item_%E3%83%A9%E3%83%96%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AA%E3%83%BC-%E3%80%902026-%E3%83%AC%E3%82%B3%E3%83%BC%E3%83%89%E3%81%AE%E6%97%A5-%E9%99%90%E5%AE%9A%E7%9B%A4%E3%80%91-45%E5%9B%9E%E8%BB%A2-2%E6%9E%9A%E7%B5%84-180%E3%82%B0%E3%83%A9%E3%83%A0%E9%87%8D%E9%87%8F%E7%9B%A4%E3%83%AC%E3%82%B3%E3%83%BC%E3%83%89_17197095", "https://www.hmv.co.jp/artist_back-number_000000000410594/item_%E3%82%B7%E3%83%A3%E3%83%B3%E3%83%87%E3%83%AA%E3%82%A2-%E3%80%902026-%E3%83%AC%E3%82%B3%E3%83%BC%E3%83%89%E3%81%AE%E6%97%A5-%E9%99%90%E5%AE%9A%E7%9B%A4%E3%80%91-45%E5%9B%9E%E8%BB%A2-2%E6%9E%9A%E7%B5%84-180%E3%82%B0%E3%83%A9%E3%83%A0%E9%87%8D%E9%87%8F%E7%9B%A4%E3%83%AC%E3%82%B3%E3%83%BC%E3%83%89_17197096", "https://www.hmv.co.jp/artist_back-number_000000000410594/item_MAGIC-%E3%80%902026-%E3%83%AC%E3%82%B3%E3%83%BC%E3%83%89%E3%81%AE%E6%97%A5-%E9%99%90%E5%AE%9A%E7%9B%A4%E3%80%91-45%E5%9B%9E%E8%BB%A2-2%E6%9E%9A%E7%B5%84-180%E3%82%B0%E3%83%A9%E3%83%A0%E9%87%8D%E9%87%8F%E7%9B%A4%E3%83%AC%E3%82%B3%E3%83%BC%E3%83%89_17197091", "https://www.hmv.co.jp/artist_back-number_000000000410594/item_%E3%83%A6%E3%83%BC%E3%83%A2%E3%82%A2-%E3%80%902026-%E3%83%AC%E3%82%B3%E3%83%BC%E3%83%89%E3%81%AE%E6%97%A5-%E9%99%90%E5%AE%9A%E7%9B%A4%E3%80%91-45%E5%9B%9E%E8%BB%A2-2%E6%9E%9A%E7%B5%84-180%E3%82%B0%E3%83%A9%E3%83%A0%E9%87%8D%E9%87%8F%E7%9B%A4%E3%83%AC%E3%82%B3%E3%83%BC%E3%83%89_17197092"] },
+      { kr:false, name:"타워레코드", st:"10.12 기준 유머만 예약 가능", links:["https://tower.jp/item/8151089", "https://tower.jp/item/8151090", "https://tower.jp/item/8151091", "https://tower.jp/item/8151092", "https://tower.jp/item/8151087", "https://tower.jp/item/8151088"] },
+      { kr:false, name:"UNIVERSAL MUSIC STORE", st:"품절", url:"https://store.universal-music.co.jp/collections/backnumber" },
+      { kr:true, name:"예스24", st:"예약판매 중", links:["https://www.yes24.com/product/goods/195380789", "https://www.yes24.com/product/goods/195380791", "https://www.yes24.com/product/goods/195380792", "https://www.yes24.com/product/goods/195380796", "https://www.yes24.com/product/goods/195380777", "https://www.yes24.com/product/goods/195380788"] },
+      { kr:true, name:"알라딘", st:"품절", links:["https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=400727657", "https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=400728156", "https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=400728710", "https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=400728940", "https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=400726754", "https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=400727236"] }
+    ],
+    src:"https://www.cdjournal.com/news/back-number/128934", buy:"https://backnumber.lnk.to/6lp_albums", checked:"2026.10.12" },
   { date:"2018.11.03", title:"메이저 오리지널 앨범 4작 아날로그 LP (레코드의 날 2018)", status:"품절",
     spec:"각 2LP · 180g 중량반 · 하프 스피드 마스터링",
     note:"메이저 데뷔 후 앨범 4작의 첫 LP. 현재는 품절이라 중고로만 구할 수 있어요.",
@@ -4651,10 +4688,9 @@ function viewDisco(){
   } else if (disco.tab === "video"){
     body = `<p class="sub" style="margin-top:14px">라이브 Blu-ray · DVD ${VIDEOS.length}작 (최신순) · 누르면 수록곡이 펼쳐져요</p>
       ${VIDEOS.map(discoVideo).join("")}
-      <h2 style="margin-top:26px">앨범 초회한정반 라이브 영상</h2>
-      <p class="sub" style="margin-top:4px">앨범 초회한정반 A에 특전으로 들어간 공연 ${ALBUM_LIVES.length}편 · 단독 발매는 안 됐어요</p>
-      ${ALBUM_LIVES.map(discoVideo).join("")}
-      <div class="note tip">2020년 온라인 라이브 필름 『MAHOGANY』『ASH』는 스트리밍 공개작이라 실물 영상 작품으로는 나오지 않았어요.</div>`;
+      <h2 style="margin-top:26px">앨범 · 싱글 한정반 라이브 영상</h2>
+      <p class="sub" style="margin-top:4px">앨범 · 싱글 한정반에 특전으로 들어간 공연 ${ALBUM_LIVES.length}편 · 단독 발매는 안 됐어요</p>
+      ${ALBUM_LIVES.map(discoVideo).join("")}`;
   } else {
     body = LPS.map(l => `
       <div class="card lp-card">
@@ -4664,7 +4700,8 @@ function viewDisco(){
         <div class="cover-grid lp-grid">${l.items.map(([jp, memo, img]) => `
           <div class="cg-item">${cover(img, jp)}<b>${esc(jp)}</b><small>${esc(ALBUM_KO[jp] || "")}</small>${memo ? `<span class="lp-memo">${esc(memo)}</span>` : ""}</div>`).join("")}</div>
         <p class="small" style="margin:10px 0 6px">${esc(l.note)}</p>
-        <div class="lp-links">${l.buy ? `<a class="btn primary" href="${l.buy}" target="_blank" rel="noopener">구매처 보기 ↗</a>` : ""}${srcLink(l.src)}</div>
+        ${l.stores ? lpStores(l) : ""}
+        <div class="lp-links">${l.buy && !l.stores ? `<a class="btn primary" href="${l.buy}" target="_blank" rel="noopener">구매처 보기 ↗</a>` : ""}${srcLink(l.src)}</div>
       </div>`).join("") + `<div class="note tip">해외 배송이 안 되는 곳이 많아요. 일본 내 주소가 없으면 배송대행·구매대행을 이용하세요.</div>`;
   }
   return `
@@ -4878,6 +4915,19 @@ function bindGoodsZoom(){
   });
 }
 
+/* LP 구매처 목록: 일본 / 한국 나눠서, 앨범별 바로가기 */
+function lpStores(l){
+  const short = { "スーパースター":"슈퍼스타", "blues":"blues", "ラブストーリー":"러브스토리", "シャンデリア":"샹들리에", "MAGIC":"MAGIC", "ユーモア":"유머" };
+  const ext = 'target="_blank" rel="noopener"';
+  const row = st => `<div class="lps-row">
+      <div class="lps-name">${st.url ? `<a href="${st.url}" ${ext}>${esc(st.name)} ↗</a>` : `<b>${esc(st.name)}</b>`}${st.st ? `<span class="lps-st${/품절/.test(st.st) ? " out" : ""}">${esc(st.st)}</span>` : ""}</div>
+      ${st.links ? `<div class="lps-items">${st.links.map((u, i) => u ? `<a href="${u}" ${ext}>${esc(short[l.items[i][0]] || l.items[i][0])}</a>` : "").join("")}</div>` : ""}
+    </div>`;
+  const grp = (t, list) => list.length ? `<div class="lps-grp"><div class="lps-h">${t}</div>${list.map(row).join("")}</div>` : "";
+  return `<details class="lp-stores" open><summary>구매처 ${l.stores.length}곳</summary>
+    ${grp("일본", l.stores.filter(x => !x.kr))}${grp("한국 (수입반)", l.stores.filter(x => x.kr))}
+    <p class="lps-foot">품절된 곳도 함께 적었어요 · 재고는 수시로 바뀌어요${l.checked ? ` (${esc(l.checked)} 확인)` : ""}</p></details>`;
+}
 /* ============ 페이지 배경 이미지 ============
    images/bg/ 에 사진을 넣고 아래 표에 적으면 그 화면 뒤에 깔린다.
    라이트 모드는 밝은 막, 다크 모드는 어두운 막이 자동으로 덮여서 글자가 잘 보인다 (--veil).
