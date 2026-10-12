@@ -3,22 +3,22 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
-<title>back number (비공식 팬 가이드)</title>
+<title>back number 백넘버 (비공식)</title>
 <meta name="description" content="back number(백넘버) 전곡 가사·응원법, 콘서트 셋리스트, 앨범·굿즈, 공연 일정을 한국 팬 기준으로 정리한 비공식 팬사이트">
 <link rel="canonical" href="https://backnumberfankor.pages.dev/">
 <!-- 카톡·트위터 등 공유 미리보기 -->
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="back number 한국 팬 가이드">
-<meta property="og:title" content="back number 한국 팬 가이드 (비공식)">
+<meta property="og:site_name" content="back number 백넘버 (비공식)">
+<meta property="og:title" content="back number 백넘버 (비공식)">
 <meta property="og:description" content="back number(백넘버) 전곡 가사·응원법, 콘서트 셋리스트, 앨범·굿즈, 공연 일정을 한국 팬 기준으로 정리한 비공식 팬사이트">
 <meta property="og:url" content="https://backnumberfankor.pages.dev/">
 <meta property="og:image" content="https://backnumberfankor.pages.dev/images/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="back number 백넘버 한국 팬 가이드">
+<meta property="og:image:alt" content="back number 백넘버">
 <meta property="og:locale" content="ko_KR">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="back number 한국 팬 가이드 (비공식)">
+<meta name="twitter:title" content="back number 백넘버 (비공식)">
 <meta name="twitter:description" content="back number(백넘버) 전곡 가사·응원법, 콘서트 셋리스트, 앨범·굿즈, 공연 일정을 한국 팬 기준으로 정리한 비공식 팬사이트">
 <meta name="twitter:image" content="https://backnumberfankor.pages.dev/images/og.jpg">
 <meta name="theme-color" content="#f3f5f8" media="(prefers-color-scheme: light)">
@@ -1947,7 +1947,7 @@ const VIDEOS = [
     tracks:["アイラブユー","大不正解","SISTER","秘密のキス","クリスマスソング","ハッピーエンド","エメラルド","青い春","ヒーロースーツ","ヒロイン","手紙","Silent Journey in Tokyo","ゴールデンアワー","高嶺の花子さん","赤い花火","黄色","水平線","ベルベットの詩","スーパースターになったら","添い寝チャンスは突然に","花束","怪盗"],
     src:"https://backnumber.info/discography/detail/87/" },
   { jp:"NO MAGIC TOUR 2019 at 大阪城ホール", ko:"노 매직 투어 2019 · 오사카성 홀", no:"3rd Live", date:"2020.03.25",
-    img:"", shot:"2019.08.24 오사카성 홀",
+    img:"https://s3-aop.plusmember.jp/prod/public/backnumber/contents/discography/921d8ca93551aa68133cbdc051214001.jpeg", shot:"2019.08.24 오사카성 홀",
     note:"앨범 『MAGIC』 투어의 오사카성 홀 공연. 2021년 12월부터 음원 사이트에서도 라이브 음원으로 들을 수 있어요.",
     eds:[ ["초회한정반 · Blu-ray / DVD","",""], ["통상반 · Blu-ray / DVD","",""] ],
     extra:"초회한정반: 투어 밀착 다큐멘터리, 52P 포토북",
@@ -2207,7 +2207,7 @@ function viewHome(){
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
     </button>
     <div class="hb-hero">
-      <div class="hb-title"><small>KOREAN FAN GUIDE · 비공식</small><h1>back<br>number</h1></div>
+      <div class="hb-title"><small>KOREA · 비공식</small><h1>back<br>number</h1></div>
     </div>
     <div class="hb-sheet">
       <div class="cd-pill hb-live" id="cd-pill">
@@ -2238,7 +2238,7 @@ function viewHome(){
         <button class="share-btn" type="button" id="installBtn"${IS_STANDALONE ? " hidden" : ""}>＋ 홈 화면에 바로가기</button>
       </div>
       <div class="install-guide" id="installGuide" hidden></div>
-      <div class="credits">back number · 비공식 팬 제작 가이드 · back number 및 소속사와 관계없어요</div>
+      <div class="credits">back number · 팬이 만든 비공식 사이트 · back number 및 소속사와 관계없어요</div>
     </div>
   </section>`;
 }
@@ -2341,7 +2341,7 @@ function bindHome(){
       if (!g.hidden) g.scrollIntoView({ block:"center", behavior:"smooth" });
     }; }
   $("#shareBtn").onclick = async () => {
-    const data = { title: "back number", text: "백넘버 한국 팬을 위한 비공식 가이드", url: location.origin + location.pathname };
+    const data = { title: "back number", text: "백넘버 한국 팬을 위한 비공식 사이트", url: location.origin + location.pathname };
     try {
       if (navigator.share) await navigator.share(data);
       else { await navigator.clipboard.writeText(data.url); $("#shareBtn").textContent = "주소를 복사했어요"; }
