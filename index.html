@@ -669,6 +669,22 @@ body.is-song header.top,body.is-song nav.tabs{display:none}
 .lps-items a:hover{border-color:var(--accent);color:var(--accent)}
 .lps-foot{margin:8px 0 0;font-size:11.5px;color:var(--muted)}
 .lp-links{display:flex;align-items:center;gap:12px;margin-top:8px}
+.alb-eds{margin:0 0 14px;display:grid;gap:8px}
+.alb-eds-h{font-size:12px;font-weight:800;color:var(--muted)}
+.alb-ed{border:1px solid var(--line);border-radius:12px;padding:9px 11px;background:var(--surface)}
+.alb-ed.lim{border-color:color-mix(in srgb,var(--accent) 35%,var(--line))}
+.alb-ed-top{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+.alb-ed-top b{font-size:14px}
+.alb-ed-top span{font-size:12px;color:var(--muted);font-weight:700}
+.alb-ed-no{font-size:11.5px;color:var(--muted);font-variant-numeric:tabular-nums;margin-top:1px}
+.alb-ed-row{display:flex;gap:8px;align-items:flex-start;margin-top:7px;font-size:13px;line-height:1.5}
+.ed-tag{flex:none;font-size:10.5px;font-weight:800;border-radius:6px;padding:2px 6px;background:color-mix(in srgb,var(--accent) 14%,transparent);color:var(--accent);margin-top:1px}
+.ed-tag.live{background:color-mix(in srgb,#e0567a 16%,transparent);color:#d0456b}
+.ed-tag.etc{background:color-mix(in srgb,#888 16%,transparent);color:var(--muted)}
+.ed-mvs{display:flex;flex-wrap:wrap;gap:5px}
+.ed-mv{font-size:12px;font-weight:700;padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:inherit;text-decoration:none;background:var(--bg)}
+a.ed-mv:hover{border-color:var(--accent);color:var(--accent)}
+.ed-go{border:0;background:none;padding:0;margin-left:2px;font:inherit;font-size:12px;font-weight:700;color:var(--accent);cursor:pointer}
 .vid-eds{display:grid;gap:4px;border:1px solid var(--line);border-radius:10px;padding:8px 10px}
 .vid-eds div{display:flex;justify-content:space-between;gap:10px;font-size:12.5px}
 .vid-eds small{color:var(--muted);font-variant-numeric:tabular-nums;text-align:right}
@@ -1824,6 +1840,35 @@ const ALBUMS = [
     tracks:["高嶺の花子さん", "花束", "ハッピーエンド", "クリスマスソング", "はなびら", "黒い猫の歌", "fish", "君がドアを閉めた後", "青い春", "光の街", "stay with me", "MOTTO", "恋", "世田谷ラブストーリー", "半透明人間", "日曜日",
             "春を歌にして", "僕の名前を", "SISTER", "助演女優症", "繋いだ手から", "エンディング", "そのドレスちょっと待った", "わたがし", "電車の窓から", "ヒロイン", "幸せ", "アップルパイ", "003", "手紙", "思い出せなくなるその日まで", "スーパースターになったら"] }
 ];
+/* ── 앨범 발매 형태(초회한정반 특전) : 앨범 칸을 펼치면 수록곡 위에 보여요 ──
+   ✏️ k=형태 이름, f=구성, no=품번, p=가격(세금 포함), mv=뮤직비디오 곡 목록(누르면 곡 화면), live=라이브 BD 탭에 있는 공연 이름, x=그 밖의 특전 */
+const ALBUM_EDS = {
+  "スーパースター": [ { k:"통상반", f:"CD", no:"UMCK-1405", p:"3,143엔", x:["초회한정반 없이 한 가지 형태로만 나왔어요"] } ],
+  "blues": [
+    { k:"초회한정반", f:"CD+DVD", no:"UMCK-9565", p:"4,180엔", mv:["はなびら","花束","思い出せなくなるその日まで","恋","日曜日","わたがし","エンディング","青い春"], x:["메이저 데뷔 후 MV 8곡 전부"] },
+    { k:"통상반", f:"CD", no:"UMCK-1434", p:"3,204엔" } ],
+  "ラブストーリー": [
+    { k:"초회한정반 A", f:"CD+DVD", no:"UMCK-9661", p:"6,380엔", live:"live at 日本武道館 -stay with us-", x:["2013.09.07 첫 부도칸 공연 전곡", "메이킹 영상"] },
+    { k:"초회한정반 B", f:"CD+DVD", no:"UMCK-9662", p:"4,180엔", mv:["高嶺の花子さん","fish","繋いだ手から"], x:["스튜디오 퍼포먼스 「sympathy」「風の強い日」 (가와노 케이 프로듀스 · 스트링·피아노 리어레인지)"] },
+    { k:"통상반", f:"CD", no:"UMCK-1475", p:"3,300엔" } ],
+  "シャンデリア": [
+    { k:"초회한정반 A", f:"CD+DVD", no:"UMCK-9785", p:"6,380엔", live:"urban live tour 2015", x:["2015.06.07 마쿠하리 멧세 이벤트홀 공연 전곡", "투어 메이킹 영상"] },
+    { k:"초회한정반 B", f:"CD+DVD", no:"UMCK-9786", p:"4,378엔", mv:["ヒロイン","SISTER","手紙","クリスマスソング","サイレン"], x:["쇼트 필름 3부작 (世田谷ラブストーリー / 出発×泡と羊 / それでもなおできることのすべてを君に)"] },
+    { k:"통상반", f:"CD", no:"UMCK-1528", p:"3,300엔" } ],
+  "MAGIC": [
+    { k:"초회한정반 A", f:"CD+Blu-ray / CD+DVD", no:"UMCK-9991 / 9990", p:"8,580엔 / 7,480엔", live:"dome tour 2018 “stay with you”", x:["2018.08.11 도쿄돔 공연 전곡 (첫 돔 투어)", "투어 메이킹 영상", "54P 투어 포토북 · 삼방면 BOX"] },
+    { k:"초회한정반 B", f:"CD+Blu-ray / CD+DVD", no:"UMCK-9993 / 9992", p:"7,480엔 / 6,380엔", mv:["ARTIST","瞬き","大不正解","オールドファッション","HAPPY BIRTHDAY"], x:["런던 포토북 촬영 메이킹 (Making of SPECIAL PHOTO BOOK for NO MAGIC TOUR 2019)", "런던 촬영 포토북 · 삼방면 BOX"] },
+    { k:"통상반", f:"CD", no:"UMCK-1616", p:"3,300엔" } ],
+  "ユーモア": [
+    { k:"초회한정반 A", f:"CD+Blu-ray / CD+DVD", no:"UMCK-7193 / 7194", p:"8,580엔 / 7,480엔", live:"SCENT OF HUMOR TOUR 2022", x:["2022.09.08 마쿠하리 멧세 공연 전곡", "투어 다큐멘터리", "52P 투어 포토북 · 삼방면 BOX"] },
+    { k:"초회한정반 B", f:"2CD+Blu-ray / 2CD+DVD", no:"UMCK-7195 / 7196", p:"8,580엔 / 7,480엔", mv:["水平線","エメラルド","怪盗","黄色","ベルベットの詩","アイラブユー"], x:["「水平線」 SCENT OF HUMOR TOUR 2022 Ver. 영상", "시미즈 이요리 탄키가타리 CD 『依与吏の部屋』 7곡 (ヒロイン · 花束 · ハッピーエンド · 手紙 · クリスマスソング · 西藤公園 · チェックのワンピース)", "삼방면 BOX"] },
+    { k:"통상반", f:"CD", no:"UMCK-7197", p:"3,300엔", x:["초회 프레스는 삼방면 케이스"] } ],
+  "アンコール": [
+    { k:"초회한정반 A", f:"2CD+Blu-ray / 2CD+DVD", no:"UMCK-9885 / 9886", p:"8,580엔 / 7,480엔", live:"MIRRORBALL and CHANDELIER", x:["2016.06.19 마쿠하리 멧세 공연 (tour 2016 MIRRORBALL and CHANDELIER) 24곡", "투어 메이킹 영상", "라이브 포토북 · 삼방면 BOX"] },
+    { k:"초회한정반 B", f:"2CD+Blu-ray / 2CD+DVD", no:"UMCK-9887 / 9888", p:"7,150엔 / 6,050엔", mv:["春を歌にして","西藤公園","stay with me","はなびら","花束","思い出せなくなるその日まで","恋","日曜日","わたがし","青い春","エンディング","高嶺の花子さん","fish","繋いだ手から","ヒロイン","SISTER","手紙","クリスマスソング","サイレン","僕の名前を","黒い猫の歌","ハッピーエンド"], x:["인디 시절 포함 MV 22곡 모음", "「花束」 스튜디오 라이브 (시마다 마사노리 편곡) · 「クリスマスソング」 스튜디오 라이브 (고바야시 타케시 편곡)", "삼방면 BOX"] },
+    { k:"통상반", f:"2CD", no:"UMCK-1560/1", p:"3,850엔" } ]
+};
+const ALBUM_EDS_SRC = "https://backnumber.info/discography/";
 const SINGLES = [
   { jp:"はなびら", no:"1st Single", date:"2011.04.06", img:"um/umck-5319_eRc" },
   { jp:"花束", no:"2nd Single", date:"2011.06.22", img:"um/umck-5331_iod", cw:["だいじなこと", "半透明人間"] },
@@ -4621,11 +4666,24 @@ function albumPos(a, i){
   while (d < a.discs.length - 1 && i >= base + a.discs[d]){ base += a.discs[d]; d++; }
   return { disc:d + 1, n:i - base + 1 };
 }
+function albumEds(a){
+  const eds = ALBUM_EDS[a.jp]; if (!eds) return "";
+  const chip = t => { const sg = setFind(t); return sg ? `<a class="ed-mv" href="#/mv/${encodeURIComponent(sg.id)}">${esc(sg.ko)}</a>` : `<span class="ed-mv">${esc(t)}</span>`; };
+  return `<div class="alb-eds"><div class="alb-eds-h">발매 형태 · 초회한정반 특전</div>${eds.map(e => `
+    <div class="alb-ed${e.k.startsWith("초회") ? " lim" : ""}">
+      <div class="alb-ed-top"><b>${esc(e.k)}</b><span>${esc(e.f)}</span></div>
+      <div class="alb-ed-no">${esc(e.no)} · ${esc(e.p)}</div>
+      ${e.live ? `<div class="alb-ed-row"><span class="ed-tag live">라이브</span><span>${esc(e.live)} <button class="ed-go" type="button" data-gotab="video">라이브 BD 탭에서 수록곡 보기 ›</button></span></div>` : ""}
+      ${e.mv ? `<div class="alb-ed-row"><span class="ed-tag">MV ${e.mv.length}곡</span><span class="ed-mvs">${e.mv.map(chip).join("")}</span></div>` : ""}
+      ${(e.x || []).map(t => `<div class="alb-ed-row"><span class="ed-tag etc">특전</span><span>${esc(t)}</span></div>`).join("")}
+    </div>`).join("")}
+    <div class="lp-links">${srcLink(ALBUM_EDS_SRC)}</div></div>`;
+}
 function discoAlbum(a){
   const singles = a.tracks.filter(t => SINGLES.some(s => s.jp === t)).length;
   return `<details class="acc disco-alb">
     <summary>${cover(a.img, a.jp, "sm")}<span class="disco-sum"><b>${esc(a.jp)}</b><small>${esc(a.ko)}</small><small>${esc(a.type)} · ${esc(a.date)}</small></span></summary>
-    <div class="in">${a.tracks.length
+    <div class="in">${albumEds(a)}${a.tracks.length
       ? `<p class="small muted" style="margin:0 0 6px">${a.discs ? `${a.discs.length}CD · ` : ""}${a.tracks.length}곡${singles ? ` · 싱글 ${singles}곡 수록` : ""}</p><div class="set-list disco-tracks">${a.tracks.map((t, i) => { const p = albumPos(a, i); return (a.discs && p.n === 1 ? `<div class="vid-sec">DISC ${p.disc}</div>` : "") + discoTrack(t, p.n); }).join("")}</div>`
       : `<p class="small muted" style="margin:0">데뷔부터 「ハッピーエンド」까지 싱글과 인기곡을 모은 첫 베스트 앨범 (2CD). 수록곡은 정리해서 채울 예정이에요.</p>`}</div>
   </details>`;
@@ -4714,6 +4772,7 @@ function viewDisco(){
 }
 function bindDisco(){
   document.querySelectorAll(".seg button").forEach(b => b.onclick = () => { disco.tab = b.dataset.t; render(); });
+  document.querySelectorAll("[data-gotab]").forEach(b => b.onclick = () => { disco.tab = b.dataset.gotab; render(); window.scrollTo(0, 0); });
   document.querySelectorAll("a.live-title").forEach(a => a.addEventListener("click", () => { mv.from = { hash:"#/disco", label:"앨범", y: window.scrollY }; mv.queue = null; }));
   document.querySelectorAll(".live-play").forEach(b => b.onclick = () => {
     const a = LIVE_ALBUMS[+b.dataset.la], i = +b.dataset.i, box = $("#livePlayer" + b.dataset.la);
