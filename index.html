@@ -1087,6 +1087,27 @@ a.ed-mv:hover{border-color:var(--accent);color:var(--accent)}
 .write-form textarea{line-height:1.6;resize:vertical}
 .write-out{margin-top:14px}
 .write-out textarea{font-family:ui-monospace,Consolas,monospace;font-size:12px}
+.post-body .file-dl+br{display:none}
+.post-fold{margin:10px 0;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}
+.post-fold>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:8px;padding:11px 14px;font-weight:800;color:var(--accent)}
+.post-fold>summary::-webkit-details-marker{display:none}
+.post-fold>summary::before{content:"";flex:none;width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(-45deg);transition:transform .2s;margin-right:2px}
+.post-fold[open]>summary::before{transform:rotate(45deg)}
+.post-fold>summary:hover{background:color-mix(in srgb,var(--accent) 6%,transparent)}
+.post-fold-in{padding:2px 14px 12px;border-top:1px dashed var(--line)}
+.post-fold-in>:first-child{margin-top:10px}
+.w-fx{position:relative;display:inline-flex}
+.w-fx-pop{position:absolute;top:calc(100% + 4px);left:0;z-index:30;display:flex;flex-wrap:wrap;gap:4px;width:max-content;max-width:260px;padding:6px;border:1px solid var(--line);border-radius:10px;background:var(--surface);box-shadow:0 8px 20px rgba(0,0,0,.18)}
+.w-fx-pop[hidden]{display:none}
+.fx-sw{border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:4px 9px;font:inherit;font-size:13px;font-weight:700;cursor:pointer;line-height:1.4}
+.fx-sw.tx-xl,.fx-sw.tx-lg,.fx-sw.tx-sm{color:inherit}
+.fx-sw.tx-xl{font-size:17px}.fx-sw.tx-lg{font-size:15px}.fx-sw.tx-sm{font-size:11.5px}
+.tx-red{color:#d93a3a}.tx-blue{color:#2563c9}.tx-green{color:#1f8a4c}.tx-orange{color:#d9730d}.tx-purple{color:#7c4dbd}.tx-gray{color:#8a919c}
+.tx-hl{background:linear-gradient(transparent 55%,rgba(255,214,10,.55) 55%);padding:0 1px}
+.tx-xl{font-size:1.45em;font-weight:800;line-height:1.35}.tx-lg{font-size:1.2em;font-weight:700}.tx-sm{font-size:.85em}
+:root[data-theme="dark"] .tx-red{color:#ff7b7b}:root[data-theme="dark"] .tx-blue{color:#7fb0ff}:root[data-theme="dark"] .tx-green{color:#5fd393}:root[data-theme="dark"] .tx-orange{color:#ffab5e}:root[data-theme="dark"] .tx-purple{color:#c4a3ff}:root[data-theme="dark"] .tx-gray{color:#9aa3ae}
+:root[data-theme="dark"] .tx-hl{background:linear-gradient(transparent 55%,rgba(255,214,10,.35) 55%)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .tx-red{color:#ff7b7b}:root:not([data-theme="light"]) .tx-blue{color:#7fb0ff}:root:not([data-theme="light"]) .tx-green{color:#5fd393}:root:not([data-theme="light"]) .tx-orange{color:#ffab5e}:root:not([data-theme="light"]) .tx-purple{color:#c4a3ff}:root:not([data-theme="light"]) .tx-gray{color:#9aa3ae}:root:not([data-theme="light"]) .tx-hl{background:linear-gradient(transparent 55%,rgba(255,214,10,.35) 55%)}}
 .w-tools{display:flex;flex-wrap:wrap;gap:6px}
 .w-tools .btn{font-size:13px;padding:6px 10px;cursor:pointer}
 .post-body{line-height:1.75}
@@ -2976,8 +2997,8 @@ const POST_IMG_RE = /^!\[([^\]]*)\]\(([^)\s]+)\)$/;
 const POST_YT_RE = /^(?:https?:\/\/)?(?:www\.|m\.)?(?:youtube\.com\/(?:watch\?v=|shorts\/|live\/)|youtu\.be\/)([\w-]{11})\S*$/;
 function postExcerpt(p){
   const lines = String(p.body || "").split("\n").map(l => l.trim())
-    .filter(l => l && !/^(!\[|#|---|https?:)/.test(l))
-    .map(l => l.replace(/^([-•>]!?|\d+[.)])\s*/, "").replace(/\*\*/g, "").replace(/\[([^\]]+)\]\([^)]*\)/g, "$1"));
+    .filter(l => l && !/^(!\[|#|---|https?:|\+\+\+)/.test(l))
+    .map(l => l.replace(/^([-•>]!?|\d+[.)])\s*/, "").replace(/\*\*/g, "").replace(/\[([^\]]+)\]\([^)]*\)/g, "$1").replace(TXT_FX_RE, "$2"));
   return lines.join(" ").slice(0, 120);
 }
 function postFirstImg(p){
@@ -3013,20 +3034,31 @@ document.addEventListener("click", async e => {
     share(f);
   } catch(err){ a.classList.remove("busy"); window.open(url, "_blank"); }
 });
+/* 글자 꾸미기: {빨강:글자} · {크게:글자} · {파랑 크게:글자} 처럼 여러 개를 띄어 써도 돼요 */
+const TXT_FX = { "빨강":"red", "파랑":"blue", "초록":"green", "주황":"orange", "보라":"purple", "회색":"gray", "형광":"hl",
+  "아주크게":"xl", "크게":"lg", "작게":"sm" };
+const TXT_FX_RE = new RegExp(`\\{((?:${Object.keys(TXT_FX).join("|")})(?:\\s+(?:${Object.keys(TXT_FX).join("|")}))*):([^{}\\n]+?)\\}`, "g");
 function infoBody(src, img = u => u){
   const inline = t => esc(t)
     .replace(/\[([^\]]+)\]\(((?:\/file\/|files\/)[^)\s]+)\)/g, (m, t2, u) => {   // 📎 첨부 파일 → 다운로드 버튼
       const ext = (u.match(/\.([a-z0-9]+)$/i) || [])[1] || "";
       return `<a class="file-dl" href="${u}${u.startsWith("/file/") ? "?dl=2" : ""}" download target="_blank" rel="noopener"><span class="fd-ic">${FILE_ICON}</span><span class="fd-t">${t2.replace(/^📎\s*/, "")}</span><span class="fd-x">${ext.toUpperCase()}${ext ? " · " : ""}받기</span></a>`; })
     .replace(/\[([^\]]+)\]\((https?:[^)\s]+|#[^)\s]*)\)/g, (m, t2, u) => `<a href="${u}"${u.startsWith("#") ? "" : ' target="_blank" rel="noopener"'}>${t2}</a>`)
-    .replace(/\*\*([^*]+)\*\*/g, "<b>$1</b>");
+    .replace(/\*\*([^*]+)\*\*/g, "<b>$1</b>")
+    .replace(TXT_FX_RE, (m, toks, t2) => `<span class="${toks.trim().split(/\s+/).map(k => "tx-" + TXT_FX[k]).join(" ")}">${t2}</span>`);
   const fig = l => { const [, alt, u] = l.match(POST_IMG_RE);
     return `<figure class="post-img"><img src="${esc(img(u))}" alt="${esc(alt)}" loading="lazy" onerror="this.parentNode.classList.add('noimg');this.remove()">${alt ? `<figcaption>${inline(alt)}</figcaption>` : ""}</figure>`; };
   const kind = l => POST_IMG_RE.test(l) ? "img" : POST_YT_RE.test(l) ? "yt" : /^\|.*\|$/.test(l) ? "tbl" : /^#{2,3}\s/.test(l) ? "h"
     : /^[-•]\s/.test(l) ? "ul" : /^\d+[.)]\s/.test(l) ? "ol" : /^>/.test(l) ? "q" : /^-{3,}$/.test(l) ? "hr" : "p";
   const out = [];
   // 빈 줄 1개 = 보통 문단 간격, 빈 줄을 더 넣을수록 그만큼 한 줄씩 더 띄운다
-  String(src || "").replace(/\r/g, "").split(/(\n(?:[ \t]*\n)+)/).forEach((block, bi) => {
+  /* 접기: "+++ 보이는 글자" 줄부터 "+++" 줄까지를 접어 두고, 글자를 누르면 펼쳐져요 */
+  const folds = [];
+  src = String(src || "").replace(/\r/g, "").replace(/^\+\+\+[ \t]*(\S.*)\n([\s\S]*?)^\+\+\+[ \t]*$/gm, (m, label, inner) => {
+    folds.push(`<details class="post-fold"><summary>${inline(label.trim())}</summary><div class="post-fold-in">${infoBody(inner, img)}</div></details>`);
+    return `\n\n\u0000F${folds.length - 1}\u0000\n\n`;
+  }).replace(/\n+(\u0000F\d+\u0000)\n+/g, "\n\n$1\n\n");
+  src.split(/(\n(?:[ \t]*\n)+)/).forEach((block, bi) => {
     if (bi % 2){ const extra = (block.match(/\n/g) || []).length - 2; if (extra > 0) out.push(`<div class="post-gap" style="height:${(extra * 1.6).toFixed(1)}em" aria-hidden="true"></div>`); return; }
     const lines = block.split("\n").map(x => x.trim()).filter(Boolean);
     let i = 0;
@@ -3051,7 +3083,7 @@ function infoBody(src, img = u => u){
       i = j;
     }
   });
-  return out.join("");
+  return out.join("").replace(/<p>\u0000F(\d+)\u0000<\/p>/g, (m, i) => folds[+i]);
 }
 function postMeta(p){ return [p.tag ? `<span class="post-tag">${esc(p.tag)}</span>` : "", p.date ? `<span>${esc(p.date)}</span>` : "", p.author ? `<span>✍️ ${esc(p.author)}</span>` : ""].join(""); }
 function viewInfo(id){
@@ -3276,7 +3308,10 @@ function viewWrite(arg){
         <button class="btn" data-ins="- ">점 목록</button>
         <button class="btn" data-ins="1. ">번호</button>
         <button class="btn" data-wrap="**">굵게</button>
+        <span class="w-fx"><button class="btn" type="button" data-fxmenu="c">🎨 글자색</button><span class="w-fx-pop" data-fxpop="c" hidden>${["빨강","파랑","초록","주황","보라","회색","형광"].map(k => `<button type="button" data-fx="${k}" class="fx-sw tx-${TXT_FX[k]}" title="${k}">${k === "형광" ? "형광펜" : k}</button>`).join("")}</span></span>
+        <span class="w-fx"><button class="btn" type="button" data-fxmenu="z">🔠 글자 크기</button><span class="w-fx-pop" data-fxpop="z" hidden>${["아주크게","크게","작게"].map(k => `<button type="button" data-fx="${k}" class="fx-sw tx-${TXT_FX[k]}">${k === "아주크게" ? "아주 크게" : k}</button>`).join("")}</span></span>
         <button class="btn" data-ins="> ">팁 상자</button>
+        <button class="btn" type="button" data-fold title="고른 내용을 접어 두고, 글자를 누르면 펼쳐져요">📂 접기</button>
         <button class="btn" data-ins="[링크 글자](https://)">링크</button>
         <label class="btn primary">📷 사진 넣기<input id="w_files" type="file" accept="image/*" multiple hidden></label>
         <label class="btn" title="PDF · 자막(srt, vtt, ass, smi) · txt · zip / 한 파일 10MB까지">📎 파일 넣기<input id="w_attach" type="file" accept="${FILE_EXTS}" multiple hidden></label>
@@ -3352,6 +3387,29 @@ ${body}
   };
   document.querySelectorAll("[data-ins]").forEach(b => b.onclick = () => insert(b.dataset.ins));
   document.querySelectorAll("[data-wrap]").forEach(b => b.onclick = () => insert("", b.dataset.wrap));
+  /* 접기: 고른 내용을 +++ 줄로 감싼다 (안 고르면 틀만 넣어요) */
+  document.querySelectorAll("[data-fold]").forEach(b => b.onclick = () => {
+    const a = ta.selectionStart, z = ta.selectionEnd, t = ta.value, sel = t.slice(a, z).replace(/^\n+|\n+$/g, "");
+    const bol = a === 0 || t[a - 1] === "\n";
+    const out = (bol ? "" : "\n") + "+++ 눌러서 펼치기\n" + (sel || "여기에 접어 둘 내용") + "\n+++\n";
+    ta.value = t.slice(0, a) + out + t.slice(z);
+    const st = a + (bol ? 0 : 1) + 4; ta.focus(); ta.selectionStart = st; ta.selectionEnd = st + 8; update();
+  });
+  /* 글자색 · 크기: 고른 글자를 {빨강:글자} 처럼 감싼다. 이미 감싼 글자를 다시 고르면 꾸미기가 더해져요 */
+  document.querySelectorAll("[data-fxmenu]").forEach(b => b.onclick = e => {
+    e.stopPropagation(); const pop = document.querySelector(`[data-fxpop="${b.dataset.fxmenu}"]`), open = pop.hidden;
+    document.querySelectorAll("[data-fxpop]").forEach(x => x.hidden = true); pop.hidden = !open;
+  });
+  document.addEventListener("click", e => { if (!e.target.closest(".w-fx")) document.querySelectorAll("[data-fxpop]").forEach(x => x.hidden = true); });
+  document.querySelectorAll("[data-fx]").forEach(b => b.onmousedown = e => e.preventDefault());
+  document.querySelectorAll("[data-fx]").forEach(b => b.onclick = () => {
+    const a = ta.selectionStart, z = ta.selectionEnd, t = ta.value, sel = t.slice(a, z) || "글자", k = b.dataset.fx;
+    const m = sel.match(/^\{([^:{}]+):([\s\S]*)\}$/);
+    const out = m ? `{${m[1]} ${k}:${m[2]}}` : `{${k}:${sel}}`;
+    ta.value = t.slice(0, a) + out + t.slice(z);
+    ta.focus(); ta.selectionStart = a; ta.selectionEnd = a + out.length;
+    document.querySelectorAll("[data-fxpop]").forEach(x => x.hidden = true); update();
+  });
   /* 사진 넣기: [📷 사진 넣기] · 캡처 붙여넣기(Ctrl+V) · 끌어다 놓기 모두 여기로 */
   /* 올리기 전에 사진 줄이기: 긴 변 1600px(세로로 긴 캡처는 가로 1080px) · webp(안 되는 폰은 jpg)
      gif(움짤)는 그대로, 줄인 게 원본보다 크면 원본 그대로 */
