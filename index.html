@@ -301,12 +301,14 @@ body.is-home #app{max-width:none;padding-left:0;padding-right:0}
 .hb-live-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .hb-live-l{min-width:0}
 .hb-kicker{display:block;font-size:10.5px;font-weight:800;letter-spacing:.18em;opacity:.7}
-.hb-live .next-cap{display:block;margin:2px 0 0;font-size:15px;font-weight:800;letter-spacing:0;color:inherit;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hb-live .next-cap{display:block;margin:2px 0 0;font-size:15px;font-weight:800;letter-spacing:0;color:inherit;line-height:1.3;white-space:normal;text-overflow:clip;word-break:keep-all;overflow-wrap:anywhere}
 .hb-live .next-cap:empty::before{content:"발표 예정"}
 .hb-live-r{flex:none;display:flex;flex-direction:column;align-items:flex-end;gap:2px}
 .hb-live .cd-sep{display:none}
 .hb-live .cd-dday{font-size:clamp(24px,7vw,30px);line-height:1.05}
-.hb-live .cd-clock{font-size:12px;letter-spacing:.14em;font-weight:700;opacity:.75}
+.hb-live .cd-clock{font-size:clamp(15px,4.4vw,19px);letter-spacing:.06em;font-weight:700;opacity:.85}
+.hb-live-sub{display:block;margin-top:3px;font-size:12px;font-weight:600;opacity:.72;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hb-live-sub:empty{display:none}
 .hb-live.is-soon .cd-clock{font-size:12px;letter-spacing:.14em}
 .hb-live.is-live{background:var(--accent);color:#fff}
 .hb-live.is-end{background:var(--surface2);color:var(--muted)}
@@ -2246,7 +2248,7 @@ function viewHome(){
     <div class="hb-sheet">
       <div class="cd-pill hb-live" id="cd-pill">
         <div class="hb-live-top">
-          <div class="hb-live-l"><small class="hb-kicker">NEXT LIVE</small><b class="next-cap" id="next-cap" data-short="1"></b></div>
+          <div class="hb-live-l"><small class="hb-kicker">NEXT LIVE</small><b class="next-cap" id="next-cap" data-short="1"></b><small class="hb-live-sub" id="next-sub"></small></div>
           <div class="hb-live-r"><span class="cd-dday" id="cd-dday">D-00</span><span class="cd-sep"></span><span class="cd-clock" id="cd-clock">00:00:00</span></div>
         </div>
         <div class="hb-tt" id="liveTT" hidden></div>
@@ -2286,6 +2288,7 @@ function paintNextLive(focus){
   nextLiveKey = key;
   if (focus){
     cap.textContent = (cap.dataset.short ? "" : "NEXT LIVE · ") + liveTitle(focus.e);
+    const sub = $("#next-sub"); if (sub) sub.textContent = [dateRange(focus.e), focus.e.venue, focus.e.city].filter(Boolean).join(" · ");
     const days = liveDays().filter(x => x.gi === focus.gi);
     box.innerHTML = days.map(x => `
       <a class="show-row" data-day="${x.ymd}" href="${liveSrc(x.e)}" target="_blank" rel="noopener">
@@ -2297,6 +2300,7 @@ function paintNextLive(focus){
   }
   if (tba){
     const p = parts(tba.date);
+    const sub = $("#next-sub"); if (sub) sub.textContent = dateRange(tba);
     cap.textContent = (cap.dataset.short ? "" : "NEXT LIVE · ") + liveTitle(tba);
     box.innerHTML = `
       <a class="show-row" href="${liveSrc(tba)}" target="_blank" rel="noopener">
@@ -2337,12 +2341,10 @@ function startCountdown(){
     }
     if (focus.startMs !== null && now >= focus.startMs){ setPill("NOW", "ON AIR", "live"); return; }
     if (focus.startMs === null && now >= focus.dayFrom){ setPill("D-DAY", "TODAY", "live"); return; }
-    const todayKst = kstMs(new Date(now + 9 * 36e5).toISOString().slice(0, 10));
-    const d = Math.round((focus.dayFrom - todayKst) / 864e5);
-    if (focus.startMs === null){ setPill(`D-${pad(d)}`, "TBA", "count"); return; }
-    const diff = focus.startMs - now;
-    const h = Math.floor(diff / 36e5) % 24, m = Math.floor(diff % 36e5 / 6e4), s = Math.floor(diff % 6e4 / 1e3);
-    setPill(`D-${pad(d)}`, `${pad(h)}:${pad(m)}:${pad(s)}`, "count");
+    /* 남은 시간: 일 · 시 · 분 · 초 (공연 시간이 아직 없으면 그날 0시 기준) */
+    const diff = (focus.startMs ?? focus.dayFrom) - now;
+    const dd = Math.floor(diff / 864e5), h = Math.floor(diff / 36e5) % 24, m = Math.floor(diff % 36e5 / 6e4), s = Math.floor(diff % 6e4 / 1e3);
+    setPill(dd > 0 ? `${dd}일` : `${pad(h)}:${pad(m)}:${pad(s)}`, dd > 0 ? `${pad(h)}:${pad(m)}:${pad(s)}` : (focus.startMs ? "곧 시작" : "D-DAY"), "count");
   };
   tick(); cdTimer = setInterval(tick, 1000);
 }
