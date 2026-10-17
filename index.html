@@ -1089,6 +1089,19 @@ a.ed-mv:hover{border-color:var(--accent);color:var(--accent)}
 .write-form textarea{line-height:1.6;resize:vertical}
 .write-out{margin-top:14px}
 .write-out textarea{font-family:ui-monospace,Consolas,monospace;font-size:12px}
+.ev-links{display:flex;align-items:center;gap:12px;margin-top:4px}
+.ev-seat{border:1px solid var(--line);background:var(--surface2);color:var(--accent);border-radius:999px;padding:3px 10px;font:inherit;font-size:12px;font-weight:700;cursor:pointer}
+.hb-seat{margin-top:10px;border-top:1px solid rgba(255,255,255,.14);padding-top:8px}
+.hb-seat>summary{cursor:pointer;list-style:none;font-size:12.5px;font-weight:700;opacity:.85;display:flex;align-items:center;gap:6px}
+.hb-seat>summary::-webkit-details-marker{display:none}
+.hb-seat>summary::after{content:"";width:6px;height:6px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);margin-top:-3px;transition:transform .2s}
+.hb-seat[open]>summary::after{transform:rotate(-135deg);margin-top:3px}
+.hb-seat-in{margin-top:10px;background:#fff;color:#1f2630;border-radius:12px;padding:10px}
+.hb-seat-row{display:flex;justify-content:space-between;gap:10px;font-size:13px;margin-bottom:8px}
+.hb-seat-row span{color:#5b6573;font-weight:700;white-space:nowrap}
+.hb-seat-in img{display:block;width:100%;max-width:360px;margin:0 auto;border-radius:8px;cursor:zoom-in}
+.hb-seat-foot{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:8px;font-size:11.5px;color:#5b6573}
+.hb-seat-foot button{border:0;background:none;color:#2d5f93;font:inherit;font-size:12px;font-weight:700;cursor:pointer;padding:0}
 .post-body .file-dl+br{display:none}
 .post-fold{margin:10px 0;border:1px solid var(--line);border-radius:12px;background:var(--surface);overflow:hidden}
 .post-fold>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:8px;padding:11px 14px;font-weight:800;color:var(--accent)}
@@ -1221,22 +1234,22 @@ const DATA = {
     { type:"release", date:"2026-12-05", title:"오리지널 앨범 6작 아날로그 LP 발매", note:"MAGIC · 유머 · 슈퍼스타 · blues · 러브스토리 · 샹들리에 (레코드의 날 2026)", src:"https://www.billboard-japan.com/d_news/detail/164638" },
 
     // ── 공연 ──
-    { type:"live", tour:"orp8", date:"2027-09-02", end:"2027-09-03", venue:"豊洲PIT", city:"도쿄", note:"라이브하우스 · 티켓 상세는 11월 중순 발표 · GOLD KEY 회원 추첨", src:"https://backnumber.info/news/detail/400314" },
-    { type:"live", tour:"orp8", date:"2027-09-10", end:"2027-09-11", venue:"Zepp Sapporo", city:"홋카이도", note:"라이브하우스 · 티켓 상세는 11월 중순 발표 · GOLD KEY 회원 추첨", src:"https://backnumber.info/news/detail/400314" },
-    { type:"live", tour:"orp8", date:"2027-09-24", end:"2027-09-25", venue:"Zepp Osaka Bayside", city:"오사카", note:"라이브하우스 · 티켓 상세는 11월 중순 발표 · GOLD KEY 회원 추첨", src:"https://backnumber.info/news/detail/400314" },
-    { type:"live", tour:"orp8", date:"2027-10-09", end:"2027-10-10", venue:"やまぎん県民ホール (山形県総合文化芸術館)", city:"야마가타", note:"홀 · 티켓 상세는 11월 중순 발표 · GOLD KEY 회원 추첨", src:"https://backnumber.info/news/detail/400314" },
-    { type:"live", tour:"orp8", date:"2027-10-16", end:"2027-10-17", venue:"本多の森 北電ホール", city:"이시카와", note:"홀 · 티켓 상세는 11월 중순 발표 · GOLD KEY 회원 추첨", src:"https://backnumber.info/news/detail/400314" },
-    { type:"live", tour:"orp8", date:"2027-10-30", end:"2027-10-31", venue:"KDDI維新ホール メインホール", city:"야마구치", note:"홀 · 티켓 상세는 11월 중순 발표 · GOLD KEY 회원 추첨", src:"https://backnumber.info/news/detail/400314" },
-    { type:"live", tour:"orp8", date:"2027-11-13", end:"2027-11-14", venue:"LaLa arena TOKYO-BAY", city:"치바", note:"아레나 · 티켓 상세는 11월 중순 발표 · GOLD KEY 회원 추첨", src:"https://backnumber.info/news/detail/400314" },
-    { type:"live", tour:"orp8", date:"2027-11-25", end:"2027-11-26", venue:"日本ガイシホール", city:"아이치", note:"아레나 · 티켓 상세는 11월 중순 발표 · GOLD KEY 회원 추첨", src:"https://backnumber.info/news/detail/400314" },
-    { type:"live", tour:"orp8", date:"2027-12-04", end:"2027-12-05", venue:"マリンメッセ福岡 A館", city:"후쿠오카", note:"아레나 · 티켓 상세는 11월 중순 발표 · GOLD KEY 회원 추첨", src:"https://backnumber.info/news/detail/400314" },
-    { type:"live", tour:"orp8", date:"2027-12-11", end:"2027-12-12", venue:"あなぶきアリーナ香川", city:"카가와", note:"아레나 · 티켓 상세는 11월 중순 발표 · GOLD KEY 회원 추첨", src:"https://backnumber.info/news/detail/400314" },
-    { type:"live", tour:"orp8", date:"2027-12-25", end:"2027-12-26", venue:"Gメッセ群馬", city:"군마", note:"아레나 · 티켓 상세는 11월 중순 발표 · GOLD KEY 회원 추첨", src:"https://backnumber.info/news/detail/400314" }
+    { type:"live", tour:"orp8", date:"2027-09-02", end:"2027-09-03", venue:"豊洲PIT", seat:"images/seat/orp8/toyosu.webp", cap:"스탠딩 3,103명", city:"도쿄", note:"라이브하우스 · 티켓 상세는 11월 중순 발표 · GOLD KEY 회원 추첨", src:"https://backnumber.info/news/detail/400314" },
+    { type:"live", tour:"orp8", date:"2027-09-10", end:"2027-09-11", venue:"Zepp Sapporo", seat:"images/seat/orp8/sapporo.webp", cap:"스탠딩 2,009명", city:"홋카이도", note:"라이브하우스 · 티켓 상세는 11월 중순 발표 · GOLD KEY 회원 추첨", src:"https://backnumber.info/news/detail/400314" },
+    { type:"live", tour:"orp8", date:"2027-09-24", end:"2027-09-25", venue:"Zepp Osaka Bayside", seat:"images/seat/orp8/osaka.webp", cap:"스탠딩 2,801명", city:"오사카", note:"라이브하우스 · 티켓 상세는 11월 중순 발표 · GOLD KEY 회원 추첨", src:"https://backnumber.info/news/detail/400314" },
+    { type:"live", tour:"orp8", date:"2027-10-09", end:"2027-10-10", venue:"やまぎん県民ホール (山形県総合文化芸術館)", seat:"images/seat/orp8/yamagata.webp", cap:"2,001석", city:"야마가타", note:"홀 · 티켓 상세는 11월 중순 발표 · GOLD KEY 회원 추첨", src:"https://backnumber.info/news/detail/400314" },
+    { type:"live", tour:"orp8", date:"2027-10-16", end:"2027-10-17", venue:"本多の森 北電ホール", seat:"images/seat/orp8/ishikawa.webp", cap:"1,707석", city:"이시카와", note:"홀 · 티켓 상세는 11월 중순 발표 · GOLD KEY 회원 추첨", src:"https://backnumber.info/news/detail/400314" },
+    { type:"live", tour:"orp8", date:"2027-10-30", end:"2027-10-31", venue:"KDDI維新ホール メインホール", seat:"images/seat/orp8/yamaguchi.webp", cap:"1,972석", city:"야마구치", note:"홀 · 티켓 상세는 11월 중순 발표 · GOLD KEY 회원 추첨", src:"https://backnumber.info/news/detail/400314" },
+    { type:"live", tour:"orp8", date:"2027-11-13", end:"2027-11-14", venue:"LaLa arena TOKYO-BAY", seat:"images/seat/orp8/lala.webp", cap:"약 10,000명", city:"치바", note:"아레나 · 티켓 상세는 11월 중순 발표 · GOLD KEY 회원 추첨", src:"https://backnumber.info/news/detail/400314" },
+    { type:"live", tour:"orp8", date:"2027-11-25", end:"2027-11-26", venue:"クロコくんホール (日本ガイシホール)", seat:"images/seat/orp8/aichi.webp", cap:"최대 10,000석", city:"아이치", note:"아레나 · 티켓 상세는 11월 중순 발표 · GOLD KEY 회원 추첨", src:"https://backnumber.info/news/detail/400314" },
+    { type:"live", tour:"orp8", date:"2027-12-04", end:"2027-12-05", venue:"マリンメッセ福岡 A館", seat:"images/seat/orp8/fukuoka.webp", cap:"11,093석", city:"후쿠오카", note:"아레나 · 티켓 상세는 11월 중순 발표 · GOLD KEY 회원 추첨", src:"https://backnumber.info/news/detail/400314" },
+    { type:"live", tour:"orp8", date:"2027-12-11", end:"2027-12-12", venue:"あなぶきアリーナ香川", seat:"images/seat/orp8/kagawa.webp", cap:"최대 10,578명", city:"카가와", note:"아레나 · 티켓 상세는 11월 중순 발표 · GOLD KEY 회원 추첨", src:"https://backnumber.info/news/detail/400314" },
+    { type:"live", tour:"orp8", date:"2027-12-25", end:"2027-12-26", venue:"Gメッセ群馬", seat:"images/seat/orp8/gunma.webp", cap:"약 10,000석", city:"군마", note:"아레나 · 티켓 상세는 11월 중순 발표 · GOLD KEY 회원 추첨", src:"https://backnumber.info/news/detail/400314" }
   ],
 
   tours: {
     gy: { title:"back number \"Grateful Yesterdays Tour 2026\"", src:"https://backnumber.info/schedule/?lang=ko" },
-    orp8: { title:"back number fanclub tour \"one room party vol.8\"", short:"one room party vol.8", note:"one room GOLD KEY 회원 한정 (국내·해외) · 추첨 · SILVER KEY·앱 회원 접수와 일반 판매 없음 · 라이브하우스·홀·아레나 11곳 22공연 · 티켓 상세는 11월 중순 발표", src:"https://backnumber.info/news/detail/400314" }
+    orp8: { title:"back number fanclub tour \"one room party vol.8\"", short:"one room party vol.8", seatAll:"images/seat/orp8/all.webp", note:"one room GOLD KEY 회원 한정 (국내·해외) · 추첨 · SILVER KEY·앱 회원 접수와 일반 판매 없음 · 라이브하우스·홀·아레나 11곳 22공연 · 티켓 상세는 11월 중순 발표", src:"https://backnumber.info/news/detail/400314" }
   }
 };
 </script>
@@ -2168,8 +2181,9 @@ function evRow(e){
       <div><span class="tag ${cls}">${lbl}</span> ${statusTag(e)}</div>
       <div class="ttl">${esc(evTitle(e))}</div>
       <div class="info">${esc(dateRange(e))}${place ? " · " + esc(place) : ""}</div>
+      ${e.cap ? `<div class="info">수용 인원 ${esc(e.cap)}</div>` : ""}
       ${e.note ? `<div class="info">${esc(e.note)}</div>` : ""}
-      ${srcLink(e.src || (tour && tour.src))}
+      <div class="ev-links">${e.seat ? `<button class="ev-seat" type="button" data-zoom="${esc(e.seat)}">좌석도 보기</button>` : ""}${srcLink(e.src || (tour && tour.src))}</div>
     </div>
   </div>`;
 }
@@ -2252,6 +2266,7 @@ function viewHome(){
           <div class="hb-live-r"><span class="cd-dday" id="cd-dday">D-00</span><span class="cd-sep"></span><span class="cd-clock" id="cd-clock">00:00:00</span></div>
         </div>
         <div class="hb-tt" id="liveTT" hidden></div>
+        <details class="hb-seat" id="hbSeat" hidden><summary>좌석도 · 수용 인원 보기</summary><div class="hb-seat-in" id="hbSeatIn"></div></details>
       </div>
       ${DATA.events.filter(e => e.home && !e.soldout && status(e) === "now").map(e => `
       <a class="hb-notice" href="${esc(e.src || "#/schedule")}"${e.src ? ' target="_blank" rel="noopener"' : ""}>
@@ -2289,6 +2304,15 @@ function paintNextLive(focus){
   if (focus){
     cap.textContent = (cap.dataset.short ? "" : "NEXT LIVE · ") + liveTitle(focus.e);
     const sub = $("#next-sub"); if (sub) sub.textContent = [dateRange(focus.e), focus.e.venue, focus.e.city].filter(Boolean).join(" · ");
+    const hs = $("#hbSeat");
+    if (hs){
+      const e = focus.e, all = e.tour && DATA.tours[e.tour].seatAll;
+      hs.hidden = !(e.seat || e.cap);
+      $("#hbSeatIn").innerHTML = `
+        <div class="hb-seat-row"><b>${esc(e.venue || "")}</b><span>${esc(e.cap ? "수용 " + e.cap : "")}</span></div>
+        ${e.seat ? `<img src="${esc(e.seat)}" alt="${esc(e.venue || "")} 좌석도" loading="lazy" data-zoom="${esc(e.seat)}">` : ""}
+        <div class="hb-seat-foot"><span>사진을 누르면 크게 볼 수 있어요</span>${all ? `<button type="button" data-zoom="${esc(all)}">전체 공연장 좌석도 ›</button>` : ""}</div>`;
+    }
     const days = liveDays().filter(x => x.gi === focus.gi);
     box.innerHTML = days.map(x => `
       <a class="show-row" data-day="${x.ymd}" href="${liveSrc(x.e)}" target="_blank" rel="noopener">
@@ -3143,6 +3167,11 @@ function viewInfo(id){
   ${footer()}`;
 }
 /* 사진 크게 보기: 세로로 긴 사진은 휠·드래그로 스크롤, 클릭이나 Esc 로 닫기 */
+document.addEventListener("click", e => {
+  const t = e.target.closest("[data-zoom]"); if (!t) return;
+  e.preventDefault(); const z = document.createElement("div"); z.className = "post-zoom";
+  z.innerHTML = `<img src="${t.dataset.zoom}" alt="" style="background:#fff;width:min(100%,760px)">`; openZoom(z);
+});
 function openZoom(z){
   z.tabIndex = -1;
   const close = () => { z.remove(); document.removeEventListener("keydown", key); };
