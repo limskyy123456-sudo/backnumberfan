@@ -1098,7 +1098,9 @@ a.ed-mv:hover{border-color:var(--accent);color:var(--accent)}
 .sm-row{font-size:3.4px;fill:#7c8592;pointer-events:none}
 .sz:hover .sz-hit,.sz:focus .sz-hit{stroke:#9fb3c8}
 .sz.on .sz-hit{fill:rgba(214,58,58,.08);stroke:#d63a3a;stroke-width:1.2}
-.sz.mine rect:not(.sz-hit){fill:#ffd66b;stroke:#e09a00}
+.sz.mine rect:not(.sz-hit),.sz.mine circle,.sz.mine polygon:not(.sz-hit){fill:#ffd66b;stroke:#e09a00}
+.sz.mine polyline{stroke:#e09a00}
+.sm-lab{font-size:5.2px;font-weight:800;fill:#3d4a5a;pointer-events:none}
 .sz.mine .sz-hit{stroke:#e09a00;stroke-width:1.2}
 .sm-floor-b{fill:#f3d07a}
 .sm-info{margin-top:8px;min-height:44px;padding:9px 11px;border-radius:10px;background:#f2f5f9;font-size:13px;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px}
@@ -1257,22 +1259,22 @@ const DATA = {
     { type:"release", date:"2026-12-05", title:"오리지널 앨범 6작 아날로그 LP 발매", note:"MAGIC · 유머 · 슈퍼스타 · blues · 러브스토리 · 샹들리에 (레코드의 날 2026)", src:"https://www.billboard-japan.com/d_news/detail/164638" },
 
     // ── 공연 ──
-    { type:"live", tour:"orp8", date:"2027-09-02", end:"2027-09-03", venue:"豊洲PIT", seat:"images/seat/orp8/toyosu.webp", seatMap:"toyosu", cap:"지정석 1,328석 (스탠딩 땐 3,103명)", city:"도쿄", note:"라이브하우스 · 티켓 상세는 11월 중순 발표 · GOLD KEY 회원 추첨", src:"https://backnumber.info/news/detail/400314" },
-    { type:"live", tour:"orp8", date:"2027-09-10", end:"2027-09-11", venue:"Zepp Sapporo", seat:"images/seat/orp8/sapporo.webp", seatMap:"sapporo", cap:"지정석 약 723석 (스탠딩 땐 2,009명)", city:"홋카이도", note:"라이브하우스 · 티켓 상세는 11월 중순 발표 · GOLD KEY 회원 추첨", src:"https://backnumber.info/news/detail/400314" },
-    { type:"live", tour:"orp8", date:"2027-09-24", end:"2027-09-25", venue:"Zepp Osaka Bayside", seat:"images/seat/orp8/osaka.webp", seatMap:"osaka", cap:"지정석 약 1,198석 (스탠딩 땐 2,801명)", city:"오사카", note:"라이브하우스 · 티켓 상세는 11월 중순 발표 · GOLD KEY 회원 추첨", src:"https://backnumber.info/news/detail/400314" },
-    { type:"live", tour:"orp8", date:"2027-10-09", end:"2027-10-10", venue:"やまぎん県民ホール (山形県総合文化芸術館)", seat:"images/seat/orp8/yamagata.webp", cap:"2,001석", city:"야마가타", note:"홀 · 티켓 상세는 11월 중순 발표 · GOLD KEY 회원 추첨", src:"https://backnumber.info/news/detail/400314" },
-    { type:"live", tour:"orp8", date:"2027-10-16", end:"2027-10-17", venue:"本多の森 北電ホール", seat:"images/seat/orp8/ishikawa.webp", cap:"1,707석", city:"이시카와", note:"홀 · 티켓 상세는 11월 중순 발표 · GOLD KEY 회원 추첨", src:"https://backnumber.info/news/detail/400314" },
-    { type:"live", tour:"orp8", date:"2027-10-30", end:"2027-10-31", venue:"KDDI維新ホール メインホール", seat:"images/seat/orp8/yamaguchi.webp", cap:"1,972석", city:"야마구치", note:"홀 · 티켓 상세는 11월 중순 발표 · GOLD KEY 회원 추첨", src:"https://backnumber.info/news/detail/400314" },
-    { type:"live", tour:"orp8", date:"2027-11-13", end:"2027-11-14", venue:"LaLa arena TOKYO-BAY", seat:"images/seat/orp8/lala.webp", cap:"약 10,000명", city:"치바", note:"아레나 · 티켓 상세는 11월 중순 발표 · GOLD KEY 회원 추첨", src:"https://backnumber.info/news/detail/400314" },
-    { type:"live", tour:"orp8", date:"2027-11-25", end:"2027-11-26", venue:"クロコくんホール (日本ガイシホール)", seat:"images/seat/orp8/aichi.webp", cap:"최대 10,000석", city:"아이치", note:"아레나 · 티켓 상세는 11월 중순 발표 · GOLD KEY 회원 추첨", src:"https://backnumber.info/news/detail/400314" },
-    { type:"live", tour:"orp8", date:"2027-12-04", end:"2027-12-05", venue:"マリンメッセ福岡 A館", seat:"images/seat/orp8/fukuoka.webp", cap:"11,093석", city:"후쿠오카", note:"아레나 · 티켓 상세는 11월 중순 발표 · GOLD KEY 회원 추첨", src:"https://backnumber.info/news/detail/400314" },
-    { type:"live", tour:"orp8", date:"2027-12-11", end:"2027-12-12", venue:"あなぶきアリーナ香川", seat:"images/seat/orp8/kagawa.webp", cap:"최대 10,578명", city:"카가와", note:"아레나 · 티켓 상세는 11월 중순 발표 · GOLD KEY 회원 추첨", src:"https://backnumber.info/news/detail/400314" },
-    { type:"live", tour:"orp8", date:"2027-12-25", end:"2027-12-26", venue:"Gメッセ群馬", seat:"images/seat/orp8/gunma.webp", cap:"약 10,000석", city:"군마", note:"아레나 · 티켓 상세는 11월 중순 발표 · GOLD KEY 회원 추첨", src:"https://backnumber.info/news/detail/400314" }
+    { type:"live", tour:"orp8", date:"2027-09-02", end:"2027-09-03", venue:"豊洲PIT", seatMap:"toyosu", cap:"약 3,103명", city:"도쿄", note:"라이브하우스 · 티켓 상세는 11월 중순 발표 · GOLD KEY 회원 추첨", src:"https://backnumber.info/news/detail/400314" },
+    { type:"live", tour:"orp8", date:"2027-09-10", end:"2027-09-11", venue:"Zepp Sapporo", seatMap:"sapporo", cap:"2,009명", city:"홋카이도", note:"라이브하우스 · 티켓 상세는 11월 중순 발표 · GOLD KEY 회원 추첨", src:"https://backnumber.info/news/detail/400314" },
+    { type:"live", tour:"orp8", date:"2027-09-24", end:"2027-09-25", venue:"Zepp Osaka Bayside", seatMap:"osaka", cap:"2,801명", city:"오사카", note:"라이브하우스 · 티켓 상세는 11월 중순 발표 · GOLD KEY 회원 추첨", src:"https://backnumber.info/news/detail/400314" },
+    { type:"live", tour:"orp8", date:"2027-10-09", end:"2027-10-10", venue:"やまぎん県民ホール (山形県総合文化芸術館)", seatMap:"yamagata", cap:"대홀 2,001석", city:"야마가타", note:"홀 · 티켓 상세는 11월 중순 발표 · GOLD KEY 회원 추첨", src:"https://backnumber.info/news/detail/400314" },
+    { type:"live", tour:"orp8", date:"2027-10-16", end:"2027-10-17", venue:"本多の森 北電ホール", seatMap:"ishikawa", cap:"1,707석", city:"이시카와", note:"홀 · 티켓 상세는 11월 중순 발표 · GOLD KEY 회원 추첨", src:"https://backnumber.info/news/detail/400314" },
+    { type:"live", tour:"orp8", date:"2027-10-30", end:"2027-10-31", venue:"KDDI維新ホール メインホール", seatMap:"yamaguchi", cap:"최대 2,000석", city:"야마구치", note:"홀 · 티켓 상세는 11월 중순 발표 · GOLD KEY 회원 추첨", src:"https://backnumber.info/news/detail/400314" },
+    { type:"live", tour:"orp8", date:"2027-11-13", end:"2027-11-14", venue:"LaLa arena TOKYO-BAY", seatMap:"lala", cap:"약 11,000명", city:"치바", note:"아레나 · 티켓 상세는 11월 중순 발표 · GOLD KEY 회원 추첨", src:"https://backnumber.info/news/detail/400314" },
+    { type:"live", tour:"orp8", date:"2027-11-25", end:"2027-11-26", venue:"クロコくんホール (日本ガイシホール)", seatMap:"aichi", cap:"약 10,000명", city:"아이치", note:"아레나 · 티켓 상세는 11월 중순 발표 · GOLD KEY 회원 추첨", src:"https://backnumber.info/news/detail/400314" },
+    { type:"live", tour:"orp8", date:"2027-12-04", end:"2027-12-05", venue:"マリンメッセ福岡 A館", seatMap:"fukuoka", cap:"최대 약 15,000명", city:"후쿠오카", note:"아레나 · 티켓 상세는 11월 중순 발표 · GOLD KEY 회원 추첨", src:"https://backnumber.info/news/detail/400314" },
+    { type:"live", tour:"orp8", date:"2027-12-11", end:"2027-12-12", venue:"あなぶきアリーナ香川", seatMap:"kagawa", cap:"메인 아레나 약 10,000명", city:"카가와", note:"아레나 · 티켓 상세는 11월 중순 발표 · GOLD KEY 회원 추첨", src:"https://backnumber.info/news/detail/400314" },
+    { type:"live", tour:"orp8", date:"2027-12-25", end:"2027-12-26", venue:"Gメッセ群馬", seatMap:"gunma", cap:"전시홀 전체 사용 시 약 10,000명", city:"군마", note:"아레나 · 티켓 상세는 11월 중순 발표 · GOLD KEY 회원 추첨", src:"https://backnumber.info/news/detail/400314" }
   ],
 
   tours: {
     gy: { title:"back number \"Grateful Yesterdays Tour 2026\"", src:"https://backnumber.info/schedule/?lang=ko" },
-    orp8: { title:"back number fanclub tour \"one room party vol.8\"", short:"one room party vol.8", seatAll:"images/seat/orp8/all.webp", note:"one room GOLD KEY 회원 한정 (국내·해외) · 추첨 · SILVER KEY·앱 회원 접수와 일반 판매 없음 · 라이브하우스·홀·아레나 11곳 22공연 · 티켓 상세는 11월 중순 발표", src:"https://backnumber.info/news/detail/400314" }
+    orp8: { title:"back number fanclub tour \"one room party vol.8\"", short:"one room party vol.8", note:"one room GOLD KEY 회원 한정 (국내·해외) · 추첨 · SILVER KEY·앱 회원 접수와 일반 판매 없음 · 라이브하우스·홀·아레나 11곳 22공연 · 티켓 상세는 11월 중순 발표", src:"https://backnumber.info/news/detail/400314" }
   }
 };
 </script>
@@ -2206,7 +2208,7 @@ function evRow(e){
       <div class="info">${esc(dateRange(e))}${place ? " · " + esc(place) : ""}</div>
       ${e.cap ? `<div class="info">수용 인원 ${esc(e.cap)}</div>` : ""}
       ${e.note ? `<div class="info">${esc(e.note)}</div>` : ""}
-      <div class="ev-links">${e.seatMap ? `<button class="ev-seat" type="button" data-seatsheet="${esc(e.seatMap)}" data-img="${esc(e.seat || "")}">좌석 배치도 보기</button>` : e.seat ? `<button class="ev-seat" type="button" data-zoom="${esc(e.seat)}">좌석도 보기</button>` : ""}${srcLink(e.src || (tour && tour.src))}</div>
+      <div class="ev-links">${e.seatMap ? `<button class="ev-seat" type="button" data-seatsheet="${esc(e.seatMap)}">좌석 배치도 보기</button>` : e.seat ? `<button class="ev-seat" type="button" data-zoom="${esc(e.seat)}">좌석도 보기</button>` : ""}${srcLink(e.src || (tour && tour.src))}</div>
     </div>
   </div>`;
 }
@@ -2329,12 +2331,12 @@ function paintNextLive(focus){
     const sub = $("#next-sub"); if (sub) sub.textContent = [dateRange(focus.e), focus.e.venue, focus.e.city].filter(Boolean).join(" · ");
     const hs = $("#hbSeat");
     if (hs){
-      const e = focus.e, all = e.tour && DATA.tours[e.tour].seatAll;
+      const e = focus.e;
       hs.hidden = !(e.seat || e.cap);
       $("#hbSeatIn").innerHTML = `
         <div class="hb-seat-row"><b>${esc(e.venue || "")}</b><span>${esc(e.cap ? "수용 " + e.cap : "")}</span></div>
         ${e.seatMap ? seatMapHtml(e.seatMap, e.seat) : e.seat ? `<img src="${esc(e.seat)}" alt="${esc(e.venue || "")} 좌석도" loading="lazy" data-zoom="${esc(e.seat)}">` : ""}
-        <div class="hb-seat-foot"><span>${e.seatMap ? "" : "사진을 누르면 크게 볼 수 있어요"}</span>${all ? `<button type="button" data-zoom="${esc(all)}">전체 공연장 좌석도 ›</button>` : ""}</div>`;
+        <div class="hb-seat-foot"><span>${e.seatMap ? "" : "사진을 누르면 크게 볼 수 있어요"}</span></div>`;
     }
     const days = liveDays().filter(x => x.gi === focus.gi);
     box.innerHTML = days.map(x => `
@@ -3194,12 +3196,12 @@ function viewInfo(id){
    ✏️ 공연장 추가: SEATMAPS 에 { name, note, w, h, P(좌석 간격), RH(줄 간격), stage, floors, fixed, blocks } 를 넣고, 일정의 seatMap:"키" 로 연결
    blocks: [id, 이름, 색(b·y·g), x, y, 최대 좌석 수, 정렬(l·c·r), 줄 목록[[열, 좌석 수]…], 열 범위, 번호 범위, 설명]
    · 정렬 r = 오른쪽(가운데 통로 쪽)에 붙임, l = 왼쪽에 붙임, c = 가운데 */
-const SEAT_COLORS = { b:["#cfe2f6","#4f86c2"], y:["#fbe2a6","#c9921d"], g:["#cdeec8","#46a043"] };
+const SEAT_COLORS = { b:["#cfe2f6","#4f86c2"], y:["#fbe2a6","#c9921d"], g:["#cdeec8","#46a043"], f:["#e7e9ee","#a3abb6"], t:["#d4ebe7","#5b9f94"] };
 const RW = (labels, n) => labels.map(l => [l, n]);                        // 같은 좌석 수의 여러 줄
 const RS = (a, b) => Array.from({ length: b - a + 1 }, (_, i) => String(a + i));   // "5"~"15"
 const RL = s => s.split("");                                               // "ABCDE" → 열 이름
 const SEATMAPS = {
-  toyosu: { name:"豊洲PIT", note:"이번 투어는 의자를 놓은 지정석 배치예요 (공식 의자석 1,328석 · 스탠딩 때는 3,103명)",
+  toyosu: { off:"https://toyosu.pia-pit.jp/floor/index.html", name:"豊洲PIT", note:"이번 투어는 의자를 놓은 지정석 배치예요",
     w:300, h:232, P:5.2, RH:6, stage:[100, 4, 100, 11, "STAGE"], floors:[],
     fixed:[[96, 196, 109, 26, "PA · 조명석"]],
     blocks:[
@@ -3215,7 +3217,7 @@ const SEATMAPS = {
       ["g1L","25~29열 왼쪽","g",  8,184,15,"r",[["25",15],["26",13],["27",15],["28",14],["29",13]],"25~29열","1~15번","맨 뒤쪽 블록"],
       ["g1R","25~29열 오른쪽","g",214,184,14,"l",RW(RS(25,29),14),"25~29열","37~50번","맨 뒤쪽 블록"]
     ] },
-  sapporo: { name:"Zepp Sapporo", note:"이번 투어는 의자를 놓은 지정석 배치예요 (공식 의자석 723석 · 스탠딩 때는 2,009명)",
+  sapporo: { off:"https://www.zepp.co.jp/~pj-zepp/wordpress/wp-content/uploads/2018/11/21121154/sp_seat.pdf", name:"Zepp Sapporo", note:"이번 투어는 의자를 놓은 지정석 배치예요",
     w:250, h:262, P:7.4, RH:6.4, stage:[85, 4, 80, 11, "STAGE"], floors:[[125, 214, "2층"]],
     fixed:[[90, 150, 70, 52, "PA · LD"]],
     blocks:[
@@ -3231,7 +3233,7 @@ const SEATMAPS = {
       ["s2C","2층 C~E열 가운데","y",66,222,16,"c",[["A",0],["B",0],...RW(RL("CDE"),16)],"C~E열","8~23번","2층 정면. 무대 전체와 조명 연출이 잘 보이는 자리"],
       ["s2R","2층 A~E열 오른쪽","y",190,222, 7,"l",[["A",4],["B",6],...RW(RL("CDE"),7)],"A~E열","24~30번","2층 오른쪽. 높은 곳에서 무대 전체가 보여요"]
     ] },
-  osaka: { name:"Zepp Osaka Bayside", note:"이번 투어는 의자를 놓은 지정석 배치예요 (공식 의자석 1,198석 · 스탠딩 때는 2,801명)",
+  osaka: { off:"https://www.zepp.co.jp/~pj-zepp/wordpress/wp-content/uploads/2018/11/21153535/bs_seat.pdf", name:"Zepp Osaka Bayside", note:"이번 투어는 의자를 놓은 지정석 배치예요",
     w:296, h:288, P:6.4, RH:5.8, stage:[108, 4, 80, 11, "STAGE"], floors:[[148, 218, "2층"]],
     fixed:[[116, 146, 64, 58, "PA · LD"]],
     blocks:[
@@ -3248,12 +3250,159 @@ const SEATMAPS = {
       ["b2R","2층 A~H열 오른쪽","y",197,226,14,"l",[...RW(RL("AB"),11),...RW(RL("CDEFGH"),14)],"A~H열","22~41번","2층 오른쪽. 높은 곳이라 앞사람에 가려지지 않아요"]
     ] }
 };
+/* ── 홀 · 아레나 (곡선 구역은 arc, 줄무늬 블록은 box 로 그림) ──
+   box: { t:"box", id, nm, c, x, y, w, h, dir:"h"(가로줄)|"v"(세로줄), n:줄 수, lab:블록 글자, r:열, s:번호, d:설명 }
+   arc: { t:"arc", id, nm, c, cx, cy, r0, r1, a0, a1(각도: 0=오른쪽 · 90=아래), ky:세로 비율, n:줄 수, seat:true면 의자 점 · 아니면 줄 선 } */
+const ARCS = (pre, nm, c, o, cuts, info) => cuts.slice(0, -1).map((a, i) => ({ t:"arc", id:`${pre}${i + 1}`, nm:`${nm} ${i + 1}구역`, c, ...o, a0:a + .8, a1:cuts[i + 1] - .8, ...info }));
+const SPLIT = (a, b, k) => Array.from({ length: k + 1 }, (_, i) => a + (b - a) * i / k);
+Object.assign(SEATMAPS, {
+  yamagata: { name:"やまぎん県民ホール", note:"1층(파랑) · 2층(노랑) · 3층(초록) 3층 구조의 홀이에요",
+    off:"https://yamagata-bunka.jp/rental/common/pdf/dl_03.pdf",
+    w:300, h:268, P:5, RH:5.4, stage:[110, 4, 80, 11, "STAGE"], floors:[[150, 22, "1층"], [150, 176, "2층"], [150, 216, "3층"]], fixed:[],
+    blocks:[
+      ["m1L","1층 1~9열 왼쪽","b", 45, 28,11,"r",[["1",4],["2",5],["3",6],["4",7],["5",8],["6",9],["7",10],["8",10],["9",11]],"1~9열","왼쪽 블록","1층 앞쪽 왼쪽. 무대와 가까워요"],
+      ["m1C","1층 1~9열 가운데","b",106,28,18,"c",[["1",14],["2",15],["3",16],...RW(RS(4,9),18)],"1~9열","가운데 블록","1층 정면 앞쪽. 가장 가까운 정면 구역"],
+      ["m1R","1층 1~9열 오른쪽","b",204,28,11,"l",[["1",4],["2",5],["3",6],["4",7],["5",8],["6",9],["7",10],["8",10],["9",11]],"1~9열","오른쪽 블록","1층 앞쪽 오른쪽. 무대와 가까워요"],
+      ["m2L","1층 10~17열 왼쪽","b", 45, 80,11,"r",RW(RS(10,17),11),"10~17열","왼쪽 블록","1층 중간 왼쪽"],
+      ["m2C","1층 10~17열 가운데","b",106,80,18,"c",RW(RS(10,17),18),"10~17열","가운데 블록","1층 중간 정면. 소리 밸런스가 좋은 위치"],
+      ["m2R","1층 10~17열 오른쪽","b",204,80,11,"l",RW(RS(10,17),11),"10~17열","오른쪽 블록","1층 중간 오른쪽"],
+      ["m3L","1층 18~24열 왼쪽","b", 45,126,11,"r",RW(RS(18,24),11),"18~24열","왼쪽 블록","1층 뒤쪽 왼쪽"],
+      ["m3C","1층 18~24열 가운데","b",106,126,18,"c",RW(RS(18,24),18),"18~24열","가운데 블록","1층 뒤쪽 정면. 2층 아래라 천장이 가까운 자리도 있어요"],
+      ["m3R","1층 18~24열 오른쪽","b",204,126,11,"l",RW(RS(18,24),11),"18~24열","오른쪽 블록","1층 뒤쪽 오른쪽"],
+      ["s2l","2층 왼쪽 사이드","y", 28, 70, 2,"r",RW(RL("12345678"),2),"사이드 1~8","L석","2층 왼쪽 벽 쪽 사이드석. 무대를 옆에서 내려다봐요"],
+      ["s2r","2층 오른쪽 사이드","y",262, 70, 2,"l",RW(RL("12345678"),2),"사이드 1~8","R석","2층 오른쪽 벽 쪽 사이드석. 무대를 옆에서 내려다봐요"],
+      ["b2L","2층 왼쪽","y", 20,182,15,"r",[["1",12],["2",13],["3",14],["4",15],["5",15]],"1~5열","왼쪽 블록","2층 왼쪽. 높이가 있어서 앞사람에 덜 가려져요"],
+      ["b2C","2층 가운데","y",102,182,19,"c",RW(RS(1,5),19),"1~5열","가운데 블록","2층 정면. 무대 전체가 한눈에 보여요"],
+      ["b2R","2층 오른쪽","y",205,182,15,"l",[["1",12],["2",13],["3",14],["4",15],["5",15]],"1~5열","오른쪽 블록","2층 오른쪽. 높이가 있어서 앞사람에 덜 가려져요"],
+      ["s3l","3층 왼쪽 사이드","g",  8, 74, 1,"r",RW(RL("123456"),1),"사이드","L석","3층 왼쪽 사이드석"],
+      ["s3r","3층 오른쪽 사이드","g",287, 74, 1,"l",RW(RL("123456"),1),"사이드","R석","3층 오른쪽 사이드석"],
+      ["b3L","3층 왼쪽","g",  8,222,16,"r",[...RW(RS(1,6),16),["7",13]],"1~7열","왼쪽 블록","3층 왼쪽. 가장 높은 층이에요"],
+      ["b3C","3층 가운데","g",100,222,20,"c",[...RW(RS(1,6),20),["7",16],["8",13]],"1~8열","가운데 블록","3층 정면. 멀지만 무대 연출 전체를 볼 수 있어요"],
+      ["b3R","3층 오른쪽","g",212,222,16,"l",[...RW(RS(1,6),16),["7",13]],"1~7열","오른쪽 블록","3층 오른쪽. 가장 높은 층이에요"]
+    ] },
+  ishikawa: { name:"本多の森 北電ホール", note:"부채꼴로 퍼지는 홀이에요. 1층(파랑) · 2층(노랑)",
+    off:"http://www.hondanomori-hall.com/floorguide.html",
+    w:310, h:268, P:4.6, RH:5, stage:[125, 4, 60, 10, "STAGE"], floors:[], fixed:[],
+    blocks:[
+      ...ARCS("a", "1층 앞쪽", "b", { cx:155, cy:-62, r0:80, r1:92, n:3, seat:true }, [80, 87, 93, 100], { r:"1~3열", s:"맨 앞", d:"1층 맨 앞 블록. 무대와 가장 가까워요" }),
+      ...ARCS("m", "1층 중간", "b", { cx:155, cy:-62, r0:100, r1:150, n:9, seat:true }, [62, 74, 84, 96, 106, 118], { r:"4~12열", s:"", d:"1층 중간. 부채꼴이라 양 끝 구역은 무대를 비스듬히 봐요" }),
+      ...ARCS("n", "1층 뒤쪽", "b", { cx:155, cy:-62, r0:160, r1:205, n:9, seat:true }, [60, 72, 83, 97, 108, 120], { r:"13~21열", s:"", d:"1층 뒤쪽. 계단식이라 시야가 트여 있어요" }),
+      ...ARCS("u", "2층 앞쪽", "y", { cx:155, cy:-62, r0:218, r1:250, n:6, seat:true }, [56, 66, 78, 102, 114, 124], { r:"2층 1~6열", s:"", d:"2층 앞쪽. 무대 전체가 잘 보여요" }),
+      ...ARCS("v", "2층 뒤쪽", "y", { cx:155, cy:-62, r0:258, r1:290, n:6, seat:true }, [57, 68, 79, 90, 101, 112, 123], { r:"2층 7~12열", s:"", d:"2층 뒤쪽. 가장 높은 자리예요" })
+    ] },
+  yamaguchi: { name:"KDDI維新ホール", note:"1층(파랑) · 2층 발코니(노랑) 홀이에요",
+    off:"https://ishinhall.com/wp-content/themes/overwall/images/pdf/zasekihyo_2000.pdf",
+    w:300, h:282, P:4.9, RH:5.2, stage:[110, 4, 80, 10, "STAGE"], floors:[[150, 22, "1층"], [150, 178, "2층"]], fixed:[],
+    blocks:[
+      ["f1L","1층 1~16열 왼쪽","b", 22, 28,14,"r",[["1",5],["2",6],["3",7],["4",8],["5",9],["6",10],["7",11],["8",12],["9",13],...RW(RS(10,16),14)],"1~16열","왼쪽 블록","1층 앞쪽 왼쪽. 무대와 가까워요"],
+      ["f1C","1층 1~16열 가운데","b",97, 28,22,"c",[["1",13],["2",15],["3",16],["4",17],...RW(RS(5,16),18)],"1~16열","가운데 블록","1층 정면 앞쪽. 가장 가까운 정면 구역"],
+      ["f1R","1층 1~16열 오른쪽","b",211,28,14,"l",[["1",5],["2",6],["3",7],["4",8],["5",9],["6",10],["7",11],["8",12],["9",13],...RW(RS(10,16),14)],"1~16열","오른쪽 블록","1층 앞쪽 오른쪽. 무대와 가까워요"],
+      ["f1l","1층 왼쪽 끝","b",  4, 64, 2,"r",RW(RS(8,16),2),"8~16열","벽 쪽","1층 왼쪽 벽 쪽 작은 블록"],
+      ["f1r","1층 오른쪽 끝","b",287, 64, 2,"l",RW(RS(8,16),2),"8~16열","벽 쪽","1층 오른쪽 벽 쪽 작은 블록"],
+      ["f2L","1층 17~27열 왼쪽","b",  4,114,18,"r",RW(RS(17,27),18),"17~27열","왼쪽 블록","1층 뒤쪽 왼쪽. 평평한 넓은 구역"],
+      ["f2C","1층 17~27열 가운데","b",97,114,22,"c",RW(RS(17,27),22),"17~27열","가운데 블록","1층 뒤쪽 정면"],
+      ["f2R","1층 17~27열 오른쪽","b",211,114,18,"l",RW(RS(17,27),18),"17~27열","오른쪽 블록","1층 뒤쪽 오른쪽. 평평한 넓은 구역"],
+      ["b2L","2층 1~6열 왼쪽","y",  4,184,18,"r",RW(RS(1,6),18),"1~6열","왼쪽 블록","2층 발코니 앞쪽 왼쪽"],
+      ["b2C","2층 1~6열 가운데","y",97,184,22,"c",RW(RS(1,6),22),"1~6열","가운데 블록","2층 발코니 앞쪽 정면. 무대 전체가 잘 보여요"],
+      ["b2R","2층 1~6열 오른쪽","y",211,184,18,"l",RW(RS(1,6),18),"1~6열","오른쪽 블록","2층 발코니 앞쪽 오른쪽"],
+      ["c2L","2층 7~17열 왼쪽","y",  4,220,17,"r",[...RW(RS(7,16),17),["17",12]],"7~17열","왼쪽 블록","2층 뒤쪽 왼쪽"],
+      ["c2C","2층 7~17열 가운데","y",97,220,22,"c",[...RW(RS(7,16),22),["17",14]],"7~17열","가운데 블록","2층 뒤쪽 정면"],
+      ["c2R","2층 7~17열 오른쪽","y",211,220,17,"l",[...RW(RS(7,16),17),["17",12]],"7~17열","오른쪽 블록","2층 뒤쪽 오른쪽"]
+    ] },
+  lala: { name:"LaLa arena TOKYO-BAY", note:"무대는 왼쪽(STAGE SIDE)이에요. 아리나 주변 석(파랑) · 1층 스탠드(노랑) · 2층 스탠드(초록)",
+    off:"https://lalaarenatokyo-bay.com/seats/",
+    w:300, h:300, P:4, RH:5, stage:[14, 118, 14, 64, ""], floors:[], fixed:[[52, 104, 142, 92, "ARENA"]],
+    blocks:[
+      { t:"box", id:"sL", nm:"스테이지 사이드 (파랑)", c:"b", x:30, y:86, w:16, h:128, dir:"v", n:5, lab:"", r:"무대 옆", s:"", d:"무대 바로 옆 블록. 멤버를 가까이서 옆모습으로 볼 수 있어요" },
+      { t:"box", id:"aT", nm:"아리나 위쪽 (파랑)", c:"b", x:58, y:80, w:136, h:18, dir:"h", n:4, lab:"", r:"아리나 사이드", s:"", d:"아리나 위쪽 가장자리 석. 무대를 옆에서 가까이 봐요" },
+      { t:"box", id:"aB", nm:"아리나 아래쪽 (파랑)", c:"b", x:58, y:202, w:136, h:18, dir:"h", n:4, lab:"", r:"아리나 사이드", s:"", d:"아리나 아래쪽 가장자리 석. 무대를 옆에서 가까이 봐요" },
+      { t:"box", id:"aR", nm:"아리나 정면 (파랑)", c:"b", x:200, y:112, w:16, h:76, dir:"v", n:4, lab:"", r:"아리나 정면", s:"", d:"무대 정면 쪽 아리나 석. 무대를 똑바로 마주 봐요" },
+      ...[0,1,2,3].map(i => ({ t:"box", id:`yT${i + 1}`, nm:`1층 스탠드 위쪽 ${i + 1}`, c:"y", x:50 + i * 37, y:38, w:34, h:36, dir:"h", n:7, lab:"", r:"1층 스탠드", s:"", d:"1층 스탠드 위쪽. 무대를 옆에서 내려다봐요" })),
+      ...[0,1,2,3].map(i => ({ t:"box", id:`yB${i + 1}`, nm:`1층 스탠드 아래쪽 ${i + 1}`, c:"y", x:50 + i * 37, y:226, w:34, h:36, dir:"h", n:7, lab:"", r:"1층 스탠드", s:"", d:"1층 스탠드 아래쪽. 무대를 옆에서 내려다봐요" })),
+      { t:"box", id:"yLT", nm:"1층 스탠드 왼쪽 위 (무대 옆)", c:"y", x:8, y:60, w:34, h:20, dir:"h", n:4, lab:"", r:"1층 스탠드", s:"", d:"무대 옆쪽 스탠드" },
+      { t:"box", id:"yLB", nm:"1층 스탠드 왼쪽 아래 (무대 옆)", c:"y", x:8, y:220, w:34, h:20, dir:"h", n:4, lab:"", r:"1층 스탠드", s:"", d:"무대 옆쪽 스탠드" },
+      ...ARCS("yR", "1층 스탠드 정면", "y", { cx:196, cy:150, r0:30, r1:66, n:7 }, [-78, -46, -16, 16, 46, 78], { r:"1층 스탠드", s:"", d:"무대 정면 스탠드. 무대 전체를 마주 봐요" }),
+      ...[0,1,2,3].map(i => ({ t:"box", id:`gT${i + 1}`, nm:`2층 스탠드 위쪽 ${i + 1}`, c:"g", x:62 + i * 37, y:6, w:34, h:26, dir:"h", n:5, lab:"", r:"2층 스탠드", s:"", d:"2층 스탠드 위쪽. 높은 곳에서 무대를 내려다봐요" })),
+      ...[0,1,2,3].map(i => ({ t:"box", id:`gB${i + 1}`, nm:`2층 스탠드 아래쪽 ${i + 1}`, c:"g", x:62 + i * 37, y:268, w:34, h:26, dir:"h", n:5, lab:"", r:"2층 스탠드", s:"", d:"2층 스탠드 아래쪽. 높은 곳에서 무대를 내려다봐요" })),
+      ...ARCS("gR", "2층 스탠드 정면", "g", { cx:208, cy:150, r0:72, r1:92, n:5 }, [-84, -56, -28, 0, 28, 56, 84], { r:"2층 스탠드", s:"", d:"무대 정면 2층 스탠드. 가장 멀지만 무대 전체가 보여요" })
+    ] },
+  aichi: { name:"クロコくんホール (日本ガイシホール)", note:"무대는 오른쪽이에요. 가운데 회색이 아리나석, 바깥으로 갈수록 높은 스탠드예요",
+    off:"https://www.nespa.or.jp/hall/sponsor/floormap/files/kanran.pdf",
+    w:300, h:300, P:4, RH:5, stage:[207, 112, 8, 76, ""], floors:[], fixed:[],
+    blocks:[
+      ...[0,1,2].flatMap(cx => [0,1,2,3].map(cy => ({ t:"box", id:`fl${cx}${cy}`, nm:`아리나 ${String.fromCharCode(65 + cx)}${cy + 1}블록`, c:"f", x:110 + cx * 32, y:108 + cy * 21.5, w:29, h:18.5, dir:"v", n:6, lab:`${String.fromCharCode(65 + cx)}${cy + 1}`, r:"아리나", s:"", d:"평평한 아리나석. 무대(오른쪽)와 가까운 블록일수록 앞이에요" }))),
+      { t:"box", id:"bT", nm:"1층 스탠드 위쪽 (파랑)", c:"b", x:104, y:72, w:100, h:22, dir:"h", n:5, lab:"", r:"1층 스탠드", s:"", d:"아리나 바로 옆 낮은 스탠드" },
+      { t:"box", id:"bB", nm:"1층 스탠드 아래쪽 (파랑)", c:"b", x:104, y:206, w:100, h:22, dir:"h", n:5, lab:"", r:"1층 스탠드", s:"", d:"아리나 바로 옆 낮은 스탠드" },
+      ...ARCS("bc", "1층 스탠드 코너", "b", { cx:150, cy:150, r0:66, r1:90, ky:.8, n:6 }, [128, 160, 200, 232], { r:"1층 스탠드", s:"", d:"무대 맞은편 쪽 코너 스탠드" }),
+      ...ARCS("bs", "1층 스탠드 무대 쪽 위", "b", { cx:150, cy:150, r0:66, r1:90, ky:.8, n:6 }, [-60, -26], { r:"1층 스탠드", s:"", d:"무대 가까운 쪽 스탠드" }),
+      ...ARCS("bt", "1층 스탠드 무대 쪽 아래", "b", { cx:150, cy:150, r0:66, r1:90, ky:.8, n:6 }, [26, 60], { r:"1층 스탠드", s:"", d:"무대 가까운 쪽 스탠드" }),
+      ...ARCS("y", "2층 스탠드", "y", { cx:150, cy:150, r0:100, r1:128, ky:.8, n:7 }, SPLIT(12, 348, 16), { r:"2층 스탠드", s:"", d:"한 바퀴 둘러싼 2층 스탠드. 무대(오른쪽)에서 먼 왼쪽일수록 정면에서 봐요" }),
+      ...ARCS("gt", "3층 스탠드 위쪽", "g", { cx:150, cy:150, r0:134, r1:150, ky:.8, n:5 }, SPLIT(218, 322, 5), { r:"3층 스탠드", s:"", d:"높은 층 스탠드" }),
+      ...ARCS("gb", "3층 스탠드 아래쪽", "g", { cx:150, cy:150, r0:134, r1:150, ky:.8, n:5 }, SPLIT(38, 142, 5), { r:"3층 스탠드", s:"", d:"높은 층 스탠드" }),
+      ...ARCS("tt", "4층 스탠드 위쪽", "t", { cx:150, cy:150, r0:155, r1:166, ky:.8, n:3 }, SPLIT(236, 304, 4), { r:"4층 스탠드", s:"", d:"가장 높은 층" }),
+      ...ARCS("tb", "4층 스탠드 아래쪽", "t", { cx:150, cy:150, r0:155, r1:166, ky:.8, n:3 }, SPLIT(56, 124, 4), { r:"4층 스탠드", s:"", d:"가장 높은 층" })
+    ] },
+  fukuoka: { name:"マリンメッセ福岡 A館", note:"무대는 위쪽이에요. 가운데 회색이 아리나석, 양옆 파랑이 스탠드, 바깥 노랑이 2층석이에요",
+    off:"https://www.marinemesse.or.jp/messe/",
+    w:300, h:252, P:4, RH:5, stage:[78, 46, 144, 9, "STAGE"], floors:[], fixed:[],
+    blocks:[
+      { t:"box", id:"bk1", nm:"무대 뒤 스탠드 왼쪽", c:"b", x:62, y:2, w:84, h:38, dir:"h", n:7, lab:"", r:"무대 뒤", s:"", d:"무대 뒤쪽 스탠드. 멤버 뒷모습과 객석이 보이는 자리" },
+      { t:"box", id:"bk2", nm:"무대 뒤 스탠드 오른쪽", c:"b", x:154, y:2, w:84, h:38, dir:"h", n:7, lab:"", r:"무대 뒤", s:"", d:"무대 뒤쪽 스탠드. 멤버 뒷모습과 객석이 보이는 자리" },
+      ...[0,1,2,3,4,5,6].flatMap(cx => [0,1,2,3].filter(cy => !(cy === 3 && cx === 3)).map(cy => ({ t:"box", id:`fl${cx}${cy}`, nm:`아리나 ${cy + 1}열째 ${cx + 1}번 블록`, c:"f", x:80 + cx * 20.4, y:62 + cy * 30, w:17.5, h:26, dir:"h", n:7, lab:"", r:"아리나", s:"", d:"평평한 아리나석. 위쪽(무대)과 가까울수록 앞이에요" }))),
+      { t:"box", id:"sL1", nm:"왼쪽 스탠드 앞쪽", c:"b", x:34, y:42, w:36, h:72, dir:"v", n:7, lab:"", r:"스탠드", s:"", d:"무대 옆 스탠드. 무대를 옆에서 가까이 봐요" },
+      { t:"box", id:"sL2", nm:"왼쪽 스탠드 뒤쪽", c:"b", x:34, y:118, w:36, h:74, dir:"v", n:7, lab:"", r:"스탠드", s:"", d:"옆쪽 스탠드 뒤쪽" },
+      { t:"box", id:"sR1", nm:"오른쪽 스탠드 앞쪽", c:"b", x:230, y:42, w:36, h:72, dir:"v", n:7, lab:"", r:"스탠드", s:"", d:"무대 옆 스탠드. 무대를 옆에서 가까이 봐요" },
+      { t:"box", id:"sR2", nm:"오른쪽 스탠드 뒤쪽", c:"b", x:230, y:118, w:36, h:74, dir:"v", n:7, lab:"", r:"스탠드", s:"", d:"옆쪽 스탠드 뒤쪽" },
+      { t:"box", id:"sB", nm:"정면 스탠드", c:"b", x:62, y:186, w:176, h:34, dir:"h", n:8, lab:"", r:"정면 스탠드", s:"", d:"무대 정면 스탠드. 무대 전체를 마주 봐요" },
+      ...[[6,26],[6,90],[6,170],[274,26],[274,90],[274,170]].map(([x, y], i) => ({ t:"box", id:`u${i + 1}`, nm:`2층석 ${i < 3 ? "왼쪽" : "오른쪽"} ${i % 3 + 1}`, c:"y", x, y, w:20, h: i % 3 === 1 ? 64 : 40, dir:"v", n:4, lab:"", r:"2층", s:"", d:"가장 바깥 2층석. 높은 곳에서 옆으로 봐요" })),
+      { t:"box", id:"uB", nm:"2층석 정면", c:"y", x:40, y:228, w:220, h:16, dir:"h", n:3, lab:"", r:"2층", s:"", d:"정면 2층석. 가장 멀지만 무대 전체가 보여요" }
+    ] },
+  kagawa: { name:"あなぶきアリーナ香川", note:"무대는 왼쪽이에요. 가운데 회색이 아리나석, 주황 줄이 1층, 초록이 스탠드예요",
+    off:"https://kagawa-arena.com/guide/",
+    w:300, h:270, P:4, RH:5, stage:[50, 72, 28, 124, "STAGE"], floors:[], fixed:[],
+    blocks:[
+      ...[0,1,2,3].flatMap(cx => [0,1,2,3,4,5,6].map(cy => ({ t:"box", id:`fl${cx}${cy}`, nm:`아리나 ${cx + 1}열째 ${cy + 1}번 블록`, c:"f", x:90 + cx * 31, y:48 + cy * 24, w:28, h:21, dir:"v", n:6, lab:"", r:"아리나", s:"", d:"평평한 아리나석. 왼쪽(무대)과 가까울수록 앞이에요" }))),
+      ...ARCS("o", "1층석 (주황)", "y", { cx:150, cy:134, r0:116, r1:120, ky:.86, n:2 }, [-150, -115, -82, -45, -10, 10, 45, 82, 115, 150], { r:"1층", s:"", d:"아리나를 둘러싼 1층 한 줄 석. 높이가 낮아 무대와 가까워요" }),
+      ...ARCS("g", "스탠드", "g", { cx:150, cy:134, r0:126, r1:148, ky:.86, n:6 }, SPLIT(-170, 170, 18), { r:"스탠드", s:"", d:"한 바퀴 둘러싼 스탠드. 오른쪽일수록 무대를 정면에서 봐요" })
+    ] },
+  gunma: { name:"Gメッセ群馬", note:"평평한 전시홀이라 모든 자리가 같은 높이예요. 무대는 오른쪽, A열 블록이 맨 앞이에요",
+    off:"https://www.g-messe-gunma.jp/data/pdf/layout/exhibition/theater.pdf",
+    w:300, h:258, P:4, RH:5, stage:[262, 44, 14, 170, ""], floors:[], fixed:[],
+    blocks:[
+      ...["A","B","C","D","E"].flatMap((col, ci) => Array.from({ length:9 }, (_, ri) => ri).filter(ri => !(col === "E" && ri >= 3 && ri <= 5) && !(col === "D" && ri === 4)).map(ri => ({ t:"box", id:`${col}${ri + 1}`, nm:col === "E" ? `맨 뒤 ${ri + 1}번 블록` : `${col}${ri + 1} 블록`, c:"b", x:210 - ci * 48 + (col === "D" && (ri === 3 || ri === 5) ? 12 : 0), y:8 + ri * 27.6, w:col === "D" && (ri === 3 || ri === 5) ? 30 : 42, h:24, dir:"v", n:col === "D" && (ri === 3 || ri === 5) ? 5 : 8, lab:col === "E" ? "" : `${col}${ri + 1}`, r:`${col === "E" ? "맨 뒤" : col + "열"} 블록`, s:"", d:col === "A" ? "무대 바로 앞 블록이에요" : col === "B" ? "앞쪽 블록. 무대와 가까운 편" : col === "C" ? "가운데쯤 블록" : "뒤쪽 블록. 평평해서 앞사람에 가려질 수 있어요" })))
+    ] }
+});
 const seatPick = { get:k => { try { return localStorage.getItem("bn_seat_" + k) || ""; } catch(e){ return ""; } },
   set:(k, v) => { try { v ? localStorage.setItem("bn_seat_" + k, v) : localStorage.removeItem("bn_seat_" + k); } catch(e){} } };
 function seatMapHtml(key, img){
   const m = SEATMAPS[key]; if (!m) return "";
   const mine = seatPick.get(key), P = m.P, RH = m.RH, S = P * .78, SH = RH * .74;
-  const block = ([id, nm, c, x, y, max, al, rows]) => {
+  const block = b => !Array.isArray(b) ? (b.t === "arc" ? arcBlock(b) : boxBlock(b)) : gridBlock(b);
+  const wrap = (id, nm, hit, inner) => `<g class="sz${id === mine ? " mine" : ""}" data-sz="${id}" tabindex="0" role="button" aria-label="${esc(nm)}">${hit}${inner}</g>`;
+  const boxBlock = ({ id, nm, c, x, y, w, h, dir, n, lab }) => {
+    const [f, s] = SEAT_COLORS[c]; let ln = "";
+    for (let i = 1; i < n; i++) ln += dir === "v" ? `<line x1="${(x + w * i / n).toFixed(1)}" y1="${y + 1.5}" x2="${(x + w * i / n).toFixed(1)}" y2="${y + h - 1.5}"/>` : `<line x1="${x + 1.5}" y1="${(y + h * i / n).toFixed(1)}" x2="${x + w - 1.5}" y2="${(y + h * i / n).toFixed(1)}"/>`;
+    return wrap(id, nm, `<rect class="sz-hit" x="${x - 1.5}" y="${y - 1.5}" width="${w + 3}" height="${h + 3}" rx="3"/>`,
+      `<rect class="sz-seat" x="${x}" y="${y}" width="${w}" height="${h}" rx="1.5" fill="${f}" stroke="${s}" stroke-width=".5"/><g stroke="${s}" stroke-width=".35" opacity=".8">${ln}</g>${lab ? `<text x="${x + w / 2}" y="${y + h / 2 + 2.2}" text-anchor="middle" class="sm-lab">${lab}</text>` : ""}`);
+  };
+  const arcBlock = ({ id, nm, c, cx, cy, r0, r1, a0, a1, ky = 1, n, seat }) => {
+    const [f, s] = SEAT_COLORS[c], rad = d => d * Math.PI / 180, pt = (r, a) => `${(cx + r * Math.cos(rad(a))).toFixed(1)},${(cy + ky * r * Math.sin(rad(a))).toFixed(1)}`;
+    const arcPts = (r, A, B, k = 14) => Array.from({ length: k + 1 }, (_, i) => pt(r, A + (B - A) * i / k));
+    const ro = r1 + 2.2, ri = r0 - 2.2;
+    const poly = [...arcPts(ro, a0, a1), ...arcPts(ri, a1, a0)].join(" ");
+    let inner = "";
+    for (let i = 0; i < n; i++){
+      const r = n === 1 ? r0 : r0 + (r1 - r0) * i / (n - 1);
+      if (seat){
+        const len = rad(a1 - a0) * r, k = Math.max(1, Math.floor(len / P));
+        for (let j = 0; j < k; j++){ const a = a0 + (a1 - a0) * (j + .5) / k; const [px, py] = pt(r, a).split(",");
+          inner += `<circle cx="${px}" cy="${py}" r="${(P * .36).toFixed(2)}" fill="${f}" stroke="${s}" stroke-width=".3"/>`; }
+      } else inner += `<polyline points="${arcPts(r, a0, a1).join(" ")}" fill="none" stroke="${s}" stroke-width=".8" stroke-linecap="round" opacity=".85"/>`;
+    }
+    const bg = seat ? "" : `<polygon points="${poly}" fill="${f}" stroke="${s}" stroke-width=".4"/>`;
+    return wrap(id, nm, `<polygon class="sz-hit" points="${poly}"/>`, bg + inner);
+  };
+  const gridBlock = ([id, nm, c, x, y, max, al, rows]) => {
     const [f, s] = SEAT_COLORS[c], W = max * P;
     let seats = "", labels = "";
     rows.forEach(([lab, n], i) => {
@@ -3268,19 +3417,20 @@ function seatMapHtml(key, img){
   const [sx, sy, sw, sh, sl] = m.stage;
   return `<div class="seatmap" data-sm="${key}">
     <svg viewBox="0 0 ${m.w} ${m.h}" class="sm-svg" role="img" aria-label="${esc(m.name)} 좌석 배치도">
-      <rect x="${sx}" y="${sy}" width="${sw}" height="${sh}" rx="5.5" class="sm-stage"/><text x="${sx + sw / 2}" y="${sy + sh / 2 + 3}" text-anchor="middle" class="sm-stage-t">${sl}</text>
+      <rect x="${sx}" y="${sy}" width="${sw}" height="${sh}" rx="${Math.min(sw, sh) / 2}" class="sm-stage"/><text x="${sx + sw / 2}" y="${sy + sh / 2 + 2.3}" text-anchor="middle" class="sm-stage-t"${sh > sw * 1.5 ? ` transform="rotate(90 ${sx + sw / 2} ${sy + sh / 2})"` : ""}>${sl || "STAGE"}</text>
       ${m.floors.map(([x, y, t]) => `<rect x="${x - 16}" y="${y - 7}" width="32" height="10" rx="5" class="sm-floor-b"/><text x="${x}" y="${y}" text-anchor="middle" class="sm-floor">${t}</text>`).join("")}
       ${m.fixed.map(([x, y, w, h, t]) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="4" class="sm-fixed"/><text x="${x + w / 2}" y="${y + h / 2 + 3}" text-anchor="middle" class="sm-fixed-t">${t}</text>`).join("")}
       ${m.blocks.map(block).join("")}
     </svg>
     <div class="sm-info" aria-live="polite">${seatInfoHtml(key, mine)}</div>
-    <p class="sm-note">${esc(m.note)}${img ? ` · <button type="button" class="sm-img" data-zoom="${esc(img)}">공식 좌석도 이미지</button>` : ""}</p>
+    <p class="sm-note">${esc(m.note)}${m.off ? ` · <a class="sm-img" href="${esc(m.off)}" target="_blank" rel="noopener">공연장 홈페이지 공식 좌석도 ↗</a>` : ""}</p>
   </div>`;
 }
 function seatInfoHtml(key, id){
-  const m = SEATMAPS[key], z = m && m.blocks.find(z => z[0] === id), mine = seatPick.get(key);
+  const m = SEATMAPS[key], b = m && m.blocks.find(z => (Array.isArray(z) ? z[0] : z.id) === id), mine = seatPick.get(key);
+  const z = b && (Array.isArray(b) ? b : [b.id, b.nm, b.c, 0, 0, 0, "", [], b.r || "", b.s || "", b.d || ""]);
   if (!z) return `<span class="sm-hint">구역을 누르면 위치 안내가 나와요${mine ? "" : " · 당첨된 구역을 저장해 둘 수 있어요"}</span>`;
-  return `<b>${esc(z[1])}</b><small>${esc(z[8])} · ${esc(z[9])}</small><span>${esc(z[10])}</span>
+  return `<b>${esc(z[1])}</b><small>${esc([z[8], z[9]].filter(Boolean).join(" · "))}</small><span>${esc(z[10])}</span>
     <button type="button" class="sm-save" data-szsave="${id}">${mine === id ? "★ 내 구역 (저장 취소)" : "☆ 내 구역으로 저장"}</button>`;
 }
 document.addEventListener("click", e => {
