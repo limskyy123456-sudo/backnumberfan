@@ -1091,13 +1091,16 @@ a.ed-mv:hover{border-color:var(--accent);color:var(--accent)}
 .write-out textarea{font-family:ui-monospace,Consolas,monospace;font-size:12px}
 .seatmap{color:#1f2630}
 .sm-svg{display:block;width:100%;max-width:520px;margin:0 auto;font-family:inherit;user-select:none}
-.sm-stage{fill:#2b3440}.sm-stage-t{fill:#fff;font-size:8px;font-weight:800;letter-spacing:.12em}
-.sm-floor{font-size:7.5px;font-weight:800;fill:#5b6573}
+.sm-stage{fill:#2b3440}.sm-stage-t{fill:#fff;font-size:6.5px;font-weight:800;letter-spacing:.12em}
+.sm-floor{font-size:6.5px;font-weight:800;fill:#5a4300}
 .sm-fixed{fill:#eceff3;stroke:#c9ced6;stroke-dasharray:3 2}.sm-fixed-t{font-size:7px;fill:#7c8592}
-.sz{cursor:pointer;outline:none}.sz text{font-size:7.5px;font-weight:700;fill:#2a3440;pointer-events:none}
-.sz:hover rect,.sz:focus rect{stroke-width:2}
-.sz.on rect{stroke:#d63a3a;stroke-width:2.4}
-.sz.mine rect{fill:#ffd66b;stroke:#e09a00;stroke-width:2.4}
+.sz{cursor:pointer;outline:none}.sz-hit{fill:transparent;stroke:transparent;stroke-width:1}
+.sm-row{font-size:3.4px;fill:#7c8592;pointer-events:none}
+.sz:hover .sz-hit,.sz:focus .sz-hit{stroke:#9fb3c8}
+.sz.on .sz-hit{fill:rgba(214,58,58,.08);stroke:#d63a3a;stroke-width:1.2}
+.sz.mine rect:not(.sz-hit){fill:#ffd66b;stroke:#e09a00}
+.sz.mine .sz-hit{stroke:#e09a00;stroke-width:1.2}
+.sm-floor-b{fill:#f3d07a}
 .sm-info{margin-top:8px;min-height:44px;padding:9px 11px;border-radius:10px;background:#f2f5f9;font-size:13px;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px}
 .sm-info b{font-size:14px}.sm-info small{color:#5b6573;font-weight:700}.sm-info span{flex-basis:100%;color:#3a4350}
 .sm-hint{color:#5b6573}
@@ -3188,87 +3191,96 @@ function viewInfo(id){
 }
 /* 사진 크게 보기: 세로로 긴 사진은 휠·드래그로 스크롤, 클릭이나 Esc 로 닫기 */
 /* ============ 좌석 배치도 (SVG로 직접 그림 · 구역을 누르면 안내 · 내 구역 저장) ============
-   ✏️ 공연장 추가: SEATMAPS 에 { name, w, h, stage, floors, zones, fixed } 를 넣고, 일정의 seatMap:"키" 로 연결
-   zones: [id, 이름, x, y, w, h, 색(b·y·g), 열, 번호, 설명]  — 좌표는 viewBox 기준 */
-const SEAT_COLORS = { b:["#d8e8f8","#5a8fc7"], y:["#fbe8b8","#d6a12a"], g:["#d3f0cf","#4ea64a"] };
+   ✏️ 공연장 추가: SEATMAPS 에 { name, note, w, h, P(좌석 간격), RH(줄 간격), stage, floors, fixed, blocks } 를 넣고, 일정의 seatMap:"키" 로 연결
+   blocks: [id, 이름, 색(b·y·g), x, y, 최대 좌석 수, 정렬(l·c·r), 줄 목록[[열, 좌석 수]…], 열 범위, 번호 범위, 설명]
+   · 정렬 r = 오른쪽(가운데 통로 쪽)에 붙임, l = 왼쪽에 붙임, c = 가운데 */
+const SEAT_COLORS = { b:["#cfe2f6","#4f86c2"], y:["#fbe2a6","#c9921d"], g:["#cdeec8","#46a043"] };
+const RW = (labels, n) => labels.map(l => [l, n]);                        // 같은 좌석 수의 여러 줄
+const RS = (a, b) => Array.from({ length: b - a + 1 }, (_, i) => String(a + i));   // "5"~"15"
+const RL = s => s.split("");                                               // "ABCDE" → 열 이름
 const SEATMAPS = {
   toyosu: { name:"豊洲PIT", note:"이번 투어는 의자를 놓은 지정석 배치예요 (공식 의자석 1,328석 · 스탠딩 때는 3,103명)",
-    w:300, h:236, stage:[100, 6, 100, 12, "STAGE"],
-    floors:[],
-    zones:[
-      ["b1L","1~4열 왼쪽",   10, 26, 80, 26, "b","1~4열","1~15번","무대 바로 앞. 왼쪽 블록이라 무대를 살짝 비스듬히 봐요"],
-      ["b1C","1~4열 가운데", 96, 26, 108,26, "b","1~4열","16~36번","무대 정면 맨 앞 구역"],
-      ["b1R","1~4열 오른쪽", 210,26, 80, 26, "b","1~4열","37~50번","무대 바로 앞. 오른쪽 블록"],
-      ["b2L","5~15열 왼쪽",  10, 58, 80, 62, "b","5~15열","1~15번","앞쪽 1/3 정도. 무대와 가까운 편"],
-      ["b2C","5~15열 가운데",96, 58, 108,62, "b","5~15열","16~36번","정면 앞쪽. 멤버 표정까지 잘 보이는 거리"],
-      ["b2R","5~15열 오른쪽",210,58, 80, 62, "b","5~15열","37~50번","앞쪽 1/3 정도. 무대와 가까운 편"],
-      ["y1L","16~24열 왼쪽", 10, 128,80, 52, "y","16~24열","1~15번","가운데쯤. 바닥이 평평해서 앞사람 키에 따라 시야가 달라져요"],
-      ["y1C","16~24열 가운데",96,128,108,52, "y","16~24열","16~36번","가운데 정면. 소리 밸런스가 좋은 위치"],
-      ["y1R","16~24열 오른쪽",210,128,80, 52, "y","16~24열","37~50번","가운데쯤. 바닥이 평평해서 앞사람 키에 따라 시야가 달라져요"],
-      ["g1L","25~29열 왼쪽", 10, 188,80, 30, "g","25~29열","1~15번","맨 뒤쪽 블록"],
-      ["g1R","25~29열 오른쪽",210,188,80, 30, "g","25~29열","37~50번","맨 뒤쪽 블록"]
-    ],
-    fixed:[[100, 190, 100, 26, "PA · 조명석"]] },
+    w:300, h:232, P:5.2, RH:6, stage:[100, 4, 100, 11, "STAGE"], floors:[],
+    fixed:[[96, 196, 109, 26, "PA · 조명석"]],
+    blocks:[
+      ["b1L","1~4열 왼쪽","b",  8, 22,15,"r",[["1",13],...RW(RS(2,4),15)],"1~4열","1~15번","무대 바로 앞. 왼쪽 블록이라 무대를 살짝 비스듬히 봐요"],
+      ["b1C","1~4열 가운데","b",96, 22,21,"c",RW(RS(1,4),21),"1~4열","16~36번","무대 정면 맨 앞 구역"],
+      ["b1R","1~4열 오른쪽","b",214,22,14,"l",[["1",4],...RW(RS(2,4),14)],"1~4열","37~50번","무대 바로 앞. 오른쪽 블록"],
+      ["b2L","5~15열 왼쪽","b",  8, 52,15,"r",RW(RS(5,15),15),"5~15열","1~15번","앞쪽 1/3 정도. 무대와 가까운 편"],
+      ["b2C","5~15열 가운데","b",96, 52,21,"c",RW(RS(5,15),21),"5~15열","16~36번","정면 앞쪽. 멤버 표정까지 잘 보이는 거리"],
+      ["b2R","5~15열 오른쪽","b",214,52,14,"l",RW(RS(5,15),14),"5~15열","37~50번","앞쪽 1/3 정도. 무대와 가까운 편"],
+      ["y1L","16~24열 왼쪽","y",  8,124,15,"r",RW(RS(16,24),15),"16~24열","1~15번","가운데쯤. 바닥이 평평해서 앞사람 키에 따라 시야가 달라져요"],
+      ["y1C","16~24열 가운데","y",96,124,21,"c",RW(RS(16,24),21),"16~24열","16~36번","가운데 정면. 소리 밸런스가 좋은 위치"],
+      ["y1R","16~24열 오른쪽","y",214,124,14,"l",RW(RS(16,24),14),"16~24열","37~50번","가운데쯤. 바닥이 평평해서 앞사람 키에 따라 시야가 달라져요"],
+      ["g1L","25~29열 왼쪽","g",  8,184,15,"r",[["25",15],["26",13],["27",15],["28",14],["29",13]],"25~29열","1~15번","맨 뒤쪽 블록"],
+      ["g1R","25~29열 오른쪽","g",214,184,14,"l",RW(RS(25,29),14),"25~29열","37~50번","맨 뒤쪽 블록"]
+    ] },
   sapporo: { name:"Zepp Sapporo", note:"이번 투어는 의자를 놓은 지정석 배치예요 (공식 의자석 723석 · 스탠딩 때는 2,009명)",
-    w:300, h:262, stage:[100, 6, 100, 12, "STAGE"],
-    floors:[[150, 30, "1층"], [150, 214, "2층"]],
-    zones:[
-      ["f1L","1층 1~10열 왼쪽",    12, 34, 66, 64, "b","1~10열","1~8번","1층 앞쪽 왼쪽 블록"],
-      ["f1C","1층 1~10열 가운데",  84, 34, 132,64, "b","1~10열","9~17번","1층 정면 앞쪽. 무대와 가장 가까운 구역"],
-      ["f1R","1층 1~10열 오른쪽",  222,34, 66, 64, "b","1~10열","18~25번","1층 앞쪽 오른쪽 블록"],
-      ["f2L","1층 11~19열 왼쪽",   12, 102,66, 58, "b","11~19열","1~8번","1층 중간 왼쪽"],
-      ["f2C","1층 11~19열 가운데", 84, 102,132,58, "b","11~19열","9~17번","1층 중간 정면"],
-      ["f2R","1층 11~19열 오른쪽", 222,102,66, 58, "b","11~19열","18~25번","1층 중간 오른쪽"],
-      ["f3L","1층 20~29열 왼쪽",   12, 166,66, 40, "b","20~29열","1~8번","1층 뒤쪽. 가운데에 PA석이 있어서 좌우로만 자리가 있어요"],
-      ["f3R","1층 20~29열 오른쪽", 222,166,66, 40, "b","20~29열","19~25번","1층 뒤쪽. 가운데에 PA석이 있어서 좌우로만 자리가 있어요"],
-      ["s2L","2층 A~E열 왼쪽",     12, 222,66, 32, "y","A~E열","1~7번","2층 왼쪽. 높은 곳에서 무대 전체가 보여요"],
-      ["s2C","2층 A~E열 가운데",   84, 222,132,32, "y","C~E열","8~23번","2층 정면. 무대 전체와 조명 연출이 잘 보이는 자리"],
-      ["s2R","2층 A~E열 오른쪽",   222,222,66, 32, "y","A~E열","24~30번","2층 오른쪽. 높은 곳에서 무대 전체가 보여요"]
-    ],
-    fixed:[[100, 166, 100, 40, "PA · 조명석"]] },
+    w:250, h:262, P:7.4, RH:6.4, stage:[85, 4, 80, 11, "STAGE"], floors:[[125, 214, "2층"]],
+    fixed:[[90, 150, 70, 52, "PA · LD"]],
+    blocks:[
+      ["f1L","1층 1~10열 왼쪽","b",  8, 22, 8,"r",[["1",5],...RW(RS(2,10),8)],"1~10열","1~8번","1층 앞쪽 왼쪽 블록"],
+      ["f1C","1층 1~10열 가운데","b",92, 22, 9,"c",RW(RS(1,10),9),"1~10열","9~17번","1층 정면 앞쪽. 무대와 가장 가까운 구역"],
+      ["f1R","1층 1~10열 오른쪽","b",183,22, 8,"l",[["1",5],...RW(RS(2,10),8)],"1~10열","18~25번","1층 앞쪽 오른쪽 블록"],
+      ["f2L","1층 11~19열 왼쪽","b",  8, 86, 8,"r",RW(RS(11,19),8),"11~19열","1~8번","1층 중간 왼쪽"],
+      ["f2C","1층 11~19열 가운데","b",92, 86, 9,"c",RW(RS(11,19),9),"11~19열","9~17번","1층 중간 정면"],
+      ["f2R","1층 11~19열 오른쪽","b",183,86, 8,"l",RW(RS(11,19),8),"11~19열","18~25번","1층 중간 오른쪽"],
+      ["f3L","1층 20~29열 왼쪽","b",  8,146, 8,"r",[["20",7],...RW(RS(21,25),8),["26",7],...RW(RS(27,29),6)],"20~29열","1~8번","1층 뒤쪽. 가운데에 PA석이 있어서 좌우로만 자리가 있어요"],
+      ["f3R","1층 20~29열 오른쪽","b",183,146, 8,"l",[["20",7],...RW(RS(21,25),8),...RW(RS(26,29),7)],"20~29열","18~25번","1층 뒤쪽. 가운데에 PA석이 있어서 좌우로만 자리가 있어요"],
+      ["s2L","2층 A~E열 왼쪽","y",  8,222, 7,"r",[["A",4],["B",6],...RW(RL("CDE"),7)],"A~E열","1~7번","2층 왼쪽. 높은 곳에서 무대 전체가 보여요"],
+      ["s2C","2층 C~E열 가운데","y",66,222,16,"c",[["A",0],["B",0],...RW(RL("CDE"),16)],"C~E열","8~23번","2층 정면. 무대 전체와 조명 연출이 잘 보이는 자리"],
+      ["s2R","2층 A~E열 오른쪽","y",190,222, 7,"l",[["A",4],["B",6],...RW(RL("CDE"),7)],"A~E열","24~30번","2층 오른쪽. 높은 곳에서 무대 전체가 보여요"]
+    ] },
   osaka: { name:"Zepp Osaka Bayside", note:"이번 투어는 의자를 놓은 지정석 배치예요 (공식 의자석 1,198석 · 스탠딩 때는 2,801명)",
-    w:300, h:290, stage:[100, 6, 100, 12, "STAGE"],
-    floors:[[150, 30, "1층"], [150, 212, "2층"]],
-    zones:[
-      ["a1L","1층 A~K열 왼쪽",   10, 34, 78, 64, "b","A~K열","1~12번","1층 앞쪽 왼쪽 블록"],
-      ["a1C","1층 A~K열 가운데", 94, 34, 112,64, "b","A~K열","13~26번","1층 정면 앞쪽. 무대와 가장 가까운 구역"],
-      ["a1R","1층 A~K열 오른쪽", 212,34, 78, 64, "b","A~K열","27~38번","1층 앞쪽 오른쪽 블록"],
-      ["a2L","1층 L~R열 왼쪽",   10, 104,78, 44, "b","L~R열","1~12번","1층 중간 왼쪽"],
-      ["a2C","1층 L~R열 가운데", 94, 104,112,44, "b","L~R열","13~26번","1층 중간 정면"],
-      ["a2R","1층 L~R열 오른쪽", 212,104,78, 44, "b","L~R열","27~38번","1층 중간 오른쪽"],
-      ["a3L","1층 S~Z열 왼쪽",   10, 154,92, 50, "b","S~Z열","1~15번","1층 뒤쪽 왼쪽. 가운데는 PA석"],
-      ["a3R","1층 S~Z열 오른쪽", 198,154,92, 50, "b","S~Z열","13~30번","1층 뒤쪽 오른쪽. 가운데는 PA석"],
-      ["b2L","2층 A~H열 왼쪽",   10, 220,86, 60, "y","A~H열","1~14번","2층 왼쪽. 높은 곳이라 앞사람에 가려지지 않아요"],
-      ["b2C","2층 A~H열 가운데", 102,220,96, 60, "y","A~H열","12~27번","2층 정면. 무대 전체와 조명이 한눈에 보여요"],
-      ["b2R","2층 A~H열 오른쪽", 204,220,86, 60, "y","A~H열","22~41번","2층 오른쪽. 높은 곳이라 앞사람에 가려지지 않아요"]
-    ],
-    fixed:[[108, 154, 84, 50, "PA · 조명석"]] }
+    w:296, h:288, P:6.4, RH:5.8, stage:[108, 4, 80, 11, "STAGE"], floors:[[148, 218, "2층"]],
+    fixed:[[116, 146, 64, 58, "PA · LD"]],
+    blocks:[
+      ["a1L","1층 A~K열 왼쪽","b",  8, 22,12,"r",RW(RL("ABCDEFGHIJK"),12),"A~K열","1~12번","1층 앞쪽 왼쪽 블록"],
+      ["a1C","1층 A~K열 가운데","b",103,22,14,"c",RW(RL("ABCDEFGHIJK"),14),"A~K열","13~26번","1층 정면 앞쪽. 무대와 가장 가까운 구역"],
+      ["a1R","1층 A~K열 오른쪽","b",211,22,12,"l",RW(RL("ABCDEFGHIJK"),12),"A~K열","27~38번","1층 앞쪽 오른쪽 블록"],
+      ["a2L","1층 L~R열 왼쪽","b",  8,93,12,"r",RW(RL("LMNOPQR"),12),"L~R열","1~12번","1층 중간 왼쪽"],
+      ["a2C","1층 L~P열 가운데","b",103,93,14,"c",RW(RL("LMNOP"),14),"L~P열","13~26번","1층 중간 정면"],
+      ["a2R","1층 L~R열 오른쪽","b",211,93,12,"l",RW(RL("LMNOPQR"),12),"L~R열","27~38번","1층 중간 오른쪽"],
+      ["a3L","1층 S~Z열 왼쪽","b",  8,140,15,"r",[...RW(RL("STUVW"),15),["X",12],["Y",15],["Z",15]],"S~Z열","1~15번","1층 뒤쪽 왼쪽. 가운데는 PA석"],
+      ["a3R","1층 S~Z열 오른쪽","b",192,140,15,"l",[...RW(RL("STUVW"),15),["X",12],["Y",16],["Z",15]],"S~Z열","13~30번","1층 뒤쪽 오른쪽. 가운데는 PA석"],
+      ["b2L","2층 A~H열 왼쪽","y",  8,226,14,"r",[...RW(RL("AB"),11),...RW(RL("CDEFGH"),14)],"A~H열","1~14번","2층 왼쪽. 높은 곳이라 앞사람에 가려지지 않아요"],
+      ["b2C","2층 A~H열 가운데","y",104,226,13,"c",[...RW(RL("AB"),10),...RW(RL("CDEFGH"),13)],"A~H열","12~27번","2층 정면. 무대 전체와 조명이 한눈에 보여요"],
+      ["b2R","2층 A~H열 오른쪽","y",197,226,14,"l",[...RW(RL("AB"),11),...RW(RL("CDEFGH"),14)],"A~H열","22~41번","2층 오른쪽. 높은 곳이라 앞사람에 가려지지 않아요"]
+    ] }
 };
 const seatPick = { get:k => { try { return localStorage.getItem("bn_seat_" + k) || ""; } catch(e){ return ""; } },
   set:(k, v) => { try { v ? localStorage.setItem("bn_seat_" + k, v) : localStorage.removeItem("bn_seat_" + k); } catch(e){} } };
 function seatMapHtml(key, img){
   const m = SEATMAPS[key]; if (!m) return "";
-  const mine = seatPick.get(key);
-  const zr = ([id, nm, x, y, w, h, c]) => { const [f, s] = SEAT_COLORS[c];
+  const mine = seatPick.get(key), P = m.P, RH = m.RH, S = P * .78, SH = RH * .74;
+  const block = ([id, nm, c, x, y, max, al, rows]) => {
+    const [f, s] = SEAT_COLORS[c], W = max * P;
+    let seats = "", labels = "";
+    rows.forEach(([lab, n], i) => {
+      const ry = y + i * RH; if (!n) return;
+      const x0 = al === "r" ? x + W - n * P : al === "c" ? x + (W - n * P) / 2 : x;
+      for (let k = 0; k < n; k++) seats += `<rect x="${(x0 + k * P + (P - S) / 2).toFixed(1)}" y="${(ry + (RH - SH) / 2).toFixed(1)}" width="${S.toFixed(1)}" height="${SH.toFixed(1)}" rx=".7" fill="${f}" stroke="${s}" stroke-width=".35"/>`;
+      if (al === "c") labels += `<text x="${(x - 3.2).toFixed(1)}" y="${(ry + RH * .78).toFixed(1)}" text-anchor="middle" class="sm-row">${lab}</text>`;
+    });
     return `<g class="sz${id === mine ? " mine" : ""}" data-sz="${id}" tabindex="0" role="button" aria-label="${esc(nm)}">
-      <rect x="${x}" y="${y}" width="${w}" height="${h}" rx="4" fill="${f}" stroke="${s}" stroke-width="1"/>
-      <text x="${x + w / 2}" y="${y + h / 2 + 3.5}" text-anchor="middle">${esc(nm.replace(/^\d층\s*/, "").replace(/ (왼쪽|가운데|오른쪽)$/, ""))}</text></g>`; };
+      <rect class="sz-hit" x="${x - 1.5}" y="${y - 1.5}" width="${W + 3}" height="${rows.length * RH + 3}" rx="3"/>${seats}${labels}</g>`;
+  };
   const [sx, sy, sw, sh, sl] = m.stage;
   return `<div class="seatmap" data-sm="${key}">
     <svg viewBox="0 0 ${m.w} ${m.h}" class="sm-svg" role="img" aria-label="${esc(m.name)} 좌석 배치도">
-      <rect x="${sx}" y="${sy}" width="${sw}" height="${sh}" rx="6" class="sm-stage"/><text x="${sx + sw / 2}" y="${sy + sh / 2 + 3.5}" text-anchor="middle" class="sm-stage-t">${sl}</text>
-      ${m.floors.map(([x, y, t]) => `<text x="${x}" y="${y}" text-anchor="middle" class="sm-floor">${t}</text>`).join("")}
+      <rect x="${sx}" y="${sy}" width="${sw}" height="${sh}" rx="5.5" class="sm-stage"/><text x="${sx + sw / 2}" y="${sy + sh / 2 + 3}" text-anchor="middle" class="sm-stage-t">${sl}</text>
+      ${m.floors.map(([x, y, t]) => `<rect x="${x - 16}" y="${y - 7}" width="32" height="10" rx="5" class="sm-floor-b"/><text x="${x}" y="${y}" text-anchor="middle" class="sm-floor">${t}</text>`).join("")}
       ${m.fixed.map(([x, y, w, h, t]) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="4" class="sm-fixed"/><text x="${x + w / 2}" y="${y + h / 2 + 3}" text-anchor="middle" class="sm-fixed-t">${t}</text>`).join("")}
-      ${m.zones.map(zr).join("")}
+      ${m.blocks.map(block).join("")}
     </svg>
     <div class="sm-info" aria-live="polite">${seatInfoHtml(key, mine)}</div>
     <p class="sm-note">${esc(m.note)}${img ? ` · <button type="button" class="sm-img" data-zoom="${esc(img)}">공식 좌석도 이미지</button>` : ""}</p>
   </div>`;
 }
 function seatInfoHtml(key, id){
-  const m = SEATMAPS[key], z = m && m.zones.find(z => z[0] === id), mine = seatPick.get(key);
+  const m = SEATMAPS[key], z = m && m.blocks.find(z => z[0] === id), mine = seatPick.get(key);
   if (!z) return `<span class="sm-hint">구역을 누르면 위치 안내가 나와요${mine ? "" : " · 당첨된 구역을 저장해 둘 수 있어요"}</span>`;
-  return `<b>${esc(z[1])}</b><small>${esc(z[7])} · ${esc(z[8])}</small><span>${esc(z[9])}</span>
+  return `<b>${esc(z[1])}</b><small>${esc(z[8])} · ${esc(z[9])}</small><span>${esc(z[10])}</span>
     <button type="button" class="sm-save" data-szsave="${id}">${mine === id ? "★ 내 구역 (저장 취소)" : "☆ 내 구역으로 저장"}</button>`;
 }
 document.addEventListener("click", e => {
