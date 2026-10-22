@@ -3079,7 +3079,7 @@ function postFirstImg(p){
 }
 /* src: 본문 글, img: 사진 주소 바꾸기(글쓰기 미리보기용) */
 const FILE_ICON = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>`;
-const FILE_EXTS = ".pdf,.srt,.vtt,.ass,.ssa,.smi,.sub,.lrc,.txt,.zip";
+const FILE_EXTS = ".pdf,.srt,.vtt,.ass,.ssa,.smi,.sub,.lrc,.pbf,.txt,.zip";
 const fileSize = n => n >= 1048576 ? (n / 1048576).toFixed(1) + "MB" : Math.max(1, Math.round(n / 1024)) + "KB";
 /* 홈 화면 앱(아이폰)에는 다운로드 기능이 없어서 미리보기만 뜬다 →
    파일을 받아서 공유 창을 띄운다 ("파일에 저장"을 누르면 원래 이름 그대로 저장) */
@@ -3650,7 +3650,7 @@ function viewWrite(arg){
         <button class="btn" type="button" data-fold title="고른 내용을 접어 두고, 글자를 누르면 펼쳐져요">📂 접기</button>
         <button class="btn" data-ins="[링크 글자](https://)">링크</button>
         <label class="btn primary">📷 사진 넣기<input id="w_files" type="file" accept="image/*" multiple hidden></label>
-        <label class="btn" title="PDF · 자막(srt, vtt, ass, smi) · txt · zip / 한 파일 10MB까지">📎 파일 넣기<input id="w_attach" type="file" accept="${FILE_EXTS}" multiple hidden></label>
+        <label class="btn" title="PDF · 자막(srt, vtt, ass, smi) · 자막 책갈피(pbf) · txt · zip / 한 파일 10MB까지">📎 파일 넣기<input id="w_attach" type="file" accept="${FILE_EXTS}" multiple hidden></label>
       </div>
       <textarea id="w_body" rows="16" placeholder="본문을 쓰세요. 빈 줄로 문단을 나눠요.&#10;캡처한 사진은 여기에 바로 붙여넣기(Ctrl+V)·끌어다 놓기도 돼요.&#10;&#10;사진은 [📷 사진 넣기] 로 고르면 커서 자리에 들어가요.&#10;사진 여러 장을 한 번에 고르면 나란히 2장씩 보여요.">${esc(d.body || "")}</textarea>
       <div class="w-thumbs" id="w_thumbs"></div>
@@ -3798,7 +3798,7 @@ ${body}
   const addFiles = async files => {
     const okExt = FILE_EXTS.split(",");
     files = files.filter(f => f && okExt.includes((f.name.match(/\.[^.]+$/) || [""])[0].toLowerCase()));
-    if (!files.length) return alert("올릴 수 있는 파일: PDF · 자막(srt, vtt, ass, ssa, smi, sub, lrc) · txt · zip");
+    if (!files.length) return alert("올릴 수 있는 파일: PDF · 자막(srt, vtt, ass, ssa, smi, sub, lrc) · 자막 책갈피(pbf) · txt · zip");
     const big = files.filter(f => f.size > 10 * 1048576);
     if (big.length) return alert(`10MB가 넘는 파일은 올릴 수 없어요:\n${big.map(f => f.name).join("\n")}`);
     const at = ta.selectionStart, lines = [];

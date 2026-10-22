@@ -1,8 +1,8 @@
 import { who, json } from "./_auth.js";
 // POST /api/file?name=원래파일이름  (본문 = 파일 그대로) → { url:"/file/files/…", name, size }
-// 정보 글에 첨부하는 작은 파일 (PDF · 자막 · 텍스트 · zip). 받는 사람은 /file/… 로 내려받는다.
+// 정보 글에 첨부하는 작은 파일 (PDF · 자막 · 자막 책갈피 pbf · 텍스트 · zip). 받는 사람은 /file/… 로 내려받는다.
 const BIN = "application/octet-stream";   // 자막·텍스트도 바이너리로 → 아이폰이 .txt 를 붙이거나 글자 화면으로 열지 않음
-const TYPES = { pdf: "application/pdf", srt: BIN, vtt: BIN, ass: BIN, ssa: BIN, smi: BIN, sub: BIN, lrc: BIN, txt: BIN, zip: "application/zip" };
+const TYPES = { pdf: "application/pdf", srt: BIN, vtt: BIN, ass: BIN, ssa: BIN, smi: BIN, sub: BIN, lrc: BIN, pbf: BIN, txt: BIN, zip: "application/zip" };
 const MAX = 10 * 1024 * 1024;   // 한 파일 10MB 까지
 export async function onRequestPost({ request, env }){
   const u = who(request, env); if (!u) return json({ error: "비밀번호가 맞지 않아요" }, 401);
