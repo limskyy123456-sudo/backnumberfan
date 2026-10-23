@@ -5523,7 +5523,7 @@ setTimeout(() => { if (!(navigator.connection && navigator.connection.saveData))
 
 /* ============ 오프라인(PWA) ============ */
 if ("serviceWorker" in navigator && location.protocol === "https:") {
-  navigator.serviceWorker.register("sw.js").catch(() => {});
+  navigator.serviceWorker.register("sw.js", { updateViaCache:"none" }).catch(() => {});
 }
 </script>
 </body>

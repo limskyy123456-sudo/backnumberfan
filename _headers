@@ -1,0 +1,9 @@
+# Cloudflare Pages 응답 설정 (이 파일은 사이트 맨 위 폴더에 둬요)
+# 사진·영상·아이콘: 브라우저에 7일 저장 (그 뒤 30일 동안은 저장본을 먼저 보여주고 뒤에서 새로 받음)
+/images/*
+  Cache-Control: public, max-age=604800, stale-while-revalidate=2592000
+/icons/*
+  Cache-Control: public, max-age=604800, stale-while-revalidate=2592000
+# 오프라인 저장 스크립트는 항상 새로 확인
+/sw.js
+  Cache-Control: no-cache
